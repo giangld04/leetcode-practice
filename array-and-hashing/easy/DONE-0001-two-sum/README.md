@@ -1,4 +1,5 @@
-# 1. Two Sum
+# 1. Two Sum ✅
+<!-- SOLVED -->
 
 **Difficulty:** Easy
 **Tags:** Array, Hash Table
