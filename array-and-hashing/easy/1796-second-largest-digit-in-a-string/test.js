@@ -1,0 +1,157 @@
+// Test: 1796. Second Largest Digit In A String
+// 131 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { secondHighest } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1796. Second Largest Digit In A String\n");
+
+test(secondHighest("9876543210"), 8, 'Test 1');
+test(secondHighest("same1same1same1"), -1, 'Test 2');
+test(secondHighest("abcdefghij0"), -1, 'Test 3');
+test(secondHighest("abc1111"), -1, 'Test 4');
+test(secondHighest("1a"), -1, 'Test 5');
+test(secondHighest("1234567890"), 8, 'Test 6');
+test(secondHighest("dfa12321afd"), 2, 'Test 7');
+test(secondHighest("a1"), -1, 'Test 8');
+test(secondHighest("a1b2c3d4e5f6g7h8i9j0"), 8, 'Test 9');
+test(secondHighest("11223344556677889900"), 8, 'Test 10');
+test(secondHighest("noDigitsHere"), -1, 'Test 11');
+test(secondHighest("unique9"), -1, 'Test 12');
+test(secondHighest("a1a2a3a4a5a6a7a8a9a0"), 8, 'Test 13');
+test(secondHighest("no digits here"), -1, 'Test 14');
+test(secondHighest("0000000000"), -1, 'Test 15');
+test(secondHighest("9999999999"), -1, 'Test 16');
+test(secondHighest("00000000001111111111"), 0, 'Test 17');
+test(secondHighest("1001"), 0, 'Test 18');
+test(secondHighest("abcdefg"), -1, 'Test 19');
+test(secondHighest("a9b8c7d6e5f4g3h2i1j0"), 8, 'Test 20');
+test(secondHighest("abcdefghijklmnopqrstuvwxyz0"), -1, 'Test 21');
+test(secondHighest("0a0b0c0d0e0f0g0h0i0j0k0l0m0n0o0p0q0r0s0t0u0v0w0x0y0z0"), -1, 'Test 22');
+test(secondHighest("abcd1abcd2abcd3abcd4abcd5abcd6abcd7abcd8abcd9abcd0"), 8, 'Test 23');
+test(secondHighest("9a8b7c6d5e4f3g2h1i0"), 8, 'Test 24');
+test(secondHighest("a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0"), 8, 'Test 25');
+test(secondHighest("abc123xyz123"), 2, 'Test 26');
+test(secondHighest("9876543210abc9876543210"), 8, 'Test 27');
+test(secondHighest("9223372036854775807"), 8, 'Test 28');
+test(secondHighest("z9y8x7w6v5u4t3s2r1q0p9o8n7m6l5k4j3i2h1g0f9e8d7c6b5a4"), 8, 'Test 29');
+test(secondHighest("1234567890abcdefghijklmnopqrstuvwxyz"), 8, 'Test 30');
+test(secondHighest("1234567890abcdefghij0123456789"), 8, 'Test 31');
+test(secondHighest("99887766554433221100"), 8, 'Test 32');
+test(secondHighest("abcdefghij01234567890"), 8, 'Test 33');
+test(secondHighest("a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0"), 8, 'Test 34');
+test(secondHighest("abc123abc123abc123"), 2, 'Test 35');
+test(secondHighest("a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1"), -1, 'Test 36');
+test(secondHighest("abc123xyz123abc123"), 2, 'Test 37');
+test(secondHighest("1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdefghijklmnopqrstuvwxyz"), 8, 'Test 38');
+test(secondHighest("1a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1"), -1, 'Test 39');
+test(secondHighest("123abc456def789ghi123"), 8, 'Test 40');
+test(secondHighest("1"), -1, 'Test 41');
+test(secondHighest("a1b1c2d2e3f3g4h4i5j5k6l6m7n7o8p8q9r0"), 8, 'Test 42');
+test(secondHighest("1223344556677889900"), 8, 'Test 43');
+test(secondHighest("1234123412341234"), 3, 'Test 44');
+test(secondHighest("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001"), 0, 'Test 45');
+test(secondHighest("abc123123123abc123123"), 2, 'Test 46');
+test(secondHighest("000000000000000000000"), -1, 'Test 47');
+test(secondHighest("123456789098765432101234567890"), 8, 'Test 48');
+test(secondHighest("a1b1c2d2e3f3g4h4i5j5"), 4, 'Test 49');
+test(secondHighest("1111111111222222222233333333334444444444555555555566666666667777777777888888888899999999990000000000"), 8, 'Test 50');
+test(secondHighest("a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6"), 8, 'Test 51');
+test(secondHighest("1234567890123456789012345678901234567890"), 8, 'Test 52');
+test(secondHighest("999888777666555444333222111000"), 8, 'Test 53');
+test(secondHighest("a1b2c3d4e5f6g7h8i9j0a1b2c3d4e5f6g7h8i9j0a1b2c3d4e5f6g7h8i9j0"), 8, 'Test 54');
+test(secondHighest("9876543210abcdefghijklmnopqrstuvwxyz"), 8, 'Test 55');
+test(secondHighest("99999999999999999999"), -1, 'Test 56');
+test(secondHighest("012345678901234567890123456789"), 8, 'Test 57');
+test(secondHighest("10011001100110011001100110011001100110011001"), 0, 'Test 58');
+test(secondHighest("1234567890abcdefghijk"), 8, 'Test 59');
+test(secondHighest("abcdefghij0123456789"), 8, 'Test 60');
+test(secondHighest("5555555555"), -1, 'Test 61');
+test(secondHighest("55555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555"), -1, 'Test 62');
+test(secondHighest("987654321009876543210987654321098765432109876543210"), 8, 'Test 63');
+test(secondHighest("1234567890abcdefghij1234567890"), 8, 'Test 64');
+test(secondHighest("12345678901234567890"), 8, 'Test 65');
+test(secondHighest("abcdefghijabcdefghijabcdefghij012345678901234567890123456789"), 8, 'Test 66');
+test(secondHighest("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz1234567890"), 8, 'Test 67');
+test(secondHighest("98765432109876543210"), 8, 'Test 68');
+test(secondHighest("1a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z11"), -1, 'Test 69');
+test(secondHighest("111222333444555666777888999"), 8, 'Test 70');
+test(secondHighest("999999999999999999999999999999999999999999999999"), -1, 'Test 71');
+test(secondHighest("abcdefg1234567890"), 8, 'Test 72');
+test(secondHighest("5555555555555"), -1, 'Test 73');
+test(secondHighest("abcdefghijabcdefghijabcdefghijabcdefghij012345678901234567890123456789"), 8, 'Test 74');
+test(secondHighest("a1b2c2d3e3f4g4h5i5j6k6l7m7n8o8p9q9r0"), 8, 'Test 75');
+test(secondHighest("zzzzz99999"), -1, 'Test 76');
+test(secondHighest("a1b1c1d1e1f1g1h1i1j1"), -1, 'Test 77');
+test(secondHighest("z9y8x7w6v5u4t3s2r1q0p"), 8, 'Test 78');
+test(secondHighest("9876543210abcdefg"), 8, 'Test 79');
+test(secondHighest("98765432100123456789"), 8, 'Test 80');
+test(secondHighest("0000000000000000000000000000000000000000000000000"), -1, 'Test 81');
+test(secondHighest("abc123xyz456"), 5, 'Test 82');
+test(secondHighest("123456789012345678901234567890123456789012345678901234567890"), 8, 'Test 83');
+test(secondHighest("1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7"), 8, 'Test 84');
+test(secondHighest("zzzzzzzzzzzzzzzzz9zzzzzzzzzzzzzzzz8"), 8, 'Test 85');
+test(secondHighest("aabbccddeeffgghhii123456789"), 8, 'Test 86');
+test(secondHighest("0123456789"), 8, 'Test 87');
+test(secondHighest("abcdefghij1234567890"), 8, 'Test 88');
+test(secondHighest("abcabcabc123123123"), 2, 'Test 89');
+test(secondHighest("zzz9zzz8zzz7zzz6zzz5zzz4zzz3zzz2zzz1zzz0zzz"), 8, 'Test 90');
+test(secondHighest("5555555555555555"), -1, 'Test 91');
+test(secondHighest("a1b"), -1, 'Test 92');
+test(secondHighest("1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t"), 8, 'Test 93');
+test(secondHighest("111222333444555666777888999000"), 8, 'Test 94');
+test(secondHighest("zzz999zzz888zzz"), 8, 'Test 95');
+test(secondHighest("0000000000000111111111111222222222222333333333"), 2, 'Test 96');
+test(secondHighest("abcd1234567890abcd"), 8, 'Test 97');
+test(secondHighest("123abc123abc123"), 2, 'Test 98');
+test(secondHighest("123abc456def789ghi0jkl"), 8, 'Test 99');
+test(secondHighest("a1b2c3d4e5f6g7h8i9j0a1b2c3d4e5f6g7h8i9j0"), 8, 'Test 100');
+test(secondHighest("00000000000000000000"), -1, 'Test 101');
+test(secondHighest("abcdefghij012345678909876543210"), 8, 'Test 102');
+test(secondHighest("123456789012345678901234567890"), 8, 'Test 103');
+test(secondHighest("9999999999999999999999999999"), -1, 'Test 104');
+test(secondHighest("987654321098765432109876543210"), 8, 'Test 105');
+test(secondHighest("abc123xyz987"), 8, 'Test 106');
+test(secondHighest("0000111122223333444455556666777788889999"), 8, 'Test 107');
+test(secondHighest("555555555555555555555555555555555555"), -1, 'Test 108');
+test(secondHighest("1a1b2c2d3e3f4g4h5i5j6k6l7m7n8o8p9q9r0s0t1u2v3w4x5y6z7"), 8, 'Test 109');
+test(secondHighest("1122334455667788990011223344556677889900"), 8, 'Test 110');
+test(secondHighest("0123456789abcdefghij0123456789"), 8, 'Test 111');
+test(secondHighest("1a2b3c4d5e6f7g8h9i0j"), 8, 'Test 112');
+test(secondHighest("1111111111111111111112"), 1, 'Test 113');
+test(secondHighest("1234567890abcdefghijabcdefghijabcdefghijabcdefghij012345678901234567890123456789"), 8, 'Test 114');
+test(secondHighest("1234567890abcdefghij"), 8, 'Test 115');
+test(secondHighest("122222222222222222222"), 1, 'Test 116');
+test(secondHighest("123123123123123123123123123123123"), 2, 'Test 117');
+test(secondHighest("9999999999888888888877777777766666666555555554444444433333333222222221111111100000000"), 8, 'Test 118');
+test(secondHighest("abcdefghijklmnopqrstuvwxyz9876543210"), 8, 'Test 119');
+test(secondHighest("a9b8c7d6e5f4g3h2i1"), 8, 'Test 120');
+test(secondHighest("111122223333444455556666777788889999"), 8, 'Test 121');
+test(secondHighest("abcdefghij9876543210"), 8, 'Test 122');
+test(secondHighest("99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999"), -1, 'Test 123');
+test(secondHighest("abcd1234efgh5678ijkl90mnop"), 8, 'Test 124');
+test(secondHighest("123123123123123"), 2, 'Test 125');
+test(secondHighest("9876543210abcdefghij0123456789"), 8, 'Test 126');
+test(secondHighest("5555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555"), -1, 'Test 127');
+test(secondHighest("zz9zz8zz7zz6zz5zz4zz3zz2zz1zz0zz"), 8, 'Test 128');
+test(secondHighest("12345678901234567890abcdefghijabcdefghijabcdefghijabcdefghij012345678901234567890123456789"), 8, 'Test 129');
+test(secondHighest("0102030405060708090"), 8, 'Test 130');
+test(secondHighest("abc1234567890"), 8, 'Test 131');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

@@ -1,0 +1,155 @@
+// Test: 658. Find K Closest Elements
+// 129 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { findClosestElements } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n658. Find K Closest Elements\n");
+
+test(findClosestElements([1,3,5,7,9], 4, 6), [3, 5, 7, 9], 'Test 1');
+test(findClosestElements([1,3,5,7,9], 2, 6), [5, 7], 'Test 2');
+test(findClosestElements([1,3,5,7,9], 1, 6), [5], 'Test 3');
+test(findClosestElements([1,3,5,7,9], 5, 6), [1, 3, 5, 7, 9], 'Test 4');
+test(findClosestElements([1,2,3,4,5], 2, 3), [2, 3], 'Test 5');
+test(findClosestElements([1,1,1,1,1], 3, 1), [1, 1, 1], 'Test 6');
+test(findClosestElements([1,3,5,7,9], 5, 8), [1, 3, 5, 7, 9], 'Test 7');
+test(findClosestElements([1,2,3,4,5], 4, 3), [1, 2, 3, 4], 'Test 8');
+test(findClosestElements([1,2,2,2,3,3,4,5], 4, 2), [1, 2, 2, 2], 'Test 9');
+test(findClosestElements([1,1,2,3,4,5], 4, -1), [1, 1, 2, 3], 'Test 10');
+test(findClosestElements([1,2,3,4,5], 1, 2), [2], 'Test 11');
+test(findClosestElements([1,2,3,4,5], 5, 3), [1, 2, 3, 4, 5], 'Test 12');
+test(findClosestElements([1,3,5,7,9], 3, 6), [3, 5, 7], 'Test 13');
+test(findClosestElements([1,2,3,4,5], 3, 6), [3, 4, 5], 'Test 14');
+test(findClosestElements([0,0,1,2,3,3,4,7,7,8], 3, 5), [3, 3, 4], 'Test 15');
+test(findClosestElements([1,2,2,2,3,4,5], 3, 2), [2, 2, 2], 'Test 16');
+test(findClosestElements([1,2,2,2,5,5,5,8,9], 3, 4), [5, 5, 5], 'Test 17');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 1, 5), [5], 'Test 18');
+test(findClosestElements([0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6], 7, 3), [2, 2, 2, 3, 3, 3, 4], 'Test 19');
+test(findClosestElements([1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30], 7, 13), [6, 8, 10, 12, 14, 16, 18], 'Test 20');
+test(findClosestElements([1, 2, 3, 100, 101, 102], 3, 99), [100, 101, 102], 'Test 21');
+test(findClosestElements([-100, -99, -98, -97, -96, -95, -94, -93, -92, -91, -90], 5, -90), [-94, -93, -92, -91, -90], 'Test 22');
+test(findClosestElements([100, 101, 102, 103, 104, 105, 106, 107, 108, 109], 4, 90), [100, 101, 102, 103], 'Test 23');
+test(findClosestElements([-10, -5, -2, 0, 3, 8, 12, 16, 20], 5, -1), [-10, -5, -2, 0, 3], 'Test 24');
+test(findClosestElements([10, 10, 10, 10, 10, 10, 10, 10, 10, 10], 4, 5), [10, 10, 10, 10], 'Test 25');
+test(findClosestElements([-10, -5, 0, 5, 10], 3, -6), [-10, -5, 0], 'Test 26');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 5, 5), [3, 4, 5, 6, 7], 'Test 27');
+test(findClosestElements([1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 8, 8, 9, 9, 10], 9, 4), [3, 3, 3, 3, 4, 4, 4, 5, 5], 'Test 28');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4, 5), [3, 4, 5, 6], 'Test 29');
+test(findClosestElements([1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5], 5, 6), [4, 4, 5, 5, 5], 'Test 30');
+test(findClosestElements([-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10], 10, 0), [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4], 'Test 31');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7, 15), [4, 5, 6, 7, 8, 9, 10], 'Test 32');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 20, 10), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 'Test 33');
+test(findClosestElements([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21], 5, 10), [5, 7, 9, 11, 13], 'Test 34');
+test(findClosestElements([-100, -50, -30, -20, -10, 0, 10, 20, 30, 50, 100], 5, -25), [-50, -30, -20, -10, 0], 'Test 35');
+test(findClosestElements([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 4, 12), [9, 11, 13, 15], 'Test 36');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 7, 10), [7, 8, 9, 10, 11, 12, 13], 'Test 37');
+test(findClosestElements([-100, -99, -98, -97, -96, -95, -94, -93, -92, -91, -90], 5, -99), [-100, -99, -98, -97, -96], 'Test 38');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5, 3), [1, 2, 3, 4, 5], 'Test 39');
+test(findClosestElements([1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31], 5, 28), [23, 25, 27, 29, 31], 'Test 40');
+test(findClosestElements([-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10], 5, 1), [-4, -2, 0, 2, 4], 'Test 41');
+test(findClosestElements([1,3,5,7,9,11,13,15,17,19], 4, 10), [7, 9, 11, 13], 'Test 42');
+test(findClosestElements([0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2], 5, 1), [1, 1, 1, 1, 1], 'Test 43');
+test(findClosestElements([5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 7, 0), [5, 5, 5, 5, 5, 5, 5], 'Test 44');
+test(findClosestElements([-10,-9,-8,-7,-6,-5,-4,-3,-2,-1], 4, -5), [-7, -6, -5, -4], 'Test 45');
+test(findClosestElements([1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3], 6, 1), [1, 1, 1, 1, 1, 2], 'Test 46');
+test(findClosestElements([1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5], 5, 0), [1, 1, 1, 2, 2], 'Test 47');
+test(findClosestElements([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 6, 14), [9, 11, 13, 15, 17, 19], 'Test 48');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 10, 8), [3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'Test 49');
+test(findClosestElements([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 10, 1), [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'Test 50');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5, 0), [1, 2, 3, 4, 5], 'Test 51');
+test(findClosestElements([1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5], 5, 3), [2, 2, 3, 3, 3], 'Test 52');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7, 0), [1, 2, 3, 4, 5, 6, 7], 'Test 53');
+test(findClosestElements([1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9], 4, 1), [1, 1, 1, 2], 'Test 54');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5, 5), [3, 4, 5, 6, 7], 'Test 55');
+test(findClosestElements([1, 2, 2, 2, 3, 3, 4, 5], 3, 5), [3, 4, 5], 'Test 56');
+test(findClosestElements([1, 1, 1, 1, 1, 1, 1, 1], 4, 1), [1, 1, 1, 1], 'Test 57');
+test(findClosestElements([-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0], 5, 0), [-4, -3, -2, -1, 0], 'Test 58');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4, 11), [7, 8, 9, 10], 'Test 59');
+test(findClosestElements([1, 2, 2, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 8, 9, 9, 10], 8, 5), [3, 4, 4, 5, 5, 5, 6, 6], 'Test 60');
+test(findClosestElements([0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6], 15, 3), [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5], 'Test 61');
+test(findClosestElements([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 5, 1), [1, 1, 1, 1, 1], 'Test 62');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5, 15), [6, 7, 8, 9, 10], 'Test 63');
+test(findClosestElements([-10,-5,-3,-1,0,1,3,5,7,10], 4, 12), [3, 5, 7, 10], 'Test 64');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 5, 0), [1, 2, 3, 4, 5], 'Test 65');
+test(findClosestElements([1, 4, 6, 8, 10, 12, 14, 16, 18, 20], 4, 15), [12, 14, 16, 18], 'Test 66');
+test(findClosestElements([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 10, 10), [5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 'Test 67');
+test(findClosestElements([1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 9, 10], 10, 5), [4, 4, 4, 4, 5, 5, 5, 5, 5, 6], 'Test 68');
+test(findClosestElements([1,2,2,3,3,3,4,4,5,5,5,6,7], 8, 4), [3, 3, 3, 4, 4, 5, 5, 5], 'Test 69');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 8, 16), [8, 9, 10, 11, 12, 13, 14, 15], 'Test 70');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 0), [1, 2, 3], 'Test 71');
+test(findClosestElements([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 7, 5), [2, 3, 4, 5, 6, 7, 8], 'Test 72');
+test(findClosestElements([-100,-90,-80,-70,-60,-50,-40,-30,-20,-10,0,10,20,30,40,50,60,70,80,90,100], 10, 5), [-40, -30, -20, -10, 0, 10, 20, 30, 40, 50], 'Test 73');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 3, 15), [8, 9, 10], 'Test 74');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5, 11), [6, 7, 8, 9, 10], 'Test 75');
+test(findClosestElements([1, 2, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21], 5, 12), [7, 9, 11, 13, 15], 'Test 76');
+test(findClosestElements([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 10, 15), [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], 'Test 77');
+test(findClosestElements([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 3, 2), [1, 1, 1], 'Test 78');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4, 10), [7, 8, 9, 10], 'Test 79');
+test(findClosestElements([1,2,2,3,4,5,5,6,7,8,8,9], 4, 4), [3, 4, 5, 5], 'Test 80');
+test(findClosestElements([-10, -5, -3, -1, 0, 1, 2, 3, 5, 7], 3, -4), [-5, -3, -1], 'Test 81');
+test(findClosestElements([1, 10, 100, 1000, 10000, 100000, 1000000], 2, 10000), [1000, 10000], 'Test 82');
+test(findClosestElements([-10, -5, -2, 0, 1, 3, 5, 8, 12], 3, -3), [-5, -2, 0], 'Test 83');
+test(findClosestElements([1,2,3,3,3,3,4,5,6], 4, 3), [3, 3, 3, 3], 'Test 84');
+test(findClosestElements([1, 2, 2, 2, 3, 3, 4, 5], 3, 1), [1, 2, 2], 'Test 85');
+test(findClosestElements([1,1,1,2,2,3,4,5,6,7,8], 5, 2), [1, 1, 1, 2, 2], 'Test 86');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 11), [8, 9, 10], 'Test 87');
+test(findClosestElements([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 5, 10), [5, 7, 9, 11, 13], 'Test 88');
+test(findClosestElements([1,1,1,1,1,1,1,1,1,1,1], 5, 1), [1, 1, 1, 1, 1], 'Test 89');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 3, 0), [1, 2, 3], 'Test 90');
+test(findClosestElements([1,2,2,2,3,4,5,5,5,6,6,7,8,8,9], 6, 5), [4, 5, 5, 5, 6, 6], 'Test 91');
+test(findClosestElements([-100, -99, -98, -97, -96, -95, -94, -93, -92, -91, -90], 5, -94), [-96, -95, -94, -93, -92], 'Test 92');
+test(findClosestElements([1,3,5,7,9,11,13,15,17,19,21], 6, 10), [5, 7, 9, 11, 13, 15], 'Test 93');
+test(findClosestElements([1, 2, 2, 2, 3, 3, 4, 5, 5, 5, 6, 7, 8, 9], 5, 4), [3, 3, 4, 5, 5], 'Test 94');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 3, 12), [8, 9, 10], 'Test 95');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 6, 5.5), [3, 4, 5, 6, 7, 8], 'Test 96');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 7, 10), [7, 8, 9, 10, 11, 12, 13], 'Test 97');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2, 5), [4, 5], 'Test 98');
+test(findClosestElements([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 3, 55), [40, 50, 60], 'Test 99');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 7, 7), [4, 5, 6, 7, 8, 9, 10], 'Test 100');
+test(findClosestElements([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25], 5, 12), [7, 9, 11, 13, 15], 'Test 101');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 6, 5), [2, 3, 4, 5, 6, 7], 'Test 102');
+test(findClosestElements([-20, -15, -10, -5, 0, 5, 10, 15, 20], 4, 0), [-10, -5, 0, 5], 'Test 103');
+test(findClosestElements([0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6], 10, 3), [1, 2, 2, 2, 3, 3, 3, 4, 4, 4], 'Test 104');
+test(findClosestElements([0, 1, 1, 1, 1, 2, 3, 4, 4, 4, 5, 5, 6, 7, 8, 9], 6, 0), [0, 1, 1, 1, 1, 2], 'Test 105');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 15, 10), [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 'Test 106');
+test(findClosestElements([1, 2, 3, 6, 7, 8, 9, 10], 3, 5), [3, 6, 7], 'Test 107');
+test(findClosestElements([-10,-5,-2,-1,0,1,2,3,5,6,7,10,15], 5, -3), [-5, -2, -1, 0, 1], 'Test 108');
+test(findClosestElements([0, 0, 1, 1, 1, 1, 2, 2, 3, 3], 5, 1), [0, 1, 1, 1, 1], 'Test 109');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 7, 11), [4, 5, 6, 7, 8, 9, 10], 'Test 110');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 3, -2), [1, 2, 3], 'Test 111');
+test(findClosestElements([1, 2, 3, 6, 9, 12, 15, 18, 21, 24], 5, 16), [9, 12, 15, 18, 21], 'Test 112');
+test(findClosestElements([-10,-5,-3,-1,0,1,3,5,7,10], 5, -2), [-5, -3, -1, 0, 1], 'Test 113');
+test(findClosestElements([-10, -5, -1, 0, 1, 5, 10], 3, -3), [-5, -1, 0], 'Test 114');
+test(findClosestElements([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 5, 2), [1, 1, 1, 1, 1], 'Test 115');
+test(findClosestElements([1, 3, 3, 3, 5, 5, 5, 7, 7, 9], 4, 6), [5, 5, 5, 7], 'Test 116');
+test(findClosestElements([1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5], 7, 4), [4, 4, 4, 4, 4, 4, 4], 'Test 117');
+test(findClosestElements([10,15,20,25,30,35,40,45,50,55,60], 5, 53), [40, 45, 50, 55, 60], 'Test 118');
+test(findClosestElements([-5,-3,-2,-1,0,1,2,3,4,5], 6, -4), [-5, -3, -2, -1, 0, 1], 'Test 119');
+test(findClosestElements([1,2,3,4,5,6,7,8,9,10], 10, 5), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 'Test 120');
+test(findClosestElements([0,0,0,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5], 12, 2), [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3], 'Test 121');
+test(findClosestElements([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 10, 5), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 'Test 122');
+test(findClosestElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 6, 15), [12, 13, 14, 15, 16, 17], 'Test 123');
+test(findClosestElements([-10, -5, 0, 3, 9, 12], 3, -7), [-10, -5, 0], 'Test 124');
+test(findClosestElements([0,0,0,0,0,0,0,0,0,0,0], 5, 0), [0, 0, 0, 0, 0], 'Test 125');
+test(findClosestElements([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 4, 10), [7, 9, 11, 13], 'Test 126');
+test(findClosestElements([-50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50], 6, 15), [-10, 0, 10, 20, 30, 40], 'Test 127');
+test(findClosestElements([1, 3, 4, 5, 8, 10, 15, 20, 30, 50, 100], 4, 12), [5, 8, 10, 15], 'Test 128');
+test(findClosestElements([1, 3, 3, 4, 4, 4, 4, 5, 6, 8, 9], 5, 4), [3, 4, 4, 4, 4], 'Test 129');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

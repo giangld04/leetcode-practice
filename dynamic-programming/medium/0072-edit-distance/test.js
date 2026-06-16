@@ -1,0 +1,158 @@
+// Test: 72. Edit Distance
+// 132 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minDistance } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n72. Edit Distance\n");
+
+test(minDistance("park", "spake"), 3, 'Test 1');
+test(minDistance("algorithm", "altruistic"), 6, 'Test 2');
+test(minDistance("abc", ""), 3, 'Test 3');
+test(minDistance("horse", "ros"), 3, 'Test 4');
+test(minDistance("a", "b"), 1, 'Test 5');
+test(minDistance("kitten", "sitting"), 3, 'Test 6');
+test(minDistance("a", "a"), 0, 'Test 7');
+test(minDistance("a", ""), 1, 'Test 8');
+test(minDistance("abcdefghij", "jihgfedcba"), 10, 'Test 9');
+test(minDistance("", "a"), 1, 'Test 10');
+test(minDistance("", "abc"), 3, 'Test 11');
+test(minDistance("abc", "abc"), 0, 'Test 12');
+test(minDistance("intention", "execution"), 5, 'Test 13');
+test(minDistance("abcd", "dcba"), 4, 'Test 14');
+test(minDistance("", ""), 0, 'Test 15');
+test(minDistance("abc", "def"), 3, 'Test 16');
+test(minDistance("flaw", "lawn"), 2, 'Test 17');
+test(minDistance("example", "samples"), 3, 'Test 18');
+test(minDistance("abbreviation", "acceleration"), 6, 'Test 19');
+test(minDistance("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba"), 26, 'Test 20');
+test(minDistance("acknowledgment", "acknowledge"), 3, 'Test 21');
+test(minDistance("xylophone", "xylophone"), 0, 'Test 22');
+test(minDistance("dynamic", "programming"), 8, 'Test 23');
+test(minDistance("embarrassing", "aberration"), 7, 'Test 24');
+test(minDistance("supercalifragilisticexpialidocious", "supercalifragilisticexpialidociousness"), 4, 'Test 25');
+test(minDistance("sequential", "sequentialization"), 7, 'Test 26');
+test(minDistance("algorithm", "alligator"), 6, 'Test 27');
+test(minDistance("distance", "distinction"), 5, 'Test 28');
+test(minDistance("irreversible", "reversible"), 2, 'Test 29');
+test(minDistance("serendipity", "inspiration"), 10, 'Test 30');
+test(minDistance("karolin", "kathrin"), 3, 'Test 31');
+test(minDistance("representative", "reproductive"), 6, 'Test 32');
+test(minDistance("congratulations", "congratulate"), 4, 'Test 33');
+test(minDistance("supercalifragilisticexpialidocious", "pseudopseudohypoparathyroidism"), 30, 'Test 34');
+test(minDistance("qwerty", "azerty"), 2, 'Test 35');
+test(minDistance("mississippi", "mispelling"), 7, 'Test 36');
+test(minDistance("levenshtein", "levenshtein"), 0, 'Test 37');
+test(minDistance("sequential", "concurrent"), 9, 'Test 38');
+test(minDistance("psychological", "psychologist"), 3, 'Test 39');
+test(minDistance("interpretation", "interpretive"), 4, 'Test 40');
+test(minDistance("transient", "transitory"), 4, 'Test 41');
+test(minDistance("abcdefgh", "xyz"), 8, 'Test 42');
+test(minDistance("algorithmic", "algebraic"), 6, 'Test 43');
+test(minDistance("transformation", "transfiguration"), 4, 'Test 44');
+test(minDistance("edit", "editing"), 3, 'Test 45');
+test(minDistance("levenshtein", "levenschtein"), 1, 'Test 46');
+test(minDistance("abracadabra", "barbarian"), 8, 'Test 47');
+test(minDistance("encyclopedia", "encyclopedic"), 1, 'Test 48');
+test(minDistance("transformation", "transmogrification"), 6, 'Test 49');
+test(minDistance("complexity", "simplicity"), 4, 'Test 50');
+test(minDistance("transformation", "transformation"), 0, 'Test 51');
+test(minDistance("transformation", "transform"), 5, 'Test 52');
+test(minDistance("abcdexyz", "abcd"), 4, 'Test 53');
+test(minDistance("zoology", "botany"), 5, 'Test 54');
+test(minDistance("computation", "computational"), 2, 'Test 55');
+test(minDistance("pharmaceuticals", "pharmacology"), 8, 'Test 56');
+test(minDistance("distance", "difference"), 5, 'Test 57');
+test(minDistance("reciprocal", "perpendicular"), 10, 'Test 58');
+test(minDistance("development", "evolution"), 7, 'Test 59');
+test(minDistance("amplification", "attenuation"), 7, 'Test 60');
+test(minDistance("thermodynamics", "thermodynamic"), 1, 'Test 61');
+test(minDistance("metamorphosis", "metaphysics"), 5, 'Test 62');
+test(minDistance("quantum", "quark"), 4, 'Test 63');
+test(minDistance("repetition", "repetitions"), 1, 'Test 64');
+test(minDistance("transform", "transformation"), 5, 'Test 65');
+test(minDistance("sequence", "consequence"), 3, 'Test 66');
+test(minDistance("abbreviation", "contraction"), 8, 'Test 67');
+test(minDistance("development", "independently"), 9, 'Test 68');
+test(minDistance("distance", "distant"), 2, 'Test 69');
+test(minDistance("mississippi", "mississipi"), 1, 'Test 70');
+test(minDistance("biographical", "biographies"), 3, 'Test 71');
+test(minDistance("optimization", "maximization"), 3, 'Test 72');
+test(minDistance("photosynthesis", "photosynthetic"), 2, 'Test 73');
+test(minDistance("supercalifragilisticexpialidocious", "pneumonoultramicroscopicsilicovolcanoconiosis"), 31, 'Test 74');
+test(minDistance("algorithm", "altruism"), 5, 'Test 75');
+test(minDistance("representation", "representative"), 2, 'Test 76');
+test(minDistance("reptile", "reptilian"), 3, 'Test 77');
+test(minDistance("abacaxi", "abacax"), 1, 'Test 78');
+test(minDistance("mississippi", "misisippi"), 2, 'Test 79');
+test(minDistance("electrical", "electronic"), 4, 'Test 80');
+test(minDistance("photograph", "photography"), 1, 'Test 81');
+test(minDistance("python", "typhon"), 2, 'Test 82');
+test(minDistance("kayak", "racecar"), 5, 'Test 83');
+test(minDistance("optimization", "minimization"), 3, 'Test 84');
+test(minDistance("biological", "biographic"), 7, 'Test 85');
+test(minDistance("congratulations", "congratulations"), 0, 'Test 86');
+test(minDistance("photography", "photomontage"), 7, 'Test 87');
+test(minDistance("babble", "bubble"), 1, 'Test 88');
+test(minDistance("transformation", "transmute"), 7, 'Test 89');
+test(minDistance("supercalifragilisticexpialidocious", "antidisestablishmentarianism"), 26, 'Test 90');
+test(minDistance("semantically", "syntactically"), 4, 'Test 91');
+test(minDistance("synchronous", "asynchronous"), 1, 'Test 92');
+test(minDistance("evolution", "revolution"), 1, 'Test 93');
+test(minDistance("abcdefghij", "zyxwvutsrqponmlkjihgfedcba"), 25, 'Test 94');
+test(minDistance("misunderstanding", "understanding"), 3, 'Test 95');
+test(minDistance("combinatorics", "computation"), 7, 'Test 96');
+test(minDistance("electromagnetic", "electroencephalography"), 13, 'Test 97');
+test(minDistance("permutation", "combination"), 6, 'Test 98');
+test(minDistance("subsequence", "supersequence"), 3, 'Test 99');
+test(minDistance("lumberjack", "lumbersome"), 4, 'Test 100');
+test(minDistance("optimization", "Infinityormation"), 7, 'Test 101');
+test(minDistance("interpolation", "interpretation"), 3, 'Test 102');
+test(minDistance("magnificent", "magnanimous"), 6, 'Test 103');
+test(minDistance("xylophone", "xylography"), 6, 'Test 104');
+test(minDistance("biochemistry", "bioInfinityormatics"), 10, 'Test 105');
+test(minDistance("exaggeration", "aggrandizement"), 10, 'Test 106');
+test(minDistance("abcde", "fghij"), 5, 'Test 107');
+test(minDistance("mississippi", "mispell"), 8, 'Test 108');
+test(minDistance("interpolation", "internationalization"), 8, 'Test 109');
+test(minDistance("entomology", "herpetology"), 5, 'Test 110');
+test(minDistance("interference", "interferometer"), 5, 'Test 111');
+test(minDistance("communication", "communism"), 6, 'Test 112');
+test(minDistance("characterization", "categorization"), 6, 'Test 113');
+test(minDistance("abracadabra", "cabracadabara"), 2, 'Test 114');
+test(minDistance("transformation", "transference"), 7, 'Test 115');
+test(minDistance("decomposition", "discombobulation"), 7, 'Test 116');
+test(minDistance("intermediate", "interim"), 6, 'Test 117');
+test(minDistance("interpolation", "intrapolation"), 2, 'Test 118');
+test(minDistance("visualization", "representation"), 9, 'Test 119');
+test(minDistance("abbreviation", "elision"), 7, 'Test 120');
+test(minDistance("metamorphism", "metempsychosis"), 8, 'Test 121');
+test(minDistance("encyclopedia", "encyclopedia"), 0, 'Test 122');
+test(minDistance("interdisciplinary", "transdisciplinary"), 5, 'Test 123');
+test(minDistance("unbelievable", "believable"), 2, 'Test 124');
+test(minDistance("abracadabra", "cadabra"), 4, 'Test 125');
+test(minDistance("hydrostatic", "hydrodynamics"), 5, 'Test 126');
+test(minDistance("parallel", "perpendicular"), 10, 'Test 127');
+test(minDistance("administration", "administrative"), 2, 'Test 128');
+test(minDistance("cosmology", "cosmonautics"), 7, 'Test 129');
+test(minDistance("development", "develpoment"), 2, 'Test 130');
+test(minDistance("photosynthesis", "photography"), 8, 'Test 131');
+test(minDistance("biochemistry", "biological"), 8, 'Test 132');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

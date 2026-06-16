@@ -1,0 +1,153 @@
+// Test: 761. Special Binary String
+// 127 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { makeLargestSpecial } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n761. Special Binary String\n");
+
+test(makeLargestSpecial("11010011"), 110100, 'Test 1');
+test(makeLargestSpecial("11011000"), 11100100, 'Test 2');
+test(makeLargestSpecial("11100100"), 11100100, 'Test 3');
+test(makeLargestSpecial("111000"), 111000, 'Test 4');
+test(makeLargestSpecial("101010"), 101010, 'Test 5');
+test(makeLargestSpecial("11001010"), 11001010, 'Test 6');
+test(makeLargestSpecial("11001100"), 11001100, 'Test 7');
+test(makeLargestSpecial("10"), 10, 'Test 8');
+test(makeLargestSpecial("1100"), 1100, 'Test 9');
+test(makeLargestSpecial("11010010"), 11010010, 'Test 10');
+test(makeLargestSpecial("10110011"), 110010, 'Test 11');
+test(makeLargestSpecial("10110010"), 11001010, 'Test 12');
+test(makeLargestSpecial("1010"), 1010, 'Test 13');
+test(makeLargestSpecial("11110000"), 11110000, 'Test 14');
+test(makeLargestSpecial("11101000"), 11101000, 'Test 15');
+test(makeLargestSpecial("10011010"), 10101010, 'Test 16');
+test(makeLargestSpecial("1101100011011000"), 1110010011100100, 'Test 17');
+test(makeLargestSpecial("111001100010"), 111001100010, 'Test 18');
+test(makeLargestSpecial("10101010110011"), 110010101010, 'Test 19');
+test(makeLargestSpecial("10111010000111"), 111010001010, 'Test 20');
+test(makeLargestSpecial("1100110011001010"), 1100110011001010, 'Test 21');
+test(makeLargestSpecial("11100100101000"), 111001001010, 'Test 22');
+test(makeLargestSpecial("11110011001000"), 11110011001000, 'Test 23');
+test(makeLargestSpecial("1111000100"), 1111000100, 'Test 24');
+test(makeLargestSpecial("1100110011001100"), 1100110011001100, 'Test 25');
+test(makeLargestSpecial("111111000011110000111100"), , 'Test 26');
+test(makeLargestSpecial("110101001100"), 110101001100, 'Test 27');
+test(makeLargestSpecial("111001001100"), 111001001100, 'Test 28');
+test(makeLargestSpecial("110011110000110011001100"), 111100001100110011001100, 'Test 29');
+test(makeLargestSpecial("1111001111000000"), 1111110000110000, 'Test 30');
+test(makeLargestSpecial("1111101000011100"), , 'Test 31');
+test(makeLargestSpecial("111010101000000000"), 111010101000, 'Test 32');
+test(makeLargestSpecial("101010101010101010101010"), 101010101010101010101010, 'Test 33');
+test(makeLargestSpecial("1101100011100100"), 1110010011100100, 'Test 34');
+test(makeLargestSpecial("10101010"), 10101010, 'Test 35');
+test(makeLargestSpecial("1001101010011010"), 1010101010101010, 'Test 36');
+test(makeLargestSpecial("11101010100100"), 11101010100100, 'Test 37');
+test(makeLargestSpecial("110110001001"), 111001001010, 'Test 38');
+test(makeLargestSpecial("11111100000011001100"), 11111100000011001100, 'Test 39');
+test(makeLargestSpecial("1100110011"), 11001100, 'Test 40');
+test(makeLargestSpecial("111001101001"), , 'Test 41');
+test(makeLargestSpecial("1111001000"), 1111001000, 'Test 42');
+test(makeLargestSpecial("1110101010000000"), 111010101000, 'Test 43');
+test(makeLargestSpecial("1111100001110000"), 1111100001110000, 'Test 44');
+test(makeLargestSpecial("101100101100101100"), 110011001100101010, 'Test 45');
+test(makeLargestSpecial("110011001100"), 110011001100, 'Test 46');
+test(makeLargestSpecial("1110110000"), 1111001000, 'Test 47');
+test(makeLargestSpecial("1111100001100110"), , 'Test 48');
+test(makeLargestSpecial("1101110000111000"), 1111000100111000, 'Test 49');
+test(makeLargestSpecial("11110000101010"), 11110000101010, 'Test 50');
+test(makeLargestSpecial("110011110000"), 111100001100, 'Test 51');
+test(makeLargestSpecial("111010011001"), , 'Test 52');
+test(makeLargestSpecial("1111000011001100"), 1111000011001100, 'Test 53');
+test(makeLargestSpecial("101010101010"), 101010101010, 'Test 54');
+test(makeLargestSpecial("11101001100100"), 11101001100100, 'Test 55');
+test(makeLargestSpecial("11111100001010101000"), 11111100001010101000, 'Test 56');
+test(makeLargestSpecial("110010110100"), 110100110010, 'Test 57');
+test(makeLargestSpecial("1101100011001100"), 1110010011001100, 'Test 58');
+test(makeLargestSpecial("11001110100011"), 111010001100, 'Test 59');
+test(makeLargestSpecial("110110100001"), 111010010010, 'Test 60');
+test(makeLargestSpecial("1111000010001100"), 11110000110010, 'Test 61');
+test(makeLargestSpecial("101101011000"), 111001010010, 'Test 62');
+test(makeLargestSpecial("1110101001010100"), 1110101001010100, 'Test 63');
+test(makeLargestSpecial("11111000011000"), 11111000011000, 'Test 64');
+test(makeLargestSpecial("1101100100"), 1110010100, 'Test 65');
+test(makeLargestSpecial("11111100000010101010"), 11111100000010101010, 'Test 66');
+test(makeLargestSpecial("1111100011000100"), 1111100011000100, 'Test 67');
+test(makeLargestSpecial("110110010010"), 111001010010, 'Test 68');
+test(makeLargestSpecial("111010011000"), 111010011000, 'Test 69');
+test(makeLargestSpecial("111011001110000110110011"), , 'Test 70');
+test(makeLargestSpecial("1101100010011100"), 1110010011001010, 'Test 71');
+test(makeLargestSpecial("1110011010001010"), 1110100110001010, 'Test 72');
+test(makeLargestSpecial("110110111000011100001100"), 111110001001110001001100, 'Test 73');
+test(makeLargestSpecial("1100111100001100"), 1111000011001100, 'Test 74');
+test(makeLargestSpecial("11001100110011001100"), 11001100110011001100, 'Test 75');
+test(makeLargestSpecial("1110110100100001"), 1111010010100010, 'Test 76');
+test(makeLargestSpecial("111100110000"), 111100110000, 'Test 77');
+test(makeLargestSpecial("111100001010"), 111100001010, 'Test 78');
+test(makeLargestSpecial("111110001111000011001100"), , 'Test 79');
+test(makeLargestSpecial("111011001000"), 111100101000, 'Test 80');
+test(makeLargestSpecial("1110001110100000"), 11101000111000, 'Test 81');
+test(makeLargestSpecial("1111110000001010"), 1111110000001010, 'Test 82');
+test(makeLargestSpecial("111010101010010100101010"), 111010101010010100101010, 'Test 83');
+test(makeLargestSpecial("111011100000"), 111110001000, 'Test 84');
+test(makeLargestSpecial("110010101100"), 110011001010, 'Test 85');
+test(makeLargestSpecial("101100111010010011001100"), 111010010011001100110010, 'Test 86');
+test(makeLargestSpecial("110011001010"), 110011001010, 'Test 87');
+test(makeLargestSpecial("11100011100010"), 11100011100010, 'Test 88');
+test(makeLargestSpecial("1101101000"), 1110100100, 'Test 89');
+test(makeLargestSpecial("1011100010111000"), 1110001110001010, 'Test 90');
+test(makeLargestSpecial("11101001011000"), 11101001100100, 'Test 91');
+test(makeLargestSpecial("10110011110000"), 11110000110010, 'Test 92');
+test(makeLargestSpecial("10110110101000"), 11101010010010, 'Test 93');
+test(makeLargestSpecial("111001100111000011001100"), 111100011001100011001100, 'Test 94');
+test(makeLargestSpecial("1110011001"), , 'Test 95');
+test(makeLargestSpecial("11011001100110"), , 'Test 96');
+test(makeLargestSpecial("111111000000101010"), 111111000000101010, 'Test 97');
+test(makeLargestSpecial("11010110100011"), 111010010100, 'Test 98');
+test(makeLargestSpecial("110110010100"), 111001010100, 'Test 99');
+test(makeLargestSpecial("1110010100100011"), 1110010100110010, 'Test 100');
+test(makeLargestSpecial("11101100110010"), , 'Test 101');
+test(makeLargestSpecial("11110100100100"), 11110100100100, 'Test 102');
+test(makeLargestSpecial("11010110001010"), 11100101001010, 'Test 103');
+test(makeLargestSpecial("1111000011110000"), 1111000011110000, 'Test 104');
+test(makeLargestSpecial("1110001100111000"), 1110001110001100, 'Test 105');
+test(makeLargestSpecial("11001111110000111100001100"), 1100, 'Test 106');
+test(makeLargestSpecial("101110100010"), 111010001010, 'Test 107');
+test(makeLargestSpecial("110101010010"), 110101010010, 'Test 108');
+test(makeLargestSpecial("110110011010010010110010"), 111010011001010011001010, 'Test 109');
+test(makeLargestSpecial("11011001110000"), 11110001100100, 'Test 110');
+test(makeLargestSpecial("11111000001010"), 11111000001010, 'Test 111');
+test(makeLargestSpecial("1101110000"), 1111000100, 'Test 112');
+test(makeLargestSpecial("111001110000"), 111100011000, 'Test 113');
+test(makeLargestSpecial("111111100000110011110000"), , 'Test 114');
+test(makeLargestSpecial("110011100100"), 111001001100, 'Test 115');
+test(makeLargestSpecial("110011100011"), 1110001100, 'Test 116');
+test(makeLargestSpecial("111000110100"), 111000110100, 'Test 117');
+test(makeLargestSpecial("1110110011000000"), 11110011001000, 'Test 118');
+test(makeLargestSpecial("1110100011100010"), 1110100011100010, 'Test 119');
+test(makeLargestSpecial("101110001010"), 111000101010, 'Test 120');
+test(makeLargestSpecial("110110110110000000"), 1111100100100100, 'Test 121');
+test(makeLargestSpecial("111100001100"), 111100001100, 'Test 122');
+test(makeLargestSpecial("10101010101010"), 10101010101010, 'Test 123');
+test(makeLargestSpecial("111100111100110011001100"), , 'Test 124');
+test(makeLargestSpecial("1101101100100010"), 1111001010010010, 'Test 125');
+test(makeLargestSpecial("1100110011011000"), 1110010011001100, 'Test 126');
+test(makeLargestSpecial("101101101000"), 111010010010, 'Test 127');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

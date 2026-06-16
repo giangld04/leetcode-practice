@@ -1,0 +1,152 @@
+// Test: 2937. Make Three Strings Equal
+// 126 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { findMinimumOperations } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n2937. Make Three Strings Equal\n");
+
+test(findMinimumOperations("abc", "abb", "ab"), 2, 'Test 1');
+test(findMinimumOperations("abcde", "abcdf", "abcde"), 3, 'Test 2');
+test(findMinimumOperations("abcd", "abcf", "abcd"), 3, 'Test 3');
+test(findMinimumOperations("abcd", "abce", "abcd"), 3, 'Test 4');
+test(findMinimumOperations("xyz", "xyw", "xyv"), 3, 'Test 5');
+test(findMinimumOperations("abcde", "abcde", "abcdef"), 1, 'Test 6');
+test(findMinimumOperations("abcde", "abfde", "abcde"), 9, 'Test 7');
+test(findMinimumOperations("abcdef", "abcghi", "abcjkl"), 9, 'Test 8');
+test(findMinimumOperations("aaa", "aaa", "aaa"), 0, 'Test 9');
+test(findMinimumOperations("abc", "abc", "abcd"), 1, 'Test 10');
+test(findMinimumOperations("a", "a", "a"), 0, 'Test 11');
+test(findMinimumOperations("xyz", "xyw", "xy"), 2, 'Test 12');
+test(findMinimumOperations("dac", "bac", "cac"), -1, 'Test 13');
+test(findMinimumOperations("xyz", "xyw", "xyx"), 3, 'Test 14');
+test(findMinimumOperations("aaaaa", "aaaaab", "aaaaac"), 2, 'Test 15');
+test(findMinimumOperations("abcdefgh", "abcdegh", "abcdexh"), 7, 'Test 16');
+test(findMinimumOperations("zzzzzzz", "zzzzzzz", "zzzzzzz"), 0, 'Test 17');
+test(findMinimumOperations("same", "same", "same"), 0, 'Test 18');
+test(findMinimumOperations("abcdabcdabcdabcd", "abcdabcdabcdabcd", "abcdabcdabcdabc"), 2, 'Test 19');
+test(findMinimumOperations("abcdefg", "abcdefg", "abcdefg"), 0, 'Test 20');
+test(findMinimumOperations("different", "differences", "differentl"), 6, 'Test 21');
+test(findMinimumOperations("abcdefghij", "abcdefghik", "abcdefghi"), 2, 'Test 22');
+test(findMinimumOperations("abcdefg", "ghijklm", "nopqrst"), -1, 'Test 23');
+test(findMinimumOperations("aabbaabb", "aabbaacc", "aabbaadd"), 6, 'Test 24');
+test(findMinimumOperations("pqrstu", "pqrstv", "pqrstu"), 3, 'Test 25');
+test(findMinimumOperations("abcdeabcde", "abcdeabcdf", "abcdeabcde"), 3, 'Test 26');
+test(findMinimumOperations("qwerty", "qwerty", "qwertyu"), 1, 'Test 27');
+test(findMinimumOperations("abcdefgh", "abcdeghi", "abcdefgj"), 9, 'Test 28');
+test(findMinimumOperations("aabbcc", "aabbc", "aabcc"), 7, 'Test 29');
+test(findMinimumOperations("abcabcabcabcabcabc", "abcabcabcabcabcabc", "abcabcabcabcabcab"), 2, 'Test 30');
+test(findMinimumOperations("mississippi", "mississipp", "mississipp"), 1, 'Test 31');
+test(findMinimumOperations("abcdefgh", "abcdefga", "abcdefg"), 2, 'Test 32');
+test(findMinimumOperations("hello", "hell", "helo"), 4, 'Test 33');
+test(findMinimumOperations("abcdef", "abcde", "abcd"), 3, 'Test 34');
+test(findMinimumOperations("aabbcc", "aabbc", "aab"), 5, 'Test 35');
+test(findMinimumOperations("testcase", "testcase", "testcases"), 1, 'Test 36');
+test(findMinimumOperations("zzzzzzzzzz", "zzzzzzzzzz", "zzzzzzzzzzz"), 1, 'Test 37');
+test(findMinimumOperations("aabbccdd", "aabbccdd", "aabbcddd"), 9, 'Test 38');
+test(findMinimumOperations("abcdefgh", "abcdefgh", "abcdefgh"), 0, 'Test 39');
+test(findMinimumOperations("abcdef", "abcxyz", "abcuvw"), 9, 'Test 40');
+test(findMinimumOperations("xyzz", "xyyz", "xyzz"), 6, 'Test 41');
+test(findMinimumOperations("zzzzzzzz", "zzzzzzzz", "zzzzzzzz"), 0, 'Test 42');
+test(findMinimumOperations("abcdefg", "abcdefg", "abcdef"), 2, 'Test 43');
+test(findMinimumOperations("abcdef", "abcdef", "ghijkl"), -1, 'Test 44');
+test(findMinimumOperations("abracadabra", "abracadabr", "abracadaba"), 4, 'Test 45');
+test(findMinimumOperations("abcdabcd", "abcdabc", "abcdab"), 3, 'Test 46');
+test(findMinimumOperations("aaaaabbbb", "aaaaacccc", "aaaaadddd"), 12, 'Test 47');
+test(findMinimumOperations("abcdefgh", "abcdefgj", "abcdefg"), 2, 'Test 48');
+test(findMinimumOperations("aaaaaa", "aaaaaa", "aaaaaaa"), 1, 'Test 49');
+test(findMinimumOperations("abcdef", "abcdeg", "abcdef"), 3, 'Test 50');
+test(findMinimumOperations("abcdef", "fedcba", "abcdef"), -1, 'Test 51');
+test(findMinimumOperations("qrstuv", "qrstuw", "qrstvv"), 6, 'Test 52');
+test(findMinimumOperations("mnop", "mnoq", "mnop"), 3, 'Test 53');
+test(findMinimumOperations("longerstring", "longeststring", "longerstrings"), 23, 'Test 54');
+test(findMinimumOperations("abcdefgxyz", "abcdefgxyw", "abcdefgxy"), 2, 'Test 55');
+test(findMinimumOperations("xylophone", "xylophon", "xylopho"), 3, 'Test 56');
+test(findMinimumOperations("abcdefg", "abcdehi", "abcdejk"), 6, 'Test 57');
+test(findMinimumOperations("python", "pythpn", "pythpn"), 6, 'Test 58');
+test(findMinimumOperations("abcdabcd", "abcdabce", "abcdabcd"), 3, 'Test 59');
+test(findMinimumOperations("abcdefg", "abcdefg", "abcdefx"), 3, 'Test 60');
+test(findMinimumOperations("abcdabcdabcd", "abcdabcdabcd", "abcdabcdabc"), 2, 'Test 61');
+test(findMinimumOperations("abcdefghij", "abcdefghij", "abcdefghijk"), 1, 'Test 62');
+test(findMinimumOperations("aaaabbbb", "aaaabbbb", "aaaabbb"), 2, 'Test 63');
+test(findMinimumOperations("aabbccdd", "aabbccde", "aabbccdf"), 3, 'Test 64');
+test(findMinimumOperations("abcabc", "abcabc", "abcabd"), 3, 'Test 65');
+test(findMinimumOperations("a", "a", "b"), -1, 'Test 66');
+test(findMinimumOperations("abcdef", "ghijkl", "mnopqr"), -1, 'Test 67');
+test(findMinimumOperations("aabbaabb", "aabbaabb", "aabbaab"), 2, 'Test 68');
+test(findMinimumOperations("matching", "match", "matchi"), 4, 'Test 69');
+test(findMinimumOperations("unique", "uniquely", "uniquer"), 3, 'Test 70');
+test(findMinimumOperations("abcdefg", "abcdefg", "abcdefh"), 3, 'Test 71');
+test(findMinimumOperations("abcdxyz", "abcdwxy", "abcdvwx"), 9, 'Test 72');
+test(findMinimumOperations("programming", "programmer", "programing"), 10, 'Test 73');
+test(findMinimumOperations("aabbcc", "aabbbc", "aabbbcc"), 7, 'Test 74');
+test(findMinimumOperations("abcdefgh", "abcdefgg", "abcdefg"), 2, 'Test 75');
+test(findMinimumOperations("abcdefghijk", "abcdefghij", "abcdefgh"), 5, 'Test 76');
+test(findMinimumOperations("mnopqr", "mnopqs", "mnopqt"), 3, 'Test 77');
+test(findMinimumOperations("aabbcc", "aabccc", "aabccx"), 9, 'Test 78');
+test(findMinimumOperations("abcxyz", "abcxyw", "abcxy"), 2, 'Test 79');
+test(findMinimumOperations("abcdabcd", "abcdabcde", "abcdabcd"), 1, 'Test 80');
+test(findMinimumOperations("zxy", "zyx", "xyz"), -1, 'Test 81');
+test(findMinimumOperations("zzzzz", "zzzzz", "zzzz"), 2, 'Test 82');
+test(findMinimumOperations("abcabcabc", "abcabcabc", "abcabcabd"), 3, 'Test 83');
+test(findMinimumOperations("aabbcc", "aabbcd", "aabbbc"), 6, 'Test 84');
+test(findMinimumOperations("abcdefg", "abcdefh", "abcdefi"), 3, 'Test 85');
+test(findMinimumOperations("abcabcabcabc", "abcabcabcabc", "abcabcabcab"), 2, 'Test 86');
+test(findMinimumOperations("aaaaa", "aaaaa", "aaaab"), 3, 'Test 87');
+test(findMinimumOperations("xyzxyz", "xyzxyw", "xyzxy"), 2, 'Test 88');
+test(findMinimumOperations("aaaaab", "aaaabb", "aaaaab"), 6, 'Test 89');
+test(findMinimumOperations("abcabcabc", "abcabcabcd", "abcabcabcde"), 3, 'Test 90');
+test(findMinimumOperations("abcdef", "abcdfe", "abcdee"), 6, 'Test 91');
+test(findMinimumOperations("abcd", "abcde", "abcdf"), 2, 'Test 92');
+test(findMinimumOperations("xyzxyzxyz", "xyzxyzxy", "xyzxyz"), 5, 'Test 93');
+test(findMinimumOperations("abcdabcd", "abcdbcd", "abcdabcd"), 11, 'Test 94');
+test(findMinimumOperations("programming", "prognmming", "progrmming"), 19, 'Test 95');
+test(findMinimumOperations("", "", ""), 0, 'Test 96');
+test(findMinimumOperations("abcdefghijk", "abcdefghijl", "abcdefghijk"), 3, 'Test 97');
+test(findMinimumOperations("abcdabcd", "abcdeabc", "abcdabcd"), 12, 'Test 98');
+test(findMinimumOperations("abcdabcdabcd", "abcdabcdabca", "abcdabcdabcd"), 3, 'Test 99');
+test(findMinimumOperations("abcabcabcabcabc", "abcabcabcabcabc", "abcabcabcabc"), 6, 'Test 100');
+test(findMinimumOperations("abcdefgh", "abcdegh", "abcdefg"), 7, 'Test 101');
+test(findMinimumOperations("zzzzzz", "zzzzz", "zzzz"), 3, 'Test 102');
+test(findMinimumOperations("abcabcabc", "abcabcaba", "abcabcabc"), 3, 'Test 103');
+test(findMinimumOperations("aaaaaaaa", "aaaaaaab", "aaaaaaac"), 3, 'Test 104');
+test(findMinimumOperations("aabbccdd", "aabbccdee", "aabbccdde"), 5, 'Test 105');
+test(findMinimumOperations("xyxzyxzy", "xyxzyxzz", "xyxzyxzq"), 3, 'Test 106');
+test(findMinimumOperations("abcabcabc", "abcabcabc", "abcabcab"), 2, 'Test 107');
+test(findMinimumOperations("zzzzzzzz", "zzzzzzz", "zzzzzz"), 3, 'Test 108');
+test(findMinimumOperations("abcdeabcde", "abcdeabced", "abcdeabcde"), 6, 'Test 109');
+test(findMinimumOperations("aabbccddeeff", "aabbccddeeffg", "aabbccddeeffh"), 2, 'Test 110');
+test(findMinimumOperations("hello", "hallo", "hella"), 12, 'Test 111');
+test(findMinimumOperations("abcabcabc", "abcabcabc", "abcabcabcd"), 1, 'Test 112');
+test(findMinimumOperations("aabbaabb", "aabbaaba", "aabbaabb"), 3, 'Test 113');
+test(findMinimumOperations("sameprefix", "sameprefixa", "sameprefixb"), 2, 'Test 114');
+test(findMinimumOperations("abcdefghij", "abcdefghik", "abcdefghil"), 3, 'Test 115');
+test(findMinimumOperations("aabbccddeeffgg", "aabbccddeeffgg", "aabbccddeeffgghh"), 2, 'Test 116');
+test(findMinimumOperations("abcabcabc", "abcabcabc", "abcabcabx"), 3, 'Test 117');
+test(findMinimumOperations("abacabad", "abacabae", "abacabad"), 3, 'Test 118');
+test(findMinimumOperations("xyzxyzxyz", "xyzxyzxyw", "xyzxyzxyv"), 3, 'Test 119');
+test(findMinimumOperations("xyzz", "xyzz", "xyzy"), 3, 'Test 120');
+test(findMinimumOperations("abcdefgh", "abcdexyz", "abcdefyz"), 9, 'Test 121');
+test(findMinimumOperations("abababab", "babababa", "abababab"), -1, 'Test 122');
+test(findMinimumOperations("abcdef", "abcdef", "abc"), 6, 'Test 123');
+test(findMinimumOperations("xyzxyz", "xyzxyz", "xyzxyzz"), 1, 'Test 124');
+test(findMinimumOperations("aabbcc", "aabbbcc", "aabcccc"), 11, 'Test 125');
+test(findMinimumOperations("zzzzzz", "zzzzzz", "zzzzzz"), 0, 'Test 126');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

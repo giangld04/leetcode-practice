@@ -1,0 +1,152 @@
+// Test: 3379. Transformed Array
+// 126 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { constructTransformedArray } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n3379. Transformed Array\n");
+
+test(constructTransformedArray([1,-1,2,-2,3,-3]), [-1, 1, 3, -1, -1, 2], 'Test 1');
+test(constructTransformedArray([3,-2,1,1]), [1, 1, 1, 3], 'Test 2');
+test(constructTransformedArray([10,-10,20,-20]), [20, -20, 20, -20], 'Test 3');
+test(constructTransformedArray([-4,-3,-2,-1]), [-4, -2, -4, -2], 'Test 4');
+test(constructTransformedArray([-5,-5,-5,-5,-5]), [-5, -5, -5, -5, -5], 'Test 5');
+test(constructTransformedArray([-5,-5,-5,-5]), [-5, -5, -5, -5], 'Test 6');
+test(constructTransformedArray([100,-100,50,-50,25,-25]), [25, -50, 25, -100, -25, 25], 'Test 7');
+test(constructTransformedArray([1,2,3,4]), [2, 4, 2, 4], 'Test 8');
+test(constructTransformedArray([1,-1,1,-1]), [-1, 1, -1, 1], 'Test 9');
+test(constructTransformedArray([-1,-1,-1,-1,-1]), [-1, -1, -1, -1, -1], 'Test 10');
+test(constructTransformedArray([5,-5,5,-5,5,-5,5]), [-5, -5, 5, -5, 5, 5, 5], 'Test 11');
+test(constructTransformedArray([10,20,30,40,50]), [10, 20, 30, 40, 50], 'Test 12');
+test(constructTransformedArray([-1,-2,-3,-4,-5]), [-5, -5, -5, -5, -5], 'Test 13');
+test(constructTransformedArray([5,5,5,5,5]), [5, 5, 5, 5, 5], 'Test 14');
+test(constructTransformedArray([5,5,5,5]), [5, 5, 5, 5], 'Test 15');
+test(constructTransformedArray([1,2,3,4,5]), [2, 4, 1, 3, 5], 'Test 16');
+test(constructTransformedArray([100,-100,100,-100,100]), [100, -100, 100, -100, 100], 'Test 17');
+test(constructTransformedArray([1,1,1,1,1]), [1, 1, 1, 1, 1], 'Test 18');
+test(constructTransformedArray([2,-3,4,-4]), [4, 4, 4, -4], 'Test 19');
+test(constructTransformedArray([10,-10,10,-10,10]), [10, -10, 10, -10, 10], 'Test 20');
+test(constructTransformedArray([0,0,0,0]), [0, 0, 0, 0], 'Test 21');
+test(constructTransformedArray([100,-100,100,-100]), [100, -100, 100, -100], 'Test 22');
+test(constructTransformedArray([10,-10,5,-5]), [5, -5, -5, 5], 'Test 23');
+test(constructTransformedArray([-10,-20,-30,-40,-50]), [-10, -20, -30, -40, -50], 'Test 24');
+test(constructTransformedArray([-1,4,-1]), [-1, -1, 4], 'Test 25');
+test(constructTransformedArray([5,-5,5,-5,0]), [5, -5, 5, -5, 0], 'Test 26');
+test(constructTransformedArray([2, 3, -2, 2, -3, 1, -1]), [-2, -3, 2, 1, 3, -1, 1], 'Test 27');
+test(constructTransformedArray([2, 3, -2, -3, 4, -4, 5, -5]), [-2, 4, 2, 2, 2, 3, -3, -2], 'Test 28');
+test(constructTransformedArray([10, -10, 0, 5, -5, 1]), [-5, 5, 0, 0, 1, 10], 'Test 29');
+test(constructTransformedArray([5, 0, -5, 10, -10, 15, -15, 20, -20]), [15, 0, -15, -10, 10, -5, 5, 5, -15], 'Test 30');
+test(constructTransformedArray([1,2,3,4,5,6,7,8,9,10]), [2, 4, 6, 8, 10, 2, 4, 6, 8, 10], 'Test 31');
+test(constructTransformedArray([100, -100, 50, -50, 25, -25, 12, -12, 6, -6, 3, -3, 1, -1, 0]), [3, 12, -12, -1, 0, 3, -50, 3, 0, -50, -1, 6, -1, 1, 0], 'Test 32');
+test(constructTransformedArray([2, -3, 4, -1, 0, 5]), [4, 0, 2, 4, 0, 0], 'Test 33');
+test(constructTransformedArray([-5, 5, -10, 10, -15, 15, -20, 20]), [10, -20, -5, 15, 15, -15, -10, 10], 'Test 34');
+test(constructTransformedArray([15, -15, 30, -30, 45, -45, 60, -60, 75, -75]), [-45, 60, 30, -30, -75, 15, 60, -60, -30, 45], 'Test 35');
+test(constructTransformedArray([0,1,2,3,4,5,6,7,8,9]), [0, 2, 4, 6, 8, 0, 2, 4, 6, 8], 'Test 36');
+test(constructTransformedArray([0,1,0,-1,0,1,0,-1]), [0, 0, 0, 0, 0, 0, 0, 0], 'Test 37');
+test(constructTransformedArray([5,-5,5,-5,5,-5,5,-5,5,-5]), [-5, 5, -5, 5, -5, 5, -5, 5, -5, 5], 'Test 38');
+test(constructTransformedArray([7, 3, -4, 5, -1, 6, -2, 8]), [8, -1, -2, 7, 5, 5, -1, 8], 'Test 39');
+test(constructTransformedArray([15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), [15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15], 'Test 40');
+test(constructTransformedArray([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]), [30, 60, 30, 60, 30, 60, 30, 60, 30, 60, 30, 60], 'Test 41');
+test(constructTransformedArray([50,-50,50,-50,50,-50,50,-50,50,-50,50,-50,50,-50,50,-50,50,-50,50,-50]), [50, -50, 50, -50, 50, -50, 50, -50, 50, -50, 50, -50, 50, -50, 50, -50, 50, -50, 50, -50], 'Test 42');
+test(constructTransformedArray([-2, -2, -2, -2, -2, -2, -2, -2, -2, -2]), [-2, -2, -2, -2, -2, -2, -2, -2, -2, -2], 'Test 43');
+test(constructTransformedArray([-5, 0, 5, 0, -5, 0, 5, 0, -5, 0]), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'Test 44');
+test(constructTransformedArray([100, -100, 50, -50, 25, -25, 12, -12, 6, -6, 3, -3]), [25, -6, 25, -100, -25, 25, 12, -12, 50, -50, -100, 6], 'Test 45');
+test(constructTransformedArray([4, 5, 6, 7, 8, 9, 10, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10]), [8, 10, -2, -4, -6, -8, -10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], 'Test 46');
+test(constructTransformedArray([0, 1, -1, 2, -2, 3, -3, 4, -4, 5]), [0, -1, 1, 3, -1, -4, 2, 1, -2, -2], 'Test 47');
+test(constructTransformedArray([100, -100, 50, -50, 25, -25, 12, -12, 6, -6, 3, -3, 1, -1]), [50, -1, 3, -6, -100, 6, 25, -6, 100, -50, -1, 6, -1, 1], 'Test 48');
+test(constructTransformedArray([2, -3, 4, -5, 0]), [4, -5, -3, -5, 0], 'Test 49');
+test(constructTransformedArray([2,-2,3,-3,4,-4,5,-5]), [3, -5, -4, 2, 2, -2, -3, 3], 'Test 50');
+test(constructTransformedArray([7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]), [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7], 'Test 51');
+test(constructTransformedArray([2, 2, 2, 2, 2, 2, 2, 2, 2, 2]), [2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 'Test 52');
+test(constructTransformedArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17, -18, -19, -20]), [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, -2, -4, -6, -8, -10, -12, -14, -16, -18, -20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20], 'Test 53');
+test(constructTransformedArray([100,-100,100,-100,100,-100]), [100, -100, 100, -100, 100, -100], 'Test 54');
+test(constructTransformedArray([0,0,0,0,0,0,0,0,0,0]), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'Test 55');
+test(constructTransformedArray([10,20,30,40,50,-10,-20,-30,-40,-50]), [10, 20, 30, 40, 50, -10, -20, -30, -40, -50], 'Test 56');
+test(constructTransformedArray([100, -100, 50, -50, 25, -25, 12, -12]), [25, -25, 25, -100, -25, 25, 50, -50], 'Test 57');
+test(constructTransformedArray([-5,4,-3,2,-1,0,1,-2,3,-4]), [0, 0, -4, 0, 2, 0, -2, 0, 4, 0], 'Test 58');
+test(constructTransformedArray([33, -22, 11, -33, 22, -11, 0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6, 7, -7, 8, -8, 9, -9, 10, -10]), [0, 0, 4, -9, -10, 8, 0, -1, 1, 3, -1, -4, 2, 6, -2, -7, 3, 9, -3, -10, 4, 11, -4, -11, 5, -1, -5], 'Test 59');
+test(constructTransformedArray([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]), [1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1], 'Test 60');
+test(constructTransformedArray([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'Test 61');
+test(constructTransformedArray([10, -10, 20, -20, 30, -30, 40, -40, 50, -50]), [10, -10, 20, -20, 30, -30, 40, -40, 50, -50], 'Test 62');
+test(constructTransformedArray([-9, -8, -7, -6, -5, -4, -3, -2, -1, 0]), [-8, -6, -4, -2, 0, -8, -6, -4, -2, 0], 'Test 63');
+test(constructTransformedArray([5,10,-5,-10,15,-15,20,-20]), [-15, -10, -15, 10, -10, 20, -5, -10], 'Test 64');
+test(constructTransformedArray([5, -5, 5, -5, 5, -5, 5, -5]), [-5, 5, -5, 5, -5, 5, -5, 5], 'Test 65');
+test(constructTransformedArray([0,0,0,0,0]), [0, 0, 0, 0, 0], 'Test 66');
+test(constructTransformedArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1]), [2, 4, 6, 8, 10, -10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10, -10, -8, -6, -4, -2], 'Test 67');
+test(constructTransformedArray([99,-99,98,-98,97,-97,96,-96,95,-95]), [-95, 98, 99, -97, -99, 95, 98, -99, -98, 97], 'Test 68');
+test(constructTransformedArray([10, 20, 30, 40, -10, -20, -30, -40]), [30, -20, 10, 40, 30, 20, 10, -40], 'Test 69');
+test(constructTransformedArray([2,-2,2,-2,2,-2]), [2, -2, 2, -2, 2, -2], 'Test 70');
+test(constructTransformedArray([7,-3,0,2,-5,10]), [-3, -5, 0, 10, 10, 2], 'Test 71');
+test(constructTransformedArray([0, 0, 0, 0, 0]), [0, 0, 0, 0, 0], 'Test 72');
+test(constructTransformedArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), [0, 2, 4, 6, 8, 0, 2, 4, 6, 8], 'Test 73');
+test(constructTransformedArray([1, -1, 2, -2, 3, -3]), [-1, 1, 3, -1, -1, 2], 'Test 74');
+test(constructTransformedArray([7, 0, 7, 0, 7, 0, 7, 0, 7, 0]), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'Test 75');
+test(constructTransformedArray([-15, 14, -13, 12, -11, 10, -9, 8, -7, 6, -5, 4, -3, 2, -1]), [-15, -15, -11, -15, -7, -15, -3, -15, 14, -15, 10, -15, 6, -15, 2], 'Test 76');
+test(constructTransformedArray([10, 20, 30, 40, 50, -10, -20, -30, -40, -50, 5, 15, 25, 35, 45, -5, -15, -25, -35, -45]), [5, 20, 25, 40, 45, -5, -20, -25, -40, -45, -5, -20, -25, -40, -45, 5, 20, 25, 40, 45], 'Test 77');
+test(constructTransformedArray([10, -1, 2, -3, 4, -5, 6]), [-3, 10, 4, 10, -1, 10, -5], 'Test 78');
+test(constructTransformedArray([100, -100, 50, -50, 25, -25, 12, -12, 6, -6]), [100, -100, 50, -50, -6, 100, 6, -25, 25, -50], 'Test 79');
+test(constructTransformedArray([10,-10,20,-20,30,-30,40,-40,50,-50]), [10, -10, 20, -20, 30, -30, 40, -40, 50, -50], 'Test 80');
+test(constructTransformedArray([7, -7, 14, -14, 21, -21, 28, -28, 35, -35, 0, 0, 0, 0, 0]), [-28, -35, -7, 21, 0, 0, 21, -35, 0, 21, 0, 0, 0, 0, 0], 'Test 81');
+test(constructTransformedArray([3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2, 3, -2]), [-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2], 'Test 82');
+test(constructTransformedArray([3, -2, 1, 1, 0, 2, -3, 4, -5, 0]), [1, 0, 1, 0, 0, 4, 1, -2, 1, 0], 'Test 83');
+test(constructTransformedArray([1, -1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6, 7, -7, 8, -8]), [-1, 1, 3, -1, -4, 2, 6, -2, -7, 3, 1, -3, -2, 4, 4, -4], 'Test 84');
+test(constructTransformedArray([-2, -4, -6, -8, -10, -12, -14, -16, -18, -20]), [-18, -16, -14, -12, -10, -8, -6, -4, -2, -20], 'Test 85');
+test(constructTransformedArray([-5,0,5,-5,0,5,-5,0,5,-5]), [5, 0, 0, 5, 0, -5, 0, 0, -5, 0], 'Test 86');
+test(constructTransformedArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), [2, 4, 6, 8, 10, 12, 14, 1, 3, 5, 7, 9, 11, 13, 15], 'Test 87');
+test(constructTransformedArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), [2, 4, 6, 8, 10, 2, 4, 6, 8, 10], 'Test 88');
+test(constructTransformedArray([7,14,-7,-14,21,-21,28,-28]), [-28, -28, -14, -21, 14, 7, -7, -14], 'Test 89');
+test(constructTransformedArray([100,-100,50,-50,25,-25,12,-12]), [25, -25, 25, -100, -25, 25, 50, -50], 'Test 90');
+test(constructTransformedArray([-1, -1, -1, -1, -1, -1, -1, -1, -1, -1]), [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1], 'Test 91');
+test(constructTransformedArray([2, 3, -2, -3, 4, -4, 5, -5, 6, -6]), [-2, 4, 2, 2, 6, 3, 3, -2, 4, -3], 'Test 92');
+test(constructTransformedArray([10, 20, 30, 40, 50, -10, -20, -30, -40, -50]), [10, 20, 30, 40, 50, -10, -20, -30, -40, -50], 'Test 93');
+test(constructTransformedArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), [0, 2, 4, 6, 8, 10, 1, 3, 5, 7, 9], 'Test 94');
+test(constructTransformedArray([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'Test 95');
+test(constructTransformedArray([2, 3, -2, 4, -3, 2, -1, 3]), [-2, -3, 2, 3, 3, 3, 2, -2], 'Test 96');
+test(constructTransformedArray([0, 1, -1, 2, -2]), [0, -1, 1, 0, -1], 'Test 97');
+test(constructTransformedArray([2, 4, 6, 8, 10, 12, 14, 16, 18, 20]), [6, 12, 18, 4, 10, 16, 2, 8, 14, 20], 'Test 98');
+test(constructTransformedArray([1,1,1,1,1,1,1,1,1,1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]), [1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1], 'Test 99');
+test(constructTransformedArray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 'Test 100');
+test(constructTransformedArray([1,2,3,4,5,-1,-2,-3,-4,-5]), [2, 4, -1, -3, -5, 5, 5, 5, 5, 5], 'Test 101');
+test(constructTransformedArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20], 'Test 102');
+test(constructTransformedArray([7, -7, 14, -14, 21, -21, 28, -28]), [-28, 14, 7, -21, -7, 7, 14, -14], 'Test 103');
+test(constructTransformedArray([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'Test 104');
+test(constructTransformedArray([10, -10, 20, -20, 30, -30, 0]), [-20, -30, -10, 30, 0, -20, 0], 'Test 105');
+test(constructTransformedArray([10,20,30,40,50,60,70,80,90,100,-100,-90,-80,-70,-60,-50,-40,-30,-20,-10]), [-100, 20, -80, 40, -60, 60, -40, 80, -20, 100, -100, 20, -80, 40, -60, 60, -40, 80, -20, 100], 'Test 106');
+test(constructTransformedArray([15,25,-15,-25,35,-35,45,-45]), [-45, -15, -25, -15, -45, -15, -25, -15], 'Test 107');
+test(constructTransformedArray([7,14,-7,-14,0,7,14,-7,-14]), [-7, 14, 0, -7, 0, -14, -7, 7, -14], 'Test 108');
+test(constructTransformedArray([1, 2, 3, 4, 5, -1, -2, -3, -4, -5, 0, 0, 0, 0, 0]), [2, 4, -1, -3, -5, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0], 'Test 109');
+test(constructTransformedArray([1,2,3,4,5,-5,-4,-3,-2,-1]), [2, 4, -5, -3, -1, 1, 3, 5, -4, -2], 'Test 110');
+test(constructTransformedArray([-1, -2, -3, -4, -5, -6, -7, -8, -9, -10]), [-10, -10, -10, -10, -10, -10, -10, -10, -10, -10], 'Test 111');
+test(constructTransformedArray([-5, -10, -15, -20, -25, -30, -35, -40, -45, -50, -55, -60]), [-40, -20, -60, -40, -20, -60, -40, -20, -60, -40, -20, -60], 'Test 112');
+test(constructTransformedArray([1,-1,2,-2,3,-3,4,-4]), [-1, 1, 3, -1, -4, 2, 2, -2], 'Test 113');
+test(constructTransformedArray([1,1,1,1,1,1,1,1,1,1]), [1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 'Test 114');
+test(constructTransformedArray([1, -1, 2, -2, 3, -3, 4, -4, 5, -5]), [-1, 1, 3, -1, -4, 2, 1, -2, -2, 3], 'Test 115');
+test(constructTransformedArray([-20, 19, -18, 17, -16, 15, -14, 13, -12, 11, -10, 9, -8, 7, -6, 5, -4, 3, -2, 1]), [-20, -20, -16, -20, -12, -20, -8, -20, -4, -20, -20, -20, -16, -20, -12, -20, -8, -20, -4, -20], 'Test 116');
+test(constructTransformedArray([-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]), [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1], 'Test 117');
+test(constructTransformedArray([2,-2,3,-3,4,-4,5,-5,6,-6]), [3, -6, -4, 2, 6, -2, -2, 3, 4, -3], 'Test 118');
+test(constructTransformedArray([1, -1, 1, -1, 1, -1, 1, -1, 1, -1]), [-1, 1, -1, 1, -1, 1, -1, 1, -1, 1], 'Test 119');
+test(constructTransformedArray([10, -10, 20, -20, 0]), [10, -10, 20, -20, 0], 'Test 120');
+test(constructTransformedArray([4, 3, 2, 1, 0, -1, -2, -3, -4]), [0, 0, 0, 0, 0, 0, 0, 0, 0], 'Test 121');
+test(constructTransformedArray([1,0,-1,0,1,0,-1,0]), [0, 0, 0, 0, 0, 0, 0, 0], 'Test 122');
+test(constructTransformedArray([-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]), [-10, -10, -10, -10, -10, -10, -10, -10, -10, -10], 'Test 123');
+test(constructTransformedArray([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]), [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 'Test 124');
+test(constructTransformedArray([5,5,5,5,5,-5,-5,-5,-5,-5]), [-5, -5, -5, -5, -5, 5, 5, 5, 5, 5], 'Test 125');
+test(constructTransformedArray([7, -3, 4, 2, -1, 6, -5, 3, -4, 1]), [3, -4, -5, 6, 2, -3, -3, 7, -1, 7], 'Test 126');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

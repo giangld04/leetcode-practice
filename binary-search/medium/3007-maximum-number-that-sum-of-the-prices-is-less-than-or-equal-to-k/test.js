@@ -1,0 +1,152 @@
+// Test: 3007. Maximum Number That Sum Of The Prices Is Less Than Or Equal To K
+// 126 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { findMaximumNumber } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n3007. Maximum Number That Sum Of The Prices Is Less Than Or Equal To K\n");
+
+test(findMaximumNumber(15, 1), 9, 'Test 1');
+test(findMaximumNumber(5, 2), 8, 'Test 2');
+test(findMaximumNumber(100000000000000, 8), 40104798005951, 'Test 3');
+test(findMaximumNumber(500, 6), 1011, 'Test 4');
+test(findMaximumNumber(20, 2), 23, 'Test 5');
+test(findMaximumNumber(5, 1), 4, 'Test 6');
+test(findMaximumNumber(15, 4), 30, 'Test 7');
+test(findMaximumNumber(7, 2), 9, 'Test 8');
+test(findMaximumNumber(100, 4), 153, 'Test 9');
+test(findMaximumNumber(15, 3), 30, 'Test 10');
+test(findMaximumNumber(10, 3), 21, 'Test 11');
+test(findMaximumNumber(9, 1), 6, 'Test 12');
+test(findMaximumNumber(1000, 7), 2023, 'Test 13');
+test(findMaximumNumber(1000, 6), 2023, 'Test 14');
+test(findMaximumNumber(1000000000000000, 8), 343778878348159, 'Test 15');
+test(findMaximumNumber(100, 5), 211, 'Test 16');
+test(findMaximumNumber(1000000, 8), 1016223, 'Test 17');
+test(findMaximumNumber(9876543210, 2), 1335770905, 'Test 18');
+test(findMaximumNumber(75000000000000, 5), 18535653792058, 'Test 19');
+test(findMaximumNumber(1000000, 2), 229535, 'Test 20');
+test(findMaximumNumber(37500000000000, 6), 11028437048759, 'Test 21');
+test(findMaximumNumber(8, 8), 135, 'Test 22');
+test(findMaximumNumber(200000000000000, 4), 36505448274943, 'Test 23');
+test(findMaximumNumber(1000, 8), 2023, 'Test 24');
+test(findMaximumNumber(987654321, 5), 396332511, 'Test 25');
+test(findMaximumNumber(65536, 2), 19343, 'Test 26');
+test(findMaximumNumber(123456789, 7), 82565716, 'Test 27');
+test(findMaximumNumber(987654321, 3), 225159917, 'Test 28');
+test(findMaximumNumber(500, 4), 505, 'Test 29');
+test(findMaximumNumber(876543210, 4), 252864144, 'Test 30');
+test(findMaximumNumber(300, 2), 174, 'Test 31');
+test(findMaximumNumber(75, 7), 202, 'Test 32');
+test(findMaximumNumber(987654321, 7), 502583375, 'Test 33');
+test(findMaximumNumber(10000, 5), 10079, 'Test 34');
+test(findMaximumNumber(67890, 4), 40389, 'Test 35');
+test(findMaximumNumber(888888888, 1), 68597981, 'Test 36');
+test(findMaximumNumber(750, 6), 1517, 'Test 37');
+test(findMaximumNumber(89, 4), 144, 'Test 38');
+test(findMaximumNumber(512, 5), 687, 'Test 39');
+test(findMaximumNumber(25000, 4), 16839, 'Test 40');
+test(findMaximumNumber(100000000000000, 1), 4779296144709, 'Test 41');
+test(findMaximumNumber(1000000000000, 2), 112964310932, 'Test 42');
+test(findMaximumNumber(50, 5), 113, 'Test 43');
+test(findMaximumNumber(999999999999999, 6), 253657567778409, 'Test 44');
+test(findMaximumNumber(150000000000000, 4), 27972811528487, 'Test 45');
+test(findMaximumNumber(500000000, 5), 200231279, 'Test 46');
+test(findMaximumNumber(3000000000, 7), 1522191359, 'Test 47');
+test(findMaximumNumber(1000000, 4), 505131, 'Test 48');
+test(findMaximumNumber(1000, 3), 751, 'Test 49');
+test(findMaximumNumber(1023, 1), 254, 'Test 50');
+test(findMaximumNumber(456789123456789, 5), 101944274868895, 'Test 51');
+test(findMaximumNumber(111111111111111, 7), 37402810498266, 'Test 52');
+test(findMaximumNumber(500000000000000, 2), 44975429102831, 'Test 53');
+test(findMaximumNumber(123456789012345, 7), 41467248081098, 'Test 54');
+test(findMaximumNumber(35791, 6), 36150, 'Test 55');
+test(findMaximumNumber(99999999999999, 8), 40104798005950, 'Test 56');
+test(findMaximumNumber(50000000000000, 7), 16799267244329, 'Test 57');
+test(findMaximumNumber(50, 1), 22, 'Test 58');
+test(findMaximumNumber(1000000000000000, 7), 320446066360319, 'Test 59');
+test(findMaximumNumber(500, 5), 675, 'Test 60');
+test(findMaximumNumber(100000000000000, 5), 23566547569891, 'Test 61');
+test(findMaximumNumber(86420, 1), 12978, 'Test 62');
+test(findMaximumNumber(1000000, 1), 120205, 'Test 63');
+test(findMaximumNumber(9375000000000, 8), 3858234249087, 'Test 64');
+test(findMaximumNumber(125, 8), 252, 'Test 65');
+test(findMaximumNumber(5000, 6), 5927, 'Test 66');
+test(findMaximumNumber(200, 5), 407, 'Test 67');
+test(findMaximumNumber(12345678912345, 7), 4155872352796, 'Test 68');
+test(findMaximumNumber(50, 2), 41, 'Test 69');
+test(findMaximumNumber(500000000000000, 6), 142592321015807, 'Test 70');
+test(findMaximumNumber(1000000000, 6), 500668855, 'Test 71');
+test(findMaximumNumber(2, 1), 2, 'Test 72');
+test(findMaximumNumber(897654321000, 3), 151072975789, 'Test 73');
+test(findMaximumNumber(123456789, 2), 20934568, 'Test 74');
+test(findMaximumNumber(87654321098765, 5), 21067518135670, 'Test 75');
+test(findMaximumNumber(150, 5), 309, 'Test 76');
+test(findMaximumNumber(1000000000, 5), 400458607, 'Test 77');
+test(findMaximumNumber(7777777777777, 8), 3142572550626, 'Test 78');
+test(findMaximumNumber(1024, 6), 2047, 'Test 79');
+test(findMaximumNumber(100000000, 7), 66778015, 'Test 80');
+test(findMaximumNumber(500, 3), 379, 'Test 81');
+test(findMaximumNumber(500000000000000, 8), 183136759108959, 'Test 82');
+test(findMaximumNumber(999999999999999, 8), 343778878348158, 'Test 83');
+test(findMaximumNumber(8000000000000, 6), 2550830257769, 'Test 84');
+test(findMaximumNumber(1000, 2), 504, 'Test 85');
+test(findMaximumNumber(500, 7), 1011, 'Test 86');
+test(findMaximumNumber(1000000, 7), 1000639, 'Test 87');
+test(findMaximumNumber(64, 4), 127, 'Test 88');
+test(findMaximumNumber(999999999999999, 7), 320446066360318, 'Test 89');
+test(findMaximumNumber(987654321, 2), 150736664, 'Test 90');
+test(findMaximumNumber(300000000000000, 3), 40423774188390, 'Test 91');
+test(findMaximumNumber(25, 6), 56, 'Test 92');
+test(findMaximumNumber(99999999999999, 1), 4779296144709, 'Test 93');
+test(findMaximumNumber(256, 3), 255, 'Test 94');
+test(findMaximumNumber(1000000, 3), 350061, 'Test 95');
+test(findMaximumNumber(128, 2), 95, 'Test 96');
+test(findMaximumNumber(333333333333333, 5), 74563043705932, 'Test 97');
+test(findMaximumNumber(200, 6), 423, 'Test 98');
+test(findMaximumNumber(1000000000000000, 1), 44470852534271, 'Test 99');
+test(findMaximumNumber(123456789012345, 2), 11594690512161, 'Test 100');
+test(findMaximumNumber(10000000000000, 2), 1010190497191, 'Test 101');
+test(findMaximumNumber(97531, 7), 97788, 'Test 102');
+test(findMaximumNumber(2048, 7), 4159, 'Test 103');
+test(findMaximumNumber(800000000000000, 1), 35598682963967, 'Test 104');
+test(findMaximumNumber(987654321, 4), 284658738, 'Test 105');
+test(findMaximumNumber(75319, 8), 85174, 'Test 106');
+test(findMaximumNumber(43210, 2), 12987, 'Test 107');
+test(findMaximumNumber(250000000, 8), 166950655, 'Test 108');
+test(findMaximumNumber(24680, 5), 20551, 'Test 109');
+test(findMaximumNumber(1, 1), 1, 'Test 110');
+test(findMaximumNumber(123456789, 5), 52351833, 'Test 111');
+test(findMaximumNumber(4096, 8), 8319, 'Test 112');
+test(findMaximumNumber(1000000, 5), 611931, 'Test 113');
+test(findMaximumNumber(1000000, 6), 696703, 'Test 114');
+test(findMaximumNumber(100, 3), 109, 'Test 115');
+test(findMaximumNumber(10, 8), 137, 'Test 116');
+test(findMaximumNumber(12345, 3), 6589, 'Test 117');
+test(findMaximumNumber(123456789, 3), 31193134, 'Test 118');
+test(findMaximumNumber(1, 8), 128, 'Test 119');
+test(findMaximumNumber(123456789, 6), 62823067, 'Test 120');
+test(findMaximumNumber(2000000000, 6), 846978196, 'Test 121');
+test(findMaximumNumber(23, 3), 36, 'Test 122');
+test(findMaximumNumber(2147483647, 7), 1073741822, 'Test 123');
+test(findMaximumNumber(30, 3), 41, 'Test 124');
+test(findMaximumNumber(18750000000000, 7), 6615951850383, 'Test 125');
+test(findMaximumNumber(75, 1), 30, 'Test 126');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

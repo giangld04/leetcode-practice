@@ -1,0 +1,150 @@
+// Test: 1081. Smallest Subsequence Of Distinct Characters
+// 124 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { smallestSubsequence } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1081. Smallest Subsequence Of Distinct Characters\n");
+
+test(smallestSubsequence("rakuqjeiaxeidqqeaeiaxqeaeiaxjeidqq"), rakudeiqxj, 'Test 1');
+test(smallestSubsequence("a"), a, 'Test 2');
+test(smallestSubsequence("cccaae"), cae, 'Test 3');
+test(smallestSubsequence("cbacdcbc"), acdb, 'Test 4');
+test(smallestSubsequence("abacabadabc"), abcd, 'Test 5');
+test(smallestSubsequence("thesqskillqy"), theqskily, 'Test 6');
+test(smallestSubsequence("leetcode"), letcod, 'Test 7');
+test(smallestSubsequence("thesqpie"), thesqpi, 'Test 8');
+test(smallestSubsequence("example"), exampl, 'Test 9');
+test(smallestSubsequence("sequence"), sequnc, 'Test 10');
+test(smallestSubsequence("npxldumzcd"), npxldumzc, 'Test 11');
+test(smallestSubsequence("rakwsmggxvbrmgypwk"), aksgxvbrmypw, 'Test 12');
+test(smallestSubsequence("zyxzyxzyx"), xyz, 'Test 13');
+test(smallestSubsequence("distinct"), disnct, 'Test 14');
+test(smallestSubsequence("abcd"), abcd, 'Test 15');
+test(smallestSubsequence("bcabc"), abc, 'Test 16');
+test(smallestSubsequence("ecbacba"), eacb, 'Test 17');
+test(smallestSubsequence("aabbcc"), abc, 'Test 18');
+test(smallestSubsequence("abcdefghij"), abcdefghij, 'Test 19');
+test(smallestSubsequence("thesqtkwzyetipaswz"), heqkwytipasz, 'Test 20');
+test(smallestSubsequence("thesqtax"), hesqtax, 'Test 21');
+test(smallestSubsequence("crad"), crad, 'Test 22');
+test(smallestSubsequence("character"), charte, 'Test 23');
+test(smallestSubsequence("srzgp"), srzgp, 'Test 24');
+test(smallestSubsequence("nnnn"), n, 'Test 25');
+test(smallestSubsequence("subsequence"), bsequnc, 'Test 26');
+test(smallestSubsequence("indegree"), indegr, 'Test 27');
+test(smallestSubsequence("theskyisblue"), thekyisblu, 'Test 28');
+test(smallestSubsequence("thisisaverylongstringwithmanycharactersrepeatedmultipletimes"), aveloginwhmycrdupts, 'Test 29');
+test(smallestSubsequence("abracadabra"), abcdr, 'Test 30');
+test(smallestSubsequence("uniquecharacters"), niquchartes, 'Test 31');
+test(smallestSubsequence("swiss"), swi, 'Test 32');
+test(smallestSubsequence("iwanttofly"), iwantofly, 'Test 33');
+test(smallestSubsequence("repetition"), repiton, 'Test 34');
+test(smallestSubsequence("cbacdcbcacdcbcacdcbc"), abcd, 'Test 35');
+test(smallestSubsequence("abcdabcdabcd"), abcd, 'Test 36');
+test(smallestSubsequence("elephantzoo"), elphantzo, 'Test 37');
+test(smallestSubsequence("algorithm"), algorithm, 'Test 38');
+test(smallestSubsequence("hello"), helo, 'Test 39');
+test(smallestSubsequence("aaaaabbbbbccccdddd"), abcd, 'Test 40');
+test(smallestSubsequence("substring"), subtring, 'Test 41');
+test(smallestSubsequence("sphinxofblackquartzjumpsverilyzippyfidgetsbymywyrm"), hinxoackqjumpsvelyzfdgtbwr, 'Test 42');
+test(smallestSubsequence("thequickbrownfoxjumpsoverthelazydogthequickbrownfoxjumpsoverthelazydog"), adeqickbownfxjumpsvrthlzyg, 'Test 43');
+test(smallestSubsequence("alphabet"), alphbet, 'Test 44');
+test(smallestSubsequence("abcdabcdeabcde"), abcde, 'Test 45');
+test(smallestSubsequence("zxyxzyzyxyzzyxzy"), xyz, 'Test 46');
+test(smallestSubsequence("abcdcba"), abcd, 'Test 47');
+test(smallestSubsequence("abcdeedcbaedcba"), abcde, 'Test 48');
+test(smallestSubsequence("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), z, 'Test 49');
+test(smallestSubsequence("abcdabcde"), abcde, 'Test 50');
+test(smallestSubsequence("allcharactersareunique"), alchrtesniqu, 'Test 51');
+test(smallestSubsequence("aebabdce"), abdce, 'Test 52');
+test(smallestSubsequence("abcdabcdbdabcdabcd"), abcd, 'Test 53');
+test(smallestSubsequence("nmlkjihgfedcba"), nmlkjihgfedcba, 'Test 54');
+test(smallestSubsequence("abcdefghijabcdefghijabcdefghijabcdefghijabcdefghij"), abcdefghij, 'Test 55');
+test(smallestSubsequence("qwertyuiopasdfghjklzxcvbnm"), qwertyuiopasdfghjklzxcvbnm, 'Test 56');
+test(smallestSubsequence("xyzxyzxyz"), xyz, 'Test 57');
+test(smallestSubsequence("leetcodeleet"), codelt, 'Test 58');
+test(smallestSubsequence("theswiftbrownfoxjumpsoverthelazydog"), eibownfxjumpsvrthlazydg, 'Test 59');
+test(smallestSubsequence("ababababababababab"), ab, 'Test 60');
+test(smallestSubsequence("nctzggabcddcba"), nctzgabd, 'Test 61');
+test(smallestSubsequence("ananananananananananananananananananananananananananan"), an, 'Test 62');
+test(smallestSubsequence("programmingisfun"), pograminsfu, 'Test 63');
+test(smallestSubsequence("sivisoitnsidvsnoovsinovsdinovnsidvsindvsiodinvsiodinvson"), iotdnsv, 'Test 64');
+test(smallestSubsequence("paper"), aper, 'Test 65');
+test(smallestSubsequence("characters"), chartes, 'Test 66');
+test(smallestSubsequence("ecbacbacba"), eabc, 'Test 67');
+test(smallestSubsequence("abcdabcdabcdabcd"), abcd, 'Test 68');
+test(smallestSubsequence("programming"), pogramin, 'Test 69');
+test(smallestSubsequence("repeatedcharactersaaaabbccddeeff"), epachrtsbdf, 'Test 70');
+test(smallestSubsequence("abababababababababab"), ab, 'Test 71');
+test(smallestSubsequence("cbacdcbcde"), abcde, 'Test 72');
+test(smallestSubsequence("leetcodelite"), codelit, 'Test 73');
+test(smallestSubsequence("rwrwrwxyz"), rwxyz, 'Test 74');
+test(smallestSubsequence("abacabadabcabcabcabcdabcdabcde"), abcde, 'Test 75');
+test(smallestSubsequence("backtracking"), backtring, 'Test 76');
+test(smallestSubsequence("evolving"), eolving, 'Test 77');
+test(smallestSubsequence("thesamecharacterrepeats"), amcherpts, 'Test 78');
+test(smallestSubsequence("abcdabdcab"), abcd, 'Test 79');
+test(smallestSubsequence("abacabadabcdeabcdeabacabad"), abcde, 'Test 80');
+test(smallestSubsequence("abcdabcdeabcd"), abcde, 'Test 81');
+test(smallestSubsequence("xxyyzzxxzzyyxzyxzyzzyyzzyzyz"), xyz, 'Test 82');
+test(smallestSubsequence("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzzzzzyyxxwwvvuuttssrrqqppoоннммллккjjiihhhggffeeddccbbaa"), abcdefghijklmnopqrstuvwxyzонмлк, 'Test 83');
+test(smallestSubsequence("banana"), ban, 'Test 84');
+test(smallestSubsequence("combinatorial"), cmbinatorl, 'Test 85');
+test(smallestSubsequence("zzzzyyyyxxxwvvvutttssrrqqppoonnmmllkkjjiihhhggffeeddccbbaa"), zyxwvutsrqponmlkjihgfedcba, 'Test 86');
+test(smallestSubsequence("eleetcode"), eltcod, 'Test 87');
+test(smallestSubsequence("elephanttree"), elphantr, 'Test 88');
+test(smallestSubsequence("elephant"), elphant, 'Test 89');
+test(smallestSubsequence("aabbccddeeffgg"), abcdefg, 'Test 90');
+test(smallestSubsequence("abcdabcdeabcdefabcdefgabcdefghabcdefghijkabcdefghijk"), abcdefghijk, 'Test 91');
+test(smallestSubsequence("aabbcceedd"), abced, 'Test 92');
+test(smallestSubsequence("rhythm"), rhytm, 'Test 93');
+test(smallestSubsequence("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzzabcd"), abcdefghijklmnopqrstuvwxyz, 'Test 94');
+test(smallestSubsequence("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), abcdefghijklmnopqrstuvwxyz, 'Test 95');
+test(smallestSubsequence("bcbcbcbcbc"), bc, 'Test 96');
+test(smallestSubsequence("characterswithunequalfrequency"), acerswithlfquny, 'Test 97');
+test(smallestSubsequence("zyxwvutsrqponmlkjihgfedcba"), zyxwvutsrqponmlkjihgfedcba, 'Test 98');
+test(smallestSubsequence("thequickbrownfoxjumpsoverthelazydog"), eqickbownfxjumpsvrthlazydg, 'Test 99');
+test(smallestSubsequence("aaaabbbbccccdddd"), abcd, 'Test 100');
+test(smallestSubsequence("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzzzzzzzzzzzz"), abcdefghijklmnopqrstuvwxyz, 'Test 101');
+test(smallestSubsequence("abcdefghijklmnopqrstuvwxyz"), abcdefghijklmnopqrstuvwxyz, 'Test 102');
+test(smallestSubsequence("aabbbcccddddeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnooooppppqqqqrrrrssssttttuuuuvvvvwwwwxxxxyyyyzzzz"), abcdefghijklmnopqrstuvwxyz, 'Test 103');
+test(smallestSubsequence("abcdedcba"), abcde, 'Test 104');
+test(smallestSubsequence("complexproblem"), cexproblm, 'Test 105');
+test(smallestSubsequence("zyxzyzyxzyx"), xyz, 'Test 106');
+test(smallestSubsequence("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzzzyxwvutsrqponmlkjihgfedcba"), abcdefghijklmnopqrstuvwxyz, 'Test 107');
+test(smallestSubsequence("lexicographical"), excographil, 'Test 108');
+test(smallestSubsequence("abcdefghihgfedcba"), abcdefghi, 'Test 109');
+test(smallestSubsequence("racecar"), acer, 'Test 110');
+test(smallestSubsequence("qpwoeirutyalskdfjhgfcxzvbnm"), qpwoeirutyalskdfjhgcxzvbnm, 'Test 111');
+test(smallestSubsequence("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"), abcdefghijklmnopqrstuvwxyz, 'Test 112');
+test(smallestSubsequence("rithmschool"), rithmscol, 'Test 113');
+test(smallestSubsequence("dynamicprogramming"), dyacpogrmin, 'Test 114');
+test(smallestSubsequence("interviewquestion"), erviwquston, 'Test 115');
+test(smallestSubsequence("abcdabcdeabcdeabcde"), abcde, 'Test 116');
+test(smallestSubsequence("thisisaverylongstringwithmanycharactersandmanyrepeatedcharacters"), aveloginwcdmyphrts, 'Test 117');
+test(smallestSubsequence("thisisatest"), hiaest, 'Test 118');
+test(smallestSubsequence("mississippi"), misp, 'Test 119');
+test(smallestSubsequence("zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba"), azyxwvutsrqponmlkjihgfedcb, 'Test 120');
+test(smallestSubsequence("permutation"), permuation, 'Test 121');
+test(smallestSubsequence("xyzzzyxyzzzyxyzzzyxyzzzy"), xyz, 'Test 122');
+test(smallestSubsequence("aabbbcccddd"), abcd, 'Test 123');
+test(smallestSubsequence("zzzzzzzzzzzzzzzzzzzzzzzzzzzz"), z, 'Test 124');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

@@ -1,0 +1,154 @@
+// Test: 1566. Detect Pattern Of Length M Repeated K Or More Times
+// 128 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { containsPattern } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1566. Detect Pattern Of Length M Repeated K Or More Times\n");
+
+test(containsPattern([1,2,4,4,4,4], 1, 3), true, 'Test 1');
+test(containsPattern([2,2,2,2,2,2], 2, 2), true, 'Test 2');
+test(containsPattern([1,3,1,3,1,3,1,3,1,3], 2, 5), true, 'Test 3');
+test(containsPattern([2,2,2,2,2,2,2,2,2,2], 1, 10), true, 'Test 4');
+test(containsPattern([5,5,5,5,5,5,5], 7, 1), false, 'Test 5');
+test(containsPattern([1,1,1,1,1,1], 1, 6), true, 'Test 6');
+test(containsPattern([1,1,1,1], 1, 4), true, 'Test 7');
+test(containsPattern([1,2,3,1,2,3,1,2,3], 3, 3), true, 'Test 8');
+test(containsPattern([2,2,2,2,2,2,2,2,2,2,2,2], 2, 5), true, 'Test 9');
+test(containsPattern([1,2,3,4,5,6,7,8,9,1], 9, 1), false, 'Test 10');
+test(containsPattern([5,5,5,1,5,5,5,5], 3, 2), false, 'Test 11');
+test(containsPattern([1,2,2,1,2,2,1,2,2], 2, 3), false, 'Test 12');
+test(containsPattern([1,2,1,2,1,3], 2, 3), false, 'Test 13');
+test(containsPattern([1,2,3,4,5,1,2,3,4,5,1,2,3], 5, 2), true, 'Test 14');
+test(containsPattern([1,2,3,4,5,1,2,3,4,5], 5, 2), true, 'Test 15');
+test(containsPattern([5,5,5,5,5,5,5,5,5,5], 1, 10), true, 'Test 16');
+test(containsPattern([2,2,2,2,2,2], 2, 3), true, 'Test 17');
+test(containsPattern([1,1,2,2,1,1,2,2], 2, 2), false, 'Test 18');
+test(containsPattern([3,3,3,3,3,3,3], 3, 2), true, 'Test 19');
+test(containsPattern([5,5,5,5,5,5,5], 3, 2), true, 'Test 20');
+test(containsPattern([1,2,1,2,1,1,1,3], 2, 2), true, 'Test 21');
+test(containsPattern([10,20,10,20,10,20,10], 2, 4), false, 'Test 22');
+test(containsPattern([1,1,2,2,1,1,2,2,1,1], 2, 3), false, 'Test 23');
+test(containsPattern([1,2,3,4,5,6,7,8,9,1], 1, 2), false, 'Test 24');
+test(containsPattern([1,2,3,4,5,6,7,8,9,10], 1, 2), false, 'Test 25');
+test(containsPattern([1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9], 9, 2), true, 'Test 26');
+test(containsPattern([1,1,1,1,1], 1, 5), true, 'Test 27');
+test(containsPattern([5,5,5,5,5,5,5,5], 4, 2), true, 'Test 28');
+test(containsPattern([1,2,3,4,1,2,3,4,1,2,3,4], 4, 3), true, 'Test 29');
+test(containsPattern([2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6], 4, 2), false, 'Test 30');
+test(containsPattern([3,1,3,1,3,1,3,1], 2, 4), true, 'Test 31');
+test(containsPattern([6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9], 4, 6), true, 'Test 32');
+test(containsPattern([1,2,3,1,2,3,1,2,3,1], 3, 3), true, 'Test 33');
+test(containsPattern([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3], 6, 2), true, 'Test 34');
+test(containsPattern([10,20,30,10,20,30,10,20,30,10,20,30,10,20,30], 3, 5), true, 'Test 35');
+test(containsPattern([10,20,30,10,20,30,10,20,30,10,20,30], 3, 4), true, 'Test 36');
+test(containsPattern([1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2], 2, 12), true, 'Test 37');
+test(containsPattern([1, 2, 3, 1, 2, 3, 1, 2, 3, 4, 5], 3, 3), true, 'Test 38');
+test(containsPattern([1,2,3,4,5,1,2,3,4,5,6,1,2,3,4,5,1,2,3,4,5], 5, 2), true, 'Test 39');
+test(containsPattern([4,5,6,7,8,4,5,6,7,8,4,5,6,7,8,4,5,6,7,8,4,5], 5, 3), true, 'Test 40');
+test(containsPattern([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], 4, 4), true, 'Test 41');
+test(containsPattern([1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5], 5, 4), true, 'Test 42');
+test(containsPattern([10, 20, 30, 10, 20, 30, 10, 20, 30, 10, 20, 30], 3, 4), true, 'Test 43');
+test(containsPattern([100,100,99,99,98,98,97,97,96,96,95,95,94,94,93,93,92,92,91,91], 2, 5), false, 'Test 44');
+test(containsPattern([1,2,3,4,5,1,2,3,4,5,6], 5, 2), true, 'Test 45');
+test(containsPattern([7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7], 7, 2), true, 'Test 46');
+test(containsPattern([1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10], 10, 2), true, 'Test 47');
+test(containsPattern([5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7,5,6,7], 3, 10), true, 'Test 48');
+test(containsPattern([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3], 3, 6), true, 'Test 49');
+test(containsPattern([4, 4, 4, 5, 5, 5, 4, 4, 4, 5, 5, 5, 4, 4, 4, 5, 5, 5], 2, 6), false, 'Test 50');
+test(containsPattern([10,9,8,7,6,5,4,3,2,1,10,9,8,7,6,5,4,3,2,1], 10, 2), true, 'Test 51');
+test(containsPattern([1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4], 4, 5), true, 'Test 52');
+test(containsPattern([1,1,1,2,2,2,1,1,1,2,2,2,1,1,1,2,2,2], 3, 4), false, 'Test 53');
+test(containsPattern([1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5], 4, 2), false, 'Test 54');
+test(containsPattern([6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10], 2, 5), false, 'Test 55');
+test(containsPattern([4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4], 2, 10), true, 'Test 56');
+test(containsPattern([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3], 3, 7), true, 'Test 57');
+test(containsPattern([1,2,3,1,2,3,1,2,3,4], 3, 3), true, 'Test 58');
+test(containsPattern([1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2], 2, 4), false, 'Test 59');
+test(containsPattern([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3], 3, 2), false, 'Test 60');
+test(containsPattern([3,3,3,3,3,1,1,1,1,1,3,3,3,3,3], 5, 2), false, 'Test 61');
+test(containsPattern([1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2], 2, 13), true, 'Test 62');
+test(containsPattern([2,2,2,2,1,1,1,1,2,2,2,2,1,1,1,1], 4, 2), false, 'Test 63');
+test(containsPattern([4, 4, 5, 5, 5, 5, 5, 4, 4, 5, 5, 5, 5, 5], 5, 2), false, 'Test 64');
+test(containsPattern([5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5], 5, 5), true, 'Test 65');
+test(containsPattern([6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6], 5, 3), true, 'Test 66');
+test(containsPattern([7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7], 1, 18), true, 'Test 67');
+test(containsPattern([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3], 3, 3), true, 'Test 68');
+test(containsPattern([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], 5, 5), true, 'Test 69');
+test(containsPattern([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 5, 6), true, 'Test 70');
+test(containsPattern([4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4], 5, 5), true, 'Test 71');
+test(containsPattern([1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2], 2, 10), true, 'Test 72');
+test(containsPattern([4,5,4,5,4,5,4,5,4,5,4,5,4,5,4,5,4,5], 2, 5), true, 'Test 73');
+test(containsPattern([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3], 6, 3), true, 'Test 74');
+test(containsPattern([5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1], 2, 10), true, 'Test 75');
+test(containsPattern([10,10,20,20,10,10,20,20,10,10], 2, 3), false, 'Test 76');
+test(containsPattern([1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9], 9, 4), true, 'Test 77');
+test(containsPattern([1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5], 5, 3), true, 'Test 78');
+test(containsPattern([1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2], 2, 5), true, 'Test 79');
+test(containsPattern([9,9,9,9,9,8,8,8,8,8,7,7,7,7,7,6,6,6,6,6], 5, 2), false, 'Test 80');
+test(containsPattern([9,8,7,6,9,8,7,6,9,8,7,6,9,8,7,6], 4, 3), true, 'Test 81');
+test(containsPattern([1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5], 5, 5), true, 'Test 82');
+test(containsPattern([1,1,2,2,3,3,1,1,2,2,3,3,1,1], 3, 2), false, 'Test 83');
+test(containsPattern([10,20,30,10,20,30,10,20,30,10,20,30,10,20,30,10,20,30,10,20,30], 3, 7), true, 'Test 84');
+test(containsPattern([1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1], 3, 12), true, 'Test 85');
+test(containsPattern([1,2,3,4,1,2,3,4,1,2,3,4,5,6,7,8], 4, 3), true, 'Test 86');
+test(containsPattern([1,2,3,1,2,3,1,2,3,4,5,6], 3, 2), true, 'Test 87');
+test(containsPattern([1,2,3,1,2,3,1,2,3,1,2,3], 3, 3), true, 'Test 88');
+test(containsPattern([1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,1,1,1,2,2,2], 3, 2), false, 'Test 89');
+test(containsPattern([5,6,7,5,6,7,5,6,8,5,6,7,5,6,7,5,6,7], 3, 3), true, 'Test 90');
+test(containsPattern([3, 3, 3, 3, 3, 1, 3, 3, 3, 3], 4, 2), false, 'Test 91');
+test(containsPattern([1,1,2,2,3,3,4,4,1,1,2,2,3,3,4,4], 2, 3), false, 'Test 92');
+test(containsPattern([5,6,5,6,7,8,7,8,9,10,9,10,9,10], 2, 2), true, 'Test 93');
+test(containsPattern([3,3,3,4,4,4,3,3,3,4,4,4,3,3,3,4,4,4], 3, 2), false, 'Test 94');
+test(containsPattern([1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5], 5, 2), true, 'Test 95');
+test(containsPattern([7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7], 1, 8), true, 'Test 96');
+test(containsPattern([10,10,10,20,20,20,30,30,30,10,10,10,20,20,20,30,30,30], 3, 2), false, 'Test 97');
+test(containsPattern([5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5], 10, 3), true, 'Test 98');
+test(containsPattern([6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9,6,7,8,9], 4, 4), true, 'Test 99');
+test(containsPattern([4,5,6,7,4,5,6,7,4,5,6,7,4,5,6,7,4,5,6,7], 4, 5), true, 'Test 100');
+test(containsPattern([1,2,3,1,2,3,1,2,3,4,5,6,1,2,3], 3, 3), true, 'Test 101');
+test(containsPattern([7,8,9,7,8,9,7,8,9,7,8,9,7,8,9,7,8,9], 3, 4), true, 'Test 102');
+test(containsPattern([7,8,9,7,8,9,7,8,9,7,8,9,7,8,9], 3, 4), true, 'Test 103');
+test(containsPattern([1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4], 3, 4), false, 'Test 104');
+test(containsPattern([1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5], 5, 3), true, 'Test 105');
+test(containsPattern([9,10,11,9,10,11,9,10,11,9,10,11,9,10,11], 3, 5), true, 'Test 106');
+test(containsPattern([10,20,10,20,10,20,10,20,10,20,10,20], 2, 5), true, 'Test 107');
+test(containsPattern([2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3], 2, 5), true, 'Test 108');
+test(containsPattern([1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4], 4, 5), true, 'Test 109');
+test(containsPattern([6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6], 10, 3), true, 'Test 110');
+test(containsPattern([10,20,30,10,20,30,10,20,30,10,20], 3, 3), true, 'Test 111');
+test(containsPattern([7,7,7,7,7,7,7,7,7,7,7,7], 5, 2), true, 'Test 112');
+test(containsPattern([1,1,2,2,3,3,4,4,1,1,2,2,3,3,4,4,1,1,2,2], 4, 2), false, 'Test 113');
+test(containsPattern([1,1,2,2,1,1,2,2,1,1,2,2,1,1,2,2,1,1], 2, 4), false, 'Test 114');
+test(containsPattern([7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7], 10, 1), false, 'Test 115');
+test(containsPattern([1,1,2,1,1,2,1,1,2,1,1,2], 2, 5), false, 'Test 116');
+test(containsPattern([7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7], 5, 3), true, 'Test 117');
+test(containsPattern([1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4], 4, 5), true, 'Test 118');
+test(containsPattern([1,2,3,4,1,2,3,4,5,6,1,2,3,4,1,2,3,4], 4, 3), false, 'Test 119');
+test(containsPattern([2,4,2,4,2,4,2,4,2,4,2,4,2,4,2,4,2,4,2,4,2,4], 2, 10), true, 'Test 120');
+test(containsPattern([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 1, 1, 1, 1, 2, 2, 2, 2], 4, 2), false, 'Test 121');
+test(containsPattern([1,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,1,2,1,1,1,1,1,2], 6, 2), true, 'Test 122');
+test(containsPattern([9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9], 5, 4), true, 'Test 123');
+test(containsPattern([5,5,1,1,5,5,1,1,5,5,1,1,5,5,1,1,5,5], 2, 4), false, 'Test 124');
+test(containsPattern([9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9], 10, 3), true, 'Test 125');
+test(containsPattern([6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6], 10, 3), true, 'Test 126');
+test(containsPattern([8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 8, 8, 9, 9, 10, 10, 11, 11], 2, 4), false, 'Test 127');
+test(containsPattern([1,1,1,1,2,1,1,1,1,2,1,1,1,1,2,1,1,1,1,2], 6, 2), false, 'Test 128');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

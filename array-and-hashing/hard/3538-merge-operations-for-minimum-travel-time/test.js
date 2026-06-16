@@ -1,0 +1,31 @@
+// Test: 3538. Merge Operations for Minimum Travel Time
+// Run: node test.js
+
+const { minTravelTime } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    console.log(`  ✓ ${label}`);
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n3538. Merge Operations for Minimum Travel Time\n");
+
+test(minTravelTime(10, 4, 1, [0,3,8,10], [5,8,3,6]), 62, 'Example 1: minTravelTime(10, 4, 1, [0,3,8,10], [5,8,3,6]) → 62');
+test(minTravelTime(5, 5, 1, [0,1,2,3,5], [8,3,9,3,3]), 34, 'Example 2: minTravelTime(5, 5, 1, [0,1,2,3,5], [8,3,9,3,3]) → 34');
+
+// --- Add your own test cases below ---
+
+
+console.log(`\nResult: ${passed} passed, ${failed} failed\n`);
+if (failed) process.exitCode = 1;
+

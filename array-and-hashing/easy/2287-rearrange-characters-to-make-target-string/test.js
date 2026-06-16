@@ -1,0 +1,155 @@
+// Test: 2287. Rearrange Characters To Make Target String
+// 129 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { rearrangeCharacters } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n2287. Rearrange Characters To Make Target String\n");
+
+test(rearrangeCharacters("aabbc", "abc"), 1, 'Test 1');
+test(rearrangeCharacters("aabbbccc", "abc"), 2, 'Test 2');
+test(rearrangeCharacters("zzzz", "zz"), 2, 'Test 3');
+test(rearrangeCharacters("abcabcabc", "abc"), 3, 'Test 4');
+test(rearrangeCharacters("abcd", "abce"), 0, 'Test 5');
+test(rearrangeCharacters("abbaccaddaeea", "aaaaa"), 1, 'Test 6');
+test(rearrangeCharacters("aabbbcc", "abc"), 2, 'Test 7');
+test(rearrangeCharacters("ilovecodingonleetcode", "code"), 2, 'Test 8');
+test(rearrangeCharacters("aabbccddeeffgghh", "abcdefgh"), 2, 'Test 9');
+test(rearrangeCharacters("aabbcc", "abc"), 2, 'Test 10');
+test(rearrangeCharacters("zzzz", "zzz"), 1, 'Test 11');
+test(rearrangeCharacters("", "a"), 0, 'Test 12');
+test(rearrangeCharacters("a", "a"), 1, 'Test 13');
+test(rearrangeCharacters("abcccccc", "cat"), 0, 'Test 14');
+test(rearrangeCharacters("aaabbbccc", "abc"), 3, 'Test 15');
+test(rearrangeCharacters("abcd", "e"), 0, 'Test 16');
+test(rearrangeCharacters("abcd", "abcd"), 1, 'Test 17');
+test(rearrangeCharacters("aaaaa", "a"), 5, 'Test 18');
+test(rearrangeCharacters("abababab", "abab"), 2, 'Test 19');
+test(rearrangeCharacters("aaa", "a"), 3, 'Test 20');
+test(rearrangeCharacters("aaaaaaaaaa", "aa"), 5, 'Test 21');
+test(rearrangeCharacters("pqr", "ppp"), 0, 'Test 22');
+test(rearrangeCharacters("aaaabbbbcccc", "abc"), 4, 'Test 23');
+test(rearrangeCharacters("leetcode", "leet"), 1, 'Test 24');
+test(rearrangeCharacters("abcba", "abc"), 1, 'Test 25');
+test(rearrangeCharacters("xyz", "xyzy"), 0, 'Test 26');
+test(rearrangeCharacters("xyz", "zyx"), 1, 'Test 27');
+test(rearrangeCharacters("programming", "gram"), 1, 'Test 28');
+test(rearrangeCharacters("ababababababababababab", "baba"), 5, 'Test 29');
+test(rearrangeCharacters("bbbaaaccdddeefff", "abcde"), 2, 'Test 30');
+test(rearrangeCharacters("qqwweerrttyyuuiooppaassddffgg", "qwertyuiopasdfgh"), 0, 'Test 31');
+test(rearrangeCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "zzzz"), 10, 'Test 32');
+test(rearrangeCharacters("elevenletters", "eleven"), 1, 'Test 33');
+test(rearrangeCharacters("aabbccddeeffaabbccddeeffaabbccddeeff", "abcdeffedcba"), 3, 'Test 34');
+test(rearrangeCharacters("ppppppppppppppp", "pppp"), 3, 'Test 35');
+test(rearrangeCharacters("programmingproblems", "problem"), 1, 'Test 36');
+test(rearrangeCharacters("characterscharacters", "characters"), 2, 'Test 37');
+test(rearrangeCharacters("hellokitty", "hello"), 1, 'Test 38');
+test(rearrangeCharacters("repeatedcharacters", "repeat"), 1, 'Test 39');
+test(rearrangeCharacters("abcdabcdabcdabcdabcd", "abcdabcd"), 2, 'Test 40');
+test(rearrangeCharacters("ppppqqqqrrrsssss", "pqrs"), 3, 'Test 41');
+test(rearrangeCharacters("xyzxyzxyz", "xyz"), 3, 'Test 42');
+test(rearrangeCharacters("thisisjustaword", "word"), 1, 'Test 43');
+test(rearrangeCharacters("bananaananan", "ana"), 3, 'Test 44');
+test(rearrangeCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "zzzz"), 8, 'Test 45');
+test(rearrangeCharacters("xxxxxyyyyyzzzzzwwwwwvvvvv", "xyzzwv"), 2, 'Test 46');
+test(rearrangeCharacters("ppqpqqppqppqqqqqqq", "ppqq"), 3, 'Test 47');
+test(rearrangeCharacters("aabcccccaaa", "abc"), 1, 'Test 48');
+test(rearrangeCharacters("xyzzyxzyzyzxzyxzy", "zyx"), 4, 'Test 49');
+test(rearrangeCharacters("pppppppppppppppppppppppppppppppppppppppppppppppppppp", "p"), 52, 'Test 50');
+test(rearrangeCharacters("abcdefghij", "zyxwvutsrqponmlkjihgfedcba"), 0, 'Test 51');
+test(rearrangeCharacters("aaaabbbbccccddddeeeeffffgggghhhhiiiijjjjkkkkllllooooppppqqqqrrrrssssttttuuuuvvvvwwwwxxxxyyyyzzzz", "abcdefghijkmnopqrstuvwxyz"), 0, 'Test 52');
+test(rearrangeCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abcdefghijklmnopqrstuvwxyz"), 2, 'Test 53');
+test(rearrangeCharacters("quickbrownfox", "quick"), 1, 'Test 54');
+test(rearrangeCharacters("abracadabra", "abrac"), 1, 'Test 55');
+test(rearrangeCharacters("aabbbcccddddeeeeeffffffggggghhhhhhiiiiiiijjjjjjjjkkkkkkkkkllllllllllmmmmmmmmmmmnnnnnnnnnnnoooooo", "abcdefghijklmno"), 2, 'Test 56');
+test(rearrangeCharacters("aaabbbcccddd", "abcd"), 3, 'Test 57');
+test(rearrangeCharacters("jumpoverthelazydog", "dogjump"), 1, 'Test 58');
+test(rearrangeCharacters("xyxxyxyxyxyx", "xyx"), 3, 'Test 59');
+test(rearrangeCharacters("bananana", "banana"), 1, 'Test 60');
+test(rearrangeCharacters("supercalifragilisticexpialidocious", "super"), 2, 'Test 61');
+test(rearrangeCharacters("xyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "xyz"), 1, 'Test 62');
+test(rearrangeCharacters("programmingisfun", "fun"), 1, 'Test 63');
+test(rearrangeCharacters("rearrangerearrangerearrange", "range"), 3, 'Test 64');
+test(rearrangeCharacters("aaabbbccc", "abcabc"), 1, 'Test 65');
+test(rearrangeCharacters("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "a"), 91, 'Test 66');
+test(rearrangeCharacters("aaaaaaaaaabbbbbbbbccccccccdddddddd", "abcdabcdabcd"), 2, 'Test 67');
+test(rearrangeCharacters("aabbbcccdddeeefff", "abcdef"), 2, 'Test 68');
+test(rearrangeCharacters("abacabadabacaba", "abc"), 2, 'Test 69');
+test(rearrangeCharacters("mississippi", "issi"), 2, 'Test 70');
+test(rearrangeCharacters("babbbababbaba", "bab"), 4, 'Test 71');
+test(rearrangeCharacters("abacabadabacaba", "abac"), 2, 'Test 72');
+test(rearrangeCharacters("aabbaabbaabb", "aabb"), 3, 'Test 73');
+test(rearrangeCharacters("nfaivnfaInfinityaInfinityaInfinityaInfinityafinaInfinitynaInfinityaianfaianfaianfaianfaianfaianfaianfaianfaianfaianfai", "nfa"), 19, 'Test 74');
+test(rearrangeCharacters("abcdefgabcdefgabcdefg", "abcdefg"), 3, 'Test 75');
+test(rearrangeCharacters("qpwoeirutyalskdjfhgmznxbcv", "qwerty"), 1, 'Test 76');
+test(rearrangeCharacters("everygoodboydoesfine", "every"), 1, 'Test 77');
+test(rearrangeCharacters("aabbcc", "abcabc"), 1, 'Test 78');
+test(rearrangeCharacters("aabbbccddeeefff", "abcdef"), 2, 'Test 79');
+test(rearrangeCharacters("xyxxyxyxyx", "xyx"), 3, 'Test 80');
+test(rearrangeCharacters("aabbcc", "aab"), 1, 'Test 81');
+test(rearrangeCharacters("xzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzy", "zyx"), 23, 'Test 82');
+test(rearrangeCharacters("aabbcdeffgghhiijk", "abcdefghij"), 1, 'Test 83');
+test(rearrangeCharacters("wassupwassupwassup", "wassup"), 3, 'Test 84');
+test(rearrangeCharacters("abracadabra", "abra"), 2, 'Test 85');
+test(rearrangeCharacters("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba"), 1, 'Test 86');
+test(rearrangeCharacters("xyzxyzxyzxyzxyz", "xyzxyz"), 2, 'Test 87');
+test(rearrangeCharacters("testtesttesttest", "test"), 4, 'Test 88');
+test(rearrangeCharacters("rearrangerearrange", "rearrange"), 2, 'Test 89');
+test(rearrangeCharacters("optimization", "on"), 1, 'Test 90');
+test(rearrangeCharacters("aaaaaaaaaaa", "aaaaa"), 2, 'Test 91');
+test(rearrangeCharacters("qqwweerrttyyuuiiooppllaa", "typewriter"), 1, 'Test 92');
+test(rearrangeCharacters("balloonballoonballoon", "balloon"), 3, 'Test 93');
+test(rearrangeCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "mnopqrstuvwxyz"), 2, 'Test 94');
+test(rearrangeCharacters("nnnoooiii", "noon"), 1, 'Test 95');
+test(rearrangeCharacters("abracadabra", "cab"), 1, 'Test 96');
+test(rearrangeCharacters("xyzxyzxyzxyzxyzxyz", "xyz"), 6, 'Test 97');
+test(rearrangeCharacters("xylophonephonexylo", "xylo"), 2, 'Test 98');
+test(rearrangeCharacters("abcabcabcabcabc", "abcabc"), 2, 'Test 99');
+test(rearrangeCharacters("babababababababab", "abba"), 4, 'Test 100');
+test(rearrangeCharacters("abcabcabcabcabc", "ab"), 5, 'Test 101');
+test(rearrangeCharacters("aaaabbbbccccdddd", "abcd"), 4, 'Test 102');
+test(rearrangeCharacters("rearrangecharacters", "char"), 1, 'Test 103');
+test(rearrangeCharacters("elephantelephant", "elephant"), 2, 'Test 104');
+test(rearrangeCharacters("fifteenlettersfifteenletters", "fifteen"), 2, 'Test 105');
+test(rearrangeCharacters("thequickbrownfoxjumpsoverthelazydog", "thequickbrownfoxjumpsoverthelazydog"), 1, 'Test 106');
+test(rearrangeCharacters("thisthisthisthisthisthisisthisthisthisthisthis", "this"), 11, 'Test 107');
+test(rearrangeCharacters("supercalifragilisticexpialidocious", "supercali"), 2, 'Test 108');
+test(rearrangeCharacters("mississippi", "issip"), 2, 'Test 109');
+test(rearrangeCharacters("aabbccddeeff", "abcdef"), 2, 'Test 110');
+test(rearrangeCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zyxwvutsrqponmlkjihgfedcba"), 2, 'Test 111');
+test(rearrangeCharacters("babababa", "ba"), 4, 'Test 112');
+test(rearrangeCharacters("abcdabcdabcdabcdabcd", "abcd"), 5, 'Test 113');
+test(rearrangeCharacters("xylophone", "xyl"), 1, 'Test 114');
+test(rearrangeCharacters("abcdabcdabcd", "abcd"), 3, 'Test 115');
+test(rearrangeCharacters("thisisaverylongstringwithmanylettersinittomakeitmorechallengingtotest", "thisis"), 2, 'Test 116');
+test(rearrangeCharacters("balloonballoon", "balloon"), 2, 'Test 117');
+test(rearrangeCharacters("packmyboxwithfivedozenliquorjugs", "boxwith"), 1, 'Test 118');
+test(rearrangeCharacters("bananaapple", "ana"), 2, 'Test 119');
+test(rearrangeCharacters("qwerqwerqwerqwer", "qwerqwer"), 2, 'Test 120');
+test(rearrangeCharacters("thefiveboxingwizardsjumpquickly", "jump"), 1, 'Test 121');
+test(rearrangeCharacters("algorithmsarecool", "cool"), 1, 'Test 122');
+test(rearrangeCharacters("exampleexampleexampleexampleexampleexample", "example"), 6, 'Test 123');
+test(rearrangeCharacters("xylophone", "phonex"), 1, 'Test 124');
+test(rearrangeCharacters("thisisaverylongstringthatyoumightfindchallengingtorearrange", "string"), 3, 'Test 125');
+test(rearrangeCharacters("bananaananabanananana", "nana"), 4, 'Test 126');
+test(rearrangeCharacters("hellohellohellohello", "hello"), 4, 'Test 127');
+test(rearrangeCharacters("abracadabra", "abraca"), 1, 'Test 128');
+test(rearrangeCharacters("hellohellohello", "hello"), 3, 'Test 129');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

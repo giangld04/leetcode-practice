@@ -1,0 +1,150 @@
+// Test: 334. Increasing Triplet Subsequence
+// 124 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { increasingTriplet } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n334. Increasing Triplet Subsequence\n");
+
+test(increasingTriplet([5,4,3,2,1]), false, 'Test 1');
+test(increasingTriplet([0, -1, 2, -3, 4, -5, 6, -7]), true, 'Test 2');
+test(increasingTriplet([-1,0,1,2,-1,-4]), true, 'Test 3');
+test(increasingTriplet([1,2,1,2,1,2,1,2,1]), false, 'Test 4');
+test(increasingTriplet([20, 100, 10, 12, 5, 13]), true, 'Test 5');
+test(increasingTriplet([1,1,1,1,1]), false, 'Test 6');
+test(increasingTriplet([1,2]), false, 'Test 7');
+test(increasingTriplet([0,-1,1]), false, 'Test 8');
+test(increasingTriplet([1, 1, 1, 1, 1, 1, 1, 1]), false, 'Test 9');
+test(increasingTriplet([1, 2, 1, 2, 1, 2, 1, 2]), false, 'Test 10');
+test(increasingTriplet([0,4,2,1,0,-1,-3]), false, 'Test 11');
+test(increasingTriplet([10,9,2,5,3,7,101,18]), true, 'Test 12');
+test(increasingTriplet([2,1,5,0,4,6]), true, 'Test 13');
+test(increasingTriplet([1,2,0,4,5]), true, 'Test 14');
+test(increasingTriplet([1,2,3,4,5]), true, 'Test 15');
+test(increasingTriplet([20,100,10,12,5,13]), true, 'Test 16');
+test(increasingTriplet([1,3,2,4,5,6]), true, 'Test 17');
+test(increasingTriplet([10, 9, 2, 5, 3, 7, 101, 18]), true, 'Test 18');
+test(increasingTriplet([1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3]), true, 'Test 19');
+test(increasingTriplet([5, 1, 5, 5, 2, 5, 4, 5, 6, 5, 7, 5]), true, 'Test 20');
+test(increasingTriplet([1,2,3,1,2,3,4,5]), true, 'Test 21');
+test(increasingTriplet([2147483647, -2147483648, 0, 1, -1, 2, -2, 3, -3]), true, 'Test 22');
+test(increasingTriplet([1000000000, 999999999, 1, 1000000001]), false, 'Test 23');
+test(increasingTriplet([10, 20, 30, 15, 25, 35]), true, 'Test 24');
+test(increasingTriplet([1,2,3,4,3,2,1,2,3]), true, 'Test 25');
+test(increasingTriplet([5, 1, 5, 5, 2, 5, 1, 9, 2, 5, 1]), true, 'Test 26');
+test(increasingTriplet([1, 2, 1, 2, 1, 2, 1, 2, 1, 3]), true, 'Test 27');
+test(increasingTriplet([1, 2, 0, 4, 5, 3, 6]), true, 'Test 28');
+test(increasingTriplet([1, 5, 2, 4, 3, 6, 7, 8, 9, 10, 0]), true, 'Test 29');
+test(increasingTriplet([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 1, 3, 7]), true, 'Test 30');
+test(increasingTriplet([20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10]), false, 'Test 31');
+test(increasingTriplet([9, 11, 13, 12, 14, 15, 16]), true, 'Test 32');
+test(increasingTriplet([3,1,4,2,5,7,8]), true, 'Test 33');
+test(increasingTriplet([100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0, -10, -20, -30, -40, -50, -60, -70, -80, -90, -100, 1]), false, 'Test 34');
+test(increasingTriplet([1, 3, 2, 4, 6, 5, 7, 8, 10, 9]), true, 'Test 35');
+test(increasingTriplet([5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7]), true, 'Test 36');
+test(increasingTriplet([1, 3, 2, 4, 3, 5, 4, 6, 5, 7, 6, 8]), true, 'Test 37');
+test(increasingTriplet([1, 2, 3, 2, 1, 4, 5]), true, 'Test 38');
+test(increasingTriplet([20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 21, 22, 23]), true, 'Test 39');
+test(increasingTriplet([7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 9]), true, 'Test 40');
+test(increasingTriplet([1, 2, 3, 1, 2, 3]), true, 'Test 41');
+test(increasingTriplet([5,1,5,5,2,5,4,7]), true, 'Test 42');
+test(increasingTriplet([1, 2, 3, 1, 2, 3, 4, 5, 6, 7]), true, 'Test 43');
+test(increasingTriplet([2, 1, 5, 0, 4, 6, 3, 8, 7, 9]), true, 'Test 44');
+test(increasingTriplet([5,1,5,5,2,5,4]), true, 'Test 45');
+test(increasingTriplet([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5]), true, 'Test 46');
+test(increasingTriplet([1, 20, 3, 10, 5, 15, 8, 25, 12]), true, 'Test 47');
+test(increasingTriplet([0, -1, -2, -3, -4, -5, -6, -7, -8, -9]), false, 'Test 48');
+test(increasingTriplet([-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-1,-2,-3,-4,-5]), false, 'Test 49');
+test(increasingTriplet([1, 2, 3, 4, 3, 2, 1, 5]), true, 'Test 50');
+test(increasingTriplet([10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), true, 'Test 51');
+test(increasingTriplet([10, 9, 2, 5, 3, 7, 101, 18, 102, 103]), true, 'Test 52');
+test(increasingTriplet([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1]), true, 'Test 53');
+test(increasingTriplet([-1000000000,-999999999,-1000000001,-1000000002,-1000000003]), false, 'Test 54');
+test(increasingTriplet([10, 1, 11, 1, 12, 1, 13, 1]), true, 'Test 55');
+test(increasingTriplet([1,2,1,2,1,2,1,2,1,2]), false, 'Test 56');
+test(increasingTriplet([10, 1, 20, 2, 30, 3, 40, 4, 50, 5]), true, 'Test 57');
+test(increasingTriplet([8, 10, 4, 6, 9, 1, 5, 3, 7, 2]), true, 'Test 58');
+test(increasingTriplet([1,3,5,7,9,11,2,4,6,8,10]), true, 'Test 59');
+test(increasingTriplet([2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4]), true, 'Test 60');
+test(increasingTriplet([1, 2, 3, 1, 2, 3, 1, 2, 3]), true, 'Test 61');
+test(increasingTriplet([3,1,4,2,5]), true, 'Test 62');
+test(increasingTriplet([3, 5, 0, 2, 1, 4, 6, 7, 8, 9]), true, 'Test 63');
+test(increasingTriplet([100, 99, 98, 97, 96, 95, 94, 93, 92, 91]), false, 'Test 64');
+test(increasingTriplet([1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8]), true, 'Test 65');
+test(increasingTriplet([1000000000, 999999999, 1000000001, 1000000002, 999999998]), true, 'Test 66');
+test(increasingTriplet([7, 7, 7, 8, 7, 7, 7, 7, 9, 7]), true, 'Test 67');
+test(increasingTriplet([8, 1, 2, 3, 7, 4, 5]), true, 'Test 68');
+test(increasingTriplet([100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0, 1, 2, 3, 4, 5]), true, 'Test 69');
+test(increasingTriplet([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 1, 3, 5]), true, 'Test 70');
+test(increasingTriplet([8, 1, 3, 7, 4, 6, 2, 9, 5, 10]), true, 'Test 71');
+test(increasingTriplet([100, 90, 80, 70, 60, 50, 40, 30, 20, 10]), false, 'Test 72');
+test(increasingTriplet([5, 6, 7, 8, 9, 1, 2, 3, 4, 10, 11, 12, 13, 14]), true, 'Test 73');
+test(increasingTriplet([6, 5, 4, 8, 7, 9, 2, 1, 3, 4]), true, 'Test 74');
+test(increasingTriplet([1000000000, -1000000000, 1000000000, -1000000000, 1000000000, -1000000000, 1000000000]), false, 'Test 75');
+test(increasingTriplet([1, 2, 1, 3, 2, 4, 3, 5, 4, 6]), true, 'Test 76');
+test(increasingTriplet([3, 2, 1, 4, 5, 6, 7, 8, 9, 10]), true, 'Test 77');
+test(increasingTriplet([5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5]), false, 'Test 78');
+test(increasingTriplet([1000000000, 999999999, 1000000001, 999999998, 1000000002, 999999997, 1000000003]), true, 'Test 79');
+test(increasingTriplet([1,2,0,4,5,3,7,8,6,9]), true, 'Test 80');
+test(increasingTriplet([-10, -20, -15, -25, -30, -5, -35]), true, 'Test 81');
+test(increasingTriplet([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1]), true, 'Test 82');
+test(increasingTriplet([1000000000,999999999,1000000001,1000000002,1000000003]), true, 'Test 83');
+test(increasingTriplet([1, 3, 2, 4, 5, 6, 7, 8, 9, 10]), true, 'Test 84');
+test(increasingTriplet([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), true, 'Test 85');
+test(increasingTriplet([5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), true, 'Test 86');
+test(increasingTriplet([7,7,7,7,7,7,7,7,7,7,7,7,8]), false, 'Test 87');
+test(increasingTriplet([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]), true, 'Test 88');
+test(increasingTriplet([8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8]), false, 'Test 89');
+test(increasingTriplet([1, 10, 2, 9, 3, 8, 4, 7, 5, 6]), true, 'Test 90');
+test(increasingTriplet([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, -1, -2, -3]), true, 'Test 91');
+test(increasingTriplet([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), true, 'Test 92');
+test(increasingTriplet([1000000000, 500000000, 750000000, 1000000001, 1000000002]), true, 'Test 93');
+test(increasingTriplet([1, 3, 2, 4, 5, 0, 6, 7, 8]), true, 'Test 94');
+test(increasingTriplet([3, 2, 1, 2, 1, 0, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), true, 'Test 95');
+test(increasingTriplet([3, 1, 2, 4, 6, 5, 7, 9, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), true, 'Test 96');
+test(increasingTriplet([1, 2, 3, 1, 2, 3, 4, 5, 6]), true, 'Test 97');
+test(increasingTriplet([9, 8, 7, 6, 5, 4, 3, 2, 1, 0, 1]), false, 'Test 98');
+test(increasingTriplet([1000000000, -1000000000, 500000000, -500000000, 100000000, -100000000, 50000000, -50000000]), true, 'Test 99');
+test(increasingTriplet([1, 5, 0, 4, 2, 3, 6]), true, 'Test 100');
+test(increasingTriplet([1,2,3,4,3,5,4,6,5,7,6,8]), true, 'Test 101');
+test(increasingTriplet([5, 1, 5, 5, 2, 5, 4]), true, 'Test 102');
+test(increasingTriplet([3, 1, 2, 4, 3, 5, 6, 1, 2, 7]), true, 'Test 103');
+test(increasingTriplet([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]), true, 'Test 104');
+test(increasingTriplet([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), true, 'Test 105');
+test(increasingTriplet([10, 20, 15, 25, 30, 5, 35]), true, 'Test 106');
+test(increasingTriplet([1,3,2,4,5,6,7,8]), true, 'Test 107');
+test(increasingTriplet([1, 3, 2, 4, 3, 5]), true, 'Test 108');
+test(increasingTriplet([0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0]), true, 'Test 109');
+test(increasingTriplet([8,9,7,6,5,4,3,2,1,0]), false, 'Test 110');
+test(increasingTriplet([1000000000, 999999999, 1000000001, 1000000002, 999999998, 1000000003]), true, 'Test 111');
+test(increasingTriplet([5, 1, 5, 5, 2, 5, 3, 5]), true, 'Test 112');
+test(increasingTriplet([7, 7, 7, 1, 2, 8, 10, 9, 11]), true, 'Test 113');
+test(increasingTriplet([9, 11, 8, 9, 10, 7, 10]), true, 'Test 114');
+test(increasingTriplet([-1, -2, -3, -4, -5, -6, -7, -8, -9]), false, 'Test 115');
+test(increasingTriplet([5, 1, 5, 5, 2, 5, 1, 9, 5, 5, 5]), true, 'Test 116');
+test(increasingTriplet([-1,-2,-3,-4,-5,-6,-7,-8,-9,-10]), false, 'Test 117');
+test(increasingTriplet([5,1,5,5,2,5,4,7,6,8,9]), true, 'Test 118');
+test(increasingTriplet([8, 7, 6, 5, 4, 3, 2, 1, 0]), false, 'Test 119');
+test(increasingTriplet([5, 1, 4, 2, 3, 6]), true, 'Test 120');
+test(increasingTriplet([2, 1, 3, 0, 4, -1, 5, 6, 7, 8]), true, 'Test 121');
+test(increasingTriplet([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0]), true, 'Test 122');
+test(increasingTriplet([1, 2, 3, 4, 5, 3, 4, 5]), true, 'Test 123');
+test(increasingTriplet([1, 2, 2, 1, 2, 3]), true, 'Test 124');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

@@ -1,0 +1,40 @@
+// 307. Range Sum Query - Mutable
+// Difficulty: Medium
+// Tags: Array, Divide and Conquer, Design, Binary Indexed Tree, Segment Tree
+// Link: https://leetcode.com/problems/range-sum-query-mutable/
+
+/**
+ * @param {number[]} nums
+ */
+var NumArray = function(nums) {
+    
+};
+
+/** 
+ * @param {number} index 
+ * @param {number} val
+ * @return {void}
+ */
+NumArray.prototype.update = function(index, val) {
+    
+};
+
+/** 
+ * @param {number} left 
+ * @param {number} right
+ * @return {number}
+ */
+NumArray.prototype.sumRange = function(left, right) {
+    
+};
+
+/** 
+ * Your NumArray object will be instantiated and called as such:
+ * var obj = new NumArray(nums)
+ * obj.update(index,val)
+ * var param_2 = obj.sumRange(left,right)
+ */
+
+// --- Your Solution Above ---
+
+module.exports = { NumArray };

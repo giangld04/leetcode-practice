@@ -1,0 +1,155 @@
+// Test: 1974. Minimum Time To Type Word Using Special Typewriter
+// 129 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minTimeToType } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1974. Minimum Time To Type Word Using Special Typewriter\n");
+
+test(minTimeToType("aaabbbccc"), 11, 'Test 1');
+test(minTimeToType("zyxwvut"), 14, 'Test 2');
+test(minTimeToType("zzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 29, 'Test 3');
+test(minTimeToType("mnbvcxzlkjhgfdsapoiuytrewq"), 178, 'Test 4');
+test(minTimeToType("qpwoeirutyalskdjfhgzmxncbv"), 191, 'Test 5');
+test(minTimeToType("zjpc"), 34, 'Test 6');
+test(minTimeToType("abcdz"), 12, 'Test 7');
+test(minTimeToType("pqrstuvwxyzabcdefghijklmno"), 62, 'Test 8');
+test(minTimeToType("aaa"), 3, 'Test 9');
+test(minTimeToType("mnopqrstuvwxyzabcdefghijkl"), 63, 'Test 10');
+test(minTimeToType("z"), 2, 'Test 11');
+test(minTimeToType("aaaaaaaaaaaaaaaaaaaaaaaaaa"), 26, 'Test 12');
+test(minTimeToType("qpwoeirutyalskdjfhgzmxncbva"), 197, 'Test 13');
+test(minTimeToType("za"), 4, 'Test 14');
+test(minTimeToType("zzz"), 4, 'Test 15');
+test(minTimeToType("qpwoeirutyalskdjfhgzmxcvbn"), 193, 'Test 16');
+test(minTimeToType("mnonmonmomnonmon"), 47, 'Test 17');
+test(minTimeToType("a"), 1, 'Test 18');
+test(minTimeToType("bza"), 7, 'Test 19');
+test(minTimeToType("abc"), 5, 'Test 20');
+test(minTimeToType("az"), 3, 'Test 21');
+test(minTimeToType("zyxwvutsrqponmlkjihgfedcba"), 52, 'Test 22');
+test(minTimeToType("abcdefghijklmnopqrstuvwxyz"), 51, 'Test 23');
+test(minTimeToType("abacabadabacaba"), 37, 'Test 24');
+test(minTimeToType("mnbvcxzlkjhgfdsapoiuytrewqmnbvcxzlkjhgfdsapoiuytrewq"), 348, 'Test 25');
+test(minTimeToType("adgjmpsvxzbehiklnortuwfyqc"), 110, 'Test 26');
+test(minTimeToType("bbaaccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), 79, 'Test 27');
+test(minTimeToType("aazzbbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), 81, 'Test 28');
+test(minTimeToType("mamamamamamamamamamamamamam"), 351, 'Test 29');
+test(minTimeToType("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 47, 'Test 30');
+test(minTimeToType("abcdezyxwvut"), 27, 'Test 31');
+test(minTimeToType("zaqwsxcderfvgytujnhytgfrdxcvbnmzaqwsxcderfv"), 328, 'Test 32');
+test(minTimeToType("mnopqrstuvmnopqrstuvmnopqrstuv"), 87, 'Test 33');
+test(minTimeToType("qwertyuioplkjhgfdsazxcvbnmnbvcxzlkjhgfdsapoiuytrewq"), 323, 'Test 34');
+test(minTimeToType("mamamamamamamamamamamamamamamamamamamamamamamamamamama"), 702, 'Test 35');
+test(minTimeToType("abcdefghijklmnopqrstuvwxyzzzzzzzzzzzzzzzzzzzz"), 70, 'Test 36');
+test(minTimeToType("qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm"), 346, 'Test 37');
+test(minTimeToType("lkjhgfdsapoiuytrewqzxcvbnm"), 174, 'Test 38');
+test(minTimeToType("mjmlkdjfhakjdhfkahdfkldshfklsjdhfkjd"), 217, 'Test 39');
+test(minTimeToType("aaaabbbbccccddddeeeeffffgggghhhhiiiiijjjjkkkkllllmmmmnnnnooooppppqqqqrrrrssssttttuuuuvvvvwwwwxxxxyyyyzzzz"), 130, 'Test 40');
+test(minTimeToType("aaaabbbbccccddddeeeeffffgggghhhhiiii"), 44, 'Test 41');
+test(minTimeToType("lkjhgfdsapoiuytrewqmasdfghjkl"), 178, 'Test 42');
+test(minTimeToType("qponmlkjihgfedcba"), 43, 'Test 43');
+test(minTimeToType("jklmnopqrstuvwxyzaaaazzzzz"), 53, 'Test 44');
+test(minTimeToType("wvutsrqponmlkjihgfedcba"), 49, 'Test 45');
+test(minTimeToType("wertyuioplkjhgfdsamnbvcxzabcd"), 164, 'Test 46');
+test(minTimeToType("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 33, 'Test 47');
+test(minTimeToType("abcdpqrsuvxyzefghijkmnotwxyz"), 79, 'Test 48');
+test(minTimeToType("qwertypasdfghjklzxcvbnmqwertypasdfghjklzxcvbnm"), 312, 'Test 49');
+test(minTimeToType("bdfhjlnprtvxz"), 38, 'Test 50');
+test(minTimeToType("qzcvmlkjhgfdsapoiuytrwer"), 157, 'Test 51');
+test(minTimeToType("mnopqrstuvwxynmlkjihgfedcbazyxw"), 83, 'Test 52');
+test(minTimeToType("abcdefghijklmnopqrstuvwxyza"), 53, 'Test 53');
+test(minTimeToType("zyzzzzzzzzzzzzzzzzzzzzzzzzz"), 30, 'Test 54');
+test(minTimeToType("qwerasdfzxcv"), 99, 'Test 55');
+test(minTimeToType("abcdefghijklnmopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba"), 104, 'Test 56');
+test(minTimeToType("abcdpqrsuvxyzefghijkmnotw"), 73, 'Test 57');
+test(minTimeToType("dcbazyxwvutsrqponmlkjihgfedcba"), 62, 'Test 58');
+test(minTimeToType("fedcbaZYXWVUTSRQPONMLKJIHGFEDCBA"), 74, 'Test 59');
+test(minTimeToType("acdfghjklmnpqrstvwxyz"), 46, 'Test 60');
+test(minTimeToType("mnopqrstuzyxwvutsrqponmlkjihgfedcba"), 85, 'Test 61');
+test(minTimeToType("zxcvbnmlkjhgfdsapoiuytrewqzxcvbnmlkjhgfdsapoiuytrewq"), 320, 'Test 62');
+test(minTimeToType("lkjhgfdsapoiuytrewqzxcvbnmzxcvbnmlkjhgfdsapoiuytrewq"), 342, 'Test 63');
+test(minTimeToType("fedcbazyxwvutsrqponmlkjihg"), 56, 'Test 64');
+test(minTimeToType("aaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbb"), 40, 'Test 65');
+test(minTimeToType("mnopqrlkjihgfedcbazyxwvut"), 66, 'Test 66');
+test(minTimeToType("qpwoeirutyalskdjfhgzxcvbnm"), 172, 'Test 67');
+test(minTimeToType("mlkjihgfedcba"), 37, 'Test 68');
+test(minTimeToType("yzab"), 9, 'Test 69');
+test(minTimeToType("abcdefghijklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba"), 102, 'Test 70');
+test(minTimeToType("qzmlkihgfedcba"), 58, 'Test 71');
+test(minTimeToType("bcadefghijklmnopqrstuvwxyz"), 55, 'Test 72');
+test(minTimeToType("aaaaaaaaaaaabbbbbbbbccccccccdddddd"), 37, 'Test 73');
+test(minTimeToType("llllllllllllllllllllllllllllllllllllllllllllllllllllllll"), 67, 'Test 74');
+test(minTimeToType("nlbnlkbnlkbnlkbnlkbnlkbnlkbnlkbnlkbnlkbnlkbnlkbnlkbnlkb"), 392, 'Test 75');
+test(minTimeToType("lkjhgfdsazxcvbnmmnbvcxzlkjhgfdsa"), 176, 'Test 76');
+test(minTimeToType("mnopqrsvxyz"), 36, 'Test 77');
+test(minTimeToType("poiuytrewqlkjhgfdsamnbvcxzpoiuytrewqlkjhgfdsamnbvcxz"), 341, 'Test 78');
+test(minTimeToType("qwertypoiuytrewertyuiop"), 178, 'Test 79');
+test(minTimeToType("aaaaabbbbbcccccdddddeeeee"), 29, 'Test 80');
+test(minTimeToType("uqwertyuioplkjhgfdsamnbvcxz"), 170, 'Test 81');
+test(minTimeToType("zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba"), 104, 'Test 82');
+test(minTimeToType("qrstuvzxcvbnmlkjhgfedcba"), 88, 'Test 83');
+test(minTimeToType("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 35, 'Test 84');
+test(minTimeToType("qwerasdfzxcvqwerasdfzxcvqwerasdfzxcv"), 287, 'Test 85');
+test(minTimeToType("lkmlkmlkmlkmlkmlkmlkmlkmlkmlkmlkmlkmlkmlkmlkmlkmlkmlkm"), 136, 'Test 86');
+test(minTimeToType("zazazazazazazazazazazazazazazaz"), 62, 'Test 87');
+test(minTimeToType("aazzzzyyyyxxxwwvvuuttrrssqqppoonnmmlkkjjiihhggffeeddaa"), 82, 'Test 88');
+test(minTimeToType("jqpnfjwmsvkmrekjijgqpxvukz"), 175, 'Test 89');
+test(minTimeToType("lkjhgfdsapoiuytrewqasdfghjklmnbvcxz"), 212, 'Test 90');
+test(minTimeToType("ejpmytlrzwhgodicuvnkxfsab"), 190, 'Test 91');
+test(minTimeToType("qwertyuioplkjhgfdsazxcvbnmqwertyuioplkjhgfdsazxcvbnm"), 310, 'Test 92');
+test(minTimeToType("qrstuvwxyzaeiou"), 55, 'Test 93');
+test(minTimeToType("aeiouyaeiouyaeiouyaeiouy"), 126, 'Test 94');
+test(minTimeToType("zyxwvutsrqponmlkjihgfedcbaa"), 53, 'Test 95');
+test(minTimeToType("poiuytrewqasdfghjklzxcvbnmpoiuytrewqasdfghjklzxcvbnmpoiuytrewq"), 414, 'Test 96');
+test(minTimeToType("abcdefghjklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba"), 101, 'Test 97');
+test(minTimeToType("qazwsxedcrfvtgbyhnujmikolpqwazxsedcrfvtgbyhnujmikolpqwaz"), 361, 'Test 98');
+test(minTimeToType("mzaixmsdcvnbmqwerty"), 169, 'Test 99');
+test(minTimeToType("zabcdefghijklmnopqrstuvwxyz"), 54, 'Test 100');
+test(minTimeToType("poiuytrewqlkjhgfdsamnbvcxz"), 171, 'Test 101');
+test(minTimeToType("zyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyx"), 111, 'Test 102');
+test(minTimeToType("aaaaaaaaaaaaaaaaaaaaaaaaaaab"), 29, 'Test 103');
+test(minTimeToType("pppppppppppppppppppppppppppp"), 39, 'Test 104');
+test(minTimeToType("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"), 103, 'Test 105');
+test(minTimeToType("abcdefghijkmnopqrstuvwxyz"), 50, 'Test 106');
+test(minTimeToType("azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 58, 'Test 107');
+test(minTimeToType("abcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"), 97, 'Test 108');
+test(minTimeToType("zaazaaazzaa"), 17, 'Test 109');
+test(minTimeToType("zzzaaazzzaaazzzaaazzzaaazzzaaazzz"), 44, 'Test 110');
+test(minTimeToType("zyxcbaqwertyuiopasdfghjklmnbvcxz"), 181, 'Test 111');
+test(minTimeToType("asdfghjklqwertyuiopzxcvbnm"), 158, 'Test 112');
+test(minTimeToType("pqrstuvwxyzyxwvutsrqponmlkjihgfedcba"), 82, 'Test 113');
+test(minTimeToType("zabcdefghijklmnopqrstuvwxyza"), 56, 'Test 114');
+test(minTimeToType("abcdefghijklmnopqrstuvwxyzza"), 54, 'Test 115');
+test(minTimeToType("tgbnhyujmkiolpvcxz"), 125, 'Test 116');
+test(minTimeToType("qwertyuiopasdfghjklzxcvbnm"), 176, 'Test 117');
+test(minTimeToType("qazwsxedcrfvtgbyhnujmikolp"), 177, 'Test 118');
+test(minTimeToType("zyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyx"), 118, 'Test 119');
+test(minTimeToType("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), 77, 'Test 120');
+test(minTimeToType("mnbvcxzlkjhgfdsapoiuytrewqasdfghjklpoiuytrewq"), 295, 'Test 121');
+test(minTimeToType("lkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkjlkj"), 135, 'Test 122');
+test(minTimeToType("abcabcabcabcabcabcabcabcabcabcabcabcabcabcabc"), 103, 'Test 123');
+test(minTimeToType("bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbc"), 64, 'Test 124');
+test(minTimeToType("mnopqrstuvwx"), 35, 'Test 125');
+test(minTimeToType("zyxwvutsrqponmlkjihgfedcbaqwertyuiop"), 129, 'Test 126');
+test(minTimeToType("abacabadabacabadabacaba"), 59, 'Test 127');
+test(minTimeToType("fedcbazyxwvutsrqponmlkjihgfedcba"), 68, 'Test 128');
+test(minTimeToType("zaqwsxcderfvgytuhjnmkiolp"), 156, 'Test 129');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

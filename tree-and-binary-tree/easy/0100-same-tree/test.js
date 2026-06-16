@@ -1,0 +1,158 @@
+// Test: 100. Same Tree
+// 132 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { isSameTree } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n100. Same Tree\n");
+
+test(isSameTree([1,2,3], [1,2,3,4]), false, 'Test 1');
+test(isSameTree([1,2], [1,null,2]), false, 'Test 2');
+test(isSameTree([1,0], [1,null]), false, 'Test 3');
+test(isSameTree([1, null, 3], [1, null, 3]), true, 'Test 4');
+test(isSameTree([1,2,3], [1,2,3]), true, 'Test 5');
+test(isSameTree([1, 2, 3, 4, 5], [1, 2, 3, 4, 5]), true, 'Test 6');
+test(isSameTree([1,null,2,null,3], [1,null,2,null,3]), true, 'Test 7');
+test(isSameTree([1,null,2], [1,2,null]), false, 'Test 8');
+test(isSameTree([1,2,1], [1,1,2]), false, 'Test 9');
+test(isSameTree([], []), true, 'Test 10');
+test(isSameTree([1,null,3], [1,2,3]), false, 'Test 11');
+test(isSameTree([5,1,4,null,null,3,6], [5,1,4,null,null,3,6]), true, 'Test 12');
+test(isSameTree([1], [1]), true, 'Test 13');
+test(isSameTree([1, 2, 3, 4, 5], [1, 2, 3, 4, 6]), false, 'Test 14');
+test(isSameTree([1,2,null,3], [1,2,null,3]), true, 'Test 15');
+test(isSameTree([1,2,null,3], [1,2,null,4]), false, 'Test 16');
+test(isSameTree([1,2,3,4,5,6,7], [1,2,3,4,5,6,7]), true, 'Test 17');
+test(isSameTree([10,5,15], [10,5,null,null,15]), false, 'Test 18');
+test(isSameTree([1,2,3,null,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,null,5,6,7,8,9,10,11,12,13,14,16]), false, 'Test 19');
+test(isSameTree([1,2,3,4,5,null,7,8,null,null,null,12], [1,2,3,4,5,null,7,8,null,null,null,13]), false, 'Test 20');
+test(isSameTree([1,2,3,null,4,5,null,6], [1,2,3,null,4,5,null,7]), false, 'Test 21');
+test(isSameTree([1,2,3,4,5,null,7,8,9], [1,2,3,4,5,null,7,8,9]), true, 'Test 22');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), true, 'Test 23');
+test(isSameTree([1,2,3,4,5,null,7,8,null,10,11], [1,2,3,4,5,null,7,8,null,10,11]), true, 'Test 24');
+test(isSameTree([5,1,4,null,null,3,6], [5,1,4,null,null,2,6]), false, 'Test 25');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,4,5,6,7,8,9,10,11,12,13,14]), false, 'Test 26');
+test(isSameTree([1,null,2,null,3,null,4,null,5,null,6,null,7], [1,null,2,null,3,null,4,null,5,null,6,null,7]), true, 'Test 27');
+test(isSameTree([1,2,3,4,null,6,7,8,9,null,null,12,13], [1,2,3,4,null,6,7,8,9,null,null,12,14]), false, 'Test 28');
+test(isSameTree([10,5,15,3,7,null,18,null,null,6,9], [10,5,15,3,7,null,18,null,null,6,9]), true, 'Test 29');
+test(isSameTree([1,2,3,4,null,5,6], [1,2,3,null,4,5,6]), false, 'Test 30');
+test(isSameTree([1,2,3,4,null,null,5,6,null,7,8,null,null,9,10], [1,2,3,4,null,null,5,6,null,7,8,null,null,10,9]), false, 'Test 31');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21]), false, 'Test 32');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null,18,19], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null,18,19]), true, 'Test 33');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,17]), false, 'Test 34');
+test(isSameTree([10,5,15,3,7,null,18,null,null,6,9], [10,5,15,3,7,null,19,null,null,6,9]), false, 'Test 35');
+test(isSameTree([1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9], [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9]), true, 'Test 36');
+test(isSameTree([1,null,2,null,3,null,4,null,5,null,6,null,7,null,8], [1,null,2,null,3,null,4,null,5,null,6,null,7,null,9]), false, 'Test 37');
+test(isSameTree([1,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9,null,10,null,11,null,12,null,13,null,14,null,15], [1,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9,null,10,null,11,null,12,null,13,null,14,null,16]), false, 'Test 38');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,null,null,16], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,null,null,17]), false, 'Test 39');
+test(isSameTree([1,2,3,4,5,null,null,null,null,6,7], [1,2,3,4,5,null,null,null,null,6,8]), false, 'Test 40');
+test(isSameTree([1,2,3,4,5,null,6,null,7,null,8,null,9], [1,2,3,4,5,null,6,null,7,null,8,null,10]), false, 'Test 41');
+test(isSameTree([1,2,3,4,null,6,7], [1,2,3,4,null,6,7]), true, 'Test 42');
+test(isSameTree([1,2,3,null,null,4,5,6,7], [1,2,3,null,null,4,5,6,null]), false, 'Test 43');
+test(isSameTree([1,2,3,4,null,null,5,null,6,null,null,7,null,8], [1,2,3,4,null,null,5,null,6,null,null,7,null,9]), false, 'Test 44');
+test(isSameTree([1,2,3,null,4,5,null,null,6,7,8], [1,2,3,null,4,5,null,null,6,7,9]), false, 'Test 45');
+test(isSameTree([1,2,3,4,null,6,7,8,9,null,null,12,13], [1,2,3,4,null,6,7,8,9,null,null,12,13]), true, 'Test 46');
+test(isSameTree([1,2,3,4,null,5,6,7,null,8,9], [1,2,3,4,null,5,6,7,null,8,10]), false, 'Test 47');
+test(isSameTree([1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9,null,10], [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9,null,11]), false, 'Test 48');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null,18,19], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null,18,null]), false, 'Test 49');
+test(isSameTree([1,2,3,4,5,null,6,7,8,9,null,null,10], [1,2,3,4,5,null,6,7,8,9,null,null,10]), true, 'Test 50');
+test(isSameTree([1,null,2,null,3,null,4,null,5], [1,null,2,null,3,null,4,null,6]), false, 'Test 51');
+test(isSameTree([1,2,3,null,4,null,5,null,6,null,7,null,8], [1,2,3,null,4,null,5,null,6,null,7,null,9]), false, 'Test 52');
+test(isSameTree([1,2,3,null,4,null,5], [1,2,3,null,4,null,5]), true, 'Test 53');
+test(isSameTree([1,2,3,4,5,6,7,null,null,null,null,null,null,8,9,10,11], [1,2,3,4,5,6,7,null,null,null,null,null,null,8,9,10,11]), true, 'Test 54');
+test(isSameTree([1,2,3,null,4,5,6], [1,2,3,null,4,5,null]), false, 'Test 55');
+test(isSameTree([1,2,3,4,null,6,7,null,8,9,10], [1,2,3,4,null,6,7,null,8,9,10]), true, 'Test 56');
+test(isSameTree([1,2,3,4,null,6,7,null,8,9,10], [1,2,3,4,null,6,7,null,8,null,10]), false, 'Test 57');
+test(isSameTree([10,5,15,3,7,null,18,1,null,6,null,8], [10,5,15,3,7,null,18,1,null,6,null,8]), true, 'Test 58');
+test(isSameTree([1,null,2,null,3,null,4,null,5], [1,null,2,null,3,null,4,null,5]), true, 'Test 59');
+test(isSameTree([1,2,3,4,null,null,5], [1,2,3,4,null,null,6]), false, 'Test 60');
+test(isSameTree([1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9], [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,10]), false, 'Test 61');
+test(isSameTree([3,5,1,6,2,9,8,null,null,7,4], [3,5,1,6,2,9,8,null,null,7,3]), false, 'Test 62');
+test(isSameTree([1,2,3,4,5,null,7,8,null,null,null,12], [1,2,3,4,5,null,7,8,null,null,null,12]), true, 'Test 63');
+test(isSameTree([1,2,3,4,null,6,7,8,9,null,null,12,13,14,15], [1,2,3,4,null,6,7,8,9,null,null,12,13,15,14]), false, 'Test 64');
+test(isSameTree([1,2,3,null,4,5,null,6,7,null,8,9,null,10,11], [1,2,3,null,4,5,null,6,7,null,8,9,null,10,12]), false, 'Test 65');
+test(isSameTree([1,2,3,null,4,5,6], [1,2,3,null,4,5,6]), true, 'Test 66');
+test(isSameTree([3,5,1,6,2,9,8,null,null,7,4], [3,5,1,6,2,9,8,null,null,7,4]), true, 'Test 67');
+test(isSameTree([1,2,3,null,4,5,6,null,null,7,8], [1,2,3,null,4,5,6,null,null,8,7]), false, 'Test 68');
+test(isSameTree([1,2,3,4,5,6,7,null,null,null,null,null,null,8,9,10,11], [1,2,3,4,5,6,7,null,null,null,null,null,null,8,9,10,12]), false, 'Test 69');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]), true, 'Test 70');
+test(isSameTree([1,2,3,4,null,5,6,null,7], [1,2,3,4,null,5,6,null,8]), false, 'Test 71');
+test(isSameTree([1,2,3,4,5,null,7,8,9], [1,2,3,4,null,null,7,8,9]), false, 'Test 72');
+test(isSameTree([1,2,3,4,null,6,7], [1,2,3,4,null,6]), false, 'Test 73');
+test(isSameTree([5,1,4,null,null,3,6], [5,1,4,null,null,6,3]), false, 'Test 74');
+test(isSameTree([10,5,15,3,7,null,18], [10,5,15,3,7,null,19]), false, 'Test 75');
+test(isSameTree([1,2,3,4,null,null,5,null,6,null,null,7], [1,2,3,4,null,null,5,null,6,null,null,8]), false, 'Test 76');
+test(isSameTree([1,null,2,null,3,null,4], [1,null,2,null,3,null,4]), true, 'Test 77');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,17], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,17]), true, 'Test 78');
+test(isSameTree([1,2,3,4,null,6,7,8,9], [1,2,3,4,null,6,7,8,10]), false, 'Test 79');
+test(isSameTree([1,2,3,null,4,null,5], [1,2,3,null,4,null,6]), false, 'Test 80');
+test(isSameTree([1,2,3,null,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,null,5,6,7,8,9,10,11,12,13,14,15]), true, 'Test 81');
+test(isSameTree([10,5,15,3,7,null,18,1,null,6], [10,5,15,3,7,null,18,2,null,6]), false, 'Test 82');
+test(isSameTree([1,2,3,4,5,6,7,null,8,null,9,null,10,null,11], [1,2,3,4,5,6,7,null,8,null,9,null,10,null,11]), true, 'Test 83');
+test(isSameTree([1,2,3,null,4,5,null,null,6], [1,2,3,null,4,null,5,null,null,6]), false, 'Test 84');
+test(isSameTree([1,2,3,4,5,null,7,8,9], [1,2,3,4,5,null,7,8,null]), false, 'Test 85');
+test(isSameTree([1,2,3,null,4,5,6], [1,2,3,null,4,6,5]), false, 'Test 86');
+test(isSameTree([10,5,15,3,7,null,18], [10,5,15,3,7,null,18]), true, 'Test 87');
+test(isSameTree([1,2,3,4,null,6,7,8,9,null,null,12,13,14,15], [1,2,3,4,null,6,7,8,9,null,null,12,13,14,15]), true, 'Test 88');
+test(isSameTree([1,2,3,null,5,null,7,8], [1,2,3,null,5,null,7,8]), true, 'Test 89');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16]), true, 'Test 90');
+test(isSameTree([1,2,3,4,null,6,7,8,9,null,null,12,13,14,15], [1,2,3,4,null,6,7,8,9,null,null,12,13,14,16]), false, 'Test 91');
+test(isSameTree([10,5,15,3,7,null,18,1,null,6], [10,5,15,3,7,null,18,1,null,6]), true, 'Test 92');
+test(isSameTree([1,2,3,null,4,5,null,6,7,null,8,9,null,10,11,null,12,13,null,14,15,null,16,17,null,18,19,null,20,21], [1,2,3,null,4,5,null,6,7,null,8,9,null,10,11,null,12,13,null,14,15,null,16,17,null,18,19,null,20,21]), true, 'Test 93');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null,18], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null,19]), false, 'Test 94');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,17], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null]), false, 'Test 95');
+test(isSameTree([1,2,3,null,4,5,6,null,null,7,8], [1,2,3,null,4,5,6,null,null,7,8]), true, 'Test 96');
+test(isSameTree([1,2,3,null,null,6,7,8,9], [1,2,3,null,null,6,7,8,9]), true, 'Test 97');
+test(isSameTree([1,2,3,4,5,null,6,7,8,null,null,9], [1,2,3,4,5,null,6,7,8,null,null,9]), true, 'Test 98');
+test(isSameTree([1,null,2,null,3,null,4,null,5], [1,null,2,null,3,null,4,null,null]), false, 'Test 99');
+test(isSameTree([1,2,3,null,4,null,5,null,6,null,7,null,8], [1,2,3,null,4,null,5,null,6,null,7,null,8]), true, 'Test 100');
+test(isSameTree([1,2,3,4,null,6,7,8,9,null,null,12,13], [1,2,3,4,null,6,7,8,10,null,null,12,13]), false, 'Test 101');
+test(isSameTree([10,5,15,null,null,6,20], [10,5,15,null,null,6,20]), true, 'Test 102');
+test(isSameTree([1,2,3,4,5,null,6,7,8,9,null,null,10], [1,2,3,4,5,null,6,7,8,9,null,null,11]), false, 'Test 103');
+test(isSameTree([1,2,3,4,5,6,7,null,null,null,null,null,null,8,9], [1,2,3,4,5,6,7,null,null,null,null,null,null,8,9]), true, 'Test 104');
+test(isSameTree([1,2,3,null,4,null,5,6], [1,2,3,null,4,null,5,6]), true, 'Test 105');
+test(isSameTree([10,5,15,3,7,null,18,1,null,6,null,8], [10,5,15,3,7,null,18,1,null,6,null,9]), false, 'Test 106');
+test(isSameTree([1,null,2,3], [1,2,null,3]), false, 'Test 107');
+test(isSameTree([1,2,3,4,null,6,7], [1,2,3,4,null,6,8]), false, 'Test 108');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), false, 'Test 109');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null,18], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null,16,null,18]), true, 'Test 110');
+test(isSameTree([10,5,15,null,null,6,20], [10,5,15,null,null,7,20]), false, 'Test 111');
+test(isSameTree([1,2,3,4,null,null,5,6,null,7,8,null,null,9,10], [1,2,3,4,null,null,5,6,null,7,8,null,null,9,11]), false, 'Test 112');
+test(isSameTree([1,2,3,4,null,6,7,8,9], [1,2,3,4,null,6,7,8,9]), true, 'Test 113');
+test(isSameTree([1,2,3,4,5,6,7,null,null,null,null,null,null,8,9], [1,2,3,4,5,6,7,null,null,null,null,null,null,8,10]), false, 'Test 114');
+test(isSameTree([1,2,3,null,4,5,null,6], [1,2,3,null,4,5,null,6]), true, 'Test 115');
+test(isSameTree([1,null,2,null,3,null,4], [1,null,2,null,3,null,5]), false, 'Test 116');
+test(isSameTree([1,2,3,null,4,5,null,6,7,null,8,9,null,10,11,null,12,13,null,14,15,null,16,17,null,18,19,null,20,21], [1,2,3,null,4,5,null,6,7,null,8,9,null,10,11,null,12,13,null,14,15,null,16,17,null,18,19,null,20,22]), false, 'Test 117');
+test(isSameTree([1,2,3,4,5,6,7,null,8,null,9,null,10,null,11], [1,2,3,4,5,6,7,null,8,null,9,null,10,null,12]), false, 'Test 118');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]), true, 'Test 119');
+test(isSameTree([1,2,3,null,4,5,null,6,7,null,8,9,null,10,11], [1,2,3,null,4,5,null,6,7,null,8,9,null,10,11]), true, 'Test 120');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,16]), false, 'Test 121');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,null,null,16,17,18,19], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,null,null,16,17,18,20]), false, 'Test 122');
+test(isSameTree([1,2,3,null,null,6,7,8,9], [1,2,3,null,null,6,7,null,9]), false, 'Test 123');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null]), false, 'Test 124');
+test(isSameTree([1,2,3,4,null,6,7,8,9], [1,2,3,4,null,6,7,8]), false, 'Test 125');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,null], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,null]), true, 'Test 126');
+test(isSameTree([1], [2]), false, 'Test 127');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,32]), false, 'Test 128');
+test(isSameTree([1,2,3,4,null,null,5,6,null,7,8], [1,2,3,4,null,null,5,6,null,7,9]), false, 'Test 129');
+test(isSameTree([1,2,3,4,null,6,7,8,9,null,null,12,13], [1,2,3,4,null,6,7,8,9]), false, 'Test 130');
+test(isSameTree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,4,5,6,7,8,9,10,11,12,13,15,14]), false, 'Test 131');
+test(isSameTree([1,2,3,4,5,null,6,null,7,null,8,null,9], [1,2,3,4,5,null,6,null,7,null,8,null,9]), true, 'Test 132');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

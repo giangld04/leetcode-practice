@@ -1,0 +1,158 @@
+// Test: 1824. Minimum Sideway Jumps
+// 132 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minSideJumps } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1824. Minimum Sideway Jumps\n");
+
+test(minSideJumps([0,1,0,0,2,0,0,3,0,0]), 1, 'Test 1');
+test(minSideJumps([0,0,0,0,0,0]), 0, 'Test 2');
+test(minSideJumps([0,3,2,1,0,3,2,1,0]), 4, 'Test 3');
+test(minSideJumps([0,0,1,0,0,2,0,0,3,0]), 1, 'Test 4');
+test(minSideJumps([0,1,3,2,3,1,0,0,0,0]), 2, 'Test 5');
+test(minSideJumps([0,3,0,0,2,0,0,1,0]), 1, 'Test 6');
+test(minSideJumps([0,1,0,1,0,1,0]), 0, 'Test 7');
+test(minSideJumps([0,2,3,1,2,3,1,0,0]), 5, 'Test 8');
+test(minSideJumps([0,2,1,0,3,0]), 2, 'Test 9');
+test(minSideJumps([0,1,2,0,2,1,0,1,2,0]), 1, 'Test 10');
+test(minSideJumps([0,2,0,0,0,3,0,0,1,0]), 2, 'Test 11');
+test(minSideJumps([0,1,0,2,0,3,0,0]), 1, 'Test 12');
+test(minSideJumps([0,1,1,3,3,0]), 0, 'Test 13');
+test(minSideJumps([0,3,2,1,3,0]), 3, 'Test 14');
+test(minSideJumps([0,0,1,2,3,0]), 2, 'Test 15');
+test(minSideJumps([0,3,0,0,0,0]), 0, 'Test 16');
+test(minSideJumps([0,2,0,2,0,2,0]), 1, 'Test 17');
+test(minSideJumps([0,3,0,3,0,3,0]), 0, 'Test 18');
+test(minSideJumps([0,1,2,3,0]), 2, 'Test 19');
+test(minSideJumps([0,1,0,0,2,0]), 1, 'Test 20');
+test(minSideJumps([0,2,3,2,1,2,3,0]), 3, 'Test 21');
+test(minSideJumps([0,3,2,1,0,0]), 2, 'Test 22');
+test(minSideJumps([0,1,2,0,3,0]), 2, 'Test 23');
+test(minSideJumps([0,2,3,1,0,0]), 2, 'Test 24');
+test(minSideJumps([0,2,2,2,2,0]), 1, 'Test 25');
+test(minSideJumps([0,3,2,1,3,2,1,0]), 5, 'Test 26');
+test(minSideJumps([0,3,0,1,2,0,0,0,0,0]), 1, 'Test 27');
+test(minSideJumps([0,1,0,1,0,1,0,1,0]), 0, 'Test 28');
+test(minSideJumps([0,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,0]), 16, 'Test 29');
+test(minSideJumps([0, 1, 2, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 0]), 11, 'Test 30');
+test(minSideJumps([0, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 1, 3, 2, 0]), 12, 'Test 31');
+test(minSideJumps([0,3,3,3,3,0,0,0,0,3,3,3,3,0,0,0,0,3,3,3,3,0,0,0,0,0]), 0, 'Test 32');
+test(minSideJumps([0,1,2,0,1,2,0,1,2,0,1,2,0]), 1, 'Test 33');
+test(minSideJumps([0,3,0,1,0,2,0,3,0,1,0]), 2, 'Test 34');
+test(minSideJumps([0,2,3,1,0,2,3,1,0,2,3,1,0,2,3,1,0,2,3,1,0]), 10, 'Test 35');
+test(minSideJumps([0,2,3,1,2,3,1,2,3,1,0]), 8, 'Test 36');
+test(minSideJumps([0,1,1,1,1,0,2,2,2,2,0,3,3,3,3,0,1,1,1,1,0]), 2, 'Test 37');
+test(minSideJumps([0,3,0,2,0,1,0,3,0,2,0]), 2, 'Test 38');
+test(minSideJumps([0,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,0]), 20, 'Test 39');
+test(minSideJumps([0,1,2,0,3,0,1,2,0,3,0,1,2,0,3,0,1,2,0]), 7, 'Test 40');
+test(minSideJumps([0,1,0,2,0,3,0,1,0,2,0,3,0,1,0,2,0,3,0]), 4, 'Test 41');
+test(minSideJumps([0, 1, 1, 2, 2, 3, 3, 1, 1, 2, 2, 3, 3, 0]), 5, 'Test 42');
+test(minSideJumps([0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0]), 10, 'Test 43');
+test(minSideJumps([0,1,0,3,0,2,0,1,0,3,0,2,0]), 2, 'Test 44');
+test(minSideJumps([0,1,0,2,0,3,0,1,0,2,0,3,0]), 3, 'Test 45');
+test(minSideJumps([0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0]), 1, 'Test 46');
+test(minSideJumps([0,2,3,1,2,3,1,2,3,1,2,3,0]), 10, 'Test 47');
+test(minSideJumps([0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0]), 0, 'Test 48');
+test(minSideJumps([0,3,2,0,1,0,3,2,0,1,0,3,0]), 4, 'Test 49');
+test(minSideJumps([0,1,0,0,2,0,3,0,0,1,0,0,0,3,0,2,0]), 3, 'Test 50');
+test(minSideJumps([0,3,0,1,0,2,0,3,0,1,0,2,0]), 2, 'Test 51');
+test(minSideJumps([0,3,3,2,2,1,1,3,3,2,2,1,1,0]), 5, 'Test 52');
+test(minSideJumps([0, 1, 3, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 0]), 10, 'Test 53');
+test(minSideJumps([0,3,2,1,0,3,2,1,0,3,2,1,0,3,2,1,0,3,2,1,0]), 10, 'Test 54');
+test(minSideJumps([0,2,0,1,0,3,0,2,0,1,0,3,0,2,0]), 4, 'Test 55');
+test(minSideJumps([0,1,2,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1]), 18, 'Test 56');
+test(minSideJumps([0,2,3,1,2,3,1,2,3,1,2,3,1,2,3,0]), 13, 'Test 57');
+test(minSideJumps([0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0]), 1, 'Test 58');
+test(minSideJumps([0, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 0]), 0, 'Test 59');
+test(minSideJumps([0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 0]), 12, 'Test 60');
+test(minSideJumps([0,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1]), 1, 'Test 61');
+test(minSideJumps([0,1,2,3,2,1,0,1,2,3,2,1,0,1,2,3,2,1,0]), 7, 'Test 62');
+test(minSideJumps([0,3,0,0,0,0,1,0,0,2,0,0,0,0,3,0,0,0,1]), 2, 'Test 63');
+test(minSideJumps([0,3,2,1,0,2,1,0,3,2,1,0,2,1,3,0]), 5, 'Test 64');
+test(minSideJumps([0,1,3,2,3,1,2,3,0,1,2,3,0]), 6, 'Test 65');
+test(minSideJumps([0,2,0,3,0,2,0,3,0,2,0,3,0,2,0,3,0,2,0,3,0,2,0,3,0,0]), 1, 'Test 66');
+test(minSideJumps([0, 1, 0, 2, 0, 3, 0, 1, 0, 2, 0, 3, 0, 1, 0]), 3, 'Test 67');
+test(minSideJumps([0,1,0,2,0,1,0,2,0,1,0,2,0,1,0,2,0,1,0,2,0,1,0,2,0,1,0,2,0]), 1, 'Test 68');
+test(minSideJumps([0,1,2,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,0]), 30, 'Test 69');
+test(minSideJumps([0,1,2,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1]), 27, 'Test 70');
+test(minSideJumps([0,1,2,3,2,1,3,2,1,0,3,2,1]), 8, 'Test 71');
+test(minSideJumps([0,2,1,3,1,2,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,0]), 26, 'Test 72');
+test(minSideJumps([0,1,0,2,0,3,0,1,0,2,0,3,0,1,0,2,0,3,0,1]), 5, 'Test 73');
+test(minSideJumps([0,2,3,1,2,3,1,2,3,1,2,3,1,0]), 11, 'Test 74');
+test(minSideJumps([0, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0]), 1, 'Test 75');
+test(minSideJumps([0,3,1,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,0]), 25, 'Test 76');
+test(minSideJumps([0,2,3,1,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1]), 26, 'Test 77');
+test(minSideJumps([0,2,2,0,3,3,1,1,2,2,3,3,1,1,0]), 5, 'Test 78');
+test(minSideJumps([0, 3, 0, 2, 3, 1, 0, 2, 3, 1, 0, 2, 3, 1, 0]), 6, 'Test 79');
+test(minSideJumps([0,1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,3,3,3,1,1,1,2,2,2,0]), 7, 'Test 80');
+test(minSideJumps([0,2,0,1,0,3,0,2,0,1,0,3,0,2,0,1,0,3,0,2,0,1,0,3,0,2,0,1,0,3,0]), 8, 'Test 81');
+test(minSideJumps([0,1,3,2,1,3,2,1,3,2,1,0]), 8, 'Test 82');
+test(minSideJumps([0,1,0,2,0,3,0,1,0,2,0,3,0,1,0,2,0,3,0,1,0,2,0,3,0]), 6, 'Test 83');
+test(minSideJumps([0,1,3,2,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,0]), 18, 'Test 84');
+test(minSideJumps([0,1,1,1,1,1,0,2,2,2,2,2,0,3,3,3,3,3,0]), 1, 'Test 85');
+test(minSideJumps([0,1,2,0,3,0,1,2,0,3,0,1,0]), 4, 'Test 86');
+test(minSideJumps([0,2,0,0,0,0,1,0,0,0,0,0,0,0,3,0,0,0,0,0]), 2, 'Test 87');
+test(minSideJumps([0,3,2,1,0,2,1,0,3,1,0,2,1,0,3,1,0,2,1,0]), 6, 'Test 88');
+test(minSideJumps([0,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,0]), 19, 'Test 89');
+test(minSideJumps([0,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,0]), 31, 'Test 90');
+test(minSideJumps([0,1,2,3,2,1,3,2,1,0,3,2,1,0,2,1,3,2,1,0]), 11, 'Test 91');
+test(minSideJumps([0,1,2,3,2,1,2,3,2,1,0]), 5, 'Test 92');
+test(minSideJumps([0,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,0]), 23, 'Test 93');
+test(minSideJumps([0,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,2,3,0]), 1, 'Test 94');
+test(minSideJumps([0,3,0,2,0,1,0,3,0,2,0,1,0,3,0]), 3, 'Test 95');
+test(minSideJumps([0,3,2,1,2,3,1,2,3,1,0]), 7, 'Test 96');
+test(minSideJumps([0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0]), 1, 'Test 97');
+test(minSideJumps([0,2,1,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1]), 17, 'Test 98');
+test(minSideJumps([0,1,0,2,0,3,0,1,0,2,0,3,0,1,0]), 3, 'Test 99');
+test(minSideJumps([0,3,3,3,3,0,0,0,0,3,3,3,3,0,0,0,0]), 0, 'Test 100');
+test(minSideJumps([0,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,0]), 1, 'Test 101');
+test(minSideJumps([0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0]), 0, 'Test 102');
+test(minSideJumps([0,3,0,2,0,1,0,3,0,2,0,1,0]), 3, 'Test 103');
+test(minSideJumps([0,2,1,3,1,2,1,3,1,2,1,3,1,2,1,3,1,2,1,3,1,2,1,3,0]), 12, 'Test 104');
+test(minSideJumps([0,1,0,3,0,2,0,1,0,3,0,2,0,1,0]), 3, 'Test 105');
+test(minSideJumps([0,1,2,3,0,2,1,3,0,1,2,3,0]), 6, 'Test 106');
+test(minSideJumps([0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3,0,3]), 0, 'Test 107');
+test(minSideJumps([0, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 0]), 11, 'Test 108');
+test(minSideJumps([0,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,0]), 17, 'Test 109');
+test(minSideJumps([0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), 0, 'Test 110');
+test(minSideJumps([0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0]), 0, 'Test 111');
+test(minSideJumps([0,0,0,2,3,1,0,0,0,0,0,1,2,3,0,0,0,1,2,3]), 6, 'Test 112');
+test(minSideJumps([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0]), 1, 'Test 113');
+test(minSideJumps([0,1,0,2,0,3,0,1,0,2,0,3,0,1,0,2,0,3,0,1,0,2,0,3,0,1,0,2,0,3,0]), 7, 'Test 114');
+test(minSideJumps([0,3,0,1,0,3,0,1,0,3,0,1,0,3,0]), 0, 'Test 115');
+test(minSideJumps([0,0,1,0,0,2,0,0,3,0,0,1,0,0,2,0,0,3,0]), 3, 'Test 116');
+test(minSideJumps([0,1,0,0,0,0,0,0,0,3,2,1,0]), 2, 'Test 117');
+test(minSideJumps([0,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,0]), 17, 'Test 118');
+test(minSideJumps([0,1,3,1,2,3,1,2,3,1,0]), 6, 'Test 119');
+test(minSideJumps([0,1,0,2,0,3,0,1,0,2,0]), 2, 'Test 120');
+test(minSideJumps([0,2,3,2,1,3,2,1,3,2,0]), 7, 'Test 121');
+test(minSideJumps([0,1,0,2,0,3,0,1,0,2,0,3,0,1,0,2,0]), 4, 'Test 122');
+test(minSideJumps([0, 3, 2, 3, 1, 2, 1, 3, 2, 1, 3, 2, 1, 0]), 9, 'Test 123');
+test(minSideJumps([0,2,1,3,2,1,3,2,1,3,2,0]), 9, 'Test 124');
+test(minSideJumps([0, 3, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0]), 2, 'Test 125');
+test(minSideJumps([0, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 0]), 1, 'Test 126');
+test(minSideJumps([0,1,2,1,2,1,2,1,2,1,2,1,2,0]), 1, 'Test 127');
+test(minSideJumps([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]), 0, 'Test 128');
+test(minSideJumps([0, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 0]), 11, 'Test 129');
+test(minSideJumps([0,1,2,3,2,1,3,2,1,3,2,1,0]), 9, 'Test 130');
+test(minSideJumps([0,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0]), 0, 'Test 131');
+test(minSideJumps([0,3,2,1,3,2,1,3,2,1,3,2,1]), 11, 'Test 132');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

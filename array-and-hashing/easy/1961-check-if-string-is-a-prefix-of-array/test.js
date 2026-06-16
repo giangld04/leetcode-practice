@@ -1,0 +1,151 @@
+// Test: 1961. Check If String Is A Prefix Of Array
+// 125 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { isPrefixString } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1961. Check If String Is A Prefix Of Array\n");
+
+test(isPrefixString("aaaa", ["aa","aa"]), true, 'Test 1');
+test(isPrefixString("hello", ["he","ll","o"]), true, 'Test 2');
+test(isPrefixString("abc", ["a"]), false, 'Test 3');
+test(isPrefixString("abc", ["a","bc"]), true, 'Test 4');
+test(isPrefixString("a", ["a","b","c"]), true, 'Test 5');
+test(isPrefixString("abcd", ["a","bcd"]), true, 'Test 6');
+test(isPrefixString("cat", ["ca","t"]), true, 'Test 7');
+test(isPrefixString("abcd", ["abc","d"]), true, 'Test 8');
+test(isPrefixString("hello", ["he","l","lo"]), true, 'Test 9');
+test(isPrefixString("abc", ["ab","c"]), true, 'Test 10');
+test(isPrefixString("", ["a","b","c"]), false, 'Test 11');
+test(isPrefixString("iloveleetcode", ["apples","i","love","leetcode"]), false, 'Test 12');
+test(isPrefixString("hello", ["he","llo"]), true, 'Test 13');
+test(isPrefixString("abcd", ["a","b","c","d"]), true, 'Test 14');
+test(isPrefixString("abcd", ["ab","cd"]), true, 'Test 15');
+test(isPrefixString("abcd", ["abcd"]), true, 'Test 16');
+test(isPrefixString("iloveleetcode", ["i","love","leetcode","apples"]), true, 'Test 17');
+test(isPrefixString("xyz", ["x","y","z"]), true, 'Test 18');
+test(isPrefixString("abc", ["a","b","c"]), true, 'Test 19');
+test(isPrefixString("abcd", ["abc"]), false, 'Test 20');
+test(isPrefixString("complexprefixstring", ["complex","prefix","string","extra"]), true, 'Test 21');
+test(isPrefixString("aquickbrownfox", ["a","quick","brown","fox","jumps"]), true, 'Test 22');
+test(isPrefixString("onetwothree", ["one","two","three","four","five"]), true, 'Test 23');
+test(isPrefixString("algorithm", ["algo","r","ith","m"]), true, 'Test 24');
+test(isPrefixString("python", ["py", "th", "on", "n"]), true, 'Test 25');
+test(isPrefixString("complexprefix", ["com","ple","xpre","fix"]), true, 'Test 26');
+test(isPrefixString("concatenate", ["con", "cat", "en", "ate"]), true, 'Test 27');
+test(isPrefixString("algorithms", ["algo","rithm","s","data"]), true, 'Test 28');
+test(isPrefixString("abracadabra", ["abra", "ca", "da", "bra", "bra"]), true, 'Test 29');
+test(isPrefixString("substring", ["sub","str","ing","example"]), true, 'Test 30');
+test(isPrefixString("onetwothreefour", ["one","two","three","four","five"]), true, 'Test 31');
+test(isPrefixString("xyz", ["x", "y", "z", "w"]), true, 'Test 32');
+test(isPrefixString("prefixstring", ["pre", "fix", "string"]), true, 'Test 33');
+test(isPrefixString("programming", ["pro", "gram", "ming"]), true, 'Test 34');
+test(isPrefixString("concatenate", ["con","cat","e","nate"]), true, 'Test 35');
+test(isPrefixString("thisisatest", ["this", "is", "a", "test", "case"]), true, 'Test 36');
+test(isPrefixString("substring", ["sub","string","abc"]), true, 'Test 37');
+test(isPrefixString("mississippi", ["mis","si","ssippi","p"]), true, 'Test 38');
+test(isPrefixString("prefixprefix", ["pre","fix","pre","fix","pre","fix"]), true, 'Test 39');
+test(isPrefixString("abcdef", ["a","b","c","def","ghi"]), true, 'Test 40');
+test(isPrefixString("thisisatest", ["this","is","a","test","case"]), true, 'Test 41');
+test(isPrefixString("abcdefg", ["a", "b", "c", "d", "e", "f", "g"]), true, 'Test 42');
+test(isPrefixString("aaabbbccc", ["aaa", "bbb", "ccc", "ddd"]), true, 'Test 43');
+test(isPrefixString("hello", ["h", "he", "hel", "hell", "hello"]), false, 'Test 44');
+test(isPrefixString("abcdabc", ["ab","c","d","abc","def"]), true, 'Test 45');
+test(isPrefixString("complexstring", ["com","plex","string","other"]), true, 'Test 46');
+test(isPrefixString("abcdefghijk", ["abcd","ef","gh","ijk"]), true, 'Test 47');
+test(isPrefixString("uniqueprefix", ["unique","prefix","not"]), true, 'Test 48');
+test(isPrefixString("prefix", ["pre","fix","e","f","g"]), true, 'Test 49');
+test(isPrefixString("oneonetwo", ["one","one","two","three"]), true, 'Test 50');
+test(isPrefixString("xyzzy", ["xy","zz","y","z"]), true, 'Test 51');
+test(isPrefixString("partialmatch", ["partial", "non", "matching", "words"]), false, 'Test 52');
+test(isPrefixString("prefixmatching", ["pre","fix","mat","ching"]), true, 'Test 53');
+test(isPrefixString("overlapexample", ["over", "lap", "ex", "ample"]), true, 'Test 54');
+test(isPrefixString("boundary", ["bound", "ary", "extra"]), true, 'Test 55');
+test(isPrefixString("partialmatch", ["par", "tial", "match", "nomatch"]), true, 'Test 56');
+test(isPrefixString("abcdabcd", ["abcd", "abcd", "abcd"]), true, 'Test 57');
+test(isPrefixString("oneonetwo", ["one", "one", "two", "three"]), true, 'Test 58');
+test(isPrefixString("abcdefghij", ["abc","def","ghi","j"]), true, 'Test 59');
+test(isPrefixString("mississippi", ["mis","si","ss","ippi"]), true, 'Test 60');
+test(isPrefixString("matchmaking", ["mat","ch","mak","ing"]), true, 'Test 61');
+test(isPrefixString("abcdefg", ["a","bc","de","fg","xyz"]), true, 'Test 62');
+test(isPrefixString("prefix", ["pre","fix","ed","abc"]), true, 'Test 63');
+test(isPrefixString("prefix", ["pre", "fix", "post"]), true, 'Test 64');
+test(isPrefixString("mnopqr", ["mn","op","qr","st"]), true, 'Test 65');
+test(isPrefixString("programminglanguage", ["pro","gram","ming","lan","guage"]), true, 'Test 66');
+test(isPrefixString("hellohello", ["hello","hello","world"]), true, 'Test 67');
+test(isPrefixString("prefixstring", ["pre","fix","str","ing"]), true, 'Test 68');
+test(isPrefixString("hellothere", ["he","ll","o","there"]), true, 'Test 69');
+test(isPrefixString("concatenation", ["con","cat","en","ation"]), true, 'Test 70');
+test(isPrefixString("hellohello", ["hello","hello","hello"]), true, 'Test 71');
+test(isPrefixString("hello", ["h", "e", "l", "l", "o", "world"]), true, 'Test 72');
+test(isPrefixString("quickbrownfox", ["quick", "brown", "fox", "jump"]), true, 'Test 73');
+test(isPrefixString("abcdefghi", ["abc", "def", "ghi", "jkl"]), true, 'Test 74');
+test(isPrefixString("one", ["on", "e", "extra"]), true, 'Test 75');
+test(isPrefixString("notprefix", ["prefix","not"]), false, 'Test 76');
+test(isPrefixString("abcdefgh", ["a","bc","def","gh"]), true, 'Test 77');
+test(isPrefixString("prefixstring", ["prefix","string","extra"]), true, 'Test 78');
+test(isPrefixString("prefix", ["pre","fi","x"]), true, 'Test 79');
+test(isPrefixString("longword", ["lo", "ng", "wor", "d"]), true, 'Test 80');
+test(isPrefixString("xxyyyzzz", ["xx","yyy","zzz","a"]), true, 'Test 81');
+test(isPrefixString("concatenation", ["con", "cat", "en", "ation"]), true, 'Test 82');
+test(isPrefixString("unique", ["un", "iq", "ue"]), true, 'Test 83');
+test(isPrefixString("abcdefghij", ["a","b","c","d","e","f","g","h","i","j"]), true, 'Test 84');
+test(isPrefixString("algorithm", ["algo", "r", "ith", "m"]), true, 'Test 85');
+test(isPrefixString("variouslengths", ["vari","ous","length","s"]), true, 'Test 86');
+test(isPrefixString("two", ["tw", "o", "tw", "o"]), true, 'Test 87');
+test(isPrefixString("abcdabcd", ["abc", "d", "abcd"]), true, 'Test 88');
+test(isPrefixString("wordplay", ["word","play","game","time"]), true, 'Test 89');
+test(isPrefixString("programming", ["pro","gram","ming","lang"]), true, 'Test 90');
+test(isPrefixString("concatenation", ["con","cat","enation","ation"]), true, 'Test 91');
+test(isPrefixString("supercalifragilisticexpialidocious", ["super","cali","fragilistic","expiali","docious"]), true, 'Test 92');
+test(isPrefixString("abcdefghij", ["a","bc","de","fghi","j"]), true, 'Test 93');
+test(isPrefixString("algorithm", ["algo","rith","m"]), true, 'Test 94');
+test(isPrefixString("testcase", ["tes", "t", "ca", "se"]), true, 'Test 95');
+test(isPrefixString("concatenation", ["con","cat","e","na","tion"]), true, 'Test 96');
+test(isPrefixString("abcdefghij", ["abc", "def", "ghi", "j"]), true, 'Test 97');
+test(isPrefixString("xyz", ["x", "y", "z", "a", "b", "c"]), true, 'Test 98');
+test(isPrefixString("prefixtest", ["pre", "fix", "test", "suffix"]), true, 'Test 99');
+test(isPrefixString("repeated", ["rep", "e", "ated"]), true, 'Test 100');
+test(isPrefixString("matchingprefix", ["matching","prefix","matching","prefix"]), true, 'Test 101');
+test(isPrefixString("abcdexyz", ["abc","de","xyz","mnop"]), true, 'Test 102');
+test(isPrefixString("aabbccdd", ["aa","bb","cc","d","d"]), true, 'Test 103');
+test(isPrefixString("abcdef", ["a", "b", "c", "def"]), true, 'Test 104');
+test(isPrefixString("programmingisfun", ["pro","gram","ming","is","fun"]), true, 'Test 105');
+test(isPrefixString("short", ["shor","t"]), true, 'Test 106');
+test(isPrefixString("mississippi", ["mis","si","s","ip","pi"]), false, 'Test 107');
+test(isPrefixString("repeatedword", ["repeated","word","repeated"]), true, 'Test 108');
+test(isPrefixString("rapiddevelopment", ["rap","id","devel","op","ment"]), true, 'Test 109');
+test(isPrefixString("onetwothree", ["one","two","three","four"]), true, 'Test 110');
+test(isPrefixString("interviewquestion", ["inter","view","quest","ion"]), true, 'Test 111');
+test(isPrefixString("abcdabcd", ["abcd","abcd"]), true, 'Test 112');
+test(isPrefixString("longstring", ["long","string","extrastuff"]), true, 'Test 113');
+test(isPrefixString("xyz", ["xy","z","a","b"]), true, 'Test 114');
+test(isPrefixString("thisisatest", ["this","is","a","test"]), true, 'Test 115');
+test(isPrefixString("abcdefg", ["abc","def","g","h"]), true, 'Test 116');
+test(isPrefixString("hellothere", ["he","ll","ot","her","e"]), true, 'Test 117');
+test(isPrefixString("buildingblocks", ["building","block","s"]), true, 'Test 118');
+test(isPrefixString("abcdefghij", ["abc","de","f","gh","ij"]), true, 'Test 119');
+test(isPrefixString("prefixmatch", ["prefix","ma","tch"]), true, 'Test 120');
+test(isPrefixString("python", ["py","th","on","o"]), true, 'Test 121');
+test(isPrefixString("python", ["py","t","h","o","n","extra"]), true, 'Test 122');
+test(isPrefixString("aabbcc", ["aa", "bb", "cc", "dd"]), true, 'Test 123');
+test(isPrefixString("abacax", ["aba","c","ax","a"]), true, 'Test 124');
+test(isPrefixString("aabbcc", ["aa","bb","cc","dd"]), true, 'Test 125');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

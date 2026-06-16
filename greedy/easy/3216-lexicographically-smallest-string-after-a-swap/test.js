@@ -1,0 +1,150 @@
+// Test: 3216. Lexicographically Smallest String After A Swap
+// 124 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { getSmallestString } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n3216. Lexicographically Smallest String After A Swap\n");
+
+test(getSmallestString("9876543210"), 9876543210, 'Test 1');
+test(getSmallestString("1324"), 1324, 'Test 2');
+test(getSmallestString("111222333"), 111222333, 'Test 3');
+test(getSmallestString("1352468709"), 1352468709, 'Test 4');
+test(getSmallestString("2121212121"), 2121212121, 'Test 5');
+test(getSmallestString("1234567890"), 1234567890, 'Test 6');
+test(getSmallestString("9753186420"), 7953186420, 'Test 7');
+test(getSmallestString("22222"), 22222, 'Test 8');
+test(getSmallestString("97531"), 79531, 'Test 9');
+test(getSmallestString("111222"), 111222, 'Test 10');
+test(getSmallestString("001"), 001, 'Test 11');
+test(getSmallestString("87654"), 87654, 'Test 12');
+test(getSmallestString("1111111111"), 1111111111, 'Test 13');
+test(getSmallestString("13579"), 13579, 'Test 14');
+test(getSmallestString("99887766554433221100"), 99887766554433221100, 'Test 15');
+test(getSmallestString("11111"), 11111, 'Test 16');
+test(getSmallestString("34521"), 34521, 'Test 17');
+test(getSmallestString("224466"), 224466, 'Test 18');
+test(getSmallestString("24680"), 24608, 'Test 19');
+test(getSmallestString("45320"), 43520, 'Test 20');
+test(getSmallestString("1212121212"), 1212121212, 'Test 21');
+test(getSmallestString("2222222222"), 2222222222, 'Test 22');
+test(getSmallestString("86420"), 68420, 'Test 23');
+test(getSmallestString("2204466880"), 2024466880, 'Test 24');
+test(getSmallestString("555444333222111000"), 555444333222111000, 'Test 25');
+test(getSmallestString("5937197531"), 5397197531, 'Test 26');
+test(getSmallestString("8642086420"), 6842086420, 'Test 27');
+test(getSmallestString("5432109876543210"), 5432109876543210, 'Test 28');
+test(getSmallestString("9090909090"), 9090909090, 'Test 29');
+test(getSmallestString("3214680975"), 3214608975, 'Test 30');
+test(getSmallestString("555444333"), 555444333, 'Test 31');
+test(getSmallestString("2046813579"), 0246813579, 'Test 32');
+test(getSmallestString("999988887777"), 999988887777, 'Test 33');
+test(getSmallestString("1232123212"), 1232123212, 'Test 34');
+test(getSmallestString("0022446688"), 0022446688, 'Test 35');
+test(getSmallestString("2143658709"), 2143658709, 'Test 36');
+test(getSmallestString("4206813579"), 2406813579, 'Test 37');
+test(getSmallestString("1222333344"), 1222333344, 'Test 38');
+test(getSmallestString("122133445566778899"), 122133445566778899, 'Test 39');
+test(getSmallestString("5937124680"), 5397124680, 'Test 40');
+test(getSmallestString("1010101010"), 1010101010, 'Test 41');
+test(getSmallestString("2718281828"), 2178281828, 'Test 42');
+test(getSmallestString("1098765432"), 1098765432, 'Test 43');
+test(getSmallestString("908070605040302010"), 900870605040302010, 'Test 44');
+test(getSmallestString("98765432100987654321"), 98765432100987654321, 'Test 45');
+test(getSmallestString("02468135791357"), 02468135719357, 'Test 46');
+test(getSmallestString("9080706050"), 9008706050, 'Test 47');
+test(getSmallestString("8642013579"), 6842013579, 'Test 48');
+test(getSmallestString("9753124680"), 7953124680, 'Test 49');
+test(getSmallestString("5973186420"), 5793186420, 'Test 50');
+test(getSmallestString("8888888888"), 8888888888, 'Test 51');
+test(getSmallestString("1122334455"), 1122334455, 'Test 52');
+test(getSmallestString("4444444444"), 4444444444, 'Test 53');
+test(getSmallestString("5432013579"), 5430213579, 'Test 54');
+test(getSmallestString("8642097531"), 6842097531, 'Test 55');
+test(getSmallestString("01234567890123456789"), 01234567890123456789, 'Test 56');
+test(getSmallestString("2020202020"), 0220202020, 'Test 57');
+test(getSmallestString("000011112222"), 000011112222, 'Test 58');
+test(getSmallestString("1020304050"), 1002304050, 'Test 59');
+test(getSmallestString("1357924680"), 1357924608, 'Test 60');
+test(getSmallestString("4206842068"), 2406842068, 'Test 61');
+test(getSmallestString("5555555555"), 5555555555, 'Test 62');
+test(getSmallestString("6284095713"), 2684095713, 'Test 63');
+test(getSmallestString("135792468097531"), 135792460897531, 'Test 64');
+test(getSmallestString("5959595959"), 5599595959, 'Test 65');
+test(getSmallestString("1357902468"), 1357902468, 'Test 66');
+test(getSmallestString("0246813579"), 0246813579, 'Test 67');
+test(getSmallestString("0426813579"), 0246813579, 'Test 68');
+test(getSmallestString("5173924680"), 1573924680, 'Test 69');
+test(getSmallestString("8886664442"), 8868664442, 'Test 70');
+test(getSmallestString("98765432109876543210"), 98765432109876543210, 'Test 71');
+test(getSmallestString("9988776655"), 9988776655, 'Test 72');
+test(getSmallestString("2468024680"), 2460824680, 'Test 73');
+test(getSmallestString("7931524860"), 7391524860, 'Test 74');
+test(getSmallestString("6283185307"), 2683185307, 'Test 75');
+test(getSmallestString("111222333444555666777888999"), 111222333444555666777888999, 'Test 76');
+test(getSmallestString("3141592653"), 1341592653, 'Test 77');
+test(getSmallestString("3852764190"), 3852746190, 'Test 78');
+test(getSmallestString("22446688001133557799"), 22446680801133557799, 'Test 79');
+test(getSmallestString("3658742910"), 3658724910, 'Test 80');
+test(getSmallestString("9876543211"), 9876543211, 'Test 81');
+test(getSmallestString("222221111"), 222221111, 'Test 82');
+test(getSmallestString("6868686868"), 6688686868, 'Test 83');
+test(getSmallestString("4826035791"), 4286035791, 'Test 84');
+test(getSmallestString("4443332221"), 4443332221, 'Test 85');
+test(getSmallestString("9182736450"), 1982736450, 'Test 86');
+test(getSmallestString("24680246802468024680"), 24608246802468024680, 'Test 87');
+test(getSmallestString("8064213579"), 0864213579, 'Test 88');
+test(getSmallestString("5678904321"), 5678904321, 'Test 89');
+test(getSmallestString("0123456789"), 0123456789, 'Test 90');
+test(getSmallestString("2200446688"), 2020446688, 'Test 91');
+test(getSmallestString("3322110099"), 3322110099, 'Test 92');
+test(getSmallestString("8976543210"), 8796543210, 'Test 93');
+test(getSmallestString("1133557799"), 1133557799, 'Test 94');
+test(getSmallestString("1357913579"), 1357193579, 'Test 95');
+test(getSmallestString("9864213579"), 9684213579, 'Test 96');
+test(getSmallestString("999888777666555444333222111"), 999888777666555444333222111, 'Test 97');
+test(getSmallestString("9999999999"), 9999999999, 'Test 98');
+test(getSmallestString("5432109876"), 5432109876, 'Test 99');
+test(getSmallestString("4321056789"), 4321056789, 'Test 100');
+test(getSmallestString("1235467890"), 1235467890, 'Test 101');
+test(getSmallestString("35791"), 35719, 'Test 102');
+test(getSmallestString("0246802468"), 0246082468, 'Test 103');
+test(getSmallestString("3131313131"), 1331313131, 'Test 104');
+test(getSmallestString("0987654321"), 0987654321, 'Test 105');
+test(getSmallestString("5024019292"), 5020419292, 'Test 106');
+test(getSmallestString("999888777"), 999888777, 'Test 107');
+test(getSmallestString("0909090909"), 0909090909, 'Test 108');
+test(getSmallestString("4442220006"), 4424220006, 'Test 109');
+test(getSmallestString("2468013579"), 2460813579, 'Test 110');
+test(getSmallestString("123456789987654321"), 123456789987654321, 'Test 111');
+test(getSmallestString("01010101010101010101"), 01010101010101010101, 'Test 112');
+test(getSmallestString("8192837465"), 8192837465, 'Test 113');
+test(getSmallestString("102030405060708090"), 100230405060708090, 'Test 114');
+test(getSmallestString("5432101234"), 5432101234, 'Test 115');
+test(getSmallestString("000999888"), 000999888, 'Test 116');
+test(getSmallestString("1246835790"), 1246835790, 'Test 117');
+test(getSmallestString("10101010101010101010"), 10101010101010101010, 'Test 118');
+test(getSmallestString("4040404040"), 0440404040, 'Test 119');
+test(getSmallestString("5937186420"), 5397186420, 'Test 120');
+test(getSmallestString("7777777777"), 7777777777, 'Test 121');
+test(getSmallestString("6789012345"), 6789012345, 'Test 122');
+test(getSmallestString("2468097531"), 2460897531, 'Test 123');
+test(getSmallestString("2132132132"), 2132132132, 'Test 124');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

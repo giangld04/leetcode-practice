@@ -1,0 +1,150 @@
+// Test: 5. Longest Palindromic Substring
+// 124 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { longestPalindrome } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n5. Longest Palindromic Substring\n");
+
+test(longestPalindrome("abba"), abba, 'Test 1');
+test(longestPalindrome("aaaa"), aaaa, 'Test 2');
+test(longestPalindrome("abacdfgdcaba"), aba, 'Test 3');
+test(longestPalindrome("ac"), a, 'Test 4');
+test(longestPalindrome("babad"), aba, 'Test 5');
+test(longestPalindrome("noon"), noon, 'Test 6');
+test(longestPalindrome("cbbd"), bb, 'Test 7');
+test(longestPalindrome("abcba"), abcba, 'Test 8');
+test(longestPalindrome("bcbabcbabcba"), bcbabcbabcb, 'Test 9');
+test(longestPalindrome("noonhighnoon"), noon, 'Test 10');
+test(longestPalindrome("forgeeksskeegfor"), geeksskeeg, 'Test 11');
+test(longestPalindrome("aaabaaaa"), aaabaaa, 'Test 12');
+test(longestPalindrome("abcdedcba"), abcdedcba, 'Test 13');
+test(longestPalindrome("aaa"), aaa, 'Test 14');
+test(longestPalindrome("aaaaa"), aaaaa, 'Test 15');
+test(longestPalindrome("racecar"), racecar, 'Test 16');
+test(longestPalindrome("a"), a, 'Test 17');
+test(longestPalindrome("abcdefg"), a, 'Test 18');
+test(longestPalindrome("aabbccddeeeffgg"), eee, 'Test 19');
+test(longestPalindrome("abcdedcba12321"), abcdedcba, 'Test 20');
+test(longestPalindrome("xxyyyxyxyxyxyxyxxyyxyxyxyxyxyx"), xyxyxyxyxyx, 'Test 21');
+test(longestPalindrome("thisisanexamplewithlongestpalindromeonyxdxyxdx"), xdxyxdx, 'Test 22');
+test(longestPalindrome("12345678987654321"), 12345678987654321, 'Test 23');
+test(longestPalindrome("xyzaaazyxzyzyxyz"), xyzaaazyx, 'Test 24');
+test(longestPalindrome("12321abcdcba45654"), abcdcba, 'Test 25');
+test(longestPalindrome("012210"), 012210, 'Test 26');
+test(longestPalindrome("tattarrattat"), tattarrattat, 'Test 27');
+test(longestPalindrome("aabbabbaa"), aabbabbaa, 'Test 28');
+test(longestPalindrome("abacdfgdcaba12321"), 12321, 'Test 29');
+test(longestPalindrome("xyxxyxyxyxyxyxyx"), xyxyxyxyxyxyx, 'Test 30');
+test(longestPalindrome("1234321abcdefghgfedcba"), abcdefghgfedcba, 'Test 31');
+test(longestPalindrome("abababababababababababababababababababababababababababababababab"), bababababababababababababababababababababababababababababababab, 'Test 32');
+test(longestPalindrome("abacdfgdcabaxxxabcdcba"), abcdcba, 'Test 33');
+test(longestPalindrome("12321abccba45654"), abccba, 'Test 34');
+test(longestPalindrome("12321abcdedcbavcvcv"), abcdedcba, 'Test 35');
+test(longestPalindrome("abcbaekayakecivic"), ekayake, 'Test 36');
+test(longestPalindrome("noonmoonnoon"), oonnoo, 'Test 37');
+test(longestPalindrome("abcbaxxxxxabcdcba"), cbaxxxxxabc, 'Test 38');
+test(longestPalindrome("noonhighnoonnoon"), noonnoon, 'Test 39');
+test(longestPalindrome("noonmidnightnoon"), noon, 'Test 40');
+test(longestPalindrome("abcba12321defedcba"), defed, 'Test 41');
+test(longestPalindrome("aabbabaaaabbaaabaaabbbbbaaaaaabbbaaaabbbbaaabbaabbbaaaabbbaaabbbbaaabbaabbaabbab"), bbaaabbbbaaabb, 'Test 42');
+test(longestPalindrome("ababababababababa"), ababababababababa, 'Test 43');
+test(longestPalindrome("noonnoonnoonnoonnoonnoon"), noonnoonnoonnoonnoonnoon, 'Test 44');
+test(longestPalindrome("abccbaabacdfgdcaba"), abccba, 'Test 45');
+test(longestPalindrome("racecarxracecar"), racecarxracecar, 'Test 46');
+test(longestPalindrome("madamracecarlevel"), racecar, 'Test 47');
+test(longestPalindrome("babcbabcbabcba"), abcbabcbabcba, 'Test 48');
+test(longestPalindrome("abacdfgdcabaabacdfgdcaba"), dcabaabacd, 'Test 49');
+test(longestPalindrome("madamintanimadaminabba"), animadamina, 'Test 50');
+test(longestPalindrome("noonracecarracecar"), racecarracecar, 'Test 51');
+test(longestPalindrome("zzzzzzzzzzzz"), zzzzzzzzzzzz, 'Test 52');
+test(longestPalindrome("racecar2racecar"), racecar2racecar, 'Test 53');
+test(longestPalindrome("zxyabcddcbaabczyx"), abcddcba, 'Test 54');
+test(longestPalindrome("deeee"), eeee, 'Test 55');
+test(longestPalindrome("abacdfgdcabacdfgdcaba"), dcabacd, 'Test 56');
+test(longestPalindrome("1234543216789876"), 123454321, 'Test 57');
+test(longestPalindrome("abcbaaabcba"), abcbaaabcba, 'Test 58');
+test(longestPalindrome("abcdedcbaefghihgfexyzzyx"), efghihgfe, 'Test 59');
+test(longestPalindrome("abcdefgfebac"), efgfe, 'Test 60');
+test(longestPalindrome("levelhannahlevel"), levelhannahlevel, 'Test 61');
+test(longestPalindrome("xxyyzzzyyxx"), xxyyzzzyyxx, 'Test 62');
+test(longestPalindrome("abcddcbaabcddcbaxyzzyx"), abcddcbaabcddcba, 'Test 63');
+test(longestPalindrome("racecar12321racecar"), racecar12321racecar, 'Test 64');
+test(longestPalindrome("abcdeffedcba"), abcdeffedcba, 'Test 65');
+test(longestPalindrome("civicracecar"), racecar, 'Test 66');
+test(longestPalindrome("levelmadammadam"), madammadam, 'Test 67');
+test(longestPalindrome("zxyaxzyaz"), z, 'Test 68');
+test(longestPalindrome("abcdefedcba"), abcdefedcba, 'Test 69');
+test(longestPalindrome("12321321321321321"), 12321, 'Test 70');
+test(longestPalindrome("xyzzyxcbaapqrqpabczyzyx"), apqrqpa, 'Test 71');
+test(longestPalindrome("abacdfgdcaba123321"), 123321, 'Test 72');
+test(longestPalindrome("abacdfgdcabaxxxxxabcdcba"), baxxxxxab, 'Test 73');
+test(longestPalindrome("aabcdcbadefedcbaa"), abcdcba, 'Test 74');
+test(longestPalindrome("abcdefghijiklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba"), klmnopqrstuvwxyzzyxwvutsrqponmlk, 'Test 75');
+test(longestPalindrome("bananaananab"), bananaananab, 'Test 76');
+test(longestPalindrome("aabbccddeedcba"), deed, 'Test 77');
+test(longestPalindrome("noonhighnoonnoonhighnoon"), hnoonnoonh, 'Test 78');
+test(longestPalindrome("babaddabba"), baddab, 'Test 79');
+test(longestPalindrome("abababababababababababababababababababababababababababababababbababa"), babababababababababababababababababababababababababababababab, 'Test 80');
+test(longestPalindrome("abcdeedcba1234321xyzzyx"), abcdeedcba, 'Test 81');
+test(longestPalindrome("aabb"), bb, 'Test 82');
+test(longestPalindrome("mamamamamamamamama"), amamamamamamamama, 'Test 83');
+test(longestPalindrome("abcdefgfedcba"), abcdefgfedcba, 'Test 84');
+test(longestPalindrome("abcbabcba"), abcbabcba, 'Test 85');
+test(longestPalindrome("xyzzzzyxabcdefedcba"), abcdefedcba, 'Test 86');
+test(longestPalindrome("banana"), anana, 'Test 87');
+test(longestPalindrome("abcbcbcbcbcbcbcbcbcbcbcbcb"), bcbcbcbcbcbcbcbcbcbcbcbcb, 'Test 88');
+test(longestPalindrome("anana"), anana, 'Test 89');
+test(longestPalindrome("aabbccddeeeeddccbbbaa"), bbccddeeeeddccbb, 'Test 90');
+test(longestPalindrome("12321abcdedcba45654"), abcdedcba, 'Test 91');
+test(longestPalindrome("aabbccddeeffgg"), gg, 'Test 92');
+test(longestPalindrome("levelracecardeifiedracecar"), racecardeifiedracecar, 'Test 93');
+test(longestPalindrome("aaaaabbbbbaaaa"), aaaabbbbbaaaa, 'Test 94');
+test(longestPalindrome("abccba"), abccba, 'Test 95');
+test(longestPalindrome("abcdcba12321xyzzyx"), abcdcba, 'Test 96');
+test(longestPalindrome("12321abcba21321"), abcba, 'Test 97');
+test(longestPalindrome("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), zz, 'Test 98');
+test(longestPalindrome("abcdcbaxxxabcdcbaabcdcbaxxxabcdcba"), abcdcbaxxxabcdcbaabcdcbaxxxabcdcba, 'Test 99');
+test(longestPalindrome("xyzabcbaxyz"), abcba, 'Test 100');
+test(longestPalindrome("racecarannakayak"), racecar, 'Test 101');
+test(longestPalindrome("abacdfgdcab"), aba, 'Test 102');
+test(longestPalindrome("abcdeedcbafedcbe"), abcdeedcba, 'Test 103');
+test(longestPalindrome("a1b2c3d4c3b2a"), a, 'Test 104');
+test(longestPalindrome("abccccba"), abccccba, 'Test 105');
+test(longestPalindrome("noonnoonnoon"), noonnoonnoon, 'Test 106');
+test(longestPalindrome("aabbccddeeeedddccbaa"), ddeeeedd, 'Test 107');
+test(longestPalindrome("AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"), A, 'Test 108');
+test(longestPalindrome("acbbac"), bb, 'Test 109');
+test(longestPalindrome("noonlevelnoon"), noonlevelnoon, 'Test 110');
+test(longestPalindrome("abbaabba"), abbaabba, 'Test 111');
+test(longestPalindrome("rotor1234321rotor"), rotor1234321rotor, 'Test 112');
+test(longestPalindrome("aaaaabaaa"), aaabaaa, 'Test 113');
+test(longestPalindrome("abcdefghihgfedcba"), abcdefghihgfedcba, 'Test 114');
+test(longestPalindrome("civicdeifiedrotorlevel"), deified, 'Test 115');
+test(longestPalindrome("aquickbrownfoxjumpsoverthelazydog"), a, 'Test 116');
+test(longestPalindrome("zyxwvutsrqponmlkjihgfedcbaedcba"), z, 'Test 117');
+test(longestPalindrome("aabcddeffedcba"), deffed, 'Test 118');
+test(longestPalindrome("pppppppppppppppppppppppppppppppp"), pppppppppppppppppppppppppppppppp, 'Test 119');
+test(longestPalindrome("aabbccddeeeedddccbbaa"), ddeeeedd, 'Test 120');
+test(longestPalindrome("a1b2c3d4e5f6g7h8i9j0j9i8h7g6f5e4d3c2b1a"), a1b2c3d4e5f6g7h8i9j0j9i8h7g6f5e4d3c2b1a, 'Test 121');
+test(longestPalindrome("mississippi"), ississi, 'Test 122');
+test(longestPalindrome("zxcvbnmlkjhgfdsapoiuytrewqpoiuytrewqpoiuytrewqpoiuytrewq"), z, 'Test 123');
+test(longestPalindrome("deifiedrotorlevel"), deified, 'Test 124');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

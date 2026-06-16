@@ -1,0 +1,153 @@
+// Test: 2109. Adding Spaces To A String
+// 127 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { addSpaces } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n2109. Adding Spaces To A String\n");
+
+test(addSpaces("spacing", [0,1,2,3,4,5,6]), s p a c i n g, 'Test 1');
+test(addSpaces("NoSpacesHere", []), NoSpacesHere, 'Test 2');
+test(addSpaces("icodeinpython", [1,5,7,9]), i code in py thon, 'Test 3');
+test(addSpaces("A", [0]), A, 'Test 4');
+test(addSpaces("NoSpace", []), NoSpace, 'Test 5');
+test(addSpaces("icodeinpython", [1, 5, 7, 9]), i code in py thon, 'Test 6');
+test(addSpaces("InsertSpacesEverywhere", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20]), I n s e r t S p a c e s E v e r yw h e re, 'Test 7');
+test(addSpaces("LeetcodeHelpsMeLearn", [8, 13, 15]), Leetcode Helps Me Learn, 'Test 8');
+test(addSpaces("spacing", [0, 1, 2, 3, 4, 5, 6]), s p a c i n g, 'Test 9');
+test(addSpaces("PythonProgramming", [6]), Python Programming, 'Test 10');
+test(addSpaces("LeetcodeHelpsMeLearn", [8,13,15]), Leetcode Helps Me Learn, 'Test 11');
+test(addSpaces("AlibabaCloudisAmazing", [7, 13, 19]), Alibaba Cloudi sAmazi ng, 'Test 12');
+test(addSpaces("AugmentedReality", [8, 14]), Augmente dReali ty, 'Test 13');
+test(addSpaces("OperatingSystems", [7, 19]), Operati ngSystems, 'Test 14');
+test(addSpaces("ParallelAndDistributedComputing", [8, 26]), Parallel AndDistributedComp uting, 'Test 15');
+test(addSpaces("Short", [1, 2]), S h ort, 'Test 16');
+test(addSpaces("DataScienceAndMachineLearning", [4, 13, 18, 29]), Data ScienceAn dMach ineLearning, 'Test 17');
+test(addSpaces("NaturalLanguageProcessing", [7, 18, 28]), Natural LanguagePro cessing, 'Test 18');
+test(addSpaces("EmbeddedSystems", [7, 17]), Embedde dSystems, 'Test 19');
+test(addSpaces("InsertSpacesHere", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]), I n s e r t S p a c e sHere, 'Test 20');
+test(addSpaces("NoSpaceHere", []), NoSpaceHere, 'Test 21');
+test(addSpaces("SpacesAtEnd", [9, 10, 11]), SpacesAtE n d, 'Test 22');
+test(addSpaces("AlgorithmDesignAndAnalysis", [9, 18, 22]), Algorithm DesignAnd Anal ysis, 'Test 23');
+test(addSpaces("ParallelProcessing", [8, 19]), Parallel Processing, 'Test 24');
+test(addSpaces("CyberSecurity", [5, 14]), Cyber Security, 'Test 25');
+test(addSpaces("InformationSecurity", [16]), InformationSecur ity, 'Test 26');
+test(addSpaces("Multiple    Spaces", [8, 9, 10, 11]), Multiple        Spaces, 'Test 27');
+test(addSpaces("DeepLearningFrameworks", [4, 12, 18, 25]), Deep Learning Framew orks, 'Test 28');
+test(addSpaces("ComputerNetworking", [13]), ComputerNetwo rking, 'Test 29');
+test(addSpaces("HelloWorldFromPython", [5, 11, 15]), Hello WorldF romP ython, 'Test 30');
+test(addSpaces("OneTwoThreeFourFiveSixSevenEightNineTen", [3, 6, 9, 12, 15, 18, 21, 24, 27, 30]), One Two Thr eeF our Fiv eSi xSe ven Eig htNineTen, 'Test 31');
+test(addSpaces("EndWithSpaces", [10, 11, 12]), EndWithSpa c e s, 'Test 32');
+test(addSpaces("ArtificialIntelligence", [10, 24]), Artificial Intelligence, 'Test 33');
+test(addSpaces("ComplexDataStructures", [7, 14, 22, 29]), Complex DataStr uctures, 'Test 34');
+test(addSpaces("QuantumComputing", [7, 19]), Quantum Computing, 'Test 35');
+test(addSpaces("MultipleSpacesInARow", [12, 13, 14, 15]), MultipleSpac e s I nARow, 'Test 36');
+test(addSpaces("ZebraCrossing", [5, 10]), Zebra Cross ing, 'Test 37');
+test(addSpaces("abcdefghij", [1, 3, 5, 7, 9]), a bc de fg hi j, 'Test 38');
+test(addSpaces("ProgrammingLanguages", [2, 5, 12, 18, 21]), Pr ogr ammingL anguag es, 'Test 39');
+test(addSpaces("HumanComputerInteraction", [12, 30]), HumanCompute rInteraction, 'Test 40');
+test(addSpaces("QuantumComputing", [7, 16]), Quantum Computing, 'Test 41');
+test(addSpaces("BlockchainTechnology", [9, 18]), Blockchai nTechnolo gy, 'Test 42');
+test(addSpaces("BoundaryEdgeCases", [0, 14]), BoundaryEdgeCa ses, 'Test 43');
+test(addSpaces("SingleWord", [10]), SingleWord, 'Test 44');
+test(addSpaces("ThisIsATestStringForComplexInputs", [4, 7, 10, 13, 17, 21, 26, 31, 34]), This IsA Tes tSt ring ForC omple xInpu ts, 'Test 45');
+test(addSpaces("ComplexPattern", [1, 3, 5, 7, 9, 11]), C om pl ex Pa tt ern, 'Test 46');
+test(addSpaces("aVeryLongStringWithoutSpacesThatNeedsSpacesInserted", [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73]), a Ve ry Lo ng St ri ng Wi th ou tS pa ce sT ha tN ee ds Sp ac es In se rt ed, 'Test 47');
+test(addSpaces("ThisIsAVeryLongStringWithoutSpaces", [4, 8, 12, 17, 21, 27, 32]), This IsAV eryL ongSt ring Withou tSpac es, 'Test 48');
+test(addSpaces("ComputerVision", [12]), ComputerVisi on, 'Test 49');
+test(addSpaces("ThisIsAVeryLongStringWithSeveralSpacesNeeded", [4, 7, 11, 15, 20, 25, 30, 35, 40, 45, 50]), This IsA Very Long Strin gWith Sever alSpa cesNe eded, 'Test 50');
+test(addSpaces("VirtualReality", [7, 13]), Virtual Realit y, 'Test 51');
+test(addSpaces("AnotherExampleWithLongerWords", [8, 19, 29]), AnotherE xampleWithL ongerWords, 'Test 52');
+test(addSpaces("MultipleConsecutiveSpaces", [7, 8, 9, 10, 11]), Multipl e C o n secutiveSpaces, 'Test 53');
+test(addSpaces("OneBigSpaceInTheMiddle", [10]), OneBigSpac eInTheMiddle, 'Test 54');
+test(addSpaces("CloudComputingServices", [5, 14, 21]), Cloud Computing Service s, 'Test 55');
+test(addSpaces("MultipleSpaces", [2, 5, 8, 11]), Mu lti ple Spa ces, 'Test 56');
+test(addSpaces("InformationRetrieval", [12, 27]), InformationR etrieval, 'Test 57');
+test(addSpaces("VeryLongStringForTestingPurposes", [4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56]), Very Long Stri ngFo rTes ting Purp oses, 'Test 58');
+test(addSpaces("TestStringWithSeveralSpaces", [4, 8, 12, 16, 20, 24]), Test Stri ngWi thSe vera lSpa ces, 'Test 59');
+test(addSpaces("SpecialCharacters!@#", [7, 8, 9]), Special C h aracters!@#, 'Test 60');
+test(addSpaces("mixedCASEStringWithSPACES", [6, 10, 17, 22, 29, 34]), mixedC ASES tringWi thSPA CES, 'Test 61');
+test(addSpaces("EdgeCase", [0, 8]), EdgeCase, 'Test 62');
+test(addSpaces("AdvancedAlgorithmDesign", [7, 21]), Advance dAlgorithmDesi gn, 'Test 63');
+test(addSpaces("CompilersAndInterpreters", [9, 26]), Compilers AndInterpreters, 'Test 64');
+test(addSpaces("ComplexExampleString", [7, 13, 18, 22]), Complex Exampl eStri ng, 'Test 65');
+test(addSpaces("ComplexScenarioWithLongWord", [7, 15, 23, 31]), Complex Scenario WithLong Word, 'Test 66');
+test(addSpaces("NaturalLanguageProcessing", [11, 21]), NaturalLang uageProces sing, 'Test 67');
+test(addSpaces("AnotherExample", [2, 6, 10, 14]), An othe rExa mple, 'Test 68');
+test(addSpaces("SoftwareEngineering", [8, 21]), Software Engineering, 'Test 69');
+test(addSpaces("MachineLearning", [7, 16]), Machine Learning, 'Test 70');
+test(addSpaces("NeuralNetworks", [6, 13]), Neural Network s, 'Test 71');
+test(addSpaces("QuickBrownFox", [5, 11]), Quick BrownF ox, 'Test 72');
+test(addSpaces("SingleCharacter", [0]), SingleCharacter, 'Test 73');
+test(addSpaces("InternetOfThings", [8, 13, 15]), Internet OfThi ng s, 'Test 74');
+test(addSpaces("WithALotOfSpaces", [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]), Wi th AL ot Of Sp ac es, 'Test 75');
+test(addSpaces("HumanComputerInteraction", [5, 16, 26]), Human ComputerInt eraction, 'Test 76');
+test(addSpaces("ComplexExampleWithRandomSpaces", [7, 14, 19, 26, 31, 37]), Complex Example WithR andomSp aces, 'Test 77');
+test(addSpaces("EmbeddedSystems", [9, 20]), EmbeddedS ystems, 'Test 78');
+test(addSpaces("InternetOfThings", [8, 14]), Internet OfThin gs, 'Test 79');
+test(addSpaces("DataStructuresAndAlgorithms", [4, 16, 23]), Data StructuresAn dAlgori thms, 'Test 80');
+test(addSpaces("HighPerformanceComputing", [17, 34]), HighPerformanceCo mputing, 'Test 81');
+test(addSpaces("PythonIsFun", [6, 8]), Python Is Fun, 'Test 82');
+test(addSpaces("AddingSpacesEverywhere", [1, 3, 5, 7, 9, 11, 13, 15, 17]), A dd in gS pa ce sE ve ry where, 'Test 83');
+test(addSpaces("SingleWord", [5]), Singl eWord, 'Test 84');
+test(addSpaces("BigDataAnalytics", [3, 8, 16]), Big DataA nalytics, 'Test 85');
+test(addSpaces("ReallyLongStringWithLotsOfSpaces", [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]), Reall yLong Strin gWith LotsO fSpac es, 'Test 86');
+test(addSpaces("EdgeCasesAtTheEnd", [13, 14, 15]), EdgeCasesAtTh e E nd, 'Test 87');
+test(addSpaces("RoboticsEngineering", [8, 17]), Robotics Engineeri ng, 'Test 88');
+test(addSpaces("QwenIsPowerful", [4, 8, 12]), Qwen IsPo werf ul, 'Test 89');
+test(addSpaces("TheQuickBrownFoxJumpsOverTheLazyDog", [3, 9, 15, 21, 25, 30, 34]), The QuickB rownFo xJumps Over TheLa zyDo g, 'Test 90');
+test(addSpaces("AddingSpacesInAString", [5, 12, 16]), Addin gSpaces InAS tring, 'Test 91');
+test(addSpaces("SingleSpaceAtEnd", [13]), SingleSpaceAt End, 'Test 92');
+test(addSpaces("ProgrammingLanguages", [11]), Programming Languages, 'Test 93');
+test(addSpaces("OneWord", [0]), OneWord, 'Test 94');
+test(addSpaces("ConsecutiveSpaces", [4, 5, 11, 12]), Cons e cutive S paces, 'Test 95');
+test(addSpaces("aLongStringWithoutSpaces", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]), a L o n g S t r i n g W i t h o u t S p a ces, 'Test 96');
+test(addSpaces("RandomAccessMemory", [6, 12, 19]), Random Access Memory, 'Test 97');
+test(addSpaces("DatabaseSystems", [10]), DatabaseSy stems, 'Test 98');
+test(addSpaces("LongStringWithSpacesInsertedAtVariousPositions", [4, 9, 14, 20, 26, 31, 37, 42, 48, 53]), Long Strin gWith Spaces Insert edAtV arious Posit ions, 'Test 99');
+test(addSpaces("DistributedSystems", [13]), DistributedSy stems, 'Test 100');
+test(addSpaces("InsertMultipleSpaces", [6, 12, 19, 25]), Insert Multip leSpace s, 'Test 101');
+test(addSpaces("BlockChainTechnology", [9, 18]), BlockChai nTechnolo gy, 'Test 102');
+test(addSpaces("ComplexityTheory", [8, 16]), Complexi tyTheory, 'Test 103');
+test(addSpaces("Alphabet", [1, 2, 3, 4, 5, 6]), A l p h a b et, 'Test 104');
+test(addSpaces("a", [0]), a, 'Test 105');
+test(addSpaces("InsertingMultipleSpaces", [9, 17, 25, 30, 36]), Inserting Multiple Spaces, 'Test 106');
+test(addSpaces("AlibabaCloudServices", [7, 18]), Alibaba CloudServic es, 'Test 107');
+test(addSpaces("AlgorithmsAndDataStructures", [10, 15, 20]), Algorithms AndDa taStr uctures, 'Test 108');
+test(addSpaces("SoftwareEngineering", [8, 19]), Software Engineering, 'Test 109');
+test(addSpaces("DataScienceAndAnalytics", [9, 14, 17, 26]), DataScien ceAnd Ana lytics, 'Test 110');
+test(addSpaces("MultipleWords", [5, 13]), Multi pleWords, 'Test 111');
+test(addSpaces("MachineLearning", [7, 18]), Machine Learning, 'Test 112');
+test(addSpaces("TestEdgeCases", [0, 4, 8, 12]), Test Edge Case s, 'Test 113');
+test(addSpaces("OneSpaceAtTheEnd", [16]), OneSpaceAtTheEnd, 'Test 114');
+test(addSpaces("EdgeCasesHandled", [0, 11, 13]), EdgeCasesHa nd led, 'Test 115');
+test(addSpaces("CyberSecurity", [10]), CyberSecur ity, 'Test 116');
+test(addSpaces("StartWithSpaces", [0, 1, 2]), S t artWithSpaces, 'Test 117');
+test(addSpaces("ComputerVision", [8, 13]), Computer Visio n, 'Test 118');
+test(addSpaces("AlgorithmsAndDataStructures", [9, 25, 36]), Algorithm sAndDataStructur es, 'Test 119');
+test(addSpaces("NoSpaces", []), NoSpaces, 'Test 120');
+test(addSpaces("abcdefg", [1, 2, 3, 4, 5, 6]), a b c d e f g, 'Test 121');
+test(addSpaces("CloudComputing", [5, 15]), Cloud Computing, 'Test 122');
+test(addSpaces("OperatingSystems", [12]), OperatingSys tems, 'Test 123');
+test(addSpaces("ArtificialIntelligence", [9, 19]), Artificia lIntellige nce, 'Test 124');
+test(addSpaces("YetAnotherExample", [3, 7, 12, 17]), Yet Anot herEx ample, 'Test 125');
+test(addSpaces("BoundaryTestCases", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]), B o u n d a r y T e s t C a s e s, 'Test 126');
+test(addSpaces("AlgorithmsAndDataStructures", [10, 15, 20, 25]), Algorithms AndDa taStr uctur es, 'Test 127');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

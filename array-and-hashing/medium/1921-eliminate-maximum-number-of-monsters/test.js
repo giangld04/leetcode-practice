@@ -1,0 +1,153 @@
+// Test: 1921. Eliminate Maximum Number Of Monsters
+// 127 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { eliminateMaximum } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1921. Eliminate Maximum Number Of Monsters\n");
+
+test(eliminateMaximum([6,7,8], [2,2,2]), 3, 'Test 1');
+test(eliminateMaximum([1,2,3], [3,2,1]), 1, 'Test 2');
+test(eliminateMaximum([100,200,300], [1,1,1]), 3, 'Test 3');
+test(eliminateMaximum([7,14,21], [1,2,3]), 3, 'Test 4');
+test(eliminateMaximum([1,2,3,4,5,6,7,8,9,10], [1,1,1,1,1,1,1,1,1,1]), 10, 'Test 5');
+test(eliminateMaximum([3,5,7,9], [1,2,3,4]), 3, 'Test 6');
+test(eliminateMaximum([1,1,2,3], [1,1,1,1]), 1, 'Test 7');
+test(eliminateMaximum([100,200,300,400,500], [50,40,30,20,10]), 5, 'Test 8');
+test(eliminateMaximum([6,4,5], [1,2,1]), 3, 'Test 9');
+test(eliminateMaximum([1,2,3,4,5], [1,2,3,4,5]), 1, 'Test 10');
+test(eliminateMaximum([1,1,1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1,1,1]), 1, 'Test 11');
+test(eliminateMaximum([1,3,4], [1,1,1]), 3, 'Test 12');
+test(eliminateMaximum([10,20,30], [1,2,3]), 3, 'Test 13');
+test(eliminateMaximum([5,10,15,20], [5,4,3,2]), 4, 'Test 14');
+test(eliminateMaximum([3,2,4], [5,3,2]), 1, 'Test 15');
+test(eliminateMaximum([1,2,3,4,5], [1,1,1,1,1]), 5, 'Test 16');
+test(eliminateMaximum([10,5,6,12,3], [2,1,1,1,1]), 5, 'Test 17');
+test(eliminateMaximum([5,5,5], [1,1,1]), 3, 'Test 18');
+test(eliminateMaximum([2,4,6], [2,2,2]), 3, 'Test 19');
+test(eliminateMaximum([1], [1]), 1, 'Test 20');
+test(eliminateMaximum([100,200,300,400,500], [10,20,30,40,50]), 5, 'Test 21');
+test(eliminateMaximum([5,5,5,5], [1,1,1,1]), 4, 'Test 22');
+test(eliminateMaximum([6,7,12,13,14], [3,3,4,4,5]), 3, 'Test 23');
+test(eliminateMaximum([6,3,4,1], [2,1,2,1]), 3, 'Test 24');
+test(eliminateMaximum([10,20,30], [5,10,15]), 2, 'Test 25');
+test(eliminateMaximum([10,15,20], [2,3,4]), 3, 'Test 26');
+test(eliminateMaximum([10,20,30], [5,5,5]), 3, 'Test 27');
+test(eliminateMaximum([100,200,300], [10,20,30]), 3, 'Test 28');
+test(eliminateMaximum([10,20,30,40], [10,10,10,10]), 4, 'Test 29');
+test(eliminateMaximum([1,2,3,4,5], [5,4,3,2,1]), 1, 'Test 30');
+test(eliminateMaximum([10,10,10,10,10], [1,2,3,4,5]), 5, 'Test 31');
+test(eliminateMaximum([2, 4, 6, 8, 10, 12, 14, 16, 18, 20], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 32');
+test(eliminateMaximum([500, 1000, 1500, 2000, 2500], [50, 100, 150, 200, 250]), 5, 'Test 33');
+test(eliminateMaximum([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 34');
+test(eliminateMaximum([1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000], [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]), 10, 'Test 35');
+test(eliminateMaximum([100,200,300,400,500], [1,1,1,1,1]), 5, 'Test 36');
+test(eliminateMaximum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 1, 'Test 37');
+test(eliminateMaximum([1000, 900, 800, 700, 600], [100, 200, 300, 400, 500]), 5, 'Test 38');
+test(eliminateMaximum([1,1,1,1,1,1,1,1,1,1], [1,2,3,4,5,6,7,8,9,10]), 1, 'Test 39');
+test(eliminateMaximum([5,5,5,5,5,5,5,5,5,5], [1,1,1,1,1,1,1,1,1,1]), 5, 'Test 40');
+test(eliminateMaximum([9,8,7,6,5,4,3,2,1], [1,2,3,4,5,6,7,8,9]), 1, 'Test 41');
+test(eliminateMaximum([2, 3, 4, 5, 6], [2, 2, 2, 2, 2]), 2, 'Test 42');
+test(eliminateMaximum([10, 20, 30, 40, 50], [2, 3, 4, 5, 6]), 5, 'Test 43');
+test(eliminateMaximum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 15, 'Test 44');
+test(eliminateMaximum([10, 25, 40, 55, 70, 85], [5, 5, 5, 5, 5, 5]), 6, 'Test 45');
+test(eliminateMaximum([10, 15, 20, 25], [5, 4, 3, 2]), 4, 'Test 46');
+test(eliminateMaximum([15,25,35,45,55,65,75,85,95,105], [1,2,3,4,5,6,7,8,9,10]), 10, 'Test 47');
+test(eliminateMaximum([99, 98, 97, 96, 95], [1, 1, 1, 1, 1]), 5, 'Test 48');
+test(eliminateMaximum([1000,1500,2000,2500,3000], [100,200,300,400,500]), 5, 'Test 49');
+test(eliminateMaximum([100, 200, 300, 400, 500], [50, 40, 30, 20, 10]), 5, 'Test 50');
+test(eliminateMaximum([2,4,6,8,10,12,14,16,18,20], [1,1,1,1,1,1,1,1,1,1]), 10, 'Test 51');
+test(eliminateMaximum([5,10,15,20,25,30,35,40,45,50], [1,2,3,4,5,6,7,8,9,10]), 5, 'Test 52');
+test(eliminateMaximum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 1, 'Test 53');
+test(eliminateMaximum([15, 15, 15, 15, 15, 15, 15, 15, 15, 15], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 54');
+test(eliminateMaximum([100, 200, 300, 400, 500], [10, 20, 30, 40, 50]), 5, 'Test 55');
+test(eliminateMaximum([15, 15, 20, 25, 30], [1, 2, 1, 2, 1]), 5, 'Test 56');
+test(eliminateMaximum([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]), 10, 'Test 57');
+test(eliminateMaximum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 1, 'Test 58');
+test(eliminateMaximum([5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 1, 'Test 59');
+test(eliminateMaximum([5, 15, 25, 35, 45], [1, 1, 1, 1, 1]), 5, 'Test 60');
+test(eliminateMaximum([15, 15, 15, 15, 15, 15, 15, 15, 15, 15], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 2, 'Test 61');
+test(eliminateMaximum([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), 15, 'Test 62');
+test(eliminateMaximum([10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 2, 'Test 63');
+test(eliminateMaximum([1,10,20,30,40,50,60,70,80,90], [1,2,3,4,5,6,7,8,9,10]), 9, 'Test 64');
+test(eliminateMaximum([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 1, 'Test 65');
+test(eliminateMaximum([10, 20, 30, 40, 50], [5, 5, 5, 5, 5]), 5, 'Test 66');
+test(eliminateMaximum([50,45,40,35,30,25,20,15,10,5], [1,2,3,4,5,6,7,8,9,10]), 2, 'Test 67');
+test(eliminateMaximum([2,4,6,8,10], [1,2,3,4,5]), 2, 'Test 68');
+test(eliminateMaximum([1000, 900, 800, 700, 600, 500, 400, 300, 200, 100], [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]), 10, 'Test 69');
+test(eliminateMaximum([5,10,15,20,25,30], [1,1,1,1,1,1]), 6, 'Test 70');
+test(eliminateMaximum([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]), 10, 'Test 71');
+test(eliminateMaximum([1,2,3,4,5,6,7,8,9,10], [10,9,8,7,6,5,4,3,2,1]), 1, 'Test 72');
+test(eliminateMaximum([25, 25, 25, 25, 25], [5, 5, 5, 5, 5]), 5, 'Test 73');
+test(eliminateMaximum([10, 10, 10, 10, 10, 10, 10, 10, 10, 10], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 74');
+test(eliminateMaximum([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75], [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5]), 5, 'Test 75');
+test(eliminateMaximum([100,200,300,400,500,600,700,800,900,1000], [1,2,3,4,5,6,7,8,9,10]), 10, 'Test 76');
+test(eliminateMaximum([2, 4, 6, 8, 10], [1, 2, 3, 4, 5]), 2, 'Test 77');
+test(eliminateMaximum([10,20,30,40,50,60,70,80,90,100], [2,2,2,2,2,2,2,2,2,2]), 10, 'Test 78');
+test(eliminateMaximum([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 79');
+test(eliminateMaximum([5,15,25,35,45], [1,2,3,4,5]), 5, 'Test 80');
+test(eliminateMaximum([10,20,30,40,50,60,70,80,90,100], [1,1,1,1,1,1,1,1,1,1]), 10, 'Test 81');
+test(eliminateMaximum([9, 18, 27, 36, 45, 54, 63, 72, 81, 90], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 9, 'Test 82');
+test(eliminateMaximum([5, 10, 15, 20, 25, 30], [1, 2, 3, 4, 5, 6]), 5, 'Test 83');
+test(eliminateMaximum([99, 198, 297, 396, 495, 594, 693, 792, 891, 990], [99, 99, 99, 99, 99, 99, 99, 99, 99, 99]), 10, 'Test 84');
+test(eliminateMaximum([3,5,7,9,11], [1,2,3,4,5]), 3, 'Test 85');
+test(eliminateMaximum([10000,20000,30000,40000,50000], [100,200,300,400,500]), 5, 'Test 86');
+test(eliminateMaximum([3, 6, 9, 12, 15], [1, 1, 1, 1, 1]), 5, 'Test 87');
+test(eliminateMaximum([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]), 1, 'Test 88');
+test(eliminateMaximum([10, 20, 30, 40, 50], [2, 4, 5, 6, 8]), 5, 'Test 89');
+test(eliminateMaximum([5, 10, 15, 20, 25, 30, 35, 40, 45, 50], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 90');
+test(eliminateMaximum([100,200,300,400,500,600,700,800,900,1000], [1,1,1,1,1,1,1,1,1,1]), 10, 'Test 91');
+test(eliminateMaximum([1000,2000,3000], [10,20,30]), 3, 'Test 92');
+test(eliminateMaximum([3,3,3,3,3,3,3,3,3,3], [1,1,1,1,1,1,1,1,1,1]), 3, 'Test 93');
+test(eliminateMaximum([10, 25, 30, 45, 50, 65, 70, 85, 90, 105], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 94');
+test(eliminateMaximum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 95');
+test(eliminateMaximum([2,3,4,5,6], [1,1,1,1,1]), 5, 'Test 96');
+test(eliminateMaximum([30,60,90,120,150,180,210,240,270,300], [1,2,3,4,5,6,7,8,9,10]), 10, 'Test 97');
+test(eliminateMaximum([15,25,35,45,55,65,75,85,95,105,115,125,135,145,155], [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5]), 15, 'Test 98');
+test(eliminateMaximum([100,200,300,400,500,600,700,800,900,1000], [50,50,50,50,50,50,50,50,50,50]), 10, 'Test 99');
+test(eliminateMaximum([10, 20, 30, 40, 50], [10, 20, 30, 40, 50]), 1, 'Test 100');
+test(eliminateMaximum([10,20,30,40,50], [2,2,2,2,1]), 5, 'Test 101');
+test(eliminateMaximum([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5]), 1, 'Test 102');
+test(eliminateMaximum([9, 9, 9, 9, 9], [1, 2, 3, 4, 5]), 5, 'Test 103');
+test(eliminateMaximum([100, 150, 200, 250, 300], [25, 50, 75, 100, 125]), 3, 'Test 104');
+test(eliminateMaximum([10,20,30,40,50], [1,2,3,4,5]), 5, 'Test 105');
+test(eliminateMaximum([100, 90, 80, 70, 60, 50, 40, 30, 20, 10], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 10, 'Test 106');
+test(eliminateMaximum([10, 11, 12, 13, 14], [1, 1, 1, 1, 1]), 5, 'Test 107');
+test(eliminateMaximum([3, 6, 9, 12, 15, 18, 21, 24, 27, 30], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 10, 'Test 108');
+test(eliminateMaximum([3, 6, 9, 12, 15, 18, 21, 24, 27, 30], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 3, 'Test 109');
+test(eliminateMaximum([15,10,20,30,40], [2,5,3,4,1]), 5, 'Test 110');
+test(eliminateMaximum([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 1, 'Test 111');
+test(eliminateMaximum([9,18,27,36,45,54,63,72,81,90], [1,2,3,4,5,6,7,8,9,10]), 9, 'Test 112');
+test(eliminateMaximum([3,6,9,12,15,18,21,24,27,30], [1,1,1,1,1,1,1,1,1,1]), 10, 'Test 113');
+test(eliminateMaximum([100, 200, 300, 400, 500], [50, 100, 150, 200, 250]), 2, 'Test 114');
+test(eliminateMaximum([3, 6, 9, 12, 15, 18], [1, 2, 3, 4, 5, 6]), 3, 'Test 115');
+test(eliminateMaximum([10,20,30,40,50,60,70,80,90,100], [10,10,10,10,10,10,10,10,10,10]), 10, 'Test 116');
+test(eliminateMaximum([99, 98, 97, 96, 95, 94, 93, 92, 91, 90], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 10, 'Test 117');
+test(eliminateMaximum([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 10, 'Test 118');
+test(eliminateMaximum([10, 20, 30, 40, 50], [1, 2, 3, 4, 5]), 5, 'Test 119');
+test(eliminateMaximum([9, 18, 27, 36, 45], [1, 2, 3, 4, 5]), 5, 'Test 120');
+test(eliminateMaximum([15, 25, 35, 45, 55], [5, 5, 5, 5, 5]), 5, 'Test 121');
+test(eliminateMaximum([100, 200, 300, 400, 500], [50, 50, 50, 50, 50]), 5, 'Test 122');
+test(eliminateMaximum([100,100,100,100,100,100,100,100,100,100,100,100,100,100,100], [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]), 15, 'Test 123');
+test(eliminateMaximum([2,4,6,8,10], [2,2,2,2,2]), 5, 'Test 124');
+test(eliminateMaximum([7, 14, 21, 28, 35], [1, 2, 3, 4, 5]), 5, 'Test 125');
+test(eliminateMaximum([100,150,200,250,300], [5,10,15,20,25]), 5, 'Test 126');
+test(eliminateMaximum([100, 150, 200, 250, 300, 350, 400, 450, 500], [10, 20, 30, 40, 50, 60, 70, 80, 90]), 9, 'Test 127');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

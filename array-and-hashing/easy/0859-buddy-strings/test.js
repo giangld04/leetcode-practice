@@ -1,0 +1,152 @@
+// Test: 859. Buddy Strings
+// 126 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { buddyStrings } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n859. Buddy Strings\n");
+
+test(buddyStrings("abcd", "dcba"), false, 'Test 1');
+test(buddyStrings("xyy", "xyx"), false, 'Test 2');
+test(buddyStrings("abac", "abad"), false, 'Test 3');
+test(buddyStrings("aa", "aa"), true, 'Test 4');
+test(buddyStrings("abcde", "edcba"), false, 'Test 5');
+test(buddyStrings("aaaa", "aaaa"), true, 'Test 6');
+test(buddyStrings("abab", "abab"), true, 'Test 7');
+test(buddyStrings("ab", "ab"), false, 'Test 8');
+test(buddyStrings("xyz", "zyx"), true, 'Test 9');
+test(buddyStrings("aabbcc", "ccbbaa"), false, 'Test 10');
+test(buddyStrings("abcd", "cbad"), true, 'Test 11');
+test(buddyStrings("abcd", "abdc"), true, 'Test 12');
+test(buddyStrings("xy", "yx"), true, 'Test 13');
+test(buddyStrings("aabbcc", "aabbcc"), true, 'Test 14');
+test(buddyStrings("abcde", "abced"), true, 'Test 15');
+test(buddyStrings("ab", "bba"), false, 'Test 16');
+test(buddyStrings("abcd", "abcd"), false, 'Test 17');
+test(buddyStrings("abab", "baba"), false, 'Test 18');
+test(buddyStrings("xx", "xx"), true, 'Test 19');
+test(buddyStrings("aba", "aba"), true, 'Test 20');
+test(buddyStrings("abcde", "abcde"), false, 'Test 21');
+test(buddyStrings("abc", "acb"), true, 'Test 22');
+test(buddyStrings("ab", "ba"), true, 'Test 23');
+test(buddyStrings("abcdefghij", "bacdefghij"), true, 'Test 24');
+test(buddyStrings("abcdefghi", "abcdefghj"), false, 'Test 25');
+test(buddyStrings("xyzabc", "zyxabc"), true, 'Test 26');
+test(buddyStrings("aabbccddeeff", "aabbccdeeff"), false, 'Test 27');
+test(buddyStrings("abcabcabcabc", "abcabcabcaba"), false, 'Test 28');
+test(buddyStrings("abacabad", "abacabad"), true, 'Test 29');
+test(buddyStrings("aabbccdd", "aabbcccc"), false, 'Test 30');
+test(buddyStrings("xyzz", "zzyx"), false, 'Test 31');
+test(buddyStrings("aabb", "bbaa"), false, 'Test 32');
+test(buddyStrings("xyzz", "zzxy"), false, 'Test 33');
+test(buddyStrings("xyzzxyzz", "zzxyzzxy"), false, 'Test 34');
+test(buddyStrings("abacab", "babaab"), false, 'Test 35');
+test(buddyStrings("abcdefgh", "efabcdgh"), false, 'Test 36');
+test(buddyStrings("abcdabcdabcd", "abcdabcdabcd"), true, 'Test 37');
+test(buddyStrings("abcabcabc", "abcabcabc"), true, 'Test 38');
+test(buddyStrings("abcaa", "acbaa"), true, 'Test 39');
+test(buddyStrings("abcabcabc", "abcabcbac"), true, 'Test 40');
+test(buddyStrings("aabbcc", "abcabc"), false, 'Test 41');
+test(buddyStrings("aaaaaaa", "aaaaaaa"), true, 'Test 42');
+test(buddyStrings("mississippi", "ssimmisippi"), false, 'Test 43');
+test(buddyStrings("abcdefgh", "abcdefgh"), false, 'Test 44');
+test(buddyStrings("aabbc", "aabcb"), true, 'Test 45');
+test(buddyStrings("abcdefghi", "abcdefghij"), false, 'Test 46');
+test(buddyStrings("aabbcc", "aaccbb"), false, 'Test 47');
+test(buddyStrings("abracadabra", "abracadabra"), true, 'Test 48');
+test(buddyStrings("aabbaa", "aabbba"), false, 'Test 49');
+test(buddyStrings("aabbccddeeff", "bbaaddeeccff"), false, 'Test 50');
+test(buddyStrings("abcdefghij", "abcdefghij"), false, 'Test 51');
+test(buddyStrings("xyzz", "zzxz"), false, 'Test 52');
+test(buddyStrings("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxzy"), true, 'Test 53');
+test(buddyStrings("abacabad", "abacabda"), true, 'Test 54');
+test(buddyStrings("mississippi", "misssipii"), false, 'Test 55');
+test(buddyStrings("xyzz", "yxzz"), true, 'Test 56');
+test(buddyStrings("aabbccddeeff", "bbaaddeeffcc"), false, 'Test 57');
+test(buddyStrings("abcdef", "fedcba"), false, 'Test 58');
+test(buddyStrings("xyzz", "zyzz"), false, 'Test 59');
+test(buddyStrings("abcab", "abcab"), true, 'Test 60');
+test(buddyStrings("mississippi", "mpississii"), false, 'Test 61');
+test(buddyStrings("aabbccdd", "aabbccdd"), true, 'Test 62');
+test(buddyStrings("abcabcabc", "cbaabcabc"), true, 'Test 63');
+test(buddyStrings("abcdabcd", "abcdabcd"), true, 'Test 64');
+test(buddyStrings("abac", "acba"), false, 'Test 65');
+test(buddyStrings("aabbccddeeff", "ffeeddccbbaa"), false, 'Test 66');
+test(buddyStrings("aabb", "abab"), true, 'Test 67');
+test(buddyStrings("aabbccddeeffgg", "aabbcdddeeffgg"), false, 'Test 68');
+test(buddyStrings("xyzxyz", "zyxzyx"), false, 'Test 69');
+test(buddyStrings("xyzxyzxyz", "zyxzyxzyx"), false, 'Test 70');
+test(buddyStrings("a", "a"), false, 'Test 71');
+test(buddyStrings("abcdef", "abdefc"), false, 'Test 72');
+test(buddyStrings("abccba", "bacbca"), false, 'Test 73');
+test(buddyStrings("abcabcabc", "bacbacbac"), false, 'Test 74');
+test(buddyStrings("xyzz", "zyzx"), true, 'Test 75');
+test(buddyStrings("abcdefg", "gfedcba"), false, 'Test 76');
+test(buddyStrings("abac", "abca"), true, 'Test 77');
+test(buddyStrings("aabbccddeeff", "aabbccddffee"), false, 'Test 78');
+test(buddyStrings("abcdexyz", "abcdefyz"), false, 'Test 79');
+test(buddyStrings("abacaxbada", "abacaxbada"), true, 'Test 80');
+test(buddyStrings("aabcc", "acaab"), false, 'Test 81');
+test(buddyStrings("aabbccddeeffgg", "aabbccddeeffgg"), true, 'Test 82');
+test(buddyStrings("xyzz", "zyxz"), true, 'Test 83');
+test(buddyStrings("abcdeabcde", "abcdeabcde"), true, 'Test 84');
+test(buddyStrings("abcdefgh", "efghabcd"), false, 'Test 85');
+test(buddyStrings("xyzz", "xyzz"), true, 'Test 86');
+test(buddyStrings("abcabcabc", "bcaabcabc"), false, 'Test 87');
+test(buddyStrings("xyxyxyxyxy", "yxyxyxyxyx"), false, 'Test 88');
+test(buddyStrings("abcdefghij", "abcdefghik"), false, 'Test 89');
+test(buddyStrings("abababab", "babababa"), false, 'Test 90');
+test(buddyStrings("abcdef", "fabcde"), false, 'Test 91');
+test(buddyStrings("ababab", "bababa"), false, 'Test 92');
+test(buddyStrings("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), true, 'Test 93');
+test(buddyStrings("aaaabbbbcccc", "ccccaaaabbbb"), false, 'Test 94');
+test(buddyStrings("aab", "aba"), true, 'Test 95');
+test(buddyStrings("aabbc", "aacbb"), true, 'Test 96');
+test(buddyStrings("xyzz", "zzzx"), false, 'Test 97');
+test(buddyStrings("zzzzzzzz", "zzzzzzzz"), true, 'Test 98');
+test(buddyStrings("abcdefghij", "abcdefghji"), true, 'Test 99');
+test(buddyStrings("abcdeabcde", "abcdebacde"), true, 'Test 100');
+test(buddyStrings("abcdefg", "abcdefg"), false, 'Test 101');
+test(buddyStrings("abacabadabacaba", "abacabadabacabb"), false, 'Test 102');
+test(buddyStrings("mississippi", "mississippi"), true, 'Test 103');
+test(buddyStrings("abcdxy", "abcdyx"), true, 'Test 104');
+test(buddyStrings("abcdexyz", "xyzabcdexyz"), false, 'Test 105');
+test(buddyStrings("xyzz", "zyyz"), false, 'Test 106');
+test(buddyStrings("abcabcabc", "cbacbacba"), false, 'Test 107');
+test(buddyStrings("aabbccddeeff", "aabbccddfeef"), true, 'Test 108');
+test(buddyStrings("aabbccddeeff", "aabbccdeeef"), false, 'Test 109');
+test(buddyStrings("abacabadabacaba", "babacabadabacab"), false, 'Test 110');
+test(buddyStrings("aabbccddeeff", "aabbccddeeff"), true, 'Test 111');
+test(buddyStrings("aabbccddeeff", "aabbccddeffg"), false, 'Test 112');
+test(buddyStrings("aabbb", "bbaaa"), false, 'Test 113');
+test(buddyStrings("mississippi", "mississipp"), false, 'Test 114');
+test(buddyStrings("abacabadabacaba", "abacabadabacaba"), true, 'Test 115');
+test(buddyStrings("abcabcabcabc", "abcabcabcabc"), true, 'Test 116');
+test(buddyStrings("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzxxwwvvuuttsrqponmlkjihgfedcbaabbccddeeffgg"), false, 'Test 117');
+test(buddyStrings("abcdabcd", "dcbaabcd"), false, 'Test 118');
+test(buddyStrings("aabbccdd", "bbaaddcc"), false, 'Test 119');
+test(buddyStrings("abcdefgh", "hgfedcba"), false, 'Test 120');
+test(buddyStrings("abacaba", "abacaba"), true, 'Test 121');
+test(buddyStrings("abcxy", "abcyx"), true, 'Test 122');
+test(buddyStrings("abcdefgh", "abcdefhg"), true, 'Test 123');
+test(buddyStrings("abacabad", "abacabdc"), false, 'Test 124');
+test(buddyStrings("aaaaaa", "aaaaaa"), true, 'Test 125');
+test(buddyStrings("abcdefghij", "aibcdefghj"), false, 'Test 126');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

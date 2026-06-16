@@ -1,0 +1,152 @@
+// Test: 770. Basic Calculator Iv
+// 126 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { basicCalculatorIV } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n770. Basic Calculator Iv\n");
+
+test(basicCalculatorIV("1 + [2 * 3] + [4 * [5 + 6]]", [], []), ['51'], 'Test 1');
+test(basicCalculatorIV("10 + 20 * [30 + 40] - 50", [], []), ['1360'], 'Test 2');
+test(basicCalculatorIV("[x + y] * [x - y] + [x + z] * [x - z]", ["x", "y", "z"], [1, 2, 3]), ['-11'], 'Test 3');
+test(basicCalculatorIV("a + b * c - d / e + f", ["a", "b", "c", "d", "e", "f"], [1, 2, 3, 4, 5, 6]), ['7'], 'Test 4');
+test(basicCalculatorIV("a * [b + c] * [d + e]", ["a", "b", "c", "d", "e"], [1, 2, 3, 4, 5]), ['45'], 'Test 5');
+test(basicCalculatorIV("[x + y] * [x - y] + [x + y] * [x + y]", ["x", "y"], [1, 2]), ['6'], 'Test 6');
+test(basicCalculatorIV("x + y * 2", ["x"], [3]), ['2*y', '3'], 'Test 7');
+test(basicCalculatorIV("a + b + c + d + e", ["a", "b", "c"], [1, 2, 3]), ['1*d', '1*e', '6'], 'Test 8');
+test(basicCalculatorIV("a + b * c - d / e", ["a", "b", "c", "d", "e"], [1, 2, 3, 4, 2]), ['7'], 'Test 9');
+test(basicCalculatorIV("3 * [a + b] - 2 * [a - b]", ["a"], [2]), ['5*b', '2'], 'Test 10');
+test(basicCalculatorIV("x + y * 2 - [x - y]", ["x", "y"], [1, 2]), ['6'], 'Test 11');
+test(basicCalculatorIV("[a * b] * [c * d]", ["a", "b", "c", "d"], [1, 2, 3, 4]), ['24'], 'Test 12');
+test(basicCalculatorIV("10 + 2 * 6", [], []), ['22'], 'Test 13');
+test(basicCalculatorIV("e - 8 + temperature - pressure", ["e", "temperature"], [1, 12]), ['-1*pressure', '5'], 'Test 14');
+test(basicCalculatorIV("[x + y] * [x - y] + [x + z] * [x - z]", [], []), ['2*x*x', '-1*y*y', '-1*z*z'], 'Test 15');
+test(basicCalculatorIV("100 * [ 2 + 12 ]", [], []), ['1400'], 'Test 16');
+test(basicCalculatorIV("100 * [ 2 + 12 ] / 14", [], []), ['100'], 'Test 17');
+test(basicCalculatorIV("x * y + y * x", ["x", "y"], [1, 2]), ['4'], 'Test 18');
+test(basicCalculatorIV("x * y + z", ["x", "y"], [2, 3]), ['1*z', '6'], 'Test 19');
+test(basicCalculatorIV("[x + y] * [x - y] + z", ["x", "y", "z"], [3, 4, 5]), ['-2'], 'Test 20');
+test(basicCalculatorIV("[a + b] * [a - b]", ["a", "b"], [3, 2]), ['5'], 'Test 21');
+test(basicCalculatorIV("e + 8 - a + 5", ["e"], [1]), ['-1*a', '14'], 'Test 22');
+test(basicCalculatorIV("x * x + 2 * x + 1", ["x"], [1]), ['4'], 'Test 23');
+test(basicCalculatorIV("[e + 8] * [e - 8]", [], []), ['1*e*e', '-64'], 'Test 24');
+test(basicCalculatorIV("x * [y + z] + w", ["x", "y", "z"], [2, 3, 4]), ['1*w', '14'], 'Test 25');
+test(basicCalculatorIV("x + y * [2 + 3] - z", ["x", "y", "z"], [1, 2, 3]), ['8'], 'Test 26');
+test(basicCalculatorIV("[a + b] * [a - b]", ["a", "b"], [3, 4]), ['-7'], 'Test 27');
+test(basicCalculatorIV("x + 2 * [y + z]", ["x"], [1]), ['2*y', '2*z', '1'], 'Test 28');
+test(basicCalculatorIV("[a + b] * [a - b]", [], []), ['1*a*a', '-1*b*b'], 'Test 29');
+test(basicCalculatorIV("x * x + y * y + z * z", [], []), ['1*x*x', '1*y*y', '1*z*z'], 'Test 30');
+test(basicCalculatorIV("[a + b] + [c + d]", ["a", "b", "c", "d"], [1, 2, 3, 4]), ['10'], 'Test 31');
+test(basicCalculatorIV("[x + y] * [x + y]", [], []), ['1*x*x', '2*x*y', '1*y*y'], 'Test 32');
+test(basicCalculatorIV("[x + y] * [x + y]", ["x", "y"], [1, 2]), ['9'], 'Test 33');
+test(basicCalculatorIV("a + b * c + d", ["a", "b", "c", "d"], [1, 2, 3, 4]), ['11'], 'Test 34');
+test(basicCalculatorIV("10 * [x + y] + 5", ["x", "y"], [1, 1]), ['25'], 'Test 35');
+test(basicCalculatorIV("100 * 2 + 12", [], []), ['212'], 'Test 36');
+test(basicCalculatorIV("[x + y + z] * [x - y + z] * [x + y - z] * [x - y - z]", ["x", "y", "z"], [1, 2, 3]), [], 'Test 37');
+test(basicCalculatorIV("[a + b] * [c + d + e] * [f + g + h] + [i + j] * [k + l + m] * [n + o + p]", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]), ['31536'], 'Test 38');
+test(basicCalculatorIV("[x + y + z] * [x + y + z] * [x + y + z]", ["x", "y", "z"], [1, 2, 3]), ['216'], 'Test 39');
+test(basicCalculatorIV("[x + 2*y + 3*z] * [4*x + 5*y + 6*z] - [7*x + 8*y + 9*z] * [10*x + 11*y + 12*z]", ["x", "y", "z"], [1, -1, 2]), ['-336'], 'Test 40');
+test(basicCalculatorIV("[[x + 2*y] * [z + 3]] + [[4*x - 5*y] * [z - 6]]", ["x", "y", "z"], [2, 3, 4]), ['70'], 'Test 41');
+test(basicCalculatorIV("[x + 2 * y + 3 * z + 4 * w] * [x - 2 * y - 3 * z - 4 * w] * [x + 5 * y + 6 * z + 7 * w] + 40", ["x", "y", "z", "w"], [1, 1, 1, 1]), ['-1480'], 'Test 42');
+test(basicCalculatorIV("[x^2 + 2*x + 1] * [x^2 - 2*x + 1]", ["x"], [2]), ['1*x^2*x^2', '2*x^2', '-15'], 'Test 43');
+test(basicCalculatorIV("[[a + b] * [c - d] + e] * f", ["a", "b", "c", "d", "e", "f"], [1, 2, 3, 4, 5, 6]), ['12'], 'Test 44');
+test(basicCalculatorIV("[a + b + c + d] * [a + b + c - d] * [a + b - c + d] * [a + b - c - d] * [a - b + c + d] * [a - b + c - d] * [a - b - c + d] * [a - b - c - d]", ["a", "b", "c", "d"], [1, 1, 1, 1]), [], 'Test 45');
+test(basicCalculatorIV("[a + b] * [c + d] * [e + f] + [g + h] * [i + j] * [k + l]", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), ['16'], 'Test 46');
+test(basicCalculatorIV("[1 + x] * [1 - x] * [1 + x * x] + [1 - x * x] * [1 - x * x] * [1 + x * x * x] + 7", ["x"], [0]), ['9'], 'Test 47');
+test(basicCalculatorIV("[2 * x + 3 * y] * [4 * z + 5] - [6 * w + 7 * v] * [8 * u + 9]", ["x", "y", "z", "w", "v", "u"], [1, -1, 2, -2, 3, -3]), ['122'], 'Test 48');
+test(basicCalculatorIV("[a + 2 * b] * [3 * c + 4 * d] - [a - b] * [c - 2 * d]", ["a", "b", "c", "d"], [1, 2, 3, 4]), ['120'], 'Test 49');
+test(basicCalculatorIV("[a + b + c] * [a - b - c]", ["a", "b", "c"], [1, 2, 3]), ['-24'], 'Test 50');
+test(basicCalculatorIV("[a + b + c] * [d + e + f]", ["a", "b", "c", "d", "e", "f"], [1, 2, 3, 4, 5, 6]), ['90'], 'Test 51');
+test(basicCalculatorIV("[[a + b] * [c + d] + [e + f] * [g + h]] * [[i + j] * [k + l] + [m + n] * [o + p]]", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p"], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]), ['236964'], 'Test 52');
+test(basicCalculatorIV("[a + b] * [c + d] + [e + f] * [g + h]", ["a", "b", "c", "d", "e", "f", "g", "h"], [1, 2, 3, 4, 5, 6, 7, 8]), ['186'], 'Test 53');
+test(basicCalculatorIV("[[x + y] * [z + w]] * [[x - y] * [z - w]]", ["x", "y", "z", "w"], [1, -1, 2, -2]), [], 'Test 54');
+test(basicCalculatorIV("10 * [x + 2 * y + 3 * z] - 5 * [x - 2 * y + 3 * z] + 2 * [x + 2 * y - 3 * z]", ["x", "y", "z"], [1, 2, 3]), ['102'], 'Test 55');
+test(basicCalculatorIV("[x + 2*y + 3*z] * [4*x + 5*y + 6*z] - [7*x + 8*y + 9*z] * [10*x + 11*y + 12*z] + [13*x + 14*y + 15*z] * [16*x + 17*y + 18*z]", ["x", "y", "z"], [1, 1, 1]), ['1440'], 'Test 56');
+test(basicCalculatorIV("[x + 2*y] * [3*z + 4*w] - [5*v + 6*u] * [7*t + 8*s]", ["x", "y", "z", "w", "v", "u", "t", "s"], [1, 2, 3, 4, 5, 6, 7, 8]), ['-6768'], 'Test 57');
+test(basicCalculatorIV("[a + b + c + d] * [e + f + g + h]", ["a", "b", "c", "d", "e", "f", "g", "h"], [1, 2, 3, 4, 5, 6, 7, 8]), ['260'], 'Test 58');
+test(basicCalculatorIV("[2*x + 3*y + 4*z] * [5*x + 6*y + 7*z] + [8*x + 9*y + 10*z] * [11*x + 12*y + 13*z]", ["x", "y", "z"], [1, 1, 1]), ['1134'], 'Test 59');
+test(basicCalculatorIV("[a + b + c + d + e] * [a + b + c + d + e] * [a + b + c + d + e]", ["a", "b", "c", "d", "e"], [1, 2, 3, 4, 5]), ['3375'], 'Test 60');
+test(basicCalculatorIV("[[x + y + z] * [x - y + z]] * [[x + y - z] * [x - y - z]]", ["x", "y", "z"], [1, 2, 3]), [], 'Test 61');
+test(basicCalculatorIV("[a + b + c] * [d + e + f] * [g + h + i]", ["a", "b", "c", "d", "e", "f", "g", "h", "i"], [1, -1, 2, -2, 3, -3, 4, -4, 5]), ['-20'], 'Test 62');
+test(basicCalculatorIV("[a + b] * [a - b] + [a + c] * [a - c] + [b + c] * [b - c]", ["a", "b", "c"], [1, 1, 1]), [], 'Test 63');
+test(basicCalculatorIV("[[x + y] * [z + w] + [v + u] * [t + s]] * [r + q + p]", ["x", "y", "z", "w", "v", "u", "t", "s", "r", "q", "p"], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), ['24'], 'Test 64');
+test(basicCalculatorIV("[x + 2 * y + 3 * z] * [x - 2 * y - 3 * z] * [x + 4 * y + 5 * z] + 30", ["x", "y", "z"], [1, 1, 1]), ['-210'], 'Test 65');
+test(basicCalculatorIV("[a + b] * [c + d] * [e + f]", ["a", "b", "c", "d", "e", "f"], [1, 2, 3, 4, 5, 6]), ['231'], 'Test 66');
+test(basicCalculatorIV("[x + 3] * [x - 3] * [x + 2] * [x - 2] + 10", ["x"], [0]), ['46'], 'Test 67');
+test(basicCalculatorIV("[x * y * z * w] + [x * y + z * w] + [x + y] * [z + w] + [x + y] * [z + w] * [x * y + z * w]", ["x", "y", "z", "w"], [1, 1, 1, 1]), ['15'], 'Test 68');
+test(basicCalculatorIV("[a + b + c] * [d + e + f] + [a - b - c] * [d - e - f]", ["a", "b", "c", "d", "e", "f"], [1, 2, 3, 4, 5, 6]), ['118'], 'Test 69');
+test(basicCalculatorIV("[[a + b] * [c + d]] + [[a - b] * [c - d]]", ["a", "b", "c", "d"], [1, 2, 3, 4]), ['22'], 'Test 70');
+test(basicCalculatorIV("[[x + y] * [z + w] + [v + u] * [t + s]] * [[r + q] * [p + o] + [n + m] * [l + k]]", ["x", "y", "z", "w", "v", "u", "t", "s", "r", "q", "p", "o", "n", "m", "l", "k"], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), ['64'], 'Test 71');
+test(basicCalculatorIV("[a + b + c] * [d + e + f] + [g + h + i] * [j + k + l]", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), ['882'], 'Test 72');
+test(basicCalculatorIV("[a + 2*b] * [3*a - 4*b] + [5*a + 6*b] * [7*a - 8*b]", ["a", "b"], [1, 1]), ['-14'], 'Test 73');
+test(basicCalculatorIV("[x + y + z] * [x + y + z] - [x + y] * [x + y]", ["x", "y", "z"], [1, 2, 3]), ['27'], 'Test 74');
+test(basicCalculatorIV("[x + y + z] * [x - y - z] + [x + y - z] * [x - y + z]", ["x", "y", "z"], [1, 2, 3]), ['-24'], 'Test 75');
+test(basicCalculatorIV("[[x + y] * [x - y]] + [[x + z] * [x - z]]", ["x", "y", "z"], [1, 2, 3]), ['-11'], 'Test 76');
+test(basicCalculatorIV("100 * [x + 2*y] - 50 * [x - 3*y]", ["x", "y"], [2, 3]), ['1150'], 'Test 77');
+test(basicCalculatorIV("[x + y + z] * [x + y - z] * [x - y + z] * [x - y - z]", ["x", "y", "z"], [1, 2, 3]), [], 'Test 78');
+test(basicCalculatorIV("[a + b] * [c + d] + [a - b] * [c - d]", ["a", "b", "c", "d"], [1, 2, 3, 4]), ['22'], 'Test 79');
+test(basicCalculatorIV("[x + y] * [x - y] * [x + y] + [x - y] * [x - y] * [x + y]", ["x", "y"], [1, 2]), ['-6'], 'Test 80');
+test(basicCalculatorIV("x * [y + z] * [y - z] + x * [y + w] * [y - w]", ["x", "y", "z", "w"], [1, 2, 3, 4]), ['-17'], 'Test 81');
+test(basicCalculatorIV("[e + 8] * [e - 8] + [e + 2] * [e - 2] - [e + 1] * [e - 1]", ["e"], [1]), ['-66'], 'Test 82');
+test(basicCalculatorIV("[a * b * c + d * e * f] * [g + h + i]", ["a", "b", "c", "d", "e", "f", "g", "h", "i"], [1, 2, 3, 4, 5, 6, 7, 8, 9]), ['3024'], 'Test 83');
+test(basicCalculatorIV("[a + b + c] * [a - b - c] * [a + b - c]", ["a", "b", "c"], [1, -1, 2]), [], 'Test 84');
+test(basicCalculatorIV("[a * b + c] * [d - e] + f * [g + h]", ["a", "b", "c", "d", "e", "f", "g", "h"], [1, 2, 3, 4, 5, 6, 7, 8]), ['85'], 'Test 85');
+test(basicCalculatorIV("[a * b * c * d] + [a * b * c * e] + [a * b * d * e] + [a * c * d * e] + [b * c * d * e]", ["a", "b", "c", "d", "e"], [1, 2, 3, 4, 5]), ['274'], 'Test 86');
+test(basicCalculatorIV("[x + 2*y + 3*z] * [x - y + z] + 2 * [x + y + z] * [x - y + z] + 3 * [x + y] * [x - y + z]", ["x", "y", "z"], [1, 1, 1]), ['18'], 'Test 87');
+test(basicCalculatorIV("[x + 2 * y + 3 * z] * [x - 2 * y + 3 * z] - [x + 2 * y - 3 * z] * [x - 2 * y - 3 * z]", ["x", "y", "z"], [1, 2, 3]), ['36'], 'Test 88');
+test(basicCalculatorIV("[a + 2*b + 3*c] * [4*d + 5*e + 6*f] + [7*g + 8*h + 9*i] * [10*j + 11*k + 12*l]", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), ['71888'], 'Test 89');
+test(basicCalculatorIV("[a + 2*b] * [3*c + 4*d] + [5*e + 6*f] * [7*g + 8*h]", ["a", "b", "c", "d", "e", "f", "g", "h"], [1, -1, 2, -2, 3, -3, 4, -4]), ['14'], 'Test 90');
+test(basicCalculatorIV("[x + y + z + w] * [x + y + z + w] * [x + y + z + w] * [x + y + z + w]", ["x", "y", "z", "w"], [1, 1, 1, 1]), ['256'], 'Test 91');
+test(basicCalculatorIV("[a + b] * [a - b] + [b + c] * [b - c]", ["a", "b", "c"], [1, 2, 3]), ['-8'], 'Test 92');
+test(basicCalculatorIV("[x * y + z] * [w * v + u] - [t * s + r] * [q * p + o]", ["x", "y", "z", "w", "v", "u", "t", "s", "r", "q", "p", "o"], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), ['-7800'], 'Test 93');
+test(basicCalculatorIV("x * [y + z] - y * [x + z] + z * [x + y]", ["x", "y", "z"], [1, 1, 1]), ['2'], 'Test 94');
+test(basicCalculatorIV("10 * [a + 5 * [b + c]] - 3 * [a - b]", ["a", "b", "c"], [1, 2, 3]), ['263'], 'Test 95');
+test(basicCalculatorIV("[x + y + z] * [x - y - z] + [x + 2 * y + 3 * z] * [x - 2 * y - 3 * z] + 15", ["x", "y", "z"], [1, 1, 1]), ['-12'], 'Test 96');
+test(basicCalculatorIV("3 * [a * b + b * c + c * a] - 2 * [a * a + b * b + c * c] + [a + b + c] * [a + b + c]", ["a", "b", "c"], [1, 1, 1]), ['12'], 'Test 97');
+test(basicCalculatorIV("2 * [x + 3 * [y + 4]] - 5 * [x - y]", ["x", "y"], [1, 2]), ['43'], 'Test 98');
+test(basicCalculatorIV("[a + b + c] * [a - b + c] * [a + b - c] * [a - b - c] + [d + e + f] * [d - e + f] * [d + e - f] * [d - e - f]", ["a", "b", "c", "d", "e", "f"], [1, 2, 3, 4, 5, 6]), ['-1575'], 'Test 99');
+test(basicCalculatorIV("[a + b] * [a - b] - [a * a - b * b] + [c + d] * [c - d]", ["a", "b", "c", "d"], [1, 2, 3, 4]), ['-7'], 'Test 100');
+test(basicCalculatorIV("[a + b] * [c + d] - [e + f] * [g + h]", ["a", "b", "c", "d", "e", "f", "g", "h"], [1, 2, 3, 4, 5, 6, 7, 8]), ['-144'], 'Test 101');
+test(basicCalculatorIV("[a + b + c + d] * [a - b + c - d] - [a - b - c + d] * [a + b - c - d] + 25", ["a", "b", "c", "d"], [1, 1, 1, 1]), ['25'], 'Test 102');
+test(basicCalculatorIV("[a + 3*b] * [c + 5*d] + [2*a - 4*b] * [6*c + 8*d] - [3*a + 6*b] * [9*c + 12*d]", ["a", "b", "c", "d"], [1, 1, 1, 1]), ['-193'], 'Test 103');
+test(basicCalculatorIV("[a + b + c + d + e] * [a - b + c - d + e] - [a - b - c + d - e] * [a + b - c - d - e] + 35", ["a", "b", "c", "d", "e"], [1, 1, 1, 1, 1]), ['39'], 'Test 104');
+test(basicCalculatorIV("[a + b] * [a + b] * [a + b] + [c + d] * [c + d] * [c + d]", ["a", "b", "c", "d"], [1, 1, 1, 1]), ['16'], 'Test 105');
+test(basicCalculatorIV("[x - 2*y] * [3*z - 4] + [5*x + 6*y] * [7*z - 8]", ["x", "y", "z"], [1, 2, 3]), ['206'], 'Test 106');
+test(basicCalculatorIV("[a + b + c + d] * [a - b + c - d] * [a + b - c - d] * [a - b - c + d]", ["a", "b", "c", "d"], [1, 2, 3, 4]), [], 'Test 107');
+test(basicCalculatorIV("[x + 2*y + 3*z] * [4*x + 5*y + 6*z]", ["x", "y", "z"], [1, 2, 3]), ['448'], 'Test 108');
+test(basicCalculatorIV("[[x + y] * [x - y]] * [[x + z] * [x - z]]", ["x", "y", "z"], [2, 3, 4]), ['60'], 'Test 109');
+test(basicCalculatorIV("3 * [x + 2 * y + 3 * z] - 2 * [x - y + z] + 4 * [x - 2 * y + 3 * z]", ["x", "y", "z"], [1, 2, 3]), ['62'], 'Test 110');
+test(basicCalculatorIV("[x + y + z] * [x + y + z] * [x + y + z]", ["x", "y", "z"], [1, 1, 1]), ['27'], 'Test 111');
+test(basicCalculatorIV("[[x + y] * [x - y] + [y + z] * [y - z] + [z + x] * [z - x]] * 2", ["x", "y", "z"], [1, 1, 1]), [], 'Test 112');
+test(basicCalculatorIV("[a + b] * [a - b] * [c + d] * [c - d]", ["a", "b", "c", "d"], [1, -1, 2, -2]), [], 'Test 113');
+test(basicCalculatorIV("[a + b + c] * [a + b + c] * [a + b + c] - 3 * [a + b] * [a + b] * [a + b] + 3 * [a + b] * [a + b] * [a + b] - [a + b] * [a + b] * [a + b]", ["a", "b", "c"], [1, 1, 1]), ['19'], 'Test 114');
+test(basicCalculatorIV("[x + 2*y + 3*z] * [4*x + 5*y + 6*z] - [7*x + 8*y + 9*z] * [10*x + 11*y + 12*z]", ["x", "y", "z"], [1, 2, 3]), ['-2952'], 'Test 115');
+test(basicCalculatorIV("[a + b] * [a + b] * [a + b] + [a + c] * [a + c] * [a + c] + [b + c] * [b + c] * [b + c]", ["a", "b", "c"], [1, 2, 3]), ['216'], 'Test 116');
+test(basicCalculatorIV("10 * [x + 2 * y] - 5 * [x - 3 * y]", ["x", "y"], [1, 2]), ['75'], 'Test 117');
+test(basicCalculatorIV("[a + b] * [a - b] + [a + b] * [a + b] - [a - b] * [a - b]", ["a", "b"], [1, 2]), ['5'], 'Test 118');
+test(basicCalculatorIV("[2*a + 3*b + 4*c] * [5*a + 6*b + 7*c] - [8*a + 9*b + 10*c] * [11*a + 12*b + 13*c]", ["a", "b", "c"], [1, -1, 2]), ['-384'], 'Test 119');
+test(basicCalculatorIV("[x + 3] * [x - 3] * [x + 3]", ["x"], [2]), ['-25'], 'Test 120');
+test(basicCalculatorIV("[[x + y] * [x - y]] * [[x + z] * [x - z]] + [x * x]", ["x", "y", "z"], [2, 3, 4]), ['64'], 'Test 121');
+test(basicCalculatorIV("[x + y + z + w] * [x - y - z - w] + [x + y - z + w] * [x - y + z - w]", ["x", "y", "z", "w"], [1, 2, 3, 4]), ['-88'], 'Test 122');
+test(basicCalculatorIV("[a + b] * [a - b] + [b + c] * [b - c] + [c + a] * [c - a]", ["a", "b", "c"], [1, 1, 1]), [], 'Test 123');
+test(basicCalculatorIV("[a + 2*b + 3*c] * [a - b + c] + 2 * [a + b + c] * [a - b + c]", ["a", "b", "c"], [1, 1, 1]), ['12'], 'Test 124');
+test(basicCalculatorIV("[x + 3] * [x - 3] * [x + 5] + 2 * [x + 1] * [x - 1]", ["x"], [2]), ['-29'], 'Test 125');
+test(basicCalculatorIV("[a + b + c] * [d + e + f] - [g + h + i] * [j + k + l] + 20", ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]), ['-682'], 'Test 126');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

@@ -1,0 +1,156 @@
+// Test: 2565. Subsequence With The Minimum Score
+// 130 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minimumScore } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n2565. Subsequence With The Minimum Score\n");
+
+test(minimumScore("abcd", "abcde"), 1, 'Test 1');
+test(minimumScore("hello", "world"), 5, 'Test 2');
+test(minimumScore("abcdefghij", "fihgjedcba"), 8, 'Test 3');
+test(minimumScore("abcde", "edcba"), 4, 'Test 4');
+test(minimumScore("aaaaa", "aa"), 0, 'Test 5');
+test(minimumScore("testcase", "ttccasse"), 3, 'Test 6');
+test(minimumScore("programming", "gnimmargorp"), 9, 'Test 7');
+test(minimumScore("abcd", "dbca"), 3, 'Test 8');
+test(minimumScore("xyz", "abc"), 3, 'Test 9');
+test(minimumScore("minimum", "imumin"), 2, 'Test 10');
+test(minimumScore("abcd", "dcba"), 3, 'Test 11');
+test(minimumScore("abcdefg", "xyz"), 3, 'Test 12');
+test(minimumScore("programming", "gaming"), 0, 'Test 13');
+test(minimumScore("abacaba", "bzaa"), 1, 'Test 14');
+test(minimumScore("cde", "xyz"), 3, 'Test 15');
+test(minimumScore("abcde", "ace"), 0, 'Test 16');
+test(minimumScore("hello", "olelh"), 4, 'Test 17');
+test(minimumScore("xyzxyzxyzxyzxyz", "zyzyzyzyzyzyzyzyzyz"), 9, 'Test 18');
+test(minimumScore("testcase", "tttttttt"), 6, 'Test 19');
+test(minimumScore("abcde", "abcdxyzef"), 5, 'Test 20');
+test(minimumScore("hello world", "worldhello"), 5, 'Test 21');
+test(minimumScore("abacabadabacaba", "zabacabadabacabaz"), 17, 'Test 22');
+test(minimumScore("abababab", "bababa"), 0, 'Test 23');
+test(minimumScore("aaaaaaaaaa", "aaaaaaaaaab"), 1, 'Test 24');
+test(minimumScore("abcdexyz", "zyxwvutsrqponmlkjihgfedcba"), 25, 'Test 25');
+test(minimumScore("aabbaabbaabb", "bbbb"), 0, 'Test 26');
+test(minimumScore("abacabadabacaba", "aaaaabaaa"), 0, 'Test 27');
+test(minimumScore("longstringwithmanypatterns", "stringwithpatternsstring"), 6, 'Test 28');
+test(minimumScore("thisisaverylongstringfortesting", "stringfortestingthisisaverylong"), 15, 'Test 29');
+test(minimumScore("abcdefghij", "bcdefghia"), 1, 'Test 30');
+test(minimumScore("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 84, 'Test 31');
+test(minimumScore("abcabcabcabc", "cccc"), 0, 'Test 32');
+test(minimumScore("mississippi", "pi"), 0, 'Test 33');
+test(minimumScore("hellotherehellotherehellotherehellothere", "herehellotherehellotherehellotherehellotherehello"), 14, 'Test 34');
+test(minimumScore("abracadabra", "acraabdbrac"), 6, 'Test 35');
+test(minimumScore("xyzxyzxyz", "zyxzyxzyx"), 5, 'Test 36');
+test(minimumScore("abcdabcdabcd", "dcbaabdcba"), 7, 'Test 37');
+test(minimumScore("sequence", "enqueseq"), 5, 'Test 38');
+test(minimumScore("abracadabra", "rac"), 0, 'Test 39');
+test(minimumScore("repeatedcharactersarehere", "tareeere"), 0, 'Test 40');
+test(minimumScore("aabbccddeeffgg", "fedcbazyxwvutsrqponmlkjihgfedcba"), 31, 'Test 41');
+test(minimumScore("abcdefghij", "abcdefghijabcdefghij"), 10, 'Test 42');
+test(minimumScore("bananaananabayananabananabananabanana", "nananananananananananananananananan"), 11, 'Test 43');
+test(minimumScore("abcde", "edcbaa"), 5, 'Test 44');
+test(minimumScore("longstringwithseveralcharacters", "characterswithseveralstringlong"), 21, 'Test 45');
+test(minimumScore("thisisaverylongstringwithmanysimilarcharacters", "similarcharacters"), 0, 'Test 46');
+test(minimumScore("hellohellohello", "ollhll"), 0, 'Test 47');
+test(minimumScore("longestsubstring", "strolng"), 2, 'Test 48');
+test(minimumScore("solvingproblems", "problemsolving"), 6, 'Test 49');
+test(minimumScore("banana", "bananabananabanana"), 12, 'Test 50');
+test(minimumScore("ababababababababababababababababa", "bababababababababababababababababa"), 1, 'Test 51');
+test(minimumScore("aabbccddeeffgghhii", "ihgfedcba"), 8, 'Test 52');
+test(minimumScore("abcdefghij", "ihgfedcbaj"), 8, 'Test 53');
+test(minimumScore("hellohellohello", "lllllooohehe"), 5, 'Test 54');
+test(minimumScore("aaaaaa", "bbbbbb"), 6, 'Test 55');
+test(minimumScore("aaaaaabbbbbbcccccc", "cccccccbaaaaa"), 7, 'Test 56');
+test(minimumScore("quickbrownfoxjumpsoverthelazydog", "dogzyxvutwrofsjpmnklobq"), 20, 'Test 57');
+test(minimumScore("aaaaaaaaaa", "aaaaaaaaa"), 0, 'Test 58');
+test(minimumScore("programmingisfun", "misnpfrmigong"), 9, 'Test 59');
+test(minimumScore("complexproblem", "problemcomplex"), 7, 'Test 60');
+test(minimumScore("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzzyyxxwwvvuuttssrrqppoonnmmllkkjjiihhhgggffeeedddccbbaa"), 54, 'Test 61');
+test(minimumScore("abracadabra", "raac"), 1, 'Test 62');
+test(minimumScore("findingthesolution", "solutionfinding"), 7, 'Test 63');
+test(minimumScore("abcdefghijabcdefghij", "hgfedcbajihgfedcbaj"), 16, 'Test 64');
+test(minimumScore("abcdefghijabcdefghijabcdefghij", "zyxwvutsrqponmlkjihgfedcba"), 23, 'Test 65');
+test(minimumScore("aaaaabbbbbccccc", "abcabcabcabc"), 8, 'Test 66');
+test(minimumScore("abcdabcdabcd", "ddddccbbbaaa"), 9, 'Test 67');
+test(minimumScore("racecar", "racecarracecar"), 7, 'Test 68');
+test(minimumScore("mississippi", "ississipisipismiss"), 9, 'Test 69');
+test(minimumScore("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzzzyyyyxxxwwvvuuttssrrqqppoonnmmllkkjjiihhggffeeddccbaaabbaa"), 59, 'Test 70');
+test(minimumScore("mississippi", "ppiisimiss"), 6, 'Test 71');
+test(minimumScore("samestring", "samestring"), 0, 'Test 72');
+test(minimumScore("abcdexyzabcdexyz", "zyxwvutzyxwvutzyxwvut"), 19, 'Test 73');
+test(minimumScore("abcde", "bcdea"), 1, 'Test 74');
+test(minimumScore("aabbccddeeff", "fedcba"), 5, 'Test 75');
+test(minimumScore("uniquecharacters", "charactersunique"), 6, 'Test 76');
+test(minimumScore("abcdefghijabcdefghij", "fihgjedcbafihgjedcbafihg"), 21, 'Test 77');
+test(minimumScore("abcdefghijklmnopqrstuvwxyz", "aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), 50, 'Test 78');
+test(minimumScore("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zyxwvutsrqponmlkjihgfedcba"), 25, 'Test 79');
+test(minimumScore("quickbrownfox", "brownfoxquick"), 5, 'Test 80');
+test(minimumScore("dynamicprogramming", "ymnpgmcratidnodpmg"), 13, 'Test 81');
+test(minimumScore("abababababab", "bababababa"), 0, 'Test 82');
+test(minimumScore("aaaaaabbbbbccccc", "ccccbbbaaaaa"), 7, 'Test 83');
+test(minimumScore("abacaxbadacabacaba", "bacabaa"), 0, 'Test 84');
+test(minimumScore("abcdefghij", "abcdefghijk"), 1, 'Test 85');
+test(minimumScore("longstringthatcontainscharactersrepeatedly", "characterscharacterscharacters"), 18, 'Test 86');
+test(minimumScore("abcdabcdabcdabcdabcdabcd", "dddddddddd"), 4, 'Test 87');
+test(minimumScore("thisisaverylongstring", "stringisaverylong"), 5, 'Test 88');
+test(minimumScore("mississippi", "issississississississsissississississsississississs"), 44, 'Test 89');
+test(minimumScore("qzxtqzxtqzxt", "xtzxtzxtzxtzxtzxtzxtzxtzxtzxtzxtzxtzxtzxtzxt"), 35, 'Test 90');
+test(minimumScore("abacabadabacaba", "bzaaazza"), 6, 'Test 91');
+test(minimumScore("repeatedcharacters", "eedaaeerereeeddperrrrttt"), 18, 'Test 92');
+test(minimumScore("pythonprogramming", "ptyhnonrpgmaminnorgm"), 14, 'Test 93');
+test(minimumScore("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzzyyxxwwvvuutssrrqqppoonnllkkjjiihhhgggffeeeddccbaab"), 50, 'Test 94');
+test(minimumScore("mississippi", "ppisissam"), 6, 'Test 95');
+test(minimumScore("thisisatest", "ttttt"), 2, 'Test 96');
+test(minimumScore("mississippi", "ssssii"), 0, 'Test 97');
+test(minimumScore("abcabcabcabcabcabc", "cccbbbbaaabbbcccbbbbaaabbb"), 19, 'Test 98');
+test(minimumScore("thisisalongstring", "thisstringislong"), 6, 'Test 99');
+test(minimumScore("xyzxyzxyzxyz", "zzzzyyyyxxxxyyyyzzzz"), 15, 'Test 100');
+test(minimumScore("thisisaverylongstring", "gnirtsylonlavraesiisthis"), 20, 'Test 101');
+test(minimumScore("abcdefghij", "aabbccddeeffgghhiijj"), 18, 'Test 102');
+test(minimumScore("optimization", "ttttiiiooonnnssss"), 15, 'Test 103');
+test(minimumScore("abacabadabacaba", "dabacabad"), 1, 'Test 104');
+test(minimumScore("abcdeabcdeabcde", "ecbedcab"), 4, 'Test 105');
+test(minimumScore("abacabadabacaba", "abadab"), 0, 'Test 106');
+test(minimumScore("abcdabcdabcd", "dddd"), 1, 'Test 107');
+test(minimumScore("hello", "hhheeelllllooooo"), 14, 'Test 108');
+test(minimumScore("thisisaverylongstring", "tsring"), 0, 'Test 109');
+test(minimumScore("abacabadabacaba", "aaabbbccc"), 3, 'Test 110');
+test(minimumScore("pythonprogramming", "notapysubsequence"), 15, 'Test 111');
+test(minimumScore("abacabadabacaba", "aaaaa"), 0, 'Test 112');
+test(minimumScore("mississippi", "ssissip"), 0, 'Test 113');
+test(minimumScore("abcdefghijabcdefghij", "jihgfedcbajihgfedcba"), 18, 'Test 114');
+test(minimumScore("abcdefabcdefabcdef", "fedcba"), 3, 'Test 115');
+test(minimumScore("abcdefg", "gfedcbaacdefg"), 7, 'Test 116');
+test(minimumScore("abcdabcdabcdabcdabcdabcdabcdabcdabcdabcd", "dcbaabcdabcdabcdabcdabcdabcdabcdabcdabcd"), 3, 'Test 117');
+test(minimumScore("mississippi", "msssssssssssss"), 9, 'Test 118');
+test(minimumScore("abababababababab", "babababababababa"), 1, 'Test 119');
+test(minimumScore("abacabadabacaba", "abacabacaba"), 0, 'Test 120');
+test(minimumScore("abcdefghijabcdefghijabcdefghijabcdefghij", "jihgfedcbajihgfedcbajihgfedcbajihgfedcba"), 36, 'Test 121');
+test(minimumScore("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba"), 25, 'Test 122');
+test(minimumScore("nestednestednested", "nns"), 0, 'Test 123');
+test(minimumScore("abacabadabacaba", "zzzzzzzzzzzzzzz"), 15, 'Test 124');
+test(minimumScore("aaaaabbbbbcccccdddddeeeee", "bbbbbeeecdddd"), 3, 'Test 125');
+test(minimumScore("mississippi", "ppisss"), 2, 'Test 126');
+test(minimumScore("aaaaaabbbbbbbccccccdddddeeeeefffff", "ffffeeeeeddccccbbbaaaa"), 18, 'Test 127');
+test(minimumScore("longwordhere", "helloworld"), 8, 'Test 128');
+test(minimumScore("aaaaaaa", "aaaaaaa"), 0, 'Test 129');
+test(minimumScore("abcdefghij", "abcdefghijxyz"), 3, 'Test 130');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

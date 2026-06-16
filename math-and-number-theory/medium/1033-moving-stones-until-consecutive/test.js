@@ -1,0 +1,156 @@
+// Test: 1033. Moving Stones Until Consecutive
+// 130 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { numMovesStones } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1033. Moving Stones Until Consecutive\n");
+
+test(numMovesStones(7, 8, 10), [1, 1], 'Test 1');
+test(numMovesStones(1, 100, 50), [2, 97], 'Test 2');
+test(numMovesStones(1, 3, 100), [1, 97], 'Test 3');
+test(numMovesStones(10, 12, 14), [1, 2], 'Test 4');
+test(numMovesStones(50, 51, 53), [1, 1], 'Test 5');
+test(numMovesStones(25, 27, 30), [1, 3], 'Test 6');
+test(numMovesStones(5, 6, 8), [1, 1], 'Test 7');
+test(numMovesStones(10, 9, 8), [0, 0], 'Test 8');
+test(numMovesStones(2, 5, 7), [1, 3], 'Test 9');
+test(numMovesStones(7, 1, 3), [1, 4], 'Test 10');
+test(numMovesStones(2, 8, 15), [2, 11], 'Test 11');
+test(numMovesStones(1, 2, 5), [1, 2], 'Test 12');
+test(numMovesStones(20, 25, 30), [2, 8], 'Test 13');
+test(numMovesStones(15, 17, 20), [1, 3], 'Test 14');
+test(numMovesStones(3, 5, 1), [1, 2], 'Test 15');
+test(numMovesStones(2, 7, 10), [2, 6], 'Test 16');
+test(numMovesStones(2, 6, 5), [1, 2], 'Test 17');
+test(numMovesStones(15, 13, 11), [1, 2], 'Test 18');
+test(numMovesStones(5, 10, 15), [2, 8], 'Test 19');
+test(numMovesStones(10, 20, 30), [2, 18], 'Test 20');
+test(numMovesStones(100, 1, 50), [2, 97], 'Test 21');
+test(numMovesStones(3, 6, 9), [2, 4], 'Test 22');
+test(numMovesStones(25, 28, 30), [1, 3], 'Test 23');
+test(numMovesStones(2, 3, 4), [0, 0], 'Test 24');
+test(numMovesStones(1, 3, 6), [1, 3], 'Test 25');
+test(numMovesStones(3, 4, 5), [0, 0], 'Test 26');
+test(numMovesStones(8, 13, 17), [2, 7], 'Test 27');
+test(numMovesStones(4, 3, 2), [0, 0], 'Test 28');
+test(numMovesStones(2, 18, 20), [1, 16], 'Test 29');
+test(numMovesStones(1, 10, 20), [2, 17], 'Test 30');
+test(numMovesStones(30, 35, 40), [2, 8], 'Test 31');
+test(numMovesStones(1, 5, 9), [2, 6], 'Test 32');
+test(numMovesStones(1, 50, 100), [2, 97], 'Test 33');
+test(numMovesStones(10, 12, 25), [1, 13], 'Test 34');
+test(numMovesStones(5, 8, 12), [2, 5], 'Test 35');
+test(numMovesStones(8, 11, 20), [2, 10], 'Test 36');
+test(numMovesStones(23, 24, 26), [1, 1], 'Test 37');
+test(numMovesStones(1, 3, 7), [1, 4], 'Test 38');
+test(numMovesStones(7, 10, 13), [2, 4], 'Test 39');
+test(numMovesStones(3, 11, 20), [2, 15], 'Test 40');
+test(numMovesStones(8, 12, 17), [2, 7], 'Test 41');
+test(numMovesStones(13, 16, 20), [2, 5], 'Test 42');
+test(numMovesStones(20, 22, 26), [1, 4], 'Test 43');
+test(numMovesStones(1, 3, 8), [1, 5], 'Test 44');
+test(numMovesStones(7, 10, 14), [2, 5], 'Test 45');
+test(numMovesStones(98, 99, 100), [0, 0], 'Test 46');
+test(numMovesStones(5, 15, 25), [2, 18], 'Test 47');
+test(numMovesStones(35, 40, 45), [2, 8], 'Test 48');
+test(numMovesStones(2, 5, 8), [2, 4], 'Test 49');
+test(numMovesStones(2, 6, 9), [2, 5], 'Test 50');
+test(numMovesStones(5, 9, 14), [2, 7], 'Test 51');
+test(numMovesStones(6, 10, 12), [1, 4], 'Test 52');
+test(numMovesStones(8, 10, 15), [1, 5], 'Test 53');
+test(numMovesStones(6, 10, 15), [2, 7], 'Test 54');
+test(numMovesStones(30, 32, 34), [1, 2], 'Test 55');
+test(numMovesStones(3, 6, 10), [2, 5], 'Test 56');
+test(numMovesStones(1, 4, 7), [2, 4], 'Test 57');
+test(numMovesStones(2, 9, 12), [2, 8], 'Test 58');
+test(numMovesStones(15, 20, 25), [2, 8], 'Test 59');
+test(numMovesStones(8, 13, 18), [2, 8], 'Test 60');
+test(numMovesStones(23, 26, 29), [2, 4], 'Test 61');
+test(numMovesStones(40, 41, 43), [1, 1], 'Test 62');
+test(numMovesStones(6, 9, 12), [2, 4], 'Test 63');
+test(numMovesStones(2, 3, 6), [1, 2], 'Test 64');
+test(numMovesStones(1, 4, 100), [2, 97], 'Test 65');
+test(numMovesStones(6, 7, 12), [1, 4], 'Test 66');
+test(numMovesStones(5, 10, 14), [2, 7], 'Test 67');
+test(numMovesStones(5, 11, 14), [2, 7], 'Test 68');
+test(numMovesStones(2, 5, 10), [2, 6], 'Test 69');
+test(numMovesStones(15, 25, 35), [2, 18], 'Test 70');
+test(numMovesStones(10, 15, 25), [2, 13], 'Test 71');
+test(numMovesStones(20, 21, 26), [1, 4], 'Test 72');
+test(numMovesStones(5, 8, 11), [2, 4], 'Test 73');
+test(numMovesStones(2, 8, 14), [2, 10], 'Test 74');
+test(numMovesStones(5, 7, 14), [1, 7], 'Test 75');
+test(numMovesStones(25, 30, 40), [2, 13], 'Test 76');
+test(numMovesStones(1, 6, 11), [2, 8], 'Test 77');
+test(numMovesStones(33, 35, 40), [1, 5], 'Test 78');
+test(numMovesStones(1, 3, 10), [1, 7], 'Test 79');
+test(numMovesStones(2, 4, 8), [1, 4], 'Test 80');
+test(numMovesStones(2, 7, 11), [2, 7], 'Test 81');
+test(numMovesStones(10, 13, 16), [2, 4], 'Test 82');
+test(numMovesStones(15, 20, 40), [2, 23], 'Test 83');
+test(numMovesStones(5, 6, 9), [1, 2], 'Test 84');
+test(numMovesStones(21, 24, 28), [2, 5], 'Test 85');
+test(numMovesStones(90, 95, 100), [2, 8], 'Test 86');
+test(numMovesStones(10, 20, 25), [2, 13], 'Test 87');
+test(numMovesStones(3, 7, 11), [2, 6], 'Test 88');
+test(numMovesStones(3, 8, 10), [1, 5], 'Test 89');
+test(numMovesStones(10, 11, 14), [1, 2], 'Test 90');
+test(numMovesStones(12, 14, 20), [1, 6], 'Test 91');
+test(numMovesStones(30, 31, 34), [1, 2], 'Test 92');
+test(numMovesStones(5, 11, 17), [2, 10], 'Test 93');
+test(numMovesStones(100, 99, 97), [1, 1], 'Test 94');
+test(numMovesStones(3, 5, 10), [1, 5], 'Test 95');
+test(numMovesStones(4, 7, 11), [2, 5], 'Test 96');
+test(numMovesStones(1, 2, 4), [1, 1], 'Test 97');
+test(numMovesStones(2, 5, 9), [2, 5], 'Test 98');
+test(numMovesStones(5, 7, 10), [1, 3], 'Test 99');
+test(numMovesStones(3, 8, 13), [2, 8], 'Test 100');
+test(numMovesStones(15, 17, 25), [1, 8], 'Test 101');
+test(numMovesStones(6, 9, 18), [2, 10], 'Test 102');
+test(numMovesStones(7, 8, 14), [1, 5], 'Test 103');
+test(numMovesStones(2, 6, 8), [1, 4], 'Test 104');
+test(numMovesStones(17, 20, 23), [2, 4], 'Test 105');
+test(numMovesStones(30, 32, 40), [1, 8], 'Test 106');
+test(numMovesStones(8, 10, 13), [1, 3], 'Test 107');
+test(numMovesStones(1, 4, 10), [2, 7], 'Test 108');
+test(numMovesStones(7, 8, 15), [1, 6], 'Test 109');
+test(numMovesStones(7, 14, 21), [2, 12], 'Test 110');
+test(numMovesStones(10, 15, 20), [2, 8], 'Test 111');
+test(numMovesStones(4, 6, 9), [1, 3], 'Test 112');
+test(numMovesStones(20, 22, 30), [1, 8], 'Test 113');
+test(numMovesStones(10, 14, 17), [2, 5], 'Test 114');
+test(numMovesStones(8, 12, 22), [2, 12], 'Test 115');
+test(numMovesStones(7, 11, 15), [2, 6], 'Test 116');
+test(numMovesStones(8, 15, 3), [2, 10], 'Test 117');
+test(numMovesStones(2, 8, 9), [1, 5], 'Test 118');
+test(numMovesStones(45, 50, 55), [2, 8], 'Test 119');
+test(numMovesStones(3, 6, 8), [1, 3], 'Test 120');
+test(numMovesStones(6, 9, 15), [2, 7], 'Test 121');
+test(numMovesStones(1, 5, 7), [1, 4], 'Test 122');
+test(numMovesStones(1, 2, 3), [0, 0], 'Test 123');
+test(numMovesStones(50, 52, 55), [1, 3], 'Test 124');
+test(numMovesStones(7, 11, 25), [2, 16], 'Test 125');
+test(numMovesStones(9, 11, 13), [1, 2], 'Test 126');
+test(numMovesStones(25, 30, 50), [2, 23], 'Test 127');
+test(numMovesStones(10, 14, 18), [2, 6], 'Test 128');
+test(numMovesStones(2, 99, 100), [1, 96], 'Test 129');
+test(numMovesStones(23, 27, 31), [2, 6], 'Test 130');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

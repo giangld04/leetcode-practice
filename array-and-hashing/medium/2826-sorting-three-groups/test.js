@@ -1,0 +1,157 @@
+// Test: 2826. Sorting Three Groups
+// 131 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minimumOperations } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n2826. Sorting Three Groups\n");
+
+test(minimumOperations([1,3,3,2,2,1]), 3, 'Test 1');
+test(minimumOperations([3,3,3,2,2,2,1,1,1]), 6, 'Test 2');
+test(minimumOperations([1,2,3,1,2,3]), 2, 'Test 3');
+test(minimumOperations([1,1,1]), 0, 'Test 4');
+test(minimumOperations([3,3,3,2,2,1,1]), 4, 'Test 5');
+test(minimumOperations([1,2,2,1,3]), 1, 'Test 6');
+test(minimumOperations([1,1,2,2,3,3]), 0, 'Test 7');
+test(minimumOperations([1,2,3,3,3,2,1]), 2, 'Test 8');
+test(minimumOperations([1,1,1,2,2,3]), 0, 'Test 9');
+test(minimumOperations([1,3,2,1,3,3]), 2, 'Test 10');
+test(minimumOperations([1,2,2,2,2,3,3,3]), 0, 'Test 11');
+test(minimumOperations([2,1,3,2,1]), 3, 'Test 12');
+test(minimumOperations([3,2,1,1,1]), 2, 'Test 13');
+test(minimumOperations([1,2,3,1,2,3,1,2,3]), 4, 'Test 14');
+test(minimumOperations([2,1,2,1,2,1,2]), 3, 'Test 15');
+test(minimumOperations([2,2,2,2,3,3]), 0, 'Test 16');
+test(minimumOperations([3,1,2,3,1,2]), 3, 'Test 17');
+test(minimumOperations([1,1,1,1,1]), 0, 'Test 18');
+test(minimumOperations([3,3,2,2,1]), 3, 'Test 19');
+test(minimumOperations([2,2,1,1,3,3]), 2, 'Test 20');
+test(minimumOperations([3,2,1]), 2, 'Test 21');
+test(minimumOperations([3,2,1,2,1]), 3, 'Test 22');
+test(minimumOperations([3,3,3]), 0, 'Test 23');
+test(minimumOperations([1,2,3,3,3,2,2,1,1,1]), 5, 'Test 24');
+test(minimumOperations([1,2,3]), 0, 'Test 25');
+test(minimumOperations([1,2,3,3,3]), 0, 'Test 26');
+test(minimumOperations([3,3,3,3,3]), 0, 'Test 27');
+test(minimumOperations([1,1,1,2,2,2,3,3,3]), 0, 'Test 28');
+test(minimumOperations([1,1,1,2,2,3,3]), 0, 'Test 29');
+test(minimumOperations([2,3,1,2,3,1,2,3]), 4, 'Test 30');
+test(minimumOperations([3,1,2,3,1,2,3,1]), 4, 'Test 31');
+test(minimumOperations([3,3,2,2,2,1,1,1,3,3,3,2,2,1,1]), 9, 'Test 32');
+test(minimumOperations([3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,1]), 2, 'Test 33');
+test(minimumOperations([2,3,1,2,3,1,2,3,1,2,3,1,2,3]), 8, 'Test 34');
+test(minimumOperations([1,1,2,2,3,3,3,2,2,1,1]), 4, 'Test 35');
+test(minimumOperations([3,3,3,2,2,2,1,1,1,3,3,3,2,2,2,1,1,1,3,3,3]), 12, 'Test 36');
+test(minimumOperations([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]), 12, 'Test 37');
+test(minimumOperations([3,2,2,2,2,2,2,2,2,2,2,1,1,1,1]), 5, 'Test 38');
+test(minimumOperations([1,2,1,2,1,2,1,2,1,2,1,2,1,2,1]), 7, 'Test 39');
+test(minimumOperations([2,2,3,1,1,2,3,3,2,1]), 5, 'Test 40');
+test(minimumOperations([3,2,1,2,3,1,2,3]), 4, 'Test 41');
+test(minimumOperations([1,3,2,2,3,1,3,2,1,3,2]), 5, 'Test 42');
+test(minimumOperations([2,3,2,1,2,3,2,1,2]), 4, 'Test 43');
+test(minimumOperations([2,2,2,1,1,1,3,3,3,3,3,3]), 3, 'Test 44');
+test(minimumOperations([1,1,2,2,3,3,1,1,2,2,3,3]), 4, 'Test 45');
+test(minimumOperations([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]), 0, 'Test 46');
+test(minimumOperations([1,1,1,1,1,1,1,1,1,1,3,3,3,3,3,3]), 0, 'Test 47');
+test(minimumOperations([1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3]), 0, 'Test 48');
+test(minimumOperations([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]), 0, 'Test 49');
+test(minimumOperations([1,2,3,1,2,3,1,2,3,1,2,3]), 6, 'Test 50');
+test(minimumOperations([3,3,2,1,1,1,2,3]), 3, 'Test 51');
+test(minimumOperations([2,1,1,2,2,3,3,3,1,1,2,2,3]), 5, 'Test 52');
+test(minimumOperations([3,3,3,1,1,1,2,2,2]), 3, 'Test 53');
+test(minimumOperations([3,3,2,2,1,1,3,3,2,2,1,1]), 8, 'Test 54');
+test(minimumOperations([2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1]), 6, 'Test 55');
+test(minimumOperations([3,3,3,3,3,3,3,2,2,2,2,2,2,2,1,1,1,1,1,1]), 13, 'Test 56');
+test(minimumOperations([3,3,2,2,2,1,1,1,2,2,2,3,3,3,2,2,2,1,1,1]), 11, 'Test 57');
+test(minimumOperations([1,1,1,1,1,1,1,1,1,1,2,2,2,3,3,3,3]), 0, 'Test 58');
+test(minimumOperations([3,1,2,3,1,2,3]), 3, 'Test 59');
+test(minimumOperations([1,2,1,3,1,2,1,3,1,2,1,3,1,2,1,3,1,2,1,3]), 9, 'Test 60');
+test(minimumOperations([1,1,2,2,3,3,1,1,2,2,3,3,1,1,2,2]), 8, 'Test 61');
+test(minimumOperations([1,3,1,2,3,1,2,3,1]), 4, 'Test 62');
+test(minimumOperations([2,1,2,1,2,1,2,1,2,1,2,1]), 6, 'Test 63');
+test(minimumOperations([3,1,1,1,1,1,2,2,2,2,2,3,3]), 1, 'Test 64');
+test(minimumOperations([3,2,1,3,2,1,3,2,1,3,2,1,3,2,1]), 10, 'Test 65');
+test(minimumOperations([2,3,1,2,3,1,2,3,1,2,3,1]), 7, 'Test 66');
+test(minimumOperations([1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3]), 7, 'Test 67');
+test(minimumOperations([3,1,2,2,1,3,3,2,1,1,3,3,2,2,1,1]), 9, 'Test 68');
+test(minimumOperations([3,2,2,1,3,2,1,3,2,1,3,2,1,3,2,1]), 10, 'Test 69');
+test(minimumOperations([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]), 20, 'Test 70');
+test(minimumOperations([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]), 8, 'Test 71');
+test(minimumOperations([2,2,2,2,2,1,1,1,1,1]), 5, 'Test 72');
+test(minimumOperations([1,1,2,2,2,1,1,3,3,3,1,1]), 4, 'Test 73');
+test(minimumOperations([1,2,1,2,1,2,1,2,1,2]), 4, 'Test 74');
+test(minimumOperations([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]), 0, 'Test 75');
+test(minimumOperations([2,1,1,3,2,3,1,2,3]), 4, 'Test 76');
+test(minimumOperations([1,1,1,1,2,2,2,2,3,3,3,3]), 0, 'Test 77');
+test(minimumOperations([3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1]), 12, 'Test 78');
+test(minimumOperations([3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]), 1, 'Test 79');
+test(minimumOperations([3,2,1,2,1,3,1]), 4, 'Test 80');
+test(minimumOperations([1,2,3,2,1,2,3,2,1,2,3,2,1,2,3,2,1,2,3]), 8, 'Test 81');
+test(minimumOperations([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]), 0, 'Test 82');
+test(minimumOperations([3,1,3,2,3,1,2,1,3]), 5, 'Test 83');
+test(minimumOperations([2,3,1,3,2,1,2,3,1,3,2,1,2,3,1,3,2,1,2,3,1,3,2,1,2,3,1,3,2,1,2,3,1]), 21, 'Test 84');
+test(minimumOperations([1,3,3,3,2,2,1,1]), 4, 'Test 85');
+test(minimumOperations([3,3,3,1,2,2,1,1]), 5, 'Test 86');
+test(minimumOperations([2,3,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3]), 11, 'Test 87');
+test(minimumOperations([3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]), 11, 'Test 88');
+test(minimumOperations([1,2,3,1,2,3,1,2,3,1]), 5, 'Test 89');
+test(minimumOperations([3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2]), 21, 'Test 90');
+test(minimumOperations([1,1,2,2,3,3,1,1,2,2]), 4, 'Test 91');
+test(minimumOperations([3,3,3,3,2,2,2,1,1,1]), 6, 'Test 92');
+test(minimumOperations([3,2,1,3,2,1,3]), 4, 'Test 93');
+test(minimumOperations([2,2,1,1,3,3,2,2,3,3]), 4, 'Test 94');
+test(minimumOperations([1,3,3,1,2,2,1,3,3,2]), 4, 'Test 95');
+test(minimumOperations([2,1,2,1,2,1,2,1,2,1]), 5, 'Test 96');
+test(minimumOperations([2,2,3,1,1,1,2,2,3,3,1,1,2,2,3,3,1,1]), 9, 'Test 97');
+test(minimumOperations([2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3]), 19, 'Test 98');
+test(minimumOperations([2,3,1,3,2,1,2,3,1,3,2,1]), 7, 'Test 99');
+test(minimumOperations([1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3]), 12, 'Test 100');
+test(minimumOperations([1,3,3,3,2,2,1,1,1,1,1,2,3]), 5, 'Test 101');
+test(minimumOperations([3,3,3,2,2,1,1,1]), 5, 'Test 102');
+test(minimumOperations([1,2,1,2,1,2,1,2,1,2,1,2,1,2]), 6, 'Test 103');
+test(minimumOperations([1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1]), 12, 'Test 104');
+test(minimumOperations([3,1,2,3,1,2,3,1,2,3,1,2]), 7, 'Test 105');
+test(minimumOperations([3,3,3,3,3,3,1,1,1,1,1,1,2,2,2,2,2,2]), 6, 'Test 106');
+test(minimumOperations([2,2,2,1,1,1,3,3,3,2,2,2]), 6, 'Test 107');
+test(minimumOperations([1,1,2,2,2,3,3,3,3,3,3]), 0, 'Test 108');
+test(minimumOperations([1,2,2,2,1,1,2,2,2,1,1,2,2,2]), 4, 'Test 109');
+test(minimumOperations([2,1,2,1,3,2,1,2,3,3]), 4, 'Test 110');
+test(minimumOperations([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]), 0, 'Test 111');
+test(minimumOperations([1,1,2,2,3,3,3,3,3,3,3,3,3,3,3]), 0, 'Test 112');
+test(minimumOperations([2,3,1,2,3,1,2,3,1,2,3]), 6, 'Test 113');
+test(minimumOperations([2,2,3,1,2,3,1,2]), 4, 'Test 114');
+test(minimumOperations([3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2]), 13, 'Test 115');
+test(minimumOperations([1,3,1,3,1,3,1,3,1,3]), 4, 'Test 116');
+test(minimumOperations([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]), 0, 'Test 117');
+test(minimumOperations([3,2,1,3,2,1,3,2,1,3,2,1]), 8, 'Test 118');
+test(minimumOperations([2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3]), 10, 'Test 119');
+test(minimumOperations([3,2,2,1,1,1,2,3,3,3]), 3, 'Test 120');
+test(minimumOperations([3,3,3,3,2,2,2,2,2,1,1,1,1,1,1]), 9, 'Test 121');
+test(minimumOperations([1,1,2,2,3,3,1,1,2,2,3,3,1,1,2,2,3,3]), 8, 'Test 122');
+test(minimumOperations([1,3,1,3,1,3,1,3,1,3,1,3]), 5, 'Test 123');
+test(minimumOperations([1,1,1,3,3,3,2,2,2,1,1,1,3,3,3]), 6, 'Test 124');
+test(minimumOperations([1,3,3,3,2,2,1,1,3]), 4, 'Test 125');
+test(minimumOperations([1,3,1,3,1,3,1,3,1,3,1,3,1,3]), 6, 'Test 126');
+test(minimumOperations([2,3,1,1,2,3,1,2,3,1,2,3,1,2,3,1]), 9, 'Test 127');
+test(minimumOperations([2,3,3,2,3,2,3,2,3,2,3,2,3,2]), 6, 'Test 128');
+test(minimumOperations([3,2,1,3,2,1,3,2,1]), 6, 'Test 129');
+test(minimumOperations([1,2,3,2,3,2,3,2,3,2,3,2,3,2,3]), 6, 'Test 130');
+test(minimumOperations([2,3,1,3,2,1,2,3,1]), 5, 'Test 131');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

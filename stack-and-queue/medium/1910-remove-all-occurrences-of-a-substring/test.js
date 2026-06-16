@@ -1,0 +1,156 @@
+// Test: 1910. Remove All Occurrences Of A Substring
+// 130 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { removeOccurrences } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1910. Remove All Occurrences Of A Substring\n");
+
+test(removeOccurrences("abcd", "efg"), abcd, 'Test 1');
+test(removeOccurrences("zzzz", "zz"), , 'Test 2');
+test(removeOccurrences("abcdabcdabcd", "abcd"), , 'Test 3');
+test(removeOccurrences("abcdefg", "xyz"), abcdefg, 'Test 4');
+test(removeOccurrences("abcde", "f"), abcde, 'Test 5');
+test(removeOccurrences("daabcbaabcbc", "abc"), dab, 'Test 6');
+test(removeOccurrences("abcabcabc", "bca"), abc, 'Test 7');
+test(removeOccurrences("axxxxyyyyb", "xy"), ab, 'Test 8');
+test(removeOccurrences("hello", "ll"), heo, 'Test 9');
+test(removeOccurrences("abcabcabc", "abc"), , 'Test 10');
+test(removeOccurrences("aaaa", "aa"), , 'Test 11');
+test(removeOccurrences("mississippi", "issi"), mssippi, 'Test 12');
+test(removeOccurrences("abababab", "aba"), bb, 'Test 13');
+test(removeOccurrences("aaaaaaa", "aa"), a, 'Test 14');
+test(removeOccurrences("zzzzzzz", "zzz"), z, 'Test 15');
+test(removeOccurrences("banana", "na"), ba, 'Test 16');
+test(removeOccurrences("abcabcabc", "cab"), abc, 'Test 17');
+test(removeOccurrences("aabababa", "aba"), ba, 'Test 18');
+test(removeOccurrences("abababababababababab", "abab"), , 'Test 19');
+test(removeOccurrences("qwertyuiopqwertyuiopqwertyuiop", "erty"), qwuiopqwuiopqwuiop, 'Test 20');
+test(removeOccurrences("hellohellohellohellohello", "hello"), , 'Test 21');
+test(removeOccurrences("abcdefghij", "xyz"), abcdefghij, 'Test 22');
+test(removeOccurrences("abcdabcdabcdabcd", "dabc"), abcd, 'Test 23');
+test(removeOccurrences("abcdefghijklmnopqrstuvwxyz", "xyz"), abcdefghijklmnopqrstuvw, 'Test 24');
+test(removeOccurrences("aabbccddeeff", "bbcc"), aaddeeff, 'Test 25');
+test(removeOccurrences("exampleexampleexampleexample", "exampleexample"), , 'Test 26');
+test(removeOccurrences("aaaaaaabbbbbbbcccccc", "abc"), aaaaaaabbbbbbbcccccc, 'Test 27');
+test(removeOccurrences("aaaaabbbbbcccc", "ab"), cccc, 'Test 28');
+test(removeOccurrences("thisisaverylongstringthatwillbeusedtocheckthefunctionality", "is"), thaverylongstringthatwillbeusedtocheckthefunctionality, 'Test 29');
+test(removeOccurrences("yyyyyyyyyyyyyyyyyyyy", "yyyy"), , 'Test 30');
+test(removeOccurrences("lkjhgfedcba", "fe"), lkjhgdcba, 'Test 31');
+test(removeOccurrences("hellohellohello", "lohe"), hellllo, 'Test 32');
+test(removeOccurrences("abcdeabcdeabcdeabcde", "abc"), dededede, 'Test 33');
+test(removeOccurrences("hellohellohellohello", "elloh"), hello, 'Test 34');
+test(removeOccurrences("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abc"), aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz, 'Test 35');
+test(removeOccurrences("aaaaaaaaaabcdeeeeee", "aaa"), abcdeeeeee, 'Test 36');
+test(removeOccurrences("qwertyuiopasdfghjklzxcvbnmqwertyuiop", "qwerty"), uiopasdfghjklzxcvbnmuiop, 'Test 37');
+test(removeOccurrences("zzzzzzzzzz", "zz"), , 'Test 38');
+test(removeOccurrences("stackoverflow", "flow"), stackover, 'Test 39');
+test(removeOccurrences("aaaaaaabaaaaa", "aaaa"), aaaba, 'Test 40');
+test(removeOccurrences("abcdefghijabcdefghijabcdefghij", "ghij"), abcdefabcdefabcdef, 'Test 41');
+test(removeOccurrences("acabacabacabacabacab", "acab"), , 'Test 42');
+test(removeOccurrences("abcdefghijabcdefghijabcdefghij", "abcdefghij"), , 'Test 43');
+test(removeOccurrences("aaaaaaaaaabbbbbbbbbbcccccc", "abccba"), aaaaaaaaaabbbbbbbbbbcccccc, 'Test 44');
+test(removeOccurrences("abcdefghij", "jihgfedcba"), abcdefghij, 'Test 45');
+test(removeOccurrences("qwertyuiopqwertyuiop", "rty"), qweuiopqweuiop, 'Test 46');
+test(removeOccurrences("ababababab", "aba"), bbab, 'Test 47');
+test(removeOccurrences("aabbccddeeffgg", "bbcc"), aaddeeffgg, 'Test 48');
+test(removeOccurrences("racecaracecaracecar", "aceca"), rrrr, 'Test 49');
+test(removeOccurrences("xylophoneisfunxylophoneisfunxylophoneisfun", "xylophoneis"), funfunfun, 'Test 50');
+test(removeOccurrences("abacabadabacaba", "abaca"), badba, 'Test 51');
+test(removeOccurrences("supercalifragilisticexpialidocious", "cious"), supercalifragilisticexpialido, 'Test 52');
+test(removeOccurrences("abababababababababab", "bab"), aaaaa, 'Test 53');
+test(removeOccurrences("abcabcabcabcabcabcabcabcabcabc", "abcabc"), , 'Test 54');
+test(removeOccurrences("abcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdef", "defabc"), abcdef, 'Test 55');
+test(removeOccurrences("abracadabra", "abra"), cad, 'Test 56');
+test(removeOccurrences("aaabaaaabaaa", "aab"), aaaaaa, 'Test 57');
+test(removeOccurrences("longstringwithsomerepeatedpatternpattern", "pattern"), longstringwithsomerepeated, 'Test 58');
+test(removeOccurrences("programmingprogrammingprogramming", "gram"), promingpromingproming, 'Test 59');
+test(removeOccurrences("abcabcabcabcabcabcabcabc", "abcabc"), , 'Test 60');
+test(removeOccurrences("aaaaabaaaaabaaaaab", "ba"), aaaaaaaaaaaaab, 'Test 61');
+test(removeOccurrences("hellohellohellohellohellohello", "ll"), heoheoheoheoheoheo, 'Test 62');
+test(removeOccurrences("qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm", "qwerty"), uiopasdfghjklzxcvbnmuiopasdfghjklzxcvbnm, 'Test 63');
+test(removeOccurrences("xyzxyzxyzxyzxyzxyzxyzxyz", "xyzxyz"), , 'Test 64');
+test(removeOccurrences("bananaapplebanana", "an"), baappleba, 'Test 65');
+test(removeOccurrences("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "mnop"), aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz, 'Test 66');
+test(removeOccurrences("xyxyxyxyxy", "xyx"), yyxy, 'Test 67');
+test(removeOccurrences("hellohellohellohello", "llohe"), hello, 'Test 68');
+test(removeOccurrences("aaaaabbbbbcccccd", "abc"), aaaaabbbbbcccccd, 'Test 69');
+test(removeOccurrences("abcdabcdabcd", "cdab"), abcd, 'Test 70');
+test(removeOccurrences("xyzxyzxyzxyz", "xyz"), , 'Test 71');
+test(removeOccurrences("abcdefghijklmnopqrstuvwxyz", "nopqr"), abcdefghijklmstuvwxyz, 'Test 72');
+test(removeOccurrences("xyzyxzyxzyxzyxzyxzyx", "zyx"), xy, 'Test 73');
+test(removeOccurrences("zzzzzzzzzz", "zzz"), z, 'Test 74');
+test(removeOccurrences("abcdefgabcdefgabcdefg", "efgabc"), abcdddefg, 'Test 75');
+test(removeOccurrences("ababababab", "abab"), ab, 'Test 76');
+test(removeOccurrences("xxxxxxxxxxxxxxxxxxxx", "xxx"), xx, 'Test 77');
+test(removeOccurrences("pneumonoultramicroscopicsilicovolcanoconiosis", "micro"), pneumonoultrascopicsilicovolcanoconiosis, 'Test 78');
+test(removeOccurrences("abcdefgabcdefg", "def"), abcgabcg, 'Test 79');
+test(removeOccurrences("aabbccddeeaabbccddeeaabbccddeeaabbccdd", "abcd"), aabbccddeeaabbccddeeaabbccddeeaabbccdd, 'Test 80');
+test(removeOccurrences("abacabadabacabadabacaba", "abad"), abacabacabacaba, 'Test 81');
+test(removeOccurrences("qwertyuiopasdfghjklzxcvbnmqwertyuiop", "erty"), qwuiopasdfghjklzxcvbnmqwuiop, 'Test 82');
+test(removeOccurrences("abcdabcdeabcdabcdeabcd", "bcde"), abcdaabcdaabcd, 'Test 83');
+test(removeOccurrences("abcdabcdabcdabcd", "abcd"), , 'Test 84');
+test(removeOccurrences("ababababababababababababababababababababababababababababababababab", "abab"), ab, 'Test 85');
+test(removeOccurrences("abcdabcdabcdabcd", "abcdabcd"), , 'Test 86');
+test(removeOccurrences("zyxwvutsrqponmlkjihgfedcba", "zyx"), wvutsrqponmlkjihgfedcba, 'Test 87');
+test(removeOccurrences("qwertyuiopasdfghjklzxcvbnmqwerty", "erty"), qwuiopasdfghjklzxcvbnmqw, 'Test 88');
+test(removeOccurrences("noonnoonnoonnoon", "noon"), , 'Test 89');
+test(removeOccurrences("oneonetwoonethreeonefouronefiveonesixone", "oneone"), twoonethreeonefouronefiveonesixone, 'Test 90');
+test(removeOccurrences("12345678901234567890", "345"), 12678901267890, 'Test 91');
+test(removeOccurrences("abcdefghijklmnopqrstuvwxyz", "def"), abcghijklmnopqrstuvwxyz, 'Test 92');
+test(removeOccurrences("thisisaverylongstringwithrepeatedpatterns", "pattern"), thisisaverylongstringwithrepeateds, 'Test 93');
+test(removeOccurrences("qwertyuiopasdfghjklzxcvbnm", "mnop"), qwertyuiopasdfghjklzxcvbnm, 'Test 94');
+test(removeOccurrences("abcdefghijabcdefghij", "cdefg"), abhijabhij, 'Test 95');
+test(removeOccurrences("aaaaaaaaaaaabbbbbaaaaaaaaaaabbbbbaaaaaaaaaaabbbbbaaaaaaaaaaabbbbb", "aaaabbbb"), aaaaaaaabaaaaaaabaaaaaaabaaaaaaab, 'Test 96');
+test(removeOccurrences("abcdefghabcdefghabcdefgh", "efgh"), abcdabcdabcd, 'Test 97');
+test(removeOccurrences("thisisaverylongstringwithrepeatedpattern", "pattern"), thisisaverylongstringwithrepeated, 'Test 98');
+test(removeOccurrences("abababababababab", "abab"), , 'Test 99');
+test(removeOccurrences("abcdeabcdeabcdeabcde", "abcde"), , 'Test 100');
+test(removeOccurrences("abababababababababab", "ababa"), bbbab, 'Test 101');
+test(removeOccurrences("abcdeabcdeabcde", "bcde"), aaa, 'Test 102');
+test(removeOccurrences("abcdefghij", "gh"), abcdefij, 'Test 103');
+test(removeOccurrences("aabbccddeeff", "abc"), aabbccddeeff, 'Test 104');
+test(removeOccurrences("xyxxyxyxyx", "xyx"), y, 'Test 105');
+test(removeOccurrences("aaaaaa", "aa"), , 'Test 106');
+test(removeOccurrences("abcdefabcdef", "defabc"), abcdef, 'Test 107');
+test(removeOccurrences("zzzzzzzz", "zz"), , 'Test 108');
+test(removeOccurrences("bananaanananasanananananana", "ana"), bnnasnnna, 'Test 109');
+test(removeOccurrences("abcabcabcabcabcabc", "abcabc"), , 'Test 110');
+test(removeOccurrences("aaaaaa", "a"), , 'Test 111');
+test(removeOccurrences("abcdefghij", "efg"), abcdhij, 'Test 112');
+test(removeOccurrences("onetwothreefourfivesixseveneightnineseven", "seven"), onetwothreefourfivesixeightnine, 'Test 113');
+test(removeOccurrences("abcabcabcabcabcabc", "ab"), cccccc, 'Test 114');
+test(removeOccurrences("mississippi", "iss"), mippi, 'Test 115');
+test(removeOccurrences("aaaabbbbcccc", "bbcc"), aaaa, 'Test 116');
+test(removeOccurrences("abracadabraabracadabra", "bracad"), aabraaabra, 'Test 117');
+test(removeOccurrences("abcdabcdabcdabcdabcdabcdabcdabcdabcdabcd", "abcdabcd"), , 'Test 118');
+test(removeOccurrences("abababababababab", "aba"), bbbb, 'Test 119');
+test(removeOccurrences("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "zzzz"), zz, 'Test 120');
+test(removeOccurrences("xyzxyzxyzxyzxyzxyz", "xyzxyz"), , 'Test 121');
+test(removeOccurrences("aaaaaaaaaa", "aaa"), a, 'Test 122');
+test(removeOccurrences("repeatedrepeatedrepeatedrepeated", "repeated"), , 'Test 123');
+test(removeOccurrences("zzzzzzzzzzzzzzzzzzzzzz", "zzzz"), zz, 'Test 124');
+test(removeOccurrences("repeatedsubstringrepeatedsubstring", "ted"), repeasubstringrepeasubstring, 'Test 125');
+test(removeOccurrences("abcdefghijkabcdefghijkabcdefghijk", "efg"), abcdhijkabcdhijkabcdhijk, 'Test 126');
+test(removeOccurrences("mnopqrsmnopqrsmnopqrs", "mnopqrs"), , 'Test 127');
+test(removeOccurrences("ananasanananas", "ana"), nasns, 'Test 128');
+test(removeOccurrences("zzzzz", "zz"), z, 'Test 129');
+test(removeOccurrences("thisisaverylongstringwithrepeatedparts", "thisis"), averylongstringwithrepeatedparts, 'Test 130');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

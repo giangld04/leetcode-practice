@@ -1,0 +1,153 @@
+// Test: 862. Shortest Subarray With Sum At Least K
+// 127 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { shortestSubarray } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n862. Shortest Subarray With Sum At Least K\n");
+
+test(shortestSubarray([-1,2,-3,4,-5], 3), 1, 'Test 1');
+test(shortestSubarray([-1,2], 2), 1, 'Test 2');
+test(shortestSubarray([2,-1,2], 3), 3, 'Test 3');
+test(shortestSubarray([2,1,5,1,3,2], 7), 3, 'Test 4');
+test(shortestSubarray([-1,-2,-3,-4,-5], 3), -1, 'Test 5');
+test(shortestSubarray([5,5,5,5,5,5,5,5,5,5], 25), 5, 'Test 6');
+test(shortestSubarray([2, -2, 2, -4, 3, -1, 2, -1, 2, -4, 3, -1], 5), 5, 'Test 7');
+test(shortestSubarray([1,1,1,1,1,1,1,1,1,1], 5), 5, 'Test 8');
+test(shortestSubarray([1], 1), 1, 'Test 9');
+test(shortestSubarray([5,4,3,2,1], 5), 1, 'Test 10');
+test(shortestSubarray([5,1,3,5,10,7,4,9,2,8], 15), 2, 'Test 11');
+test(shortestSubarray([-1,2,-3,4,-5,6,-7,8,-9,10], 15), -1, 'Test 12');
+test(shortestSubarray([1,2,3,4,5], 16), -1, 'Test 13');
+test(shortestSubarray([48,99,37,4,-31], 140), 2, 'Test 14');
+test(shortestSubarray([10,20,30,40,50], 100), 3, 'Test 15');
+test(shortestSubarray([8], 8), 1, 'Test 16');
+test(shortestSubarray([8,2,4,-6,7,-4,3,5], 10), 2, 'Test 17');
+test(shortestSubarray([1,2], 4), -1, 'Test 18');
+test(shortestSubarray([2, -2, 2, 2, -2, 2, 2, -2, 2, 2], 4), 2, 'Test 19');
+test(shortestSubarray([8], 10), -1, 'Test 20');
+test(shortestSubarray([2,-1,2], 2), 1, 'Test 21');
+test(shortestSubarray([5], 5), 1, 'Test 22');
+test(shortestSubarray([1,2,3,4,5], 15), 5, 'Test 23');
+test(shortestSubarray([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 250), 3, 'Test 24');
+test(shortestSubarray([10, 5, 2, 7], 15), 2, 'Test 25');
+test(shortestSubarray([10, -2, 5, -1, 3, -1, -2, 4, 7, -5, 2], 10), 1, 'Test 26');
+test(shortestSubarray([10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 55), 10, 'Test 27');
+test(shortestSubarray([100000, 100000, 100000, 100000, 100000, 100000], 500000), 5, 'Test 28');
+test(shortestSubarray([-1,-2,-3,-4,-5,-6,-7,-8,-9,-10], -15), 1, 'Test 29');
+test(shortestSubarray([-1,-2,-3,-4,-5,-6,-7,-8,-9,-10], 5), -1, 'Test 30');
+test(shortestSubarray([1, 2, -1, 2, -1, 2, -1, 2, -1], 3), 2, 'Test 31');
+test(shortestSubarray([3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 150), 10, 'Test 32');
+test(shortestSubarray([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 550), 10, 'Test 33');
+test(shortestSubarray([8, 2, 4, -2, 3, 1, 5], 10), 2, 'Test 34');
+test(shortestSubarray([100, -25, 100, -25, 100, -25, 100, -25, 100, -25], 200), 5, 'Test 35');
+test(shortestSubarray([10, 10, 10, 10, 10, 10, 10, 10, 10, 10], 25), 3, 'Test 36');
+test(shortestSubarray([10,20,-30,40,50,-60,70,-80], 150), -1, 'Test 37');
+test(shortestSubarray([-1, 2, 3, 4, -10, 5, 6], 10), 2, 'Test 38');
+test(shortestSubarray([10000, 20000, -30000, 40000, 50000, -60000, 70000, -80000], 100000), 4, 'Test 39');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 20), 3, 'Test 40');
+test(shortestSubarray([10, -1, -2, 3, 4, -5, 6, -7, 8, -9], 15), 7, 'Test 41');
+test(shortestSubarray([100000, -50000, 50000, -25000, 25000, -12500, 12500, 6250], 250000), -1, 'Test 42');
+test(shortestSubarray([100,200,300,400,500,600,700,800,900,1000], 1500), 2, 'Test 43');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 55), 5, 'Test 44');
+test(shortestSubarray([100000, -50000, 200000, -150000, 300000], 600000), -1, 'Test 45');
+test(shortestSubarray([1, 0, 1, 1, 1, 0, 1, -1, 1, 1, 1], 4), 5, 'Test 46');
+test(shortestSubarray([50, 40, 30, 20, 10], 90), 2, 'Test 47');
+test(shortestSubarray([100000, -100000, 100000, -100000, 100000], 100000), 1, 'Test 48');
+test(shortestSubarray([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 10), 10, 'Test 49');
+test(shortestSubarray([1,2,3,4,5,6,7,8,9,10], 55), 10, 'Test 50');
+test(shortestSubarray([10,9,8,7,6,5,4,3,2,1], 55), 10, 'Test 51');
+test(shortestSubarray([-5, -4, -3, -2, -1], -15), 1, 'Test 52');
+test(shortestSubarray([10, 10, 10, 10, 10, 10, 10, 10, 10, 10], 100), 10, 'Test 53');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 1), 1, 'Test 54');
+test(shortestSubarray([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 10), 10, 'Test 55');
+test(shortestSubarray([8, 2, -4, 1, 6, -5, 4], 10), 2, 'Test 56');
+test(shortestSubarray([10, -10, 10, -10, 10], 20), -1, 'Test 57');
+test(shortestSubarray([100000, -50000, 50000, -25000, 25000, -12500, 12500], 100000), 1, 'Test 58');
+test(shortestSubarray([5, -1, 5, -1, 5, -1, 5, -1, 5, -1], 15), 7, 'Test 59');
+test(shortestSubarray([1000000000, 1000000000, 1000000000, 1000000000], 4000000000), 4, 'Test 60');
+test(shortestSubarray([1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1], 5), -1, 'Test 61');
+test(shortestSubarray([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 500), 8, 'Test 62');
+test(shortestSubarray([100000,-99999,100000,-99999,100000], 1), 1, 'Test 63');
+test(shortestSubarray([-1, -2, -3, 10, -5, 2, -1, 3], 5), 1, 'Test 64');
+test(shortestSubarray([1, -1, 1, -1, 1, -1, 1, -1, 1, -1], 1), 1, 'Test 65');
+test(shortestSubarray([84, -37, 32, 40, 95], 167), 3, 'Test 66');
+test(shortestSubarray([10, 20, 30, 40, 50], 150), 5, 'Test 67');
+test(shortestSubarray([5, -1, 5, -1, 5, -1], 10), 5, 'Test 68');
+test(shortestSubarray([100, 200, 300, 400, 500], 1500), 5, 'Test 69');
+test(shortestSubarray([1,2,3,4,5,6,7,8,9,10], 15), 2, 'Test 70');
+test(shortestSubarray([1,2,-3,4,-5,6,-7,8,-9,10], 7), 1, 'Test 71');
+test(shortestSubarray([-100, 150, -200, 250, -300, 350, -400, 450, -500, 550], 1500), -1, 'Test 72');
+test(shortestSubarray([1, 2, 3, 4, 5, -1, -2, -3, -4, -5], 9), 2, 'Test 73');
+test(shortestSubarray([20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1], 100), 6, 'Test 74');
+test(shortestSubarray([3, -2, 5, -1, 2, -3, 1, 4], 7), 5, 'Test 75');
+test(shortestSubarray([8, 2, -5, 7, 11, -10, 15, 1], 15), 1, 'Test 76');
+test(shortestSubarray([3,4,5,1,2,7,8,9,10,1], 25), 3, 'Test 77');
+test(shortestSubarray([-10, 20, -30, 40, -50, 60, -70, 80, -90, 100], 100), 1, 'Test 78');
+test(shortestSubarray([8, 2, 4, -1, 0, 5, -3, 2], 16), 6, 'Test 79');
+test(shortestSubarray([5, 1, 3, 5, 2, 4, 6, 1, 7, 8], 20), 4, 'Test 80');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 15), 2, 'Test 81');
+test(shortestSubarray([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10], 15), -1, 'Test 82');
+test(shortestSubarray([3, -2, 5, -1, 4], 6), 3, 'Test 83');
+test(shortestSubarray([1,-1,2,-2,3,-3,4,-4,5,-5], 5), 1, 'Test 84');
+test(shortestSubarray([10, 20, 30, -10, -20, -30, 40, 50, 60], 100), 2, 'Test 85');
+test(shortestSubarray([1, -2, 3, -4, 5, -6, 7, -8, 9, -10], 1), 1, 'Test 86');
+test(shortestSubarray([-1, -2, -3, -4, -5, -6, -7, -8, -9, -10], 5), -1, 'Test 87');
+test(shortestSubarray([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 10), 10, 'Test 88');
+test(shortestSubarray([1, -2, 3, -4, 5, -6, 7, -8, 9, -10], 5), 1, 'Test 89');
+test(shortestSubarray([5, -2, 4, 6, -1, 3, -3, 2, 7, -8], 12), 4, 'Test 90');
+test(shortestSubarray([5, 1, -1, 5, 10, -10, 20, -20, 30, -30], 15), 1, 'Test 91');
+test(shortestSubarray([1, -1, 5, -2, 3], 3), 1, 'Test 92');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 75), 6, 'Test 93');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 50), 3, 'Test 94');
+test(shortestSubarray([10, 20, 30, -10, -20, -30, 40, 50, -40, -50, 60, 70], 100), 2, 'Test 95');
+test(shortestSubarray([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], 5500), 10, 'Test 96');
+test(shortestSubarray([1, 0, 2, 0, 3, 0, 4, 0, 5, 0], 10), 5, 'Test 97');
+test(shortestSubarray([5, 2, 3, -2, 4, 5, 1, -1, 2, -3, 6, 7, 8, -4, 5, 6], 20), 3, 'Test 98');
+test(shortestSubarray([100, -25, 25, -25, 25, -25, 25, -25, 25], 50), 1, 'Test 99');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 120), 15, 'Test 100');
+test(shortestSubarray([2, -2, 2, -2, 2, -2, 2, -2, 2, -2], 1), 1, 'Test 101');
+test(shortestSubarray([8,2,-3,7,2,-4,6,-8], 5), 1, 'Test 102');
+test(shortestSubarray([1,-1,1,-1,1,-1,1,-1,1,-1], 1), 1, 'Test 103');
+test(shortestSubarray([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10], 5), 1, 'Test 104');
+test(shortestSubarray([1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1, 1, -1], 1), 1, 'Test 105');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 90), 8, 'Test 106');
+test(shortestSubarray([5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 100), -1, 'Test 107');
+test(shortestSubarray([-1, -2, -3, -4, -5, -6, -7, -8, -9, -10], 10), -1, 'Test 108');
+test(shortestSubarray([5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 25), 5, 'Test 109');
+test(shortestSubarray([5, -2, 3, 8, -4, 7], 10), 2, 'Test 110');
+test(shortestSubarray([10, -1, 20, -2, 30, -3, 40, -4, 50, -5], 100), 5, 'Test 111');
+test(shortestSubarray([-1, 1, 1, -1, 1, 1, 1, -1, 1], 2), 2, 'Test 112');
+test(shortestSubarray([100000], 100000), 1, 'Test 113');
+test(shortestSubarray([10, -20, 30, -40, 50, -60, 70, -80, 90, -100], 50), 1, 'Test 114');
+test(shortestSubarray([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 100), 6, 'Test 115');
+test(shortestSubarray([5,5,5,5,5,5,5,5,5,5], 45), 9, 'Test 116');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 55), 10, 'Test 117');
+test(shortestSubarray([1, 2, 3, 4, 5], 15), 5, 'Test 118');
+test(shortestSubarray([5, -2, 5, -2, 5, -2, 5, -2, 5, -2], 10), 5, 'Test 119');
+test(shortestSubarray([-1, -2, -3, -4, -5], 1), -1, 'Test 120');
+test(shortestSubarray([-100000, -100000, -100000, -100000, -100000], 100000), -1, 'Test 121');
+test(shortestSubarray([1, 2, 3, -6, 4, 5, -3, 2, 1, 0, -1, 2, 3, -5, 6, 7], 15), 9, 'Test 122');
+test(shortestSubarray([8, 2, -3, 4, 6, -5, 2, 7], 15), 5, 'Test 123');
+test(shortestSubarray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 100), 6, 'Test 124');
+test(shortestSubarray([1,2,3,4,5,6,7,8,9,10], 100), -1, 'Test 125');
+test(shortestSubarray([5,4,3,2,1,1,2,3,4,5,5,4,3,2,1,1,2,3,4,5], 20), 5, 'Test 126');
+test(shortestSubarray([10,20,30,40,50,60,70,80,90,100], 550), 10, 'Test 127');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

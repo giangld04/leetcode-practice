@@ -1,0 +1,158 @@
+// Test: 97. Interleaving String
+// 132 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { isInterleave } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n97. Interleaving String\n");
+
+test(isInterleave("abc", "abc", "aabbcc"), true, 'Test 1');
+test(isInterleave("", "a", "a"), true, 'Test 2');
+test(isInterleave("", "b", "b"), true, 'Test 3');
+test(isInterleave("a", "", "a"), true, 'Test 4');
+test(isInterleave("abc", "", "abc"), true, 'Test 5');
+test(isInterleave("aab", "dbbc", "aadbbcbc"), false, 'Test 6');
+test(isInterleave("aabcc", "dbbca", "aadbbbaccc"), false, 'Test 7');
+test(isInterleave("abc", "def", "defabc"), true, 'Test 8');
+test(isInterleave("a", "a", "aa"), true, 'Test 9');
+test(isInterleave("aaaa", "bbbb", "abababab"), true, 'Test 10');
+test(isInterleave("abc", "def", "abcdef"), true, 'Test 11');
+test(isInterleave("abc", "def", "abcfde"), false, 'Test 12');
+test(isInterleave("", "abc", "abc"), true, 'Test 13');
+test(isInterleave("a", "b", "ba"), true, 'Test 14');
+test(isInterleave("a", "a", "ab"), false, 'Test 15');
+test(isInterleave("aabcc", "dbbca", "aadbbcbcac"), true, 'Test 16');
+test(isInterleave("ab", "cd", "abcd"), true, 'Test 17');
+test(isInterleave("abc", "def", "adbcef"), true, 'Test 18');
+test(isInterleave("aabbcc", "ddeeff", "aaddbbccceedeff"), false, 'Test 19');
+test(isInterleave("aabbcc", "ddeeff", "aabbccddeeff"), true, 'Test 20');
+test(isInterleave("a", "b", "ab"), true, 'Test 21');
+test(isInterleave("", "def", "def"), true, 'Test 22');
+test(isInterleave("", "", ""), true, 'Test 23');
+test(isInterleave("abc", "def", "cabdef"), false, 'Test 24');
+test(isInterleave("aabbcc", "ddeeff", "aadddbbbeeffcc"), false, 'Test 25');
+test(isInterleave("", "abcdef", "abcdef"), true, 'Test 26');
+test(isInterleave("abcdefghij", "klmnopqrstu", "ackbgdenfphiojqmrstnu"), false, 'Test 27');
+test(isInterleave("abc", "defghijkl", "adbecfghijkl"), true, 'Test 28');
+test(isInterleave("aaa", "bb", "aaabb"), true, 'Test 29');
+test(isInterleave("xy", "xxyy", "xxxyyy"), true, 'Test 30');
+test(isInterleave("abcde", "xyz", "axbyczde"), true, 'Test 31');
+test(isInterleave("abcdef", "ghijkl", "aghbciidfjkel"), false, 'Test 32');
+test(isInterleave("abcdefgh", "hgfedcba", "ahbgcfeddaehbgcfecba"), false, 'Test 33');
+test(isInterleave("abcd", "efgh", "aebfcgdh"), true, 'Test 34');
+test(isInterleave("aaa", "bbb", "ababab"), true, 'Test 35');
+test(isInterleave("mississippi", "pwwkew", "mpiswimppwisikew"), false, 'Test 36');
+test(isInterleave("abcd", "efgh", "aebcfdgh"), true, 'Test 37');
+test(isInterleave("aaa", "bbb", "aababbab"), false, 'Test 38');
+test(isInterleave("a", "ababababab", "abababababa"), true, 'Test 39');
+test(isInterleave("abcabc", "defdef", "abcdefabcdef"), true, 'Test 40');
+test(isInterleave("zzzz", "zzzz", "zzzzzzzz"), true, 'Test 41');
+test(isInterleave("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba", "azbycxdwevfugthvisjrkqlpmqonnpmojniklhgfeidchbegaf"), false, 'Test 42');
+test(isInterleave("aaabbb", "aaabbb", "aaabbaabbb"), false, 'Test 43');
+test(isInterleave("abcdefghij", "klmnopqrst", "akblcfdmengoqhpristj"), false, 'Test 44');
+test(isInterleave("abcabcabc", "bcdbcd", "abcbcadbcabc"), false, 'Test 45');
+test(isInterleave("abcdefghij", "klmnopqrst", "akblcmfdgnheijopqrst"), false, 'Test 46');
+test(isInterleave("aabb", "ccdd", "accbbd"), false, 'Test 47');
+test(isInterleave("abcdefghij", "klm", "akbclmdefghij"), true, 'Test 48');
+test(isInterleave("abcdefg", "hijklmn", "haijbckldemfnfg"), false, 'Test 49');
+test(isInterleave("aabb", "bbcc", "aabbccbb"), true, 'Test 50');
+test(isInterleave("aabbaa", "bbccbb", "aabbabbbccba"), false, 'Test 51');
+test(isInterleave("aabbccddeeff", "gghhiijjkkllmm", "agbhchdijejfkflglhlimkmjmmnnoopp"), false, 'Test 52');
+test(isInterleave("aabbcc", "ddeeff", "aaddbbeeffcc"), true, 'Test 53');
+test(isInterleave("abcde", "fghij", "afbgchidiej"), false, 'Test 54');
+test(isInterleave("xxxx", "yyyy", "xxyxyyxxyy"), false, 'Test 55');
+test(isInterleave("abcdefghij", "klmnopqrst", "akbldmconepfqgrhtisj"), false, 'Test 56');
+test(isInterleave("", "abcd", "abcd"), true, 'Test 57');
+test(isInterleave("abcd", "", "abcd"), true, 'Test 58');
+test(isInterleave("abcde", "fghij", "afbgchdije"), true, 'Test 59');
+test(isInterleave("aab", "bc", "aabbcc"), false, 'Test 60');
+test(isInterleave("xyz", "uvw", "xuzyvw"), false, 'Test 61');
+test(isInterleave("aabb", "ccdd", "accdbdb"), false, 'Test 62');
+test(isInterleave("abc", "abc", "aabbbc"), false, 'Test 63');
+test(isInterleave("abcd", "efgh", "aebfcdgh"), true, 'Test 64');
+test(isInterleave("aaaaaa", "bbbbbb", "abababababab"), true, 'Test 65');
+test(isInterleave("aabb", "ccdd", "acbdcbad"), false, 'Test 66');
+test(isInterleave("xyz", "abc", "xyzabc"), true, 'Test 67');
+test(isInterleave("aaa", "bbb", "aaabbb"), true, 'Test 68');
+test(isInterleave("abcdefg", "hijklmn", "ahbicdjekflgmn"), true, 'Test 69');
+test(isInterleave("abc", "defg", "adbcefeg"), false, 'Test 70');
+test(isInterleave("zzz", "zzz", "zzzzzzz"), false, 'Test 71');
+test(isInterleave("", "aabbccddeeff", "aabbccddeeff"), true, 'Test 72');
+test(isInterleave("abcabcabc", "abcabcabc", "aabbaabbaabbaabcabc"), false, 'Test 73');
+test(isInterleave("", "abcde", "abcde"), true, 'Test 74');
+test(isInterleave("abcd", "aabb", "aabaabdc"), false, 'Test 75');
+test(isInterleave("ababab", "bababa", "babababababa"), true, 'Test 76');
+test(isInterleave("abc", "", "acb"), false, 'Test 77');
+test(isInterleave("abcdefgh", "ijklmnop", "aicfbjdhekgmlonp"), false, 'Test 78');
+test(isInterleave("abcd", "ef", "aebcfed"), false, 'Test 79');
+test(isInterleave("abcdef", "ghijkl", "agbhicjkldfe"), false, 'Test 80');
+test(isInterleave("aabbccddeeff", "zzzxxx", "azzbzxcxzddeeff"), false, 'Test 81');
+test(isInterleave("abcdexyz", "mnopqr", "ambonpdqcrxezy"), false, 'Test 82');
+test(isInterleave("abcabc", "xyzxyz", "axbyczaxbycz"), true, 'Test 83');
+test(isInterleave("aab", "dbb", "aadbb"), false, 'Test 84');
+test(isInterleave("aabbcc", "ddeeff", "addbeeffcc"), false, 'Test 85');
+test(isInterleave("abcd", "abdc", "aabbbdcc"), false, 'Test 86');
+test(isInterleave("", "aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), true, 'Test 87');
+test(isInterleave("abcd", "efgh", "abcdghfe"), false, 'Test 88');
+test(isInterleave("aab", "cdd", "aadbb"), false, 'Test 89');
+test(isInterleave("abababab", "babababa", "abbabababaabab"), false, 'Test 90');
+test(isInterleave("abacabadabacaba", "cdcdcdc", "acbacabaacbadabacaba"), false, 'Test 91');
+test(isInterleave("abc", "def", "abcdefg"), false, 'Test 92');
+test(isInterleave("", "z", "z"), true, 'Test 93');
+test(isInterleave("ab", "cd", "cabd"), true, 'Test 94');
+test(isInterleave("abcdef", "", "abcdef"), true, 'Test 95');
+test(isInterleave("aaabbb", "ccdddd", "aaacbbbddddd"), false, 'Test 96');
+test(isInterleave("xxyy", "aabb", "xaayybb"), false, 'Test 97');
+test(isInterleave("ab", "cd", "cadb"), true, 'Test 98');
+test(isInterleave("abc", "def", "abdecf"), true, 'Test 99');
+test(isInterleave("aabbcc", "ddeeff", "adabdbcecefef"), false, 'Test 100');
+test(isInterleave("aa", "aa", "aaaa"), true, 'Test 101');
+test(isInterleave("abc", "abc", "abacbc"), true, 'Test 102');
+test(isInterleave("abcdefghij", "klmnopqrst", "akblcmndfoegphiqjrst"), false, 'Test 103');
+test(isInterleave("abcde", "fghij", "afbgchdeij"), true, 'Test 104');
+test(isInterleave("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "", "aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz"), true, 'Test 105');
+test(isInterleave("zzzz", "zzz", "zzzzzzz"), true, 'Test 106');
+test(isInterleave("abcd", "efgh", "abcdefghe"), false, 'Test 107');
+test(isInterleave("abc", "abcd", "abcabcd"), true, 'Test 108');
+test(isInterleave("aabbccddeeff", "", "aabbccddeeff"), true, 'Test 109');
+test(isInterleave("abcdefghijk", "lmnopqrstuvwxyz", "abcdefghijklmnoqrstuvwxyz"), false, 'Test 110');
+test(isInterleave("abc", "abc", "abccba"), false, 'Test 111');
+test(isInterleave("abc", "def", "dabcef"), true, 'Test 112');
+test(isInterleave("abcde", "", "abcde"), true, 'Test 113');
+test(isInterleave("abcdef", "ghijkl", "aghbidejfkfl"), false, 'Test 114');
+test(isInterleave("z", "", "z"), true, 'Test 115');
+test(isInterleave("zxy", "xzy", "zxzyxy"), true, 'Test 116');
+test(isInterleave("abcdefghij", "klmnopqrst", "akblcmnodpefqgrstihj"), false, 'Test 117');
+test(isInterleave("aab", "acc", "aaabcac"), false, 'Test 118');
+test(isInterleave("aabbaabbaabb", "bbccbbccbbcc", "aabbaabbccbaabbccbaabbccbb"), false, 'Test 119');
+test(isInterleave("xxxx", "yyyy", "xyxxyxyyxyyx"), false, 'Test 120');
+test(isInterleave("aabbcc", "ddeeff", "aadbbccddeeff"), false, 'Test 121');
+test(isInterleave("ababab", "bababa", "abababababab"), true, 'Test 122');
+test(isInterleave("aabb", "ccdd", "acabcd"), false, 'Test 123');
+test(isInterleave("aabb", "ccdd", "acbdad"), false, 'Test 124');
+test(isInterleave("aaaaa", "bbbbb", "ababababab"), true, 'Test 125');
+test(isInterleave("aabbccddeeff", "gg hh ii jj kk ll", "aaggbbccddhhffeeggiijjkkl"), false, 'Test 126');
+test(isInterleave("abcabcabc", "xyzxyzxyz", "axbyczaxbyczaxbycz"), true, 'Test 127');
+test(isInterleave("aabcc", "dbbca", "aadbbcbcacd"), false, 'Test 128');
+test(isInterleave("aabb", "ccdd", "acabcdbd"), true, 'Test 129');
+test(isInterleave("abc", "def", "dabecf"), true, 'Test 130');
+test(isInterleave("abcde", "fghij", "abcdefghij"), true, 'Test 131');
+test(isInterleave("abcabcabc", "xyzxyzxyz", "axbxcyzaybzcyzabc"), false, 'Test 132');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

@@ -1,0 +1,150 @@
+// Test: 1805. Number Of Different Integers In A String
+// 124 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { numDifferentIntegers } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1805. Number Of Different Integers In A String\n");
+
+test(numDifferentIntegers("a1b2c3d4e5f6g7h8i9j0"), 10, 'Test 1');
+test(numDifferentIntegers("a123bc34d8ef34"), 3, 'Test 2');
+test(numDifferentIntegers("a1a2a3a4a5a6a7a8a9a0"), 10, 'Test 3');
+test(numDifferentIntegers("100leetcode"), 1, 'Test 4');
+test(numDifferentIntegers("a1a1a1"), 1, 'Test 5');
+test(numDifferentIntegers("0a001b002"), 3, 'Test 6');
+test(numDifferentIntegers("12345"), 1, 'Test 7');
+test(numDifferentIntegers("1a2b3c4d5e6f7g8h9i0j"), 10, 'Test 8');
+test(numDifferentIntegers("00000"), 1, 'Test 9');
+test(numDifferentIntegers("0a001b1c1"), 2, 'Test 10');
+test(numDifferentIntegers("111222333444555666777888999000"), 1, 'Test 11');
+test(numDifferentIntegers("leet1234code234"), 2, 'Test 12');
+test(numDifferentIntegers("1234567890"), 1, 'Test 13');
+test(numDifferentIntegers("000111222333444555666777888999000"), 1, 'Test 14');
+test(numDifferentIntegers("11223344556677889900"), 1, 'Test 15');
+test(numDifferentIntegers("a1b1c1"), 1, 'Test 16');
+test(numDifferentIntegers("1a2b3c4d5e6f7g8h9i0j1"), 10, 'Test 17');
+test(numDifferentIntegers("abc"), 0, 'Test 18');
+test(numDifferentIntegers("22o22o22o"), 1, 'Test 19');
+test(numDifferentIntegers("a1b01c001"), 1, 'Test 20');
+test(numDifferentIntegers("a001b002c003"), 3, 'Test 21');
+test(numDifferentIntegers("a001001b1001c001001"), 1, 'Test 22');
+test(numDifferentIntegers("1a2b3c4d5"), 5, 'Test 23');
+test(numDifferentIntegers("0a0b0c0"), 1, 'Test 24');
+test(numDifferentIntegers("0abc00abc000abc0000abc"), 1, 'Test 25');
+test(numDifferentIntegers("1a10a100a1000a10000a1"), 5, 'Test 26');
+test(numDifferentIntegers("123abc456def789ghi123jkl456mno789pqr"), 3, 'Test 27');
+test(numDifferentIntegers("abc123xyz456abc123xyz456abc123xyz456"), 2, 'Test 28');
+test(numDifferentIntegers("0001abc002def03ghi0004"), 4, 'Test 29');
+test(numDifferentIntegers("same123same123same123same"), 1, 'Test 30');
+test(numDifferentIntegers("1a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1"), 1, 'Test 31');
+test(numDifferentIntegers("mixed123with456numbers789"), 3, 'Test 32');
+test(numDifferentIntegers("000111000222000333000444000555000"), 1, 'Test 33');
+test(numDifferentIntegers("1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t"), 10, 'Test 34');
+test(numDifferentIntegers("123abc456def789ghi123jkl456mno789pqr001s002t003u"), 6, 'Test 35');
+test(numDifferentIntegers("123abc321def234ghi432jkl543mno654pqrs765tuvw876xyz987"), 9, 'Test 36');
+test(numDifferentIntegers("1a2a3a4a5a6a7a8a9a0a1a2a3a4a5a6a7a8a9a0a1a2a3a4a5a6a7a8a9a0a1a2a3a4a5a6a7a8a9a0a"), 10, 'Test 37');
+test(numDifferentIntegers("1a11a111a1111a11111a111111"), 6, 'Test 38');
+test(numDifferentIntegers("9876543210a123456789b0987654321c"), 3, 'Test 39');
+test(numDifferentIntegers("aaa123bbb123ccc123ddd123eee123"), 1, 'Test 40');
+test(numDifferentIntegers("a0b00c000d0000e00000f000000g0000000h00000000i00000000j000000000"), 1, 'Test 41');
+test(numDifferentIntegers("z9z8z7z6z5z4z3z2z1z0z9z8z7z6z5z4z3z2z1z0"), 10, 'Test 42');
+test(numDifferentIntegers("a1b2c3d4e5f6g7h8i9j0a01b02c03d04e05f06g07h08i09j00"), 10, 'Test 43');
+test(numDifferentIntegers("a10000b1000c100d10e1f0g00h000i0000j00000k"), 6, 'Test 44');
+test(numDifferentIntegers("1a10a100a1000a10000a100000a1000000a10000000a100000000"), 9, 'Test 45');
+test(numDifferentIntegers("1000000000000000000000000000000"), 1, 'Test 46');
+test(numDifferentIntegers("123xyz456xyz789xyz123xyz"), 3, 'Test 47');
+test(numDifferentIntegers("111111111111111111111111111111111111111111111111111111111111111111111111111111111111"), 1, 'Test 48');
+test(numDifferentIntegers("100000a200000b300000c400000d500000e600000f700000g800000h900000"), 9, 'Test 49');
+test(numDifferentIntegers("leading0s123trailing0s456"), 3, 'Test 50');
+test(numDifferentIntegers("0001000200030004000500060007000800090000000100020003"), 1, 'Test 51');
+test(numDifferentIntegers("a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6"), 10, 'Test 52');
+test(numDifferentIntegers("same123same123same123"), 1, 'Test 53');
+test(numDifferentIntegers("1a001b0001c00001d000001e0000001f00000001g000000001"), 1, 'Test 54');
+test(numDifferentIntegers("0101010101010101010101010101010101010101010101010101010101010101010101010101010101010"), 1, 'Test 55');
+test(numDifferentIntegers("aaaa111bbbb222cccc333dddd444"), 4, 'Test 56');
+test(numDifferentIntegers("a1b2c3d4e5f6g7h8i9j0a1b2c3d4e5f6g7h8i9j0"), 10, 'Test 57');
+test(numDifferentIntegers("a0b00c000d0000"), 1, 'Test 58');
+test(numDifferentIntegers("abc0abc00abc000abc0000abc000000abc0000000abc00000000abc000000000abc0000000000"), 1, 'Test 59');
+test(numDifferentIntegers("leading000trailing"), 1, 'Test 60');
+test(numDifferentIntegers("many000123manymany000456many000789many"), 3, 'Test 61');
+test(numDifferentIntegers("a1000b1000c1000d1000e1000f1000g1000h1000i1000j1000"), 1, 'Test 62');
+test(numDifferentIntegers("abc0def00ghi000jkl0000mno00000pqr000000stu"), 1, 'Test 63');
+test(numDifferentIntegers("0000123456789000000000123456789000000012345678900000001234567890"), 1, 'Test 64');
+test(numDifferentIntegers("0abc00abc000abc0000abc00000"), 1, 'Test 65');
+test(numDifferentIntegers("0001000000001000000001"), 1, 'Test 66');
+test(numDifferentIntegers("12345abc54321abc12345"), 2, 'Test 67');
+test(numDifferentIntegers("repeated000repeated000repeated"), 1, 'Test 68');
+test(numDifferentIntegers("z999y999x999w998v997u996"), 4, 'Test 69');
+test(numDifferentIntegers("123abc321def456ghi654jkl789mno987pqr012stu210vwx321yz456"), 8, 'Test 70');
+test(numDifferentIntegers("a1b01c001d0001e00001f10g100"), 3, 'Test 71');
+test(numDifferentIntegers("000000000000000001"), 1, 'Test 72');
+test(numDifferentIntegers("9a8b7c6d5e4f3g2h1i0j9k8l7m6n5o4p3q2r1s0"), 10, 'Test 73');
+test(numDifferentIntegers("9876543210abcdefgh0987654321"), 2, 'Test 74');
+test(numDifferentIntegers("9876543210zyxwvutsrqponmlkjihgfedcba9876543210"), 1, 'Test 75');
+test(numDifferentIntegers("xyz001abc002def003ghi004jkl005"), 5, 'Test 76');
+test(numDifferentIntegers("000000000012345678900000000"), 1, 'Test 77');
+test(numDifferentIntegers("000abc0000def1234gh5678"), 3, 'Test 78');
+test(numDifferentIntegers("a1b2c3d4e5f6g7h8i9j0a00b002c003d004e005f006g007h008i009j000"), 10, 'Test 79');
+test(numDifferentIntegers("a1b01c001d0001e00001f000001g0000001h00000001"), 1, 'Test 80');
+test(numDifferentIntegers("1a01b002c0003d00004e000005f0000006g00000007h000000008i0000000009j0"), 10, 'Test 81');
+test(numDifferentIntegers("123abc456def789ghi0jklm00nopqr000stu0000vwx00000yz"), 4, 'Test 82');
+test(numDifferentIntegers("abc123xyz456def789ghi10jkl11mno12pqr13stu14vwx15"), 9, 'Test 83');
+test(numDifferentIntegers("000001000002000003000004000005000006000007000008000009"), 1, 'Test 84');
+test(numDifferentIntegers("a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1"), 1, 'Test 85');
+test(numDifferentIntegers("abc123xyz456def789ghi001jkl234mno567pqr890stu0vwx123y0z456"), 8, 'Test 86');
+test(numDifferentIntegers("abc123xyz456def456ghi789"), 3, 'Test 87');
+test(numDifferentIntegers("a0b00c000d0000e00000f"), 1, 'Test 88');
+test(numDifferentIntegers("a1b2c3d4e5f6g7h8i9j0a000b0002c0003d0004e0005f0006g0007h0008i0009j0000"), 10, 'Test 89');
+test(numDifferentIntegers("99999zzz88888xxx7777yyy6666"), 4, 'Test 90');
+test(numDifferentIntegers("12345678901234567890123456789012345678901234567890123456789012345678901234567890"), 1, 'Test 91');
+test(numDifferentIntegers("abc123xyz456abc123"), 2, 'Test 92');
+test(numDifferentIntegers("abc123xyz456def123"), 2, 'Test 93');
+test(numDifferentIntegers("a1b10c100d1000e10000f100000g1000000h10000000i100000000j1000000000"), 10, 'Test 94');
+test(numDifferentIntegers("1234567890abcdefghijklmnopqrstuvwxyz0987654321"), 2, 'Test 95');
+test(numDifferentIntegers("0000000000000000000000000"), 1, 'Test 96');
+test(numDifferentIntegers("00000000000000000000000000000000000000000000000001"), 1, 'Test 97');
+test(numDifferentIntegers("010abc0010def00010ghi"), 1, 'Test 98');
+test(numDifferentIntegers("123abc123def123ghi123jkl123mno123pqrs123tuvw123xyz123"), 1, 'Test 99');
+test(numDifferentIntegers("000000000000000000000000000000000000000000000000000000000000000000000000000000000000"), 1, 'Test 100');
+test(numDifferentIntegers("abc123def456ghi789jkl0123"), 3, 'Test 101');
+test(numDifferentIntegers("123456789a987654321b123456789c987654321d123456789e987654321f123456789g"), 2, 'Test 102');
+test(numDifferentIntegers("00123456789000"), 1, 'Test 103');
+test(numDifferentIntegers("0a00b000c0000d00000e000000f0000000g00000000h000000000i000000000j0"), 1, 'Test 104');
+test(numDifferentIntegers("a0b00c000d0000e00000f000000g0000000h00000000i0"), 1, 'Test 105');
+test(numDifferentIntegers("a1b01c001d100e0001f10"), 3, 'Test 106');
+test(numDifferentIntegers("99999999999999999999999999999999999999999999999999999999999999999999999999999999999"), 1, 'Test 107');
+test(numDifferentIntegers("abc001abc01abc1"), 1, 'Test 108');
+test(numDifferentIntegers("a100000000b100000001c100000002d100000003e100000004f100000005"), 6, 'Test 109');
+test(numDifferentIntegers("100000000000000000000000000000000000000000000000000000001"), 1, 'Test 110');
+test(numDifferentIntegers("0012300abc045600def0123"), 3, 'Test 111');
+test(numDifferentIntegers("00123004560078900100000000000000000000000000000000"), 1, 'Test 112');
+test(numDifferentIntegers("9876543210qwertyuiopasdfghjklzxcvbnm"), 1, 'Test 113');
+test(numDifferentIntegers("a0b0c00d000e0000f00000g000000h0000000i00000000j000000000"), 1, 'Test 114');
+test(numDifferentIntegers("123abc456def789ghi0jkl123mno456pqr789stu0vwxyz"), 4, 'Test 115');
+test(numDifferentIntegers("1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7"), 10, 'Test 116');
+test(numDifferentIntegers("abc123456def654321ghi123456"), 2, 'Test 117');
+test(numDifferentIntegers("abc1def2ghi3jkl4mno5pqr6stu7vwx8yz90123456789"), 9, 'Test 118');
+test(numDifferentIntegers("0a123b456c789d0123"), 4, 'Test 119');
+test(numDifferentIntegers("a123b456c789d012e345f678g901"), 7, 'Test 120');
+test(numDifferentIntegers("00100a001b001c"), 2, 'Test 121');
+test(numDifferentIntegers("abc1abc01abc001abc0001abc00001abc000001abc0000001"), 1, 'Test 122');
+test(numDifferentIntegers("abc001xyz01abc100"), 2, 'Test 123');
+test(numDifferentIntegers("a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0"), 10, 'Test 124');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

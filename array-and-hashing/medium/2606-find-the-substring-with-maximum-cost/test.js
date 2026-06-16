@@ -1,0 +1,153 @@
+// Test: 2606. Find The Substring With Maximum Cost
+// 127 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { maximumCostSubstring } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n2606. Find The Substring With Maximum Cost\n");
+
+test(maximumCostSubstring("programming", "pg", [-1,-2]), 99, 'Test 1');
+test(maximumCostSubstring("a", "a", [-1]), 0, 'Test 2');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", [-26,-25,-24,-23,-22,-21,-20,-19,-18,-17,-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1]), 0, 'Test 3');
+test(maximumCostSubstring("zzzzz", "z", [26]), 130, 'Test 4');
+test(maximumCostSubstring("xyz", "xyz", [24,25,26]), 75, 'Test 5');
+test(maximumCostSubstring("adaa", "d", [-1000]), 2, 'Test 6');
+test(maximumCostSubstring("abacaba", "abc", [1,2,3]), 11, 'Test 7');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]), 351, 'Test 8');
+test(maximumCostSubstring("zzzz", "z", [26]), 104, 'Test 9');
+test(maximumCostSubstring("hello", "he", [5,10]), 54, 'Test 10');
+test(maximumCostSubstring("abc", "abc", [-1, -1, -1]), 0, 'Test 11');
+test(maximumCostSubstring("zyxwvutsrqponmlkjihgfedcba", "abcdefghijklmnopqrstuvwxyz", [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17, -18, -19, -20, -21, -22, -23, -24, -25, -26]), 0, 'Test 12');
+test(maximumCostSubstring("abc", "abc", [-1,-1,-1]), 0, 'Test 13');
+test(maximumCostSubstring("zzyx", "zxy", [100, 200, 300]), 700, 'Test 14');
+test(maximumCostSubstring("aaa", "a", [1]), 3, 'Test 15');
+test(maximumCostSubstring("hello", "aeiou", [1, 2, 3, 4, 5]), 38, 'Test 16');
+test(maximumCostSubstring("programming", "pg", [-5, -10]), 91, 'Test 17');
+test(maximumCostSubstring("zzz", "z", [1000]), 3000, 'Test 18');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]), 351, 'Test 19');
+test(maximumCostSubstring("hello", "helo", [5,10,15,20]), 65, 'Test 20');
+test(maximumCostSubstring("abcdefgxyz", "abcdefgxyz", [1, -1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6, 7, -7, 8, -8, 9, -9, 10, -10, 11, -11, 12, -12, 13, -13]), 5, 'Test 21');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyza", "a", [1000]), 2350, 'Test 22');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17, -18, -19, -20, -21, -22, -23, -24, -25, -26]), 0, 'Test 23');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzzzzzzzz", "z", [1000]), 26000, 'Test 24');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzzzzzzzzzz", "z", [100]), 2800, 'Test 25');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzzzzzzzzz", "z", [-1]), 0, 'Test 26');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "z", [-26]), 325, 'Test 27');
+test(maximumCostSubstring("abacabadabacaba", "abc", [-1, -2, -3]), 4, 'Test 28');
+test(maximumCostSubstring("abacabadabacaba", "abc", [3, 2, 1]), 38, 'Test 29');
+test(maximumCostSubstring("zyxwvutsrqponmlkjihgfedcba", "", []), 351, 'Test 30');
+test(maximumCostSubstring("programmingisfun", "progfun", [5, 4, 3, 2, 1]), 134, 'Test 31');
+test(maximumCostSubstring("aaaabbbbcccc", "abc", [1, -2, 3]), 12, 'Test 32');
+test(maximumCostSubstring("zzyyxx", "xyz", [100, 200, -300]), 600, 'Test 33');
+test(maximumCostSubstring("xyzzyxzyxzyxzyxzyxzyx", "xyz", [10, 20, 30]), 420, 'Test 34');
+test(maximumCostSubstring("hello", "lo", [-1, -2]), 13, 'Test 35');
+test(maximumCostSubstring("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abcdefghijklmnopqrstuvwxy", [25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 702, 'Test 36');
+test(maximumCostSubstring("mnopqr", "mnopqr", [1, 2, 3, 4, 5, 6]), 21, 'Test 37');
+test(maximumCostSubstring("hellohellohello", "he", [10, -5]), 132, 'Test 38');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzz", "z", [26]), 520, 'Test 39');
+test(maximumCostSubstring("abcdefgxyz", "xyz", [100, 100, 100]), 328, 'Test 40');
+test(maximumCostSubstring("aabbccddeeffgg", "abcdefg", [-1, -2, -3, -4, -5, -6, -7]), 0, 'Test 41');
+test(maximumCostSubstring("mnopqrstuvwxyzaaa", "mno", [13, 14, 15]), 276, 'Test 42');
+test(maximumCostSubstring("abcxyz", "abcxyz", [-1, -2, -3, -4, -5, -6]), 0, 'Test 43');
+test(maximumCostSubstring("thisisatemporarystring", "aeiou", [1, -1, 2, -2, 3]), 259, 'Test 44');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzz", "z", [-1]), 0, 'Test 45');
+test(maximumCostSubstring("abcdefabcdefabcdef", "def", [100, 200, 300]), 1818, 'Test 46');
+test(maximumCostSubstring("zzzzzzzzzzz", "z", [1000]), 11000, 'Test 47');
+test(maximumCostSubstring("abcdefghijabcdefghij", "acegikmoqsuwy", [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]), 120, 'Test 48');
+test(maximumCostSubstring("abcdef", "abcde", [-1, -2, -3, -4, -5]), 6, 'Test 49');
+test(maximumCostSubstring("xyzzzzyx", "xyz", [-1, -2, -3]), 0, 'Test 50');
+test(maximumCostSubstring("qwpwoeirutyiuyweoiuqweoiuyt", "qwertyuiopasdfghjklzxcvbnm", [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]), 0, 'Test 51');
+test(maximumCostSubstring("mnopqr", "mno", [10, 20, -30]), 51, 'Test 52');
+test(maximumCostSubstring("babababababababababababa", "ab", [-1, 1]), 1, 'Test 53');
+test(maximumCostSubstring("hello world", "lo", [10, -10]), 45, 'Test 54');
+test(maximumCostSubstring("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abcdefghijklmnopqrstuvwxyz", [-26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1]), 0, 'Test 55');
+test(maximumCostSubstring("mississippi", "ism", [-1, -2, 10]), 32, 'Test 56');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "def", [-10, 0, 5]), 335, 'Test 57');
+test(maximumCostSubstring("abcdefg", "", []), 28, 'Test 58');
+test(maximumCostSubstring("abcdefghijklm", "def", [10, 20, 30]), 136, 'Test 59');
+test(maximumCostSubstring("abacabadabacaba", "abc", [10, 20, 30]), 224, 'Test 60');
+test(maximumCostSubstring("qwertyuiopasdfghjklzxcvbnm", "qwertyuiop", [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]), 732, 'Test 61');
+test(maximumCostSubstring("aaaabaaa", "a", [5]), 37, 'Test 62');
+test(maximumCostSubstring("zzzzzzzzzz", "z", [100]), 1000, 'Test 63');
+test(maximumCostSubstring("v", "v", [1000]), 1000, 'Test 64');
+test(maximumCostSubstring("xyzabc", "xyzabc", [6, 5, 4, 3, 2, 1]), 21, 'Test 65');
+test(maximumCostSubstring("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abcdefghijklmnopqrstuvwxy", [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17, -18, -19, -20, -21, -22, -23, -24, -25]), 52, 'Test 66');
+test(maximumCostSubstring("abcdefghijklm", "def", [-5, -6, -7]), 70, 'Test 67');
+test(maximumCostSubstring("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "acegikmoqsuwy", [1, -2, 3, -4, 5, -6, 7, -8, 9, -10, 11, -12, 13]), 378, 'Test 68');
+test(maximumCostSubstring("aaaaabbbbbccccc", "abc", [1, -1, 0]), 5, 'Test 69');
+test(maximumCostSubstring("abacabadabacaba", "abc", [-1, -1, -1]), 4, 'Test 70');
+test(maximumCostSubstring("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "a", [1]), 32, 'Test 71');
+test(maximumCostSubstring("aaaaabaaaabaaaa", "a", [-1]), 2, 'Test 72');
+test(maximumCostSubstring("aabaaaabaaaaaaab", "a", [-1]), 2, 'Test 73');
+test(maximumCostSubstring("abacabadabacaba", "abc", [3, -2, 1]), 22, 'Test 74');
+test(maximumCostSubstring("aabaaaabaaaaaaab", "a", [1]), 19, 'Test 75');
+test(maximumCostSubstring("abababababababababababababab", "ab", [1000, -1000]), 1000, 'Test 76');
+test(maximumCostSubstring("abacabadabacaba", "abc", [-1, 2, 3]), 12, 'Test 77');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzz", "z", [-5]), 0, 'Test 78');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "z", [0]), 0, 'Test 79');
+test(maximumCostSubstring("abcdefg", "xyz", [10, 20, 30]), 28, 'Test 80');
+test(maximumCostSubstring("abcabcabcabcabcabcabcabcabcabc", "abc", [10, 20, 30]), 600, 'Test 81');
+test(maximumCostSubstring("abcdefgxyz", "adg", [10, -5, 20]), 116, 'Test 82');
+test(maximumCostSubstring("abcabcabc", "abc", [-1, -1, -1]), 0, 'Test 83');
+test(maximumCostSubstring("thisisateststring", "test", [-1, -2, -3, -4]), 49, 'Test 84');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzzzzzzzz", "z", [-26]), 0, 'Test 85');
+test(maximumCostSubstring("qwertyuiopasdfghjklzxcvbnm", "qz", [-100, 100]), 408, 'Test 86');
+test(maximumCostSubstring("zyxwvutsrqponmlkjihgfedcba", "zyx", [26, 25, 24]), 351, 'Test 87');
+test(maximumCostSubstring("abcdexyz", "xyz", [-1, -2, -3]), 15, 'Test 88');
+test(maximumCostSubstring("abacabadabacaba", "abc", [1, -2, 3]), 12, 'Test 89');
+test(maximumCostSubstring("abcdefgxyz", "aceg", [-1, -2, -3, -4]), 78, 'Test 90');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "a", [-1]), 350, 'Test 91');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz", [26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 702, 'Test 92');
+test(maximumCostSubstring("zzzzzzzzzz", "z", [-1]), 0, 'Test 93');
+test(maximumCostSubstring("abacabadabacaba", "abc", [5, -1, 10]), 60, 'Test 94');
+test(maximumCostSubstring("qwertyuiopasdfghjklzxcvbnm", "qwertyuiopasdfghjklzxcvbnm", [1, -1, 2, -2, 3, -3, 4, -4, 5, -5, 6, -6, 7, -7, 8, -8, 9, -9, 10, -10, 11, -11, 12, -12, 13, -13]), 13, 'Test 95');
+test(maximumCostSubstring("pneumonoultramicroscopicsilicovolcanoconiosis", "aeiou", [-10, -20, -30, -40, -50]), 53, 'Test 96');
+test(maximumCostSubstring("mnopqrstuvwxyz", "mnop", [10, 20, 30, 40]), 315, 'Test 97');
+test(maximumCostSubstring("abcabcabcabcabc", "abc", [1, 2, 3]), 30, 'Test 98');
+test(maximumCostSubstring("bananabananabanana", "ban", [1, -1, 2]), 7, 'Test 99');
+test(maximumCostSubstring("hellohellohello", "ehllo", [-100, 10, 20, 30, -5]), 65, 'Test 100');
+test(maximumCostSubstring("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "aeiou", [10, 20, 30, 40, 50]), 900, 'Test 101');
+test(maximumCostSubstring("zyxwvutsrqponmlkjihgfedcba", "zyxwvutsrqponmlkjihgfedcba", [26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 351, 'Test 102');
+test(maximumCostSubstring("abcdxyz", "abcd", [4, 3, 2, 1]), 85, 'Test 103');
+test(maximumCostSubstring("quickbrownfoxjumpsoverthelazydog", "quickbrownfoxjumpsoverthelazydog", [26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 372, 'Test 104');
+test(maximumCostSubstring("xyzzzzzzzzzyx", "z", [-5]), 53, 'Test 105');
+test(maximumCostSubstring("aabbccddeeff", "abcdef", [-1, -2, -3, -4, -5, -6]), 0, 'Test 106');
+test(maximumCostSubstring("qwertyuiopasdfghjklzxcvbnm", "qwerty", [-1, -2, -3, -4, -5, -6]), 243, 'Test 107');
+test(maximumCostSubstring("abcdefgabcdefg", "aceg", [-1, -2, -3, -4]), 9, 'Test 108');
+test(maximumCostSubstring("", "", []), 0, 'Test 109');
+test(maximumCostSubstring("mississippi", "sip", [1, 2, -3]), 23, 'Test 110');
+test(maximumCostSubstring("abcdef", "", []), 21, 'Test 111');
+test(maximumCostSubstring("mississippi", "sip", [10, -5, 15]), 68, 'Test 112');
+test(maximumCostSubstring("abcdabcdabcdabcd", "abcd", [1, -1, 2, -2]), 2, 'Test 113');
+test(maximumCostSubstring("abacabadabacaba", "abc", [-1, 2, -3]), 6, 'Test 114');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "a", [26]), 376, 'Test 115');
+test(maximumCostSubstring("zzzzzzzzzzzzzzzzzzzzzzzzzz", "z", [-500]), 0, 'Test 116');
+test(maximumCostSubstring("qwertypoiuytrewq", "qwertyuiop", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 76, 'Test 117');
+test(maximumCostSubstring("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abcdefghijklmnopqrstuvwxyz", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]), 702, 'Test 118');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "z", [1000]), 1325, 'Test 119');
+test(maximumCostSubstring("abcdefghijklmnopqrstuvwxyz", "mnopqrstuvwxyz", [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17, -18, -19, -20, -21, -22, -23, -24, -25, -26]), 78, 'Test 120');
+test(maximumCostSubstring("mnopqrstuvwxyz", "mnopqrstuvwxyz", [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), 119, 'Test 121');
+test(maximumCostSubstring("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abcdefghijklmnopqrstuvwxyz", [-1, -2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14, -15, -16, -17, -18, -19, -20, -21, -22, -23, -24, -25, -26]), 0, 'Test 122');
+test(maximumCostSubstring("mnopqrstu", "mnopqrstu", [-1, -2, -3, -4, -5, -6, -7, -8, -9]), 0, 'Test 123');
+test(maximumCostSubstring("thequickbrownfoxjumpsoverthelazydog", "aeiou", [5, 5, 5, 5, 5]), 401, 'Test 124');
+test(maximumCostSubstring("aaabbbccc", "abc", [-1, -2, -3]), 0, 'Test 125');
+test(maximumCostSubstring("abacabadabacaba", "abc", [-1, 3, -2]), 8, 'Test 126');
+test(maximumCostSubstring("baaabbbccc", "abc", [26, 25, 24]), 250, 'Test 127');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

@@ -1,0 +1,156 @@
+// Test: 884. Uncommon Words From Two Sentences
+// 130 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { uncommonFromSentences } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n884. Uncommon Words From Two Sentences\n");
+
+test(uncommonFromSentences("overlap words here", "words here"), ['overlap'], 'Test 1');
+test(uncommonFromSentences("hello world", "hold the door"), ['hello', 'world', 'hold', 'the', 'door'], 'Test 2');
+test(uncommonFromSentences("hello world", "hello there"), ['world', 'there'], 'Test 3');
+test(uncommonFromSentences("cat dog", "fish bird"), ['cat', 'dog', 'fish', 'bird'], 'Test 4');
+test(uncommonFromSentences("unique words here", "some unique there"), ['words', 'here', 'some', 'there'], 'Test 5');
+test(uncommonFromSentences("unique words", "different words"), ['unique', 'different'], 'Test 6');
+test(uncommonFromSentences("single", "word"), ['single', 'word'], 'Test 7');
+test(uncommonFromSentences("one two three", "four five six"), ['one', 'two', 'three', 'four', 'five', 'six'], 'Test 8');
+test(uncommonFromSentences("same same", "same same"), [], 'Test 9');
+test(uncommonFromSentences("apple apple", "banana"), ['banana'], 'Test 10');
+test(uncommonFromSentences("a b c", "d e f"), ['a', 'b', 'c', 'd', 'e', 'f'], 'Test 11');
+test(uncommonFromSentences("exclusive to s1", "exclusive to s2"), ['s1', 's2'], 'Test 12');
+test(uncommonFromSentences("hello world", "world is great"), ['hello', 'is', 'great'], 'Test 13');
+test(uncommonFromSentences("a b c", "a b d"), ['c', 'd'], 'Test 14');
+test(uncommonFromSentences("a b c d", "d e f g"), ['a', 'b', 'c', 'e', 'f', 'g'], 'Test 15');
+test(uncommonFromSentences("one two three", "three two one"), [], 'Test 16');
+test(uncommonFromSentences("this apple is sweet", "this apple is sour"), ['sweet', 'sour'], 'Test 17');
+test(uncommonFromSentences("hello from the other side", "hello from this side"), ['the', 'other', 'this'], 'Test 18');
+test(uncommonFromSentences("long sentence with multiple occurrences of words", "words occurrences sentence"), ['long', 'with', 'multiple', 'of'], 'Test 19');
+test(uncommonFromSentences("shared unique shared", "unique shared unique"), [], 'Test 20');
+test(uncommonFromSentences("abc def ghi jkl mno pqr stu vwx yz", "stu vwx yz abc def ghi jkl mno pqr"), [], 'Test 21');
+test(uncommonFromSentences("python is great", "great language python"), ['is', 'language'], 'Test 22');
+test(uncommonFromSentences("alpha beta gamma", "delta epsilon zeta"), ['alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta'], 'Test 23');
+test(uncommonFromSentences("common common words in both", "common words in both sentences"), ['sentences'], 'Test 24');
+test(uncommonFromSentences("repeat repeat repeat repeat", "single"), ['single'], 'Test 25');
+test(uncommonFromSentences("hello world from python", "hello world from java"), ['python', 'java'], 'Test 26');
+test(uncommonFromSentences("same same same same", "same"), [], 'Test 27');
+test(uncommonFromSentences("multiple words in a sentence", "multiple unique words"), ['in', 'a', 'sentence', 'unique'], 'Test 28');
+test(uncommonFromSentences("alpha beta gamma delta", "delta epsilon zeta"), ['alpha', 'beta', 'gamma', 'epsilon', 'zeta'], 'Test 29');
+test(uncommonFromSentences("", "single word"), ['single', 'word'], 'Test 30');
+test(uncommonFromSentences("repeated repeated words", "words words repeated"), [], 'Test 31');
+test(uncommonFromSentences("repeated repeated repeated", "unique word"), ['unique', 'word'], 'Test 32');
+test(uncommonFromSentences("unique words only here", "completely different set of words"), ['unique', 'only', 'here', 'completely', 'different', 'set', 'of'], 'Test 33');
+test(uncommonFromSentences("one two three four five six seven eight nine ten eleven twelve", "twelve eleven ten nine eight seven six five four three two one"), [], 'Test 34');
+test(uncommonFromSentences("one two one", "three two three"), [], 'Test 35');
+test(uncommonFromSentences("apple orange banana", "banana orange grape"), ['apple', 'grape'], 'Test 36');
+test(uncommonFromSentences("a quick brown fox jumps over the lazy dog", "the quick brown dog jumps over a lazy"), ['fox'], 'Test 37');
+test(uncommonFromSentences("common words appear here", "here common words appear"), [], 'Test 38');
+test(uncommonFromSentences("common common common", "uncommon"), ['uncommon'], 'Test 39');
+test(uncommonFromSentences("single", "different"), ['single', 'different'], 'Test 40');
+test(uncommonFromSentences("one two three four five six seven eight nine ten", "ten nine eight seven six five four three two one"), [], 'Test 41');
+test(uncommonFromSentences("overlap this is a test", "this is another test"), ['overlap', 'a', 'another'], 'Test 42');
+test(uncommonFromSentences("longer sentence with many uncommon words", "many uncommon words longer sentence"), ['with'], 'Test 43');
+test(uncommonFromSentences("common words in both", "common words in both"), [], 'Test 44');
+test(uncommonFromSentences("abc def ghi jkl mno pqr stu vwx yza", "stu vwx yza abc def ghi jkl"), ['mno', 'pqr'], 'Test 45');
+test(uncommonFromSentences("python java cplusplus", "java csharp python"), ['cplusplus', 'csharp'], 'Test 46');
+test(uncommonFromSentences("same same same", "different different different"), [], 'Test 47');
+test(uncommonFromSentences("hello world hello", "world world"), [], 'Test 48');
+test(uncommonFromSentences("test test test", "unique test"), ['unique'], 'Test 49');
+test(uncommonFromSentences("distinct words only", "entirely distinct words"), ['only', 'entirely'], 'Test 50');
+test(uncommonFromSentences("", "single"), ['single'], 'Test 51');
+test(uncommonFromSentences("repeated repeated words", "unique words in second sentence"), ['unique', 'in', 'second', 'sentence'], 'Test 52');
+test(uncommonFromSentences("test test test", "test test test test"), [], 'Test 53');
+test(uncommonFromSentences("single", "unique"), ['single', 'unique'], 'Test 54');
+test(uncommonFromSentences("repeated repeated word", "word unique"), ['unique'], 'Test 55');
+test(uncommonFromSentences("unique word in first sentence", "unique word in second sentence"), ['first', 'second'], 'Test 56');
+test(uncommonFromSentences("many many words in this sentence", "many words"), ['in', 'this', 'sentence'], 'Test 57');
+test(uncommonFromSentences("unique words only", "completely different set"), ['unique', 'words', 'only', 'completely', 'different', 'set'], 'Test 58');
+test(uncommonFromSentences("unique words only", "different set words"), ['unique', 'only', 'different', 'set'], 'Test 59');
+test(uncommonFromSentences("this is a test", "this is another test"), ['a', 'another'], 'Test 60');
+test(uncommonFromSentences("same same same", "same"), [], 'Test 61');
+test(uncommonFromSentences("unique word in sentence one", "unique word in sentence two"), ['one', 'two'], 'Test 62');
+test(uncommonFromSentences("multiple words are present", "multiple words are missing"), ['present', 'missing'], 'Test 63');
+test(uncommonFromSentences("overlap words in both", "overlap words in both"), [], 'Test 64');
+test(uncommonFromSentences("longer sentence with more words", "shorter with"), ['longer', 'sentence', 'more', 'words', 'shorter'], 'Test 65');
+test(uncommonFromSentences("identical identical identical", "identical identical identical"), [], 'Test 66');
+test(uncommonFromSentences("this is a test sentence", "sentence is a this"), ['test'], 'Test 67');
+test(uncommonFromSentences("common common words in both", "common words"), ['in', 'both'], 'Test 68');
+test(uncommonFromSentences("overlapping words in both", "overlapping words in both"), [], 'Test 69');
+test(uncommonFromSentences("repeated repeated words here", "different words here"), ['different'], 'Test 70');
+test(uncommonFromSentences("distinctive words in each sentence", "each sentence has distinctive words"), ['in', 'has'], 'Test 71');
+test(uncommonFromSentences("a a a b b c d e f g h i j k l m n o p q r s t u v w x y z", "a b c"), ['d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'], 'Test 72');
+test(uncommonFromSentences("a b c d e f g h i j", "k l m n o p q r s t"), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't'], 'Test 73');
+test(uncommonFromSentences("unique words only here", "unique words are everywhere"), ['only', 'here', 'are', 'everywhere'], 'Test 74');
+test(uncommonFromSentences("one two three four five six", "six five four three two one"), [], 'Test 75');
+test(uncommonFromSentences("longer sentence with multiple uncommon words here", "here are some uncommon words"), ['longer', 'sentence', 'with', 'multiple', 'are', 'some'], 'Test 76');
+test(uncommonFromSentences("first sentence here", "second unique sentence"), ['first', 'here', 'second', 'unique'], 'Test 77');
+test(uncommonFromSentences("same same same same", "different different"), [], 'Test 78');
+test(uncommonFromSentences("unique words in each sentence", "other unique words"), ['in', 'each', 'sentence', 'other'], 'Test 79');
+test(uncommonFromSentences("common words and unique", "unique words and common"), [], 'Test 80');
+test(uncommonFromSentences("shared words words", "words shared"), [], 'Test 81');
+test(uncommonFromSentences("python java c++", "java c++ python"), [], 'Test 82');
+test(uncommonFromSentences("overlap overlap words", "words overlap"), [], 'Test 83');
+test(uncommonFromSentences("some common words here", "here some unique"), ['common', 'words', 'unique'], 'Test 84');
+test(uncommonFromSentences("unique word only", "entirely different"), ['unique', 'word', 'only', 'entirely', 'different'], 'Test 85');
+test(uncommonFromSentences("multiple multiple words in first", "words in second"), ['first', 'second'], 'Test 86');
+test(uncommonFromSentences("repeated repeated words", "unique single"), ['words', 'unique', 'single'], 'Test 87');
+test(uncommonFromSentences("one two three four five", "six seven eight nine ten"), ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'], 'Test 88');
+test(uncommonFromSentences("complexity in first", "complexity in second"), ['first', 'second'], 'Test 89');
+test(uncommonFromSentences("", ""), [], 'Test 90');
+test(uncommonFromSentences("same same same", "same same"), [], 'Test 91');
+test(uncommonFromSentences("no overlap", "no common words"), ['overlap', 'common', 'words'], 'Test 92');
+test(uncommonFromSentences("shared words shared", "shared words unique"), ['unique'], 'Test 93');
+test(uncommonFromSentences("common word common", "word common unique"), ['unique'], 'Test 94');
+test(uncommonFromSentences("shared words are common", "common shared words"), ['are'], 'Test 95');
+test(uncommonFromSentences("singleword", "singleword"), [], 'Test 96');
+test(uncommonFromSentences("a a a a a a a a a a", "b b b b b b b b b b"), [], 'Test 97');
+test(uncommonFromSentences("repeated repeated repeated", "repeated unique"), ['unique'], 'Test 98');
+test(uncommonFromSentences("hello world hello", "world hello universe"), ['universe'], 'Test 99');
+test(uncommonFromSentences("repeated repeated word", "word"), [], 'Test 100');
+test(uncommonFromSentences("common words in both sentences", "common words in both sentences"), [], 'Test 101');
+test(uncommonFromSentences("a b c d e f g h i j", "j i h g f e d c b a"), [], 'Test 102');
+test(uncommonFromSentences("overlap overlap here", "here overlap"), [], 'Test 103');
+test(uncommonFromSentences("exclusive to first", "exclusive to second"), ['first', 'second'], 'Test 104');
+test(uncommonFromSentences("multiple unique words here", "here multiple"), ['unique', 'words'], 'Test 105');
+test(uncommonFromSentences("one two three four", "five six seven eight"), ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'], 'Test 106');
+test(uncommonFromSentences("singleword", "differentword"), ['singleword', 'differentword'], 'Test 107');
+test(uncommonFromSentences("unique words only", "completely different"), ['unique', 'words', 'only', 'completely', 'different'], 'Test 108');
+test(uncommonFromSentences("a b c d e", "f g h i j"), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'], 'Test 109');
+test(uncommonFromSentences("overlap words here and there", "there and words"), ['overlap', 'here'], 'Test 110');
+test(uncommonFromSentences("single", ""), ['single'], 'Test 111');
+test(uncommonFromSentences("apple banana cherry", "banana cherry date"), ['apple', 'date'], 'Test 112');
+test(uncommonFromSentences("a b c d e f g", "h i j k l m n o p q r s t u v w x y z"), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'], 'Test 113');
+test(uncommonFromSentences("", "singleword"), ['singleword'], 'Test 114');
+test(uncommonFromSentences("uncommon word one", "uncommon word two"), ['one', 'two'], 'Test 115');
+test(uncommonFromSentences("single", "single single"), [], 'Test 116');
+test(uncommonFromSentences("a b c d e f g h i j k l m n o p q r s t u v w x y z", "a b c"), ['d', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'], 'Test 117');
+test(uncommonFromSentences("repeated repeated repeated", "unique"), ['unique'], 'Test 118');
+test(uncommonFromSentences("a b c d e f g", "h i j k l m n"), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 'Test 119');
+test(uncommonFromSentences("longer sentence with more words included", "included more words with longer sentence"), [], 'Test 120');
+test(uncommonFromSentences("overlap many words here", "many words overlap"), ['here'], 'Test 121');
+test(uncommonFromSentences("singleword", "different"), ['singleword', 'different'], 'Test 122');
+test(uncommonFromSentences("multiple same words here and here", "here and"), ['multiple', 'same', 'words'], 'Test 123');
+test(uncommonFromSentences("python programming language", "programming language for python"), ['for'], 'Test 124');
+test(uncommonFromSentences("abc def ghi jkl mno", "pqr stu vwx yza"), ['abc', 'def', 'ghi', 'jkl', 'mno', 'pqr', 'stu', 'vwx', 'yza'], 'Test 125');
+test(uncommonFromSentences("single", "single unique"), ['unique'], 'Test 126');
+test(uncommonFromSentences("many different words in this sentence", "completely different words in this sentence"), ['many', 'completely'], 'Test 127');
+test(uncommonFromSentences("only one word", ""), ['only', 'one', 'word'], 'Test 128');
+test(uncommonFromSentences("singleword", ""), ['singleword'], 'Test 129');
+test(uncommonFromSentences("common words overlap", "overlap common words"), [], 'Test 130');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

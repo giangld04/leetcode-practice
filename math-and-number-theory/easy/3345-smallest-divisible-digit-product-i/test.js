@@ -1,0 +1,150 @@
+// Test: 3345. Smallest Divisible Digit Product I
+// 124 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { smallestNumber } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n3345. Smallest Divisible Digit Product I\n");
+
+test(smallestNumber(30, 5), 30, 'Test 1');
+test(smallestNumber(25, 7), 27, 'Test 2');
+test(smallestNumber(60, 10), 60, 'Test 3');
+test(smallestNumber(30, 7), 30, 'Test 4');
+test(smallestNumber(80, 10), 80, 'Test 5');
+test(smallestNumber(90, 1), 90, 'Test 6');
+test(smallestNumber(75, 7), 75, 'Test 7');
+test(smallestNumber(50, 6), 50, 'Test 8');
+test(smallestNumber(25, 5), 25, 'Test 9');
+test(smallestNumber(70, 9), 70, 'Test 10');
+test(smallestNumber(60, 9), 60, 'Test 11');
+test(smallestNumber(60, 8), 60, 'Test 12');
+test(smallestNumber(10, 2), 10, 'Test 13');
+test(smallestNumber(50, 7), 50, 'Test 14');
+test(smallestNumber(15, 3), 16, 'Test 15');
+test(smallestNumber(40, 8), 40, 'Test 16');
+test(smallestNumber(30, 4), 30, 'Test 17');
+test(smallestNumber(25, 6), 26, 'Test 18');
+test(smallestNumber(45, 6), 46, 'Test 19');
+test(smallestNumber(80, 8), 80, 'Test 20');
+test(smallestNumber(70, 6), 70, 'Test 21');
+test(smallestNumber(20, 5), 20, 'Test 22');
+test(smallestNumber(25, 4), 26, 'Test 23');
+test(smallestNumber(95, 10), 100, 'Test 24');
+test(smallestNumber(50, 9), 50, 'Test 25');
+test(smallestNumber(90, 9), 90, 'Test 26');
+test(smallestNumber(50, 8), 50, 'Test 27');
+test(smallestNumber(123, 14), 127, 'Test 28');
+test(smallestNumber(12, 8), 18, 'Test 29');
+test(smallestNumber(12, 1), 12, 'Test 30');
+test(smallestNumber(789, 21), 789, 'Test 31');
+test(smallestNumber(100, 25), 100, 'Test 32');
+test(smallestNumber(33, 5), 35, 'Test 33');
+test(smallestNumber(256, 9), 259, 'Test 34');
+test(smallestNumber(500, 3), 500, 'Test 35');
+test(smallestNumber(89, 13), 90, 'Test 36');
+test(smallestNumber(77, 14), 78, 'Test 37');
+test(smallestNumber(23, 8), 24, 'Test 38');
+test(smallestNumber(303, 21), 303, 'Test 39');
+test(smallestNumber(34, 15), 35, 'Test 40');
+test(smallestNumber(55, 25), 55, 'Test 41');
+test(smallestNumber(88, 14), 90, 'Test 42');
+test(smallestNumber(789, 15), 790, 'Test 43');
+test(smallestNumber(49, 13), 50, 'Test 44');
+test(smallestNumber(505, 35), 505, 'Test 45');
+test(smallestNumber(34, 4), 34, 'Test 46');
+test(smallestNumber(99, 11), 100, 'Test 47');
+test(smallestNumber(49, 8), 50, 'Test 48');
+test(smallestNumber(405, 28), 405, 'Test 49');
+test(smallestNumber(101, 25), 101, 'Test 50');
+test(smallestNumber(321, 3), 321, 'Test 51');
+test(smallestNumber(89, 7), 90, 'Test 52');
+test(smallestNumber(88, 64), 88, 'Test 53');
+test(smallestNumber(67, 24), 68, 'Test 54');
+test(smallestNumber(56, 9), 59, 'Test 55');
+test(smallestNumber(42, 8), 42, 'Test 56');
+test(smallestNumber(234, 49), 240, 'Test 57');
+test(smallestNumber(100, 5), 100, 'Test 58');
+test(smallestNumber(101, 11), 101, 'Test 59');
+test(smallestNumber(111, 29), 120, 'Test 60');
+test(smallestNumber(99, 1), 99, 'Test 61');
+test(smallestNumber(99, 7), 100, 'Test 62');
+test(smallestNumber(45, 18), 49, 'Test 63');
+test(smallestNumber(67, 16), 68, 'Test 64');
+test(smallestNumber(100, 9), 100, 'Test 65');
+test(smallestNumber(89, 8), 89, 'Test 66');
+test(smallestNumber(45, 14), 47, 'Test 67');
+test(smallestNumber(123, 18), 129, 'Test 68');
+test(smallestNumber(678, 10), 680, 'Test 69');
+test(smallestNumber(34, 30), 40, 'Test 70');
+test(smallestNumber(45, 15), 50, 'Test 71');
+test(smallestNumber(49, 5), 50, 'Test 72');
+test(smallestNumber(56, 7), 57, 'Test 73');
+test(smallestNumber(234, 25), 240, 'Test 74');
+test(smallestNumber(33, 27), 39, 'Test 75');
+test(smallestNumber(56, 35), 57, 'Test 76');
+test(smallestNumber(72, 10), 80, 'Test 77');
+test(smallestNumber(60, 30), 60, 'Test 78');
+test(smallestNumber(88, 7), 90, 'Test 79');
+test(smallestNumber(60, 21), 60, 'Test 80');
+test(smallestNumber(78, 12), 80, 'Test 81');
+test(smallestNumber(800, 4), 800, 'Test 82');
+test(smallestNumber(23, 13), 30, 'Test 83');
+test(smallestNumber(123, 7), 127, 'Test 84');
+test(smallestNumber(200, 25), 200, 'Test 85');
+test(smallestNumber(456, 12), 456, 'Test 86');
+test(smallestNumber(67, 21), 67, 'Test 87');
+test(smallestNumber(88, 6), 89, 'Test 88');
+test(smallestNumber(123, 8), 124, 'Test 89');
+test(smallestNumber(100, 8), 100, 'Test 90');
+test(smallestNumber(81, 81), 90, 'Test 91');
+test(smallestNumber(34, 12), 34, 'Test 92');
+test(smallestNumber(888, 6), 889, 'Test 93');
+test(smallestNumber(91, 77), 100, 'Test 94');
+test(smallestNumber(55, 24), 60, 'Test 95');
+test(smallestNumber(123, 5), 125, 'Test 96');
+test(smallestNumber(34, 14), 40, 'Test 97');
+test(smallestNumber(101, 9), 101, 'Test 98');
+test(smallestNumber(99, 10), 100, 'Test 99');
+test(smallestNumber(123, 15), 130, 'Test 100');
+test(smallestNumber(65, 15), 65, 'Test 101');
+test(smallestNumber(100, 12), 100, 'Test 102');
+test(smallestNumber(404, 28), 404, 'Test 103');
+test(smallestNumber(99, 9), 99, 'Test 104');
+test(smallestNumber(123, 20), 130, 'Test 105');
+test(smallestNumber(56, 20), 58, 'Test 106');
+test(smallestNumber(67, 11), 70, 'Test 107');
+test(smallestNumber(234, 11), 240, 'Test 108');
+test(smallestNumber(300, 27), 300, 'Test 109');
+test(smallestNumber(64, 15), 65, 'Test 110');
+test(smallestNumber(202, 14), 202, 'Test 111');
+test(smallestNumber(78, 33), 80, 'Test 112');
+test(smallestNumber(72, 15), 80, 'Test 113');
+test(smallestNumber(25, 12), 26, 'Test 114');
+test(smallestNumber(98, 7), 100, 'Test 115');
+test(smallestNumber(97, 100), 100, 'Test 116');
+test(smallestNumber(999, 2), 1000, 'Test 117');
+test(smallestNumber(99, 8), 100, 'Test 118');
+test(smallestNumber(75, 11), 80, 'Test 119');
+test(smallestNumber(111, 2), 112, 'Test 120');
+test(smallestNumber(123, 9), 129, 'Test 121');
+test(smallestNumber(78, 35), 80, 'Test 122');
+test(smallestNumber(45, 21), 50, 'Test 123');
+test(smallestNumber(22, 20), 30, 'Test 124');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

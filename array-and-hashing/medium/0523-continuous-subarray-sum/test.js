@@ -1,0 +1,150 @@
+// Test: 523. Continuous Subarray Sum
+// 124 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { checkSubarraySum } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n523. Continuous Subarray Sum\n");
+
+test(checkSubarraySum([2,5,31,4,5,1], 5), true, 'Test 1');
+test(checkSubarraySum([1,2,3,4,5], 9), true, 'Test 2');
+test(checkSubarraySum([23,2,6,4,7], 6), true, 'Test 3');
+test(checkSubarraySum([2,5,4,5,10], 3), true, 'Test 4');
+test(checkSubarraySum([1,0,1,0,1], 2), true, 'Test 5');
+test(checkSubarraySum([23,2,4,6,7], 6), true, 'Test 6');
+test(checkSubarraySum([23,2,6,4,7], 0), Error: integer modulo by zero, 'Test 7');
+test(checkSubarraySum([1,2,3,4,5,6], 10), true, 'Test 8');
+test(checkSubarraySum([23,2,6,4,7], 13), false, 'Test 9');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10], 5), true, 'Test 10');
+test(checkSubarraySum([5,0,0,0], 3), true, 'Test 11');
+test(checkSubarraySum([23,2,4,6,6], 7), true, 'Test 12');
+test(checkSubarraySum([1,2,1,2,1,2], 6), true, 'Test 13');
+test(checkSubarraySum([0,0,0,0], 1), true, 'Test 14');
+test(checkSubarraySum([2,2,2,2,2,2], 10), true, 'Test 15');
+test(checkSubarraySum([23,2,4,6,7,11], 5), true, 'Test 16');
+test(checkSubarraySum([23,2,4,6,7], 1), true, 'Test 17');
+test(checkSubarraySum([1,2,12], 6), false, 'Test 18');
+test(checkSubarraySum([0,0], 1), true, 'Test 19');
+test(checkSubarraySum([0,1,0], 1), true, 'Test 20');
+test(checkSubarraySum([1,2,3,4,5], 10), true, 'Test 21');
+test(checkSubarraySum([1,2,3,4,5], 15), true, 'Test 22');
+test(checkSubarraySum([28,29,49,0,48,50,52,51,52,53,54,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 25), true, 'Test 23');
+test(checkSubarraySum([23,2,4,6,7,8,10,12,14,16,18,20,22,24,26,28,30], 11), true, 'Test 24');
+test(checkSubarraySum([1000000000,1000000000,1000000000,1000000000,1000000000], 1), true, 'Test 25');
+test(checkSubarraySum([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 20), true, 'Test 26');
+test(checkSubarraySum([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 1), true, 'Test 27');
+test(checkSubarraySum([21,2,19,2,20,3], 6), true, 'Test 28');
+test(checkSubarraySum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 11), true, 'Test 29');
+test(checkSubarraySum([23, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7], 21), true, 'Test 30');
+test(checkSubarraySum([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 5), true, 'Test 31');
+test(checkSubarraySum([2, 5, 10, 15, 20, 25, 30], 25), true, 'Test 32');
+test(checkSubarraySum([23, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7], 0), Error: integer modulo by zero, 'Test 33');
+test(checkSubarraySum([23,2,6,8,1,4,7], 10), true, 'Test 34');
+test(checkSubarraySum([10,5,2,7,1,9,2,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5], 15), true, 'Test 35');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10], 19), true, 'Test 36');
+test(checkSubarraySum([23, 2, 4, 6, 7, 10, 11, 12], 13), true, 'Test 37');
+test(checkSubarraySum([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 2), true, 'Test 38');
+test(checkSubarraySum([23, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7], 5), true, 'Test 39');
+test(checkSubarraySum([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 5), true, 'Test 40');
+test(checkSubarraySum([0,0,0,0,0,0,0,0,0,0], 1), true, 'Test 41');
+test(checkSubarraySum([10,20,30,40,50,60,70,80,90,100], 10), true, 'Test 42');
+test(checkSubarraySum([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 10), true, 'Test 43');
+test(checkSubarraySum([2,3,5,7,11,13,17,19,23,29,31,37,41,43,47], 17), true, 'Test 44');
+test(checkSubarraySum([10,20,30,40,50,60,70,80,90,100], 25), true, 'Test 45');
+test(checkSubarraySum([1000000000,1000000000,1000000000,1000000000,1000000000], 500000000), true, 'Test 46');
+test(checkSubarraySum([23,2,6,4,7,1,2,3,4,5,6,7,8,9,10], 5), true, 'Test 47');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10], 55), true, 'Test 48');
+test(checkSubarraySum([23, 2, 4, 6, 7, 1, 2, 4, 6, 7], 10), true, 'Test 49');
+test(checkSubarraySum([23,2,4,6,7,23,2,4,6,7,23,2,4,6,7,23,2,4,6,7], 14), true, 'Test 50');
+test(checkSubarraySum([23, 2, 4, 6, 7, 10, 11, 12], 6), true, 'Test 51');
+test(checkSubarraySum([9, 10, 7, 3, 9, 6, 1, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 6), true, 'Test 52');
+test(checkSubarraySum([21,26,29,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,100], 11), true, 'Test 53');
+test(checkSubarraySum([3,2,1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 4), true, 'Test 54');
+test(checkSubarraySum([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1], 2), true, 'Test 55');
+test(checkSubarraySum([10,20,30,40,50,60,70,80,90,100], 55), true, 'Test 56');
+test(checkSubarraySum([0, 0, 0, 0, 0, 0], 1), true, 'Test 57');
+test(checkSubarraySum([1,0,1,0,1,0,1,0,1], 2), true, 'Test 58');
+test(checkSubarraySum([23,2,4,6,7,5,3,9,10], 12), true, 'Test 59');
+test(checkSubarraySum([23, 2, 4, 6, 7, 10, 11, 12], 0), Error: integer modulo by zero, 'Test 60');
+test(checkSubarraySum([29,23,17,13,11,7,5,3,2,1,1,2,3,5,7,11,13,17,23,29], 20), true, 'Test 61');
+test(checkSubarraySum([9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9], 18), true, 'Test 62');
+test(checkSubarraySum([2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40], 24), true, 'Test 63');
+test(checkSubarraySum([2,4,6,8,10,12,14,16,18,20], 22), true, 'Test 64');
+test(checkSubarraySum([10, 20, 30, 40, 50], 15), true, 'Test 65');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 20), true, 'Test 66');
+test(checkSubarraySum([23,2,4,6,7,8,10,11,12], 6), true, 'Test 67');
+test(checkSubarraySum([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 10), true, 'Test 68');
+test(checkSubarraySum([0,1,0,3,0,4,0,5,0,6], 2), true, 'Test 69');
+test(checkSubarraySum([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 1), true, 'Test 70');
+test(checkSubarraySum([10,5,0,0,3,1,0,0,8,0,0,6], 10), true, 'Test 71');
+test(checkSubarraySum([0, 1, 0, 1, 0, 1, 0, 1, 0], 2), true, 'Test 72');
+test(checkSubarraySum([1,3,5,7,9,11,13], 10), true, 'Test 73');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], 29), true, 'Test 74');
+test(checkSubarraySum([10,5,0,0,0,10,5], 5), true, 'Test 75');
+test(checkSubarraySum([1,0,1,0,1,0,1,0,1,0], 2), true, 'Test 76');
+test(checkSubarraySum([5,8,9,12,16,1,3,1,4,6,7,8,9,10,11,12], 27), true, 'Test 77');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10], 33), true, 'Test 78');
+test(checkSubarraySum([1000000000, 1000000000, 1000000000, 1000000000, 1000000000], 2000000000), true, 'Test 79');
+test(checkSubarraySum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 15), true, 'Test 80');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 19), true, 'Test 81');
+test(checkSubarraySum([0, 1, 0, 1, 0], 1), true, 'Test 82');
+test(checkSubarraySum([2,4,6,8,10,12,14,16,18,20], 36), true, 'Test 83');
+test(checkSubarraySum([23, 2, 4, 6, 7, 8, 10], 6), true, 'Test 84');
+test(checkSubarraySum([2,1,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 13), true, 'Test 85');
+test(checkSubarraySum([1,1000000000,1,1000000000,1,1000000000], 2000000000), false, 'Test 86');
+test(checkSubarraySum([23,2,4,6,7,8,10,12], 9), true, 'Test 87');
+test(checkSubarraySum([1, 0, 1, 0, 1, 0], 2), true, 'Test 88');
+test(checkSubarraySum([0,1,0,3,0,4,0,5,0,6], 3), true, 'Test 89');
+test(checkSubarraySum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 21), true, 'Test 90');
+test(checkSubarraySum([0,0,0,0,0,0,0,0], 1), true, 'Test 91');
+test(checkSubarraySum([28,2,4,6,8,10,12,14,16,18,20,22], 21), true, 'Test 92');
+test(checkSubarraySum([1, 3, 5, 0, 2, 4, 6], 5), true, 'Test 93');
+test(checkSubarraySum([23,2,4,6,7,8,10], 13), true, 'Test 94');
+test(checkSubarraySum([2,3,5,7,11,13,17,19,23,29], 100), true, 'Test 95');
+test(checkSubarraySum([23,2,4,6,6,7], 6), true, 'Test 96');
+test(checkSubarraySum([23, 2, 6, 4, 7, 2, 4, 6, 7], 13), true, 'Test 97');
+test(checkSubarraySum([1000000000,1000000000,1000000000,1000000000,1000000000,1000000000], 1000000000), true, 'Test 98');
+test(checkSubarraySum([1,10,100,1000,10000,100000], 111111), true, 'Test 99');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10], 25), true, 'Test 100');
+test(checkSubarraySum([1000000000, 1000000000, 1000000000, 1000000000], 2000000000), true, 'Test 101');
+test(checkSubarraySum([23, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7, 1, 2, 4, 6, 7], 1), true, 'Test 102');
+test(checkSubarraySum([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 2), true, 'Test 103');
+test(checkSubarraySum([29, 7, 21, 20, 12, 28, 8, 5, 4, 1, 20, 4, 11, 15, 7, 12, 9, 7, 4, 15, 1, 3, 15, 11, 7, 12, 3, 7, 15, 11, 12, 9, 10, 7, 6, 6, 3, 14, 12, 4, 14, 16, 7, 10, 2, 9, 14, 9, 7, 15, 14, 1, 15, 13, 8, 6, 2, 14, 8, 2, 13, 1, 10, 6, 15, 9, 11, 16, 8, 15, 10, 7, 9, 20, 14, 14, 16, 4, 10, 9, 7, 8, 9, 13, 14, 14, 10, 6, 2, 3, 8, 15, 2, 9, 7, 10, 15, 11, 12, 9, 10, 7, 6, 6, 3, 14, 12, 4, 14, 16, 7, 10, 2, 9, 14, 9, 7, 15, 14, 1, 15, 13, 8, 6, 2, 14, 8, 2, 13], 59), true, 'Test 104');
+test(checkSubarraySum([23,2,4,6,7,1,2,4], 6), true, 'Test 105');
+test(checkSubarraySum([23,2,4,6,7,8,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], 13), true, 'Test 106');
+test(checkSubarraySum([2, 4, 6, 8, 10, 12, 14, 16, 18, 20], 5), true, 'Test 107');
+test(checkSubarraySum([29,23,17,3,19,11,25,2,9,28,15,18,11,22,24,24,20,11,10,22,5,26,8,6,19,25,28,15,27,18], 29), true, 'Test 108');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10], 3), true, 'Test 109');
+test(checkSubarraySum([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 5), true, 'Test 110');
+test(checkSubarraySum([23, 2, 4, 6, 7, 10, 11, 12], 1), true, 'Test 111');
+test(checkSubarraySum([2,3,1,2,4,3,5,4,5,1,2,3,4,5,6,7,8,9,10], 10), true, 'Test 112');
+test(checkSubarraySum([23,2,4,6,7,5,3,9,10,15,20,25,30,35,40], 17), true, 'Test 113');
+test(checkSubarraySum([23,2,4,6,7,1,3,5,8,10], 12), true, 'Test 114');
+test(checkSubarraySum([23, 2, 6, 4, 7, 23, 2, 6, 4, 7], 6), true, 'Test 115');
+test(checkSubarraySum([3, 1, 7, 5, 6, 9], 10), true, 'Test 116');
+test(checkSubarraySum([23,2,4,6,7,5,3,1,2,4,5,6], 15), true, 'Test 117');
+test(checkSubarraySum([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 60), true, 'Test 118');
+test(checkSubarraySum([7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26], 13), true, 'Test 119');
+test(checkSubarraySum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 100), true, 'Test 120');
+test(checkSubarraySum([23,2,4,6,7,5,3,9,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,105,110,115], 13), true, 'Test 121');
+test(checkSubarraySum([9, 7, 5, 3, 1, 2, 4, 6, 8, 10], 12), true, 'Test 122');
+test(checkSubarraySum([100,200,300,400,500,600,700,800,900,1000], 150), true, 'Test 123');
+test(checkSubarraySum([23,2,4,6,7,0,0,0,0,0], 6), true, 'Test 124');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

@@ -1,0 +1,154 @@
+// Test: 1955. Count Number Of Special Subsequences
+// 128 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { countSpecialSubsequences } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1955. Count Number Of Special Subsequences\n");
+
+test(countSpecialSubsequences([0,0,1,1,2]), 9, 'Test 1');
+test(countSpecialSubsequences([1,1,1,1,2,2,2]), 0, 'Test 2');
+test(countSpecialSubsequences([0,0,0,1,1,2]), 21, 'Test 3');
+test(countSpecialSubsequences([2,2,0,0]), 0, 'Test 4');
+test(countSpecialSubsequences([0,1,2,2]), 3, 'Test 5');
+test(countSpecialSubsequences([0,1,2,2,2]), 7, 'Test 6');
+test(countSpecialSubsequences([1,2,2,0,0,1]), 0, 'Test 7');
+test(countSpecialSubsequences([0,1,2,1,2,0,1,2]), 19, 'Test 8');
+test(countSpecialSubsequences([0,1,0,1,2]), 5, 'Test 9');
+test(countSpecialSubsequences([0,1,1,1,2,2,2]), 49, 'Test 10');
+test(countSpecialSubsequences([2,1,0,1,0,2,0]), 1, 'Test 11');
+test(countSpecialSubsequences([0,1,2,0,1,0,1,2]), 19, 'Test 12');
+test(countSpecialSubsequences([2,0,1,2,0,1,2]), 7, 'Test 13');
+test(countSpecialSubsequences([2,0,1,0,1,2]), 5, 'Test 14');
+test(countSpecialSubsequences([2,0,1,0,1,2,0,1,2]), 27, 'Test 15');
+test(countSpecialSubsequences([0,0,1,1,2,2,2]), 63, 'Test 16');
+test(countSpecialSubsequences([0,0,0,0,0]), 0, 'Test 17');
+test(countSpecialSubsequences([1,0,1,2,0,1,2,0]), 7, 'Test 18');
+test(countSpecialSubsequences([0,1,0,1,0,1,2,2]), 51, 'Test 19');
+test(countSpecialSubsequences([0,1,2,0,1,2]), 7, 'Test 20');
+test(countSpecialSubsequences([0,1,2]), 1, 'Test 21');
+test(countSpecialSubsequences([0,0,1,2,1,2]), 15, 'Test 22');
+test(countSpecialSubsequences([0,0,1,1,2,2]), 27, 'Test 23');
+test(countSpecialSubsequences([0,1,0,1,0,1,2,2,2]), 119, 'Test 24');
+test(countSpecialSubsequences([0,0,0,1,2,2]), 21, 'Test 25');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2]), 343, 'Test 26');
+test(countSpecialSubsequences([0,1,0,1,2,0,1,2]), 27, 'Test 27');
+test(countSpecialSubsequences([0,1,1,2,2,2]), 21, 'Test 28');
+test(countSpecialSubsequences([1,2,0]), 0, 'Test 29');
+test(countSpecialSubsequences([2,0,0,0,1,1,1,2,2,2,2]), 735, 'Test 30');
+test(countSpecialSubsequences([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]), 375309442, 'Test 31');
+test(countSpecialSubsequences([0,0,0,0,1,1,1,1,2,2,2,2,0,0,0,1,1,1,2,2]), 21567, 'Test 32');
+test(countSpecialSubsequences([0,0,0,0,1,2,2,2,1,2,2,2,1,2,2,2]), 9975, 'Test 33');
+test(countSpecialSubsequences([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2]), 554508028, 'Test 34');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2,2,2,2,2,2,2]), 25039, 'Test 35');
+test(countSpecialSubsequences([2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2]), 133432831, 'Test 36');
+test(countSpecialSubsequences([0,1,0,2,0,1,2,0,1,2,0,1,2]), 207, 'Test 37');
+test(countSpecialSubsequences([2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0]), 351, 'Test 38');
+test(countSpecialSubsequences([0,0,0,0,1,1,1,1,1,2,2,2,2,2]), 14415, 'Test 39');
+test(countSpecialSubsequences([0,0,0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,2,2]), 2048383, 'Test 40');
+test(countSpecialSubsequences([0,1,0,2,0,1,0,2,1,2]), 55, 'Test 41');
+test(countSpecialSubsequences([0,1,1,0,2,2,1,1,0,2,0,1,2]), 135, 'Test 42');
+test(countSpecialSubsequences([0,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2]), 6399, 'Test 43');
+test(countSpecialSubsequences([2,1,0,0,0,1,1,1,2,2,2,2]), 735, 'Test 44');
+test(countSpecialSubsequences([0,1,2,2,0,1,2,2,0,1,2,2,0,1,2,2,0,1,2,2]), 3519, 'Test 45');
+test(countSpecialSubsequences([0,0,0,0,1,1,1,1,2,2,2,2,2,2]), 14175, 'Test 46');
+test(countSpecialSubsequences([0,1,0,1,0,1,2,2,2,2,2,0,1,2,0,1,2]), 2335, 'Test 47');
+test(countSpecialSubsequences([0,1,0,1,0,1,0,1,0,1,2,2,2,2,2]), 3999, 'Test 48');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2,2,0,1,2,2]), 3279, 'Test 49');
+test(countSpecialSubsequences([0,0,0,0,1,1,1,2,2,2,2]), 1575, 'Test 50');
+test(countSpecialSubsequences([2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0,2,2,0,0]), 0, 'Test 51');
+test(countSpecialSubsequences([0,1,0,2,0,1,0,2,0,1,0,2]), 71, 'Test 52');
+test(countSpecialSubsequences([2,2,2,1,1,1,0,0,0,2,2,2,1,1,1,0,0,0]), 0, 'Test 53');
+test(countSpecialSubsequences([0,0,1,1,2,2,2,2,0,0,1,1,2,2,2]), 1647, 'Test 54');
+test(countSpecialSubsequences([0,0,1,1,1,2,2,2,0,0,1,1,2]), 423, 'Test 55');
+test(countSpecialSubsequences([0,0,0,1,1,1,1,2,2,2,2,2,2,2,2]), 26775, 'Test 56');
+test(countSpecialSubsequences([0,0,0,0,1,1,1,1,1,2,2,2,2,2,2]), 29295, 'Test 57');
+test(countSpecialSubsequences([0,0,1,1,2,2,2,2]), 135, 'Test 58');
+test(countSpecialSubsequences([2,2,2,2,0,0,0,0,1,1,1,1]), 0, 'Test 59');
+test(countSpecialSubsequences([0,0,0,1,1,2,2,2,1,1,2,2,2,0,1,2]), 4047, 'Test 60');
+test(countSpecialSubsequences([0,1,2,0,1,2,0,1,2]), 31, 'Test 61');
+test(countSpecialSubsequences([2,2,2,1,1,0,0,0,0]), 0, 'Test 62');
+test(countSpecialSubsequences([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), 1023, 'Test 63');
+test(countSpecialSubsequences([2,2,2,2,2,0,0,0,0,0,1,1,1,1,1]), 0, 'Test 64');
+test(countSpecialSubsequences([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2]), 70599160, 'Test 65');
+test(countSpecialSubsequences([0,0,1,1,1,1,2,2,0,0,1,1,2]), 495, 'Test 66');
+test(countSpecialSubsequences([0,1,2,1,0,2,1,0,2,1,0,2]), 63, 'Test 67');
+test(countSpecialSubsequences([0,1,1,2,0,1,2,2,1,2,0,1,2,2,1,0,1,2,2]), 2847, 'Test 68');
+test(countSpecialSubsequences([0,0,1,1,1,1,2,2,2,2]), 675, 'Test 69');
+test(countSpecialSubsequences([0,1,2,2,1,0,1,2,2,1,0,1,2]), 127, 'Test 70');
+test(countSpecialSubsequences([0,0,0,1,1,1,1,2,2,2,2]), 1575, 'Test 71');
+test(countSpecialSubsequences([0,1,0,1,0,1,0,2,2,2,2]), 255, 'Test 72');
+test(countSpecialSubsequences([2,0,0,0,1,1,1,2,2,2]), 343, 'Test 73');
+test(countSpecialSubsequences([0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2]), 250047, 'Test 74');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2,0,0,0,1,1,1,2,2,2]), 8575, 'Test 75');
+test(countSpecialSubsequences([0,0,1,1,1,2,2,2,2,2]), 651, 'Test 76');
+test(countSpecialSubsequences([2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), 18943, 'Test 77');
+test(countSpecialSubsequences([0,1,2,2,2,1,1,2,2,2,1,1,2,2,2,1,1,2,2]), 4609, 'Test 78');
+test(countSpecialSubsequences([0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2]), 534776319, 'Test 79');
+test(countSpecialSubsequences([0,1,2,0,1,0,1,2,0,1,2,0,1,2]), 303, 'Test 80');
+test(countSpecialSubsequences([0,1,1,2,2,2,2,2,0,1,2,0,1,2,2]), 855, 'Test 81');
+test(countSpecialSubsequences([2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), 2815, 'Test 82');
+test(countSpecialSubsequences([0,0,0,0,1,1,1,1,2,2,2,2]), 3375, 'Test 83');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2,0,1,2,0,1,2,0,1,2]), 4287, 'Test 84');
+test(countSpecialSubsequences([0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2]), 20223, 'Test 85');
+test(countSpecialSubsequences([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), 2815, 'Test 86');
+test(countSpecialSubsequences([2,2,0,0,0,1,1,1,2,2]), 147, 'Test 87');
+test(countSpecialSubsequences([2,0,0,1,1,1,2,2,2,2,0,0,1,1,2,2]), 1647, 'Test 88');
+test(countSpecialSubsequences([0,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), 831, 'Test 89');
+test(countSpecialSubsequences([0,0,0,0,0,1,1,1,1,1,2,2,2,2,2]), 29791, 'Test 90');
+test(countSpecialSubsequences([2,2,2,2,2,0,0,0,0,1,1,1,1,1,1]), 0, 'Test 91');
+test(countSpecialSubsequences([0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2]), 451143, 'Test 92');
+test(countSpecialSubsequences([2,2,2,0,1,0,1,2,0,1,2,0,1,2,0,1,2]), 335, 'Test 93');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2,0,1,2,0,1,2]), 1855, 'Test 94');
+test(countSpecialSubsequences([0,1,1,1,2,2,2,2,0,1,2]), 227, 'Test 95');
+test(countSpecialSubsequences([0,0,1,1,1,1,2,2,2,2,0,1,2]), 1447, 'Test 96');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2,2,0,0,1,1,2,2,2,2]), 16095, 'Test 97');
+test(countSpecialSubsequences([0,1,2,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2]), 7039, 'Test 98');
+test(countSpecialSubsequences([0,0,1,1,2,2,0,0,1,1,2,2]), 351, 'Test 99');
+test(countSpecialSubsequences([0,1,2,0,0,1,1,1,2,2,0,1,2]), 479, 'Test 100');
+test(countSpecialSubsequences([2,2,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2]), 2943, 'Test 101');
+test(countSpecialSubsequences([2,2,2,2,2,0,0,0,1,1,1,1,2,2,2]), 735, 'Test 102');
+test(countSpecialSubsequences([0,0,1,1,1,2,2,2,0,0,1,1,2,2]), 975, 'Test 103');
+test(countSpecialSubsequences([2,0,0,0,1,1,1,2,2,2,0,0,1,1,2,2]), 2239, 'Test 104');
+test(countSpecialSubsequences([0,0,0,0,0,1,1,1,2,2,2,2,2]), 6727, 'Test 105');
+test(countSpecialSubsequences([0,0,0,1,2,2,2,1,1,1,0,0,0]), 49, 'Test 106');
+test(countSpecialSubsequences([0,0,0,1,1,2,2,0,0,1,1,2,2]), 783, 'Test 107');
+test(countSpecialSubsequences([0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2]), 704511, 'Test 108');
+test(countSpecialSubsequences([0,1,0,1,0,1,2,2,2,2,2]), 527, 'Test 109');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2,2,2,0,0,1,1,2,2,2,2]), 28639, 'Test 110');
+test(countSpecialSubsequences([0,0,0,0,1,1,1,2,2,2]), 735, 'Test 111');
+test(countSpecialSubsequences([0,0,1,1,2,2,0,0,1,1,2,2,0,0,1,1,2,2]), 2943, 'Test 112');
+test(countSpecialSubsequences([0,0,1,1,1,2,2,2,2]), 315, 'Test 113');
+test(countSpecialSubsequences([0,0,1,1,1,2,2,2,2,2,2]), 1323, 'Test 114');
+test(countSpecialSubsequences([2,2,2,2,2,2,2,2,0,0,0,0,1,1,1,1,2,2,2,2]), 3375, 'Test 115');
+test(countSpecialSubsequences([0,0,1,1,1,2,2,2,0,0,1,1,1,2,2,2]), 3087, 'Test 116');
+test(countSpecialSubsequences([0,1,2,1,2,0,1,2,1,2,0,1,2]), 167, 'Test 117');
+test(countSpecialSubsequences([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), 351, 'Test 118');
+test(countSpecialSubsequences([2,1,0,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2]), 7423, 'Test 119');
+test(countSpecialSubsequences([0,1,0,1,0,1,2,2,2,2,2,2,2,2]), 4335, 'Test 120');
+test(countSpecialSubsequences([0,0,0,1,1,1,2,2,2,2,2,0,1,2]), 3151, 'Test 121');
+test(countSpecialSubsequences([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), 18943, 'Test 122');
+test(countSpecialSubsequences([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), 274431, 'Test 123');
+test(countSpecialSubsequences([0,0,1,1,2,0,1,2,0,1,2]), 151, 'Test 124');
+test(countSpecialSubsequences([0,0,0,1,1,2,2,1,1,2,2,1,1,2,2]), 3591, 'Test 125');
+test(countSpecialSubsequences([2,2,2,0,0,0,1,1,1]), 0, 'Test 126');
+test(countSpecialSubsequences([0,1,2,0,1,2,0,1,2,0,1,2]), 111, 'Test 127');
+test(countSpecialSubsequences([0,0,0,1,2,1,2,1,2,2,1,2,1,2,2]), 3367, 'Test 128');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

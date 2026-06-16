@@ -1,0 +1,154 @@
+// Test: 75. Sort Colors
+// 128 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { sortColors } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n75. Sort Colors\n");
+
+test(sortColors([1,0,2,0,1,2,1]), null, 'Test 1');
+test(sortColors([1,1,1]), null, 'Test 2');
+test(sortColors([2,2,2,1,1,1,0,0,0]), null, 'Test 3');
+test(sortColors([1]), null, 'Test 4');
+test(sortColors([1,0,2,1,0,2,1,0,2]), null, 'Test 5');
+test(sortColors([2,2,2]), null, 'Test 6');
+test(sortColors([0,1,1,0,1,2,1,2,2,0]), null, 'Test 7');
+test(sortColors([0,1,0,2,1,0,1,2,0,1,2]), null, 'Test 8');
+test(sortColors([2,0,1]), null, 'Test 9');
+test(sortColors([2]), null, 'Test 10');
+test(sortColors([1,2,0,2,1,0]), null, 'Test 11');
+test(sortColors([0,1,2,2,1,0]), null, 'Test 12');
+test(sortColors([0,0,0]), null, 'Test 13');
+test(sortColors([2,0,2,1,1,0]), null, 'Test 14');
+test(sortColors([0]), null, 'Test 15');
+test(sortColors([0,1,2,0,1,2]), null, 'Test 16');
+test(sortColors([0,0,0,0,0,0,0]), null, 'Test 17');
+test(sortColors([2,1,0]), null, 'Test 18');
+test(sortColors([2,2,2,0,0,0,1,1,1]), null, 'Test 19');
+test(sortColors([1,1,1,0,0,0]), null, 'Test 20');
+test(sortColors([1,0,2,1,0,2,1]), null, 'Test 21');
+test(sortColors([1,2,0,0,1,2,1,2,0]), null, 'Test 22');
+test(sortColors([0,0,0,1,1,1,2,2,2]), null, 'Test 23');
+test(sortColors([2,2,2,2,2,2,2]), null, 'Test 24');
+test(sortColors([1,1,1,0,0,0,2,2,2]), null, 'Test 25');
+test(sortColors([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]), null, 'Test 26');
+test(sortColors([0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2]), null, 'Test 27');
+test(sortColors([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), null, 'Test 28');
+test(sortColors([2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1]), null, 'Test 29');
+test(sortColors([2,1,0,0,0,1,1,2,2,2]), null, 'Test 30');
+test(sortColors([0,2,1,0,2,1,0,2,1,0,2,1,0,2,1]), null, 'Test 31');
+test(sortColors([1,0,1,0,1,0,1,0,1,0,1,0,1]), null, 'Test 32');
+test(sortColors([2,1,0,1,2,0,1,2,0,1,2,0,1,2,0]), null, 'Test 33');
+test(sortColors([2,1,1,2,1,1,2,1,1,0,0,0,0,2,1]), null, 'Test 34');
+test(sortColors([0,0,0,0,0,0,0,0,0]), null, 'Test 35');
+test(sortColors([2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0]), null, 'Test 36');
+test(sortColors([0,2,1,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1]), null, 'Test 37');
+test(sortColors([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), null, 'Test 38');
+test(sortColors([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]), null, 'Test 39');
+test(sortColors([1,2,2,1,1,2,2,1,1,0,0,0,0]), null, 'Test 40');
+test(sortColors([2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1]), null, 'Test 41');
+test(sortColors([1,2,2,2,1,1,1,1,2,2,0,0,0,0,0]), null, 'Test 42');
+test(sortColors([1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2]), null, 'Test 43');
+test(sortColors([0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1]), null, 'Test 44');
+test(sortColors([2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1]), null, 'Test 45');
+test(sortColors([2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1]), null, 'Test 46');
+test(sortColors([2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0]), null, 'Test 47');
+test(sortColors([0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]), null, 'Test 48');
+test(sortColors([2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2]), null, 'Test 49');
+test(sortColors([0,1,1,0,2,1,0,1,2,1,0,2,0,2,1]), null, 'Test 50');
+test(sortColors([0,0,0,0,0,0,0,0,0,0]), null, 'Test 51');
+test(sortColors([1,1,0,0,2,2,1,1,0,0,2,2,1,1,0,0,2,2,1,1,0,0,2,2,1,1,0,0,2,2]), null, 'Test 52');
+test(sortColors([2,2,2,1,1,1,0,0,0,2,2,2,1,1,1,0,0,0]), null, 'Test 53');
+test(sortColors([0,1,0,1,0,1,0,1,0,1,0,1,0,1]), null, 'Test 54');
+test(sortColors([1,1,1,1,1,0,0,0,0,0,2,2,2,2,2]), null, 'Test 55');
+test(sortColors([2,0,1,1,0,2,2,0,1,0,2,1,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0]), null, 'Test 56');
+test(sortColors([1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2]), null, 'Test 57');
+test(sortColors([0,0,0,0,1,1,1,1,1,2,2,2,2,2,2]), null, 'Test 58');
+test(sortColors([2,1,0,2,0,1,1,2,2,0,0,1]), null, 'Test 59');
+test(sortColors([2,0,2,0,2,0,2,0,2,1,1,1,1,1,1]), null, 'Test 60');
+test(sortColors([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]), null, 'Test 61');
+test(sortColors([1,2,2,1,2,2,1,2,2,1,2,2,1,2,2]), null, 'Test 62');
+test(sortColors([2,2,2,2,2,0,0,0,0,0,1,1,1,1,1]), null, 'Test 63');
+test(sortColors([2,2,2,2,1,1,1,1,0,0,0,0]), null, 'Test 64');
+test(sortColors([2,2,1,1,0,0,2,2,1,1,0,0,2,2]), null, 'Test 65');
+test(sortColors([2,0,1,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), null, 'Test 66');
+test(sortColors([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), null, 'Test 67');
+test(sortColors([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), null, 'Test 68');
+test(sortColors([2,1,0,1,0,2,1,2,0,0,1,2]), null, 'Test 69');
+test(sortColors([2,2,1,1,0,0,0,1,2,1]), null, 'Test 70');
+test(sortColors([1,1,1,1,1,1,0,0,0,0,0,0,2,2,2]), null, 'Test 71');
+test(sortColors([0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2]), null, 'Test 72');
+test(sortColors([0,2,1,2,1,0,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2]), null, 'Test 73');
+test(sortColors([1,2,2,2,2,1,1,1,1,0,0,0,0,1,2]), null, 'Test 74');
+test(sortColors([0,0,0,1,1,1,2,2,2,0,0,0,1,1,1,2,2,2]), null, 'Test 75');
+test(sortColors([1,1,1,0,0,0,2,2,2,1,1,1,0,0,0]), null, 'Test 76');
+test(sortColors([1,2,1,0,0,1,2,0,2,0,1,2,1,0,2,1,0]), null, 'Test 77');
+test(sortColors([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]), null, 'Test 78');
+test(sortColors([1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2]), null, 'Test 79');
+test(sortColors([0,2,1,2,1,2,1,2,1,2,1,2,1,2,1]), null, 'Test 80');
+test(sortColors([0,1,2,2,1,0,2,1,0,1]), null, 'Test 81');
+test(sortColors([1,0,2,0,2,1,0,2,1,0,2,1,0,2,1]), null, 'Test 82');
+test(sortColors([2,2,1,1,0,0,2,1,0,0,2,1]), null, 'Test 83');
+test(sortColors([1,1,1,1,1,1,1,1,1]), null, 'Test 84');
+test(sortColors([0,0,1,0,0,1,0,0,1,0,0,1,0,0,1]), null, 'Test 85');
+test(sortColors([0,0,0,0,0,0,0,0,0,1,1,1,1,1,2]), null, 'Test 86');
+test(sortColors([0,2,1,2,1,0,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2]), null, 'Test 87');
+test(sortColors([2,2,2,2,2,2,1,1,1,0,0,0]), null, 'Test 88');
+test(sortColors([2,1,0,0,1,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1]), null, 'Test 89');
+test(sortColors([1,1,1,2,2,2,0,0,0,1,1,1,2,2,2,0,0,0,1,1,1]), null, 'Test 90');
+test(sortColors([0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2]), null, 'Test 91');
+test(sortColors([2,1,2,1,2,1,2,1,2,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1]), null, 'Test 92');
+test(sortColors([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1]), null, 'Test 93');
+test(sortColors([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), null, 'Test 94');
+test(sortColors([2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0]), null, 'Test 95');
+test(sortColors([2,1,0,1,0,2,1,0,2,1,0,2,1,0,2]), null, 'Test 96');
+test(sortColors([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), null, 'Test 97');
+test(sortColors([1,1,1,1,1,0,0,0,0,0,2,2,2,2,2,2,2,2,2,1,1,1,0,0,0]), null, 'Test 98');
+test(sortColors([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]), null, 'Test 99');
+test(sortColors([0,2,1,2,0,1,0,2,1,0]), null, 'Test 100');
+test(sortColors([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), null, 'Test 101');
+test(sortColors([2,1,0,2,1,0,2,1,0,2,1,0,2,1,0]), null, 'Test 102');
+test(sortColors([1,1,1,2,2,2,0,0,0,1,1,1,2,2,2,0,0,0]), null, 'Test 103');
+test(sortColors([2,1,1,1,0,0,0,0,2,2,2,2,1,1,1,0,0,0,2,2]), null, 'Test 104');
+test(sortColors([1,0,2,1,2,0,2,1,0,1,0,2,1,2,0,1,0,2,1]), null, 'Test 105');
+test(sortColors([1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0]), null, 'Test 106');
+test(sortColors([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]), null, 'Test 107');
+test(sortColors([1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0]), null, 'Test 108');
+test(sortColors([2,2,1,1,0,0,2,2,1,1,0,0,2,2,1,1,0,0]), null, 'Test 109');
+test(sortColors([2,2,2,2,2,2,2,2,2,2]), null, 'Test 110');
+test(sortColors([2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0]), null, 'Test 111');
+test(sortColors([2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0]), null, 'Test 112');
+test(sortColors([2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1]), null, 'Test 113');
+test(sortColors([1,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]), null, 'Test 114');
+test(sortColors([2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0]), null, 'Test 115');
+test(sortColors([1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0]), null, 'Test 116');
+test(sortColors([1,1,1,1,1,1,1,1,1,1]), null, 'Test 117');
+test(sortColors([2,2,2,2,2,2,2,2,2]), null, 'Test 118');
+test(sortColors([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]), null, 'Test 119');
+test(sortColors([1,2,0,2,0,1,2,0,1,2,0,1,2,0]), null, 'Test 120');
+test(sortColors([0,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), null, 'Test 121');
+test(sortColors([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), null, 'Test 122');
+test(sortColors([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), null, 'Test 123');
+test(sortColors([1,2,0,0,1,2,1,2,0,1,2,0,1,2,0,1,2,0,1,2]), null, 'Test 124');
+test(sortColors([2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0,2,0]), null, 'Test 125');
+test(sortColors([0,2,1,0,2,1,0,2,1,0,2,1,0,2,1,0,2,1]), null, 'Test 126');
+test(sortColors([2,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), null, 'Test 127');
+test(sortColors([1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0]), null, 'Test 128');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

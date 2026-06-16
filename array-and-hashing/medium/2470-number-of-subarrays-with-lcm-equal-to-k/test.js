@@ -1,0 +1,154 @@
+// Test: 2470. Number Of Subarrays With Lcm Equal To K
+// 128 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { subarrayLCM } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n2470. Number Of Subarrays With Lcm Equal To K\n");
+
+test(subarrayLCM([7,7,7,7,7], 7), 15, 'Test 1');
+test(subarrayLCM([5,5,5,5,5], 5), 15, 'Test 2');
+test(subarrayLCM([7,3,9,12,15], 60), 1, 'Test 3');
+test(subarrayLCM([3,6,2,7,1], 6), 4, 'Test 4');
+test(subarrayLCM([100,100,100], 100), 6, 'Test 5');
+test(subarrayLCM([7,7,7,7], 7), 10, 'Test 6');
+test(subarrayLCM([10,5,6,20,12], 60), 7, 'Test 7');
+test(subarrayLCM([5,10,15,20,25], 60), 3, 'Test 8');
+test(subarrayLCM([5,10,15], 30), 2, 'Test 9');
+test(subarrayLCM([10,20,30,40,50], 100), 0, 'Test 10');
+test(subarrayLCM([1,1,1,1,1], 1), 15, 'Test 11');
+test(subarrayLCM([1,2,3,4,5], 60), 3, 'Test 12');
+test(subarrayLCM([3], 2), 0, 'Test 13');
+test(subarrayLCM([2,4,6,8,10], 20), 0, 'Test 14');
+test(subarrayLCM([2,4,8,16], 16), 4, 'Test 15');
+test(subarrayLCM([6,12,18,24], 72), 3, 'Test 16');
+test(subarrayLCM([2,3,5,7,11], 2310), 1, 'Test 17');
+test(subarrayLCM([1,2,3,4,5], 12), 3, 'Test 18');
+test(subarrayLCM([1,2,3,4,5], 1), 1, 'Test 19');
+test(subarrayLCM([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], 100), 1, 'Test 20');
+test(subarrayLCM([13, 26, 39, 52, 65, 78, 91, 104, 117, 130], 312), 0, 'Test 21');
+test(subarrayLCM([8, 16, 32, 64, 128, 256, 512], 512), 7, 'Test 22');
+test(subarrayLCM([1024, 2048, 4096, 8192, 16384], 4096), 3, 'Test 23');
+test(subarrayLCM([5, 10, 15, 20, 25], 150), 0, 'Test 24');
+test(subarrayLCM([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2520), 12, 'Test 25');
+test(subarrayLCM([3, 6, 9, 12, 15, 18, 21], 18), 3, 'Test 26');
+test(subarrayLCM([2,4,6,8,10,12,14,16,18,20], 120), 7, 'Test 27');
+test(subarrayLCM([13, 13, 13, 13, 13, 13, 13], 13), 28, 'Test 28');
+test(subarrayLCM([23, 46, 69, 92, 115, 138, 161, 184, 207, 230], 46), 2, 'Test 29');
+test(subarrayLCM([11, 22, 33, 44, 55], 2310), 0, 'Test 30');
+test(subarrayLCM([3, 9, 27, 81, 243], 243), 5, 'Test 31');
+test(subarrayLCM([11, 22, 33, 44, 55], 132), 3, 'Test 32');
+test(subarrayLCM([13, 26, 39, 52, 65, 78, 91, 104, 117, 130], 78), 3, 'Test 33');
+test(subarrayLCM([4, 8, 16, 32, 64, 128], 128), 6, 'Test 34');
+test(subarrayLCM([5, 10, 15, 20, 25, 30, 35, 40], 420), 0, 'Test 35');
+test(subarrayLCM([100, 200, 300, 400, 500], 200), 2, 'Test 36');
+test(subarrayLCM([9,18,27,36,45,54,63,72,81,90], 540), 7, 'Test 37');
+test(subarrayLCM([5,10,15,20,25,30,35,40,45,50], 420), 0, 'Test 38');
+test(subarrayLCM([3, 9, 27, 81, 243], 81), 4, 'Test 39');
+test(subarrayLCM([3,3,3,3,3,3,3,3,3,3], 3), 55, 'Test 40');
+test(subarrayLCM([2, 3, 5, 7, 11, 13], 30030), 1, 'Test 41');
+test(subarrayLCM([7, 14, 21, 28, 35], 42), 2, 'Test 42');
+test(subarrayLCM([8,16,24,32,40,48,56,64,72,80], 1680), 1, 'Test 43');
+test(subarrayLCM([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 60), 7, 'Test 44');
+test(subarrayLCM([6,12,18,24,30], 360), 3, 'Test 45');
+test(subarrayLCM([11,22,33,44,55,66,77,88,99,110], 110), 1, 'Test 46');
+test(subarrayLCM([7, 14, 28, 42, 56], 168), 4, 'Test 47');
+test(subarrayLCM([30, 60, 90, 120, 150], 150), 1, 'Test 48');
+test(subarrayLCM([6,12,3,18,9], 36), 4, 'Test 49');
+test(subarrayLCM([10, 15, 30, 60, 120, 240], 120), 5, 'Test 50');
+test(subarrayLCM([5, 5, 5, 5, 5, 5], 5), 21, 'Test 51');
+test(subarrayLCM([4, 6, 12, 15, 30, 60], 60), 12, 'Test 52');
+test(subarrayLCM([9, 18, 27, 36, 45], 1620), 0, 'Test 53');
+test(subarrayLCM([2, 3, 5, 7, 11, 13, 17, 19], 9699690), 1, 'Test 54');
+test(subarrayLCM([4, 8, 12, 16, 20], 480), 0, 'Test 55');
+test(subarrayLCM([1023,1024,1025,1026,1027,1028,1029,1030,1031], 1046527167431103520), 0, 'Test 56');
+test(subarrayLCM([5,15,25,35,45], 525), 2, 'Test 57');
+test(subarrayLCM([100, 200, 300, 400, 500], 60000), 0, 'Test 58');
+test(subarrayLCM([5, 10, 20, 40, 80, 160, 320, 640], 640), 8, 'Test 59');
+test(subarrayLCM([2,4,8,16,32,64,128,256,512], 1024), 0, 'Test 60');
+test(subarrayLCM([21, 42, 63, 84, 105, 126, 147, 168, 189, 210], 42), 2, 'Test 61');
+test(subarrayLCM([3, 9, 27, 81, 243, 729, 2187], 43046721), 0, 'Test 62');
+test(subarrayLCM([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 232792560), 22, 'Test 63');
+test(subarrayLCM([3, 5, 15, 45, 60, 90], 90), 1, 'Test 64');
+test(subarrayLCM([9, 18, 27, 36, 45], 54), 2, 'Test 65');
+test(subarrayLCM([7, 14, 28, 56, 112], 112), 5, 'Test 66');
+test(subarrayLCM([7, 14, 21, 28, 35], 14), 2, 'Test 67');
+test(subarrayLCM([2, 4, 6, 8, 12], 24), 7, 'Test 68');
+test(subarrayLCM([50,100,150,200,250,300], 1500), 1, 'Test 69');
+test(subarrayLCM([5, 10, 15, 20, 25], 60), 3, 'Test 70');
+test(subarrayLCM([29, 58, 87, 116, 145, 174, 203, 232, 261, 290], 29), 1, 'Test 71');
+test(subarrayLCM([4,8,12,16,20], 240), 3, 'Test 72');
+test(subarrayLCM([2, 4, 6, 8, 10, 12, 14, 16, 18, 20], 24), 3, 'Test 73');
+test(subarrayLCM([21, 28, 35, 42, 49], 4620), 0, 'Test 74');
+test(subarrayLCM([11, 22, 33, 44, 55, 66], 27720), 0, 'Test 75');
+test(subarrayLCM([19, 38, 57, 76, 95, 114, 133, 152, 171, 190], 380), 1, 'Test 76');
+test(subarrayLCM([7,11,13,17,19,23,29,31,37,41], 1046527167431103520), 0, 'Test 77');
+test(subarrayLCM([7,14,28,49,98], 196), 6, 'Test 78');
+test(subarrayLCM([17, 34, 51, 68, 85, 102, 119, 136, 153, 170], 34), 2, 'Test 79');
+test(subarrayLCM([21, 28, 35, 42, 49, 56, 63, 70], 42), 1, 'Test 80');
+test(subarrayLCM([7,14,21,28,35,42,49,56,63,70], 420), 7, 'Test 81');
+test(subarrayLCM([7, 14, 28, 56, 112], 56), 4, 'Test 82');
+test(subarrayLCM([2,3,4,5,6,7,8,9,10], 20), 1, 'Test 83');
+test(subarrayLCM([9, 27, 81, 243, 729], 6561), 0, 'Test 84');
+test(subarrayLCM([6, 9, 12, 15, 18], 180), 5, 'Test 85');
+test(subarrayLCM([9, 18, 27, 36, 45, 54, 63, 72, 81, 90], 90), 1, 'Test 86');
+test(subarrayLCM([15,25,35,45,55,65,75,85,95], 1155), 0, 'Test 87');
+test(subarrayLCM([11, 22, 33, 44, 55, 66, 77, 88, 99, 110], 660), 7, 'Test 88');
+test(subarrayLCM([7, 14, 21, 28, 35], 420), 3, 'Test 89');
+test(subarrayLCM([25, 50, 75, 100, 125], 250), 0, 'Test 90');
+test(subarrayLCM([25, 50, 75, 100, 125, 150], 15000), 0, 'Test 91');
+test(subarrayLCM([6, 12, 18, 24, 30], 36), 2, 'Test 92');
+test(subarrayLCM([4,9,16,25,36,49,64,81,100], 14400), 0, 'Test 93');
+test(subarrayLCM([6, 12, 18, 24, 30], 360), 3, 'Test 94');
+test(subarrayLCM([2, 4, 6, 8, 12], 12), 3, 'Test 95');
+test(subarrayLCM([11,22,33,44,55,66,77,88,99,110], 1320), 0, 'Test 96');
+test(subarrayLCM([4, 8, 12, 16, 20], 240), 3, 'Test 97');
+test(subarrayLCM([2, 4, 6, 8, 12, 24], 24), 13, 'Test 98');
+test(subarrayLCM([12,15,20,25,30], 300), 5, 'Test 99');
+test(subarrayLCM([100,150,200,250,300], 300), 2, 'Test 100');
+test(subarrayLCM([13,26,39,52,65,78,91,104,117], 312), 0, 'Test 101');
+test(subarrayLCM([2, 4, 6, 8, 10, 12], 12), 3, 'Test 102');
+test(subarrayLCM([9,18,27,36,45], 54), 2, 'Test 103');
+test(subarrayLCM([21, 35, 105, 210, 315, 420, 630], 630), 5, 'Test 104');
+test(subarrayLCM([6, 8, 12, 24, 36], 24), 7, 'Test 105');
+test(subarrayLCM([3, 9, 27, 81], 81), 4, 'Test 106');
+test(subarrayLCM([13, 26, 39, 52, 65], 780), 3, 'Test 107');
+test(subarrayLCM([3, 5, 15, 25, 75], 75), 8, 'Test 108');
+test(subarrayLCM([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 30), 1, 'Test 109');
+test(subarrayLCM([17, 34, 51, 68, 85], 102), 2, 'Test 110');
+test(subarrayLCM([8, 16, 24, 32, 40], 480), 3, 'Test 111');
+test(subarrayLCM([8, 12, 16, 24, 32], 48), 5, 'Test 112');
+test(subarrayLCM([5, 10, 15, 20, 25], 100), 1, 'Test 113');
+test(subarrayLCM([2, 3, 5, 7, 11, 13, 17, 19, 23, 29], 6469693230), 1, 'Test 114');
+test(subarrayLCM([3, 9, 27, 81, 243, 729], 729), 6, 'Test 115');
+test(subarrayLCM([60, 120, 180, 240, 300, 360, 420, 480, 540, 600], 60), 1, 'Test 116');
+test(subarrayLCM([21,42,63,84,105,126,147,168,189,210], 840), 0, 'Test 117');
+test(subarrayLCM([8, 12, 24, 36, 48, 60, 72], 72), 4, 'Test 118');
+test(subarrayLCM([12, 15, 20, 25, 30], 600), 0, 'Test 119');
+test(subarrayLCM([4, 8, 12, 16, 20], 24), 2, 'Test 120');
+test(subarrayLCM([9, 18, 27, 36, 45, 54], 54), 3, 'Test 121');
+test(subarrayLCM([100, 200, 300, 400, 500], 100), 1, 'Test 122');
+test(subarrayLCM([37, 74, 111, 148, 185, 222, 259, 296, 333, 370], 370), 1, 'Test 123');
+test(subarrayLCM([31, 62, 93, 124, 155, 186, 217, 248, 279, 310], 62), 2, 'Test 124');
+test(subarrayLCM([5, 10, 15, 20, 25, 30, 35, 40, 45, 50], 105), 0, 'Test 125');
+test(subarrayLCM([12, 15, 20, 25, 30], 60), 3, 'Test 126');
+test(subarrayLCM([7,14,28,56,112], 112), 5, 'Test 127');
+test(subarrayLCM([7, 14, 28, 35, 42], 42), 1, 'Test 128');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

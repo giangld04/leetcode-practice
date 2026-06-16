@@ -1,0 +1,154 @@
+// Test: 1737. Change Minimum Characters To Satisfy One Of Three Conditions
+// 128 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minCharacters } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1737. Change Minimum Characters To Satisfy One Of Three Conditions\n");
+
+test(minCharacters("abc", "bcd"), 2, 'Test 1');
+test(minCharacters("aba", "caa"), 2, 'Test 2');
+test(minCharacters("xyzz", "zzzz"), 2, 'Test 3');
+test(minCharacters("abcd", "dcba"), 4, 'Test 4');
+test(minCharacters("aaaabbbb", "ccccdddd"), 0, 'Test 5');
+test(minCharacters("xyz", "abc"), 0, 'Test 6');
+test(minCharacters("abc", "def"), 0, 'Test 7');
+test(minCharacters("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz"), 26, 'Test 8');
+test(minCharacters("zzz", "aaa"), 0, 'Test 9');
+test(minCharacters("abc", "abc"), 3, 'Test 10');
+test(minCharacters("a", "z"), 0, 'Test 11');
+test(minCharacters("aaa", "zzz"), 0, 'Test 12');
+test(minCharacters("abacabadabacaba", "zzzyzxzyzxzyzxz"), 0, 'Test 13');
+test(minCharacters("aabbcc", "bbccdd"), 4, 'Test 14');
+test(minCharacters("xyz", "xyz"), 3, 'Test 15');
+test(minCharacters("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba"), 26, 'Test 16');
+test(minCharacters("xyz", "zyx"), 3, 'Test 17');
+test(minCharacters("aaa", "bbb"), 0, 'Test 18');
+test(minCharacters("dabadd", "cda"), 3, 'Test 19');
+test(minCharacters("a", "b"), 0, 'Test 20');
+test(minCharacters("aaaa", "bbbb"), 0, 'Test 21');
+test(minCharacters("aaaaabbbbbccccc", "cccccbbaaaa"), 11, 'Test 22');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "aaaaa"), 0, 'Test 23');
+test(minCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zyxwvutsrqponmlkjihgfedcba"), 27, 'Test 24');
+test(minCharacters("qwert", "asdfg"), 2, 'Test 25');
+test(minCharacters("ababababababababababababababab", "bababababababababababababababa"), 30, 'Test 26');
+test(minCharacters("algorithm", "datastructure"), 7, 'Test 27');
+test(minCharacters("abcabcabcabcabcabcabcabcabcabc", "zzzzyyyxxxwwwwvvvvuuuuttttssssrrrrqqqqppppooooonnnnmmmmmlllllkkkkkjjjjjiiiii"), 0, 'Test 28');
+test(minCharacters("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"), 0, 'Test 29');
+test(minCharacters("abcdabcdabcdabcdabcd", "dcbaabcdabcdabcdabcd"), 20, 'Test 30');
+test(minCharacters("bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbcb", "abadabadabadabadabadabadabadabadabadabadabadabadabadabadabadabadabadabadabadab"), 39, 'Test 31');
+test(minCharacters("aaabbbcccddd", "eefffgggg"), 0, 'Test 32');
+test(minCharacters("aaaaaaaaaabbbbbbbbbbbccccccccc", "zzzzzzzzzzzyyyyyyyyyyxxxxxxxxxx"), 0, 'Test 33');
+test(minCharacters("abababababababababab", "babababababababababa"), 20, 'Test 34');
+test(minCharacters("abcdefghijklmnopqrstuvwxyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 25, 'Test 35');
+test(minCharacters("aabbaabbaabbaabbaabbaabbaabbaabbaabbaabb", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 0, 'Test 36');
+test(minCharacters("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba"), 52, 'Test 37');
+test(minCharacters("mnopmnopmnopmnopmnop", "xyzxyzxyzxyzxyzxyzxyzxyzxyzxyzxyzxyz"), 0, 'Test 38');
+test(minCharacters("abacabadabacabadabacaba", "zyxzyxzyxzyxzyxzyxzyxzyx"), 0, 'Test 39');
+test(minCharacters("aaaaa", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 0, 'Test 40');
+test(minCharacters("aaaaaabbbbccccdddd", "eeeeefffffggggghhhhh"), 0, 'Test 41');
+test(minCharacters("abcdefg", "hijklmnopqrstuvwxyz"), 0, 'Test 42');
+test(minCharacters("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"), 0, 'Test 43');
+test(minCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 2, 'Test 44');
+test(minCharacters("mississippi", "bababababa"), 0, 'Test 45');
+test(minCharacters("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", "pppppppppppppppppppppppppppppppppppppppppp"), 0, 'Test 46');
+test(minCharacters("mnop", "qrst"), 0, 'Test 47');
+test(minCharacters("qazwsxedcrfvtgbyhnujmikolp", "ploikmjhunbygvtfredcxswqaz"), 26, 'Test 48');
+test(minCharacters("hello", "world"), 3, 'Test 49');
+test(minCharacters("mno", "jkl"), 0, 'Test 50');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 0, 'Test 51');
+test(minCharacters("hellohellohello", "worldworldworld"), 9, 'Test 52');
+test(minCharacters("mmmmmmmmmmmmmmmmmmmmmm", "nnnnnnnnnnnnnnnnnnnnnn"), 0, 'Test 53');
+test(minCharacters("aabaaaacaba", "bcdef"), 2, 'Test 54');
+test(minCharacters("zzzzzzzzzz", "aaaaaaaaaa"), 0, 'Test 55');
+test(minCharacters("aaaaaaaaaaaaaabbbbbbbbbbbbbbcccccccccccccccccdddddddddddddddd", "eeeeeeeeeeeeeeeeffffffffgggggggggggggggggghhhhhhhhhhhhhhhhhiiiiiiiiiiiiiiiiii"), 0, 'Test 56');
+test(minCharacters("qwertqwertqwert", "mnbvmnbvmnbv"), 6, 'Test 57');
+test(minCharacters("aaaabbbbccccddddeeeeffffgggghhhhiiii", "jkkkllllmmmmnnnnooooppppqqqqrrrrssssttttuuuuvvvvwwwwxxxxyyyyzzzz"), 0, 'Test 58');
+test(minCharacters("qwertyuiop", "poiuytrewq"), 10, 'Test 59');
+test(minCharacters("mno", "mnpq"), 2, 'Test 60');
+test(minCharacters("llllllllllllllllllllllllllllllllllllllll", "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"), 0, 'Test 61');
+test(minCharacters("programming", "contest"), 4, 'Test 62');
+test(minCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzxxwwvvutssrrqqppoonnmmllkkjjiihhggffeeddccbbaa"), 48, 'Test 63');
+test(minCharacters("xyzzzzzxyzzzzz", "zzzzzxyzzzzzxy"), 8, 'Test 64');
+test(minCharacters("zzzzz", "aaaaa"), 0, 'Test 65');
+test(minCharacters("zzzzzzzzzzzzzz", "aaaaaaaaaaaaaa"), 0, 'Test 66');
+test(minCharacters("ababababababababababababababababab", "bababababababababababababababababa"), 34, 'Test 67');
+test(minCharacters("ppppqqqqqqrrrrrrsssssss", "tttttuuuuuuuuvvvvvvvvvvvvv"), 0, 'Test 68');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"), 0, 'Test 69');
+test(minCharacters("qwerttyuiiopasdfghjklzzxcvbnm", "mnbvcxzlkjhgfdsapoiuytrewq"), 26, 'Test 70');
+test(minCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 2, 'Test 71');
+test(minCharacters("python", "java"), 2, 'Test 72');
+test(minCharacters("pqrstuv", "mnopq"), 2, 'Test 73');
+test(minCharacters("abcdefghijklmnopqrstuvwxyz", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 1, 'Test 74');
+test(minCharacters("acabcbacbacbacbaca", "bdadbdadbdadbdad"), 8, 'Test 75');
+test(minCharacters("abcdefghijklmnopqrstu", "vwxyzvwxyzvwxyzvwxyz"), 0, 'Test 76');
+test(minCharacters("abcdefghijklmnop", "zyxwvutsrqponmlkjihgfedcba"), 16, 'Test 77');
+test(minCharacters("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxy"), 25, 'Test 78');
+test(minCharacters("abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc", "defdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdefdef"), 0, 'Test 79');
+test(minCharacters("abcabcabcabcabcabcabcabcabcabc", "xyzxyzxyzxyzxyzxyzxyzxyzxyzxyz"), 0, 'Test 80');
+test(minCharacters("aabbaacc", "zzzzyyxx"), 0, 'Test 81');
+test(minCharacters("aaaabbbbcccc", "ccccbbbbaaaa"), 12, 'Test 82');
+test(minCharacters("abcdefg", "zzzzzzz"), 0, 'Test 83');
+test(minCharacters("abcdefghijklmnopqrstuvwxy", "zyxwvutsrqponmlkjihgfedcba"), 25, 'Test 84');
+test(minCharacters("acacacacacacacacacacacacacacaca", "bcbcbcbcbcbcbcbcbcbcbcbcbcbcbcbc"), 15, 'Test 85');
+test(minCharacters("mnop", "qrstuvwxyza"), 1, 'Test 86');
+test(minCharacters("abcdabcdabcd", "xyzxyzxyzxyz"), 0, 'Test 87');
+test(minCharacters("abacabadabacaba", "zyxzyxzyxzyxzyxzyx"), 0, 'Test 88');
+test(minCharacters("same", "same"), 4, 'Test 89');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"), 0, 'Test 90');
+test(minCharacters("mnopqrstu", "vwxyzijkl"), 4, 'Test 91');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "abcdefghijklmnopqrstuvwxyz"), 1, 'Test 92');
+test(minCharacters("mnopqrstuvwxy", "abcdefghijklmnopqrstuvwxyz"), 14, 'Test 93');
+test(minCharacters("abcdabcabc", "zyxzxyzxyz"), 0, 'Test 94');
+test(minCharacters("abacabadabacabad", "zyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyxzyx"), 0, 'Test 95');
+test(minCharacters("abcabcabcabcabcabcabcabcabcabc", "abcabcabcabcabcabcabcabcabcabc"), 30, 'Test 96');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 0, 'Test 97');
+test(minCharacters("abcdefghijklm", "nopqrstuvwxyz"), 0, 'Test 98');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"), 0, 'Test 99');
+test(minCharacters("mnopqrstuvwxyzmnopqrstu", "abcdefghijklmnopqrstuabcdefghijklmnopqrstu"), 18, 'Test 100');
+test(minCharacters("aaabbbcccdddeeefffggghhhhiiiiijjjjjjkkkkkkkllllllllmmmmmmmmmmm", "mnopqrstuvwxyzmnopqrstuvwxyzmnopqrstuvwxyzmnopqrstuvwxyz"), 4, 'Test 101');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"), 0, 'Test 102');
+test(minCharacters("aaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbccccccccccccccccccccccccdddddddddddddddddddddd", "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"), 0, 'Test 103');
+test(minCharacters("xyxzyzxzyzxzyzxzyz", "zyxzyzxzyzxzyzxzyx"), 18, 'Test 104');
+test(minCharacters("abcdefghijklmnop", "qrstuvwxyz"), 0, 'Test 105');
+test(minCharacters("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"), 0, 'Test 106');
+test(minCharacters("xyzz", "abcd"), 0, 'Test 107');
+test(minCharacters("racecar", "madam"), 5, 'Test 108');
+test(minCharacters("abcdefghijklmnopqrstu", "vwxyzabcdefghijklmnopqrstu"), 21, 'Test 109');
+test(minCharacters("qwe", "qwer"), 3, 'Test 110');
+test(minCharacters("pppppppppppppppppppppppppppppppppppppppppp", "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"), 0, 'Test 111');
+test(minCharacters("mnbvcxzlkjhgfdsapoiuytrewq", "qwertyuiopasdfghjklzxcvbnm"), 26, 'Test 112');
+test(minCharacters("abcdabcdabcd", "dcbaabcdabcd"), 12, 'Test 113');
+test(minCharacters("aaaaabbbbb", "bbbbbccccc"), 5, 'Test 114');
+test(minCharacters("aaabbbcccdddeeefffggghhhiii", "kkklllmmmnnnooopppqqqrrrssstttuuuvvv"), 0, 'Test 115');
+test(minCharacters("aaaaaaaaaaaaaaaaaaaaaaa", "bbbbbbbbbbbbbbbbbbbbbbbbb"), 0, 'Test 116');
+test(minCharacters("abacabadabacabadabacabad", "zzzzyyyyxxxxyyyyzzzz"), 0, 'Test 117');
+test(minCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzyyxxwwvvuuttssrrqqppoonnmmllkkjjiihhggffeeeeddccbbbaa"), 52, 'Test 118');
+test(minCharacters("abacabadabacaba", "zzzyyyxxxwwwwvvvvuuuuuuttttttsssssrrrrrqqqqqqpppppoonnnnmmmllllkkkkjjjjiiiihhhhhgggggffffffeeeeeeeedddddccccbbbaaaa"), 10, 'Test 119');
+test(minCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzzyyxxwwvvuuttssrrqqppoonnmmllkkjjiihhggffeeddccbbaa"), 52, 'Test 120');
+test(minCharacters("mnopqrstuvwxyz", "abcdefghijklm"), 1, 'Test 121');
+test(minCharacters("one", "two"), 1, 'Test 122');
+test(minCharacters("qwertyuiopasdfghjklzxcvbnm", "qwertyuiopasdfghjklzxcvbnm"), 26, 'Test 123');
+test(minCharacters("mississippi", "delaware"), 3, 'Test 124');
+test(minCharacters("abcdefghijklmnopqrstuvwxyz", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"), 1, 'Test 125');
+test(minCharacters("abc", "xyz"), 0, 'Test 126');
+test(minCharacters("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abcdefghijklmnopqrstuvwxyz"), 27, 'Test 127');
+test(minCharacters("abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc", "mnopmnopmnopmnopmnopmnopmnopmnopmnopmnopmnopmnopmnop"), 0, 'Test 128');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

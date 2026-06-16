@@ -1,0 +1,157 @@
+// Test: 3206. Alternating Groups I
+// 131 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { numberOfAlternatingGroups } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n3206. Alternating Groups I\n");
+
+test(numberOfAlternatingGroups([1,1,1,0,0,0,1,1,1]), 0, 'Test 1');
+test(numberOfAlternatingGroups([1,0,0,0,1,1,1,0]), 2, 'Test 2');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0]), 7, 'Test 3');
+test(numberOfAlternatingGroups([0,0,1,1,0,0,1]), 1, 'Test 4');
+test(numberOfAlternatingGroups([0,0,1,1,0,0,1,1,0]), 0, 'Test 5');
+test(numberOfAlternatingGroups([0,1,1,0,0,1]), 2, 'Test 6');
+test(numberOfAlternatingGroups([0,1,0,1,0]), 3, 'Test 7');
+test(numberOfAlternatingGroups([1,1,0,1,1,0,1]), 2, 'Test 8');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1]), 5, 'Test 9');
+test(numberOfAlternatingGroups([0,1,1,0,1,1,0,1]), 4, 'Test 10');
+test(numberOfAlternatingGroups([1,0,0,1,1,0]), 2, 'Test 11');
+test(numberOfAlternatingGroups([0,1,1,0,1,1,0,1,1]), 3, 'Test 12');
+test(numberOfAlternatingGroups([1,1,1]), 0, 'Test 13');
+test(numberOfAlternatingGroups([1,1,0,1,0,1]), 3, 'Test 14');
+test(numberOfAlternatingGroups([0,1,0,1,1,0,1,0,1]), 7, 'Test 15');
+test(numberOfAlternatingGroups([1,0,0,1,0,0,1,0,0]), 3, 'Test 16');
+test(numberOfAlternatingGroups([0,0,0,1,1,1,0]), 0, 'Test 17');
+test(numberOfAlternatingGroups([0,0,1,1,0,0]), 0, 'Test 18');
+test(numberOfAlternatingGroups([1,1,0,0,0,1,1,0,0]), 0, 'Test 19');
+test(numberOfAlternatingGroups([1,0,1,0,1]), 3, 'Test 20');
+test(numberOfAlternatingGroups([0,1,0,0,1]), 3, 'Test 21');
+test(numberOfAlternatingGroups([1,0,1,0,1,0]), 6, 'Test 22');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1]), 7, 'Test 23');
+test(numberOfAlternatingGroups([0,0,0,1,1,1,0,0,0]), 0, 'Test 24');
+test(numberOfAlternatingGroups([1,0,0,1,0,1,1,0,1]), 3, 'Test 25');
+test(numberOfAlternatingGroups([1,0,0,1,0,0,1,0]), 4, 'Test 26');
+test(numberOfAlternatingGroups([1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0]), 6, 'Test 27');
+test(numberOfAlternatingGroups([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0]), 0, 'Test 28');
+test(numberOfAlternatingGroups([1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0]), 0, 'Test 29');
+test(numberOfAlternatingGroups([0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1]), 10, 'Test 30');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]), 20, 'Test 31');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1]), 9, 'Test 32');
+test(numberOfAlternatingGroups([1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0]), 3, 'Test 33');
+test(numberOfAlternatingGroups([1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1]), 0, 'Test 34');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 26, 'Test 35');
+test(numberOfAlternatingGroups([1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0]), 0, 'Test 36');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]), 32, 'Test 37');
+test(numberOfAlternatingGroups([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]), 15, 'Test 38');
+test(numberOfAlternatingGroups([1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]), 31, 'Test 39');
+test(numberOfAlternatingGroups([0,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0,1,0,1,0,1,0,1,1,0,0,0,0,0]), 6, 'Test 40');
+test(numberOfAlternatingGroups([0,1,1,0,1,1,0,1,0,1,1,0,1,1,0,1]), 8, 'Test 41');
+test(numberOfAlternatingGroups([1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1]), 0, 'Test 42');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 14, 'Test 43');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,0,1,1,0,1,0,1,0,1,0,0,1,1,0]), 12, 'Test 44');
+test(numberOfAlternatingGroups([1,1,1,0,0,0,1,1,1,0,0,0,1,1,1]), 0, 'Test 45');
+test(numberOfAlternatingGroups([0,1,0,0,1,0,1,0,0,1,0,1,0,0,1,0,1,0,0,1,0,1,0,0,1]), 15, 'Test 46');
+test(numberOfAlternatingGroups([1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0]), 11, 'Test 47');
+test(numberOfAlternatingGroups([0,1,0,0,1,0,1,0,1,0,1,0,1,0,1,0]), 12, 'Test 48');
+test(numberOfAlternatingGroups([1,0,1,0,0,1,1,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 20, 'Test 49');
+test(numberOfAlternatingGroups([0,0,0,0,1,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0]), 0, 'Test 50');
+test(numberOfAlternatingGroups([0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0]), 9, 'Test 51');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 19, 'Test 52');
+test(numberOfAlternatingGroups([1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]), 12, 'Test 53');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 13, 'Test 54');
+test(numberOfAlternatingGroups([0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0]), 0, 'Test 55');
+test(numberOfAlternatingGroups([1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1]), 5, 'Test 56');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]), 19, 'Test 57');
+test(numberOfAlternatingGroups([1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1]), 1, 'Test 58');
+test(numberOfAlternatingGroups([0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0]), 0, 'Test 59');
+test(numberOfAlternatingGroups([1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0]), 0, 'Test 60');
+test(numberOfAlternatingGroups([1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 27, 'Test 61');
+test(numberOfAlternatingGroups([1,1,0,0,1,1,0,0,1,1,0,0,1]), 0, 'Test 62');
+test(numberOfAlternatingGroups([1,0,0,1,0,1,1,0,1,1,0,0,1,1]), 3, 'Test 63');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]), 16, 'Test 64');
+test(numberOfAlternatingGroups([0,1,1,0,1,0,0,1,0,1,1,0,1,0]), 6, 'Test 65');
+test(numberOfAlternatingGroups([1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0]), 9, 'Test 66');
+test(numberOfAlternatingGroups([1,0,1,1,0,1,0,1,0,1,1,0,1]), 7, 'Test 67');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1,0]), 12, 'Test 68');
+test(numberOfAlternatingGroups([1,0,1,1,0,1,0,1,1,0,1,0,1,1,0,1,0,1,1,0,1,0,1]), 13, 'Test 69');
+test(numberOfAlternatingGroups([0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0]), 5, 'Test 70');
+test(numberOfAlternatingGroups([0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1]), 1, 'Test 71');
+test(numberOfAlternatingGroups([1,1,0,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]), 20, 'Test 72');
+test(numberOfAlternatingGroups([0,1,1,0,0,1,1,0,0,1,1,0,0]), 0, 'Test 73');
+test(numberOfAlternatingGroups([0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,0]), 7, 'Test 74');
+test(numberOfAlternatingGroups([0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1]), 3, 'Test 75');
+test(numberOfAlternatingGroups([1,1,1,0,0,1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0,1,1]), 8, 'Test 76');
+test(numberOfAlternatingGroups([0,0,0,1,1,1,1,0,0,0,1,1,1,1,0,0,0,1,1,1,1,0,0,0]), 0, 'Test 77');
+test(numberOfAlternatingGroups([1,0,0,1,1,0,0,1,1,0,0,1,1,0,0]), 1, 'Test 78');
+test(numberOfAlternatingGroups([1,1,0,0,1,0,1,0,1,1,0,1,0,1,0,1,1,0,1,0,1,0,1,1,0,1]), 15, 'Test 79');
+test(numberOfAlternatingGroups([1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1]), 9, 'Test 80');
+test(numberOfAlternatingGroups([1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1]), 6, 'Test 81');
+test(numberOfAlternatingGroups([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]), 11, 'Test 82');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,0,1,0,1,0,1,0,1,0,1,0]), 15, 'Test 83');
+test(numberOfAlternatingGroups([0,0,0,1,1,1,1,0,0,0,1,1,1,1,0,0,0,1,1,1,1,0,0,0,1,1,1,1]), 0, 'Test 84');
+test(numberOfAlternatingGroups([1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0]), 13, 'Test 85');
+test(numberOfAlternatingGroups([0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1]), 9, 'Test 86');
+test(numberOfAlternatingGroups([0,1,0,1,1,0,1,0,1,0,1,0,1]), 11, 'Test 87');
+test(numberOfAlternatingGroups([1,0,1,1,0,0,1,0,1,0,1,1,0,0,1,0,1,0,1,1,0,0,1,0,1]), 11, 'Test 88');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0,1,0]), 11, 'Test 89');
+test(numberOfAlternatingGroups([1,0,1,1,0,1,0,1,1,0,1,0,1,1,0]), 9, 'Test 90');
+test(numberOfAlternatingGroups([1,1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0]), 13, 'Test 91');
+test(numberOfAlternatingGroups([1,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1]), 1, 'Test 92');
+test(numberOfAlternatingGroups([1,1,1,1,0,0,0,1,1,0,0,0,1,1,1,1]), 0, 'Test 93');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0]), 10, 'Test 94');
+test(numberOfAlternatingGroups([1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1]), 0, 'Test 95');
+test(numberOfAlternatingGroups([1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1]), 0, 'Test 96');
+test(numberOfAlternatingGroups([0,1,1,0,1,0,0,1,1,0,1,0]), 4, 'Test 97');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 23, 'Test 98');
+test(numberOfAlternatingGroups([0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1]), 9, 'Test 99');
+test(numberOfAlternatingGroups([0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1]), 1, 'Test 100');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 20, 'Test 101');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0,1]), 12, 'Test 102');
+test(numberOfAlternatingGroups([0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0]), 0, 'Test 103');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0]), 9, 'Test 104');
+test(numberOfAlternatingGroups([1,1,0,0,1,1,0,0,1,1,0,0]), 0, 'Test 105');
+test(numberOfAlternatingGroups([1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0]), 24, 'Test 106');
+test(numberOfAlternatingGroups([1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0]), 10, 'Test 107');
+test(numberOfAlternatingGroups([1,0,1,1,0,1,1,0,1,1,0,1,1]), 4, 'Test 108');
+test(numberOfAlternatingGroups([1,0,0,1,0,1,0,0,1,0,1,0,1,0,1,0,0,1,0,1]), 12, 'Test 109');
+test(numberOfAlternatingGroups([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1]), 0, 'Test 110');
+test(numberOfAlternatingGroups([0,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1]), 4, 'Test 111');
+test(numberOfAlternatingGroups([1,1,0,0,1,1,0,0,1,1,0,0,1,1]), 0, 'Test 112');
+test(numberOfAlternatingGroups([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]), 15, 'Test 113');
+test(numberOfAlternatingGroups([0,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1]), 2, 'Test 114');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 18, 'Test 115');
+test(numberOfAlternatingGroups([0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1]), 13, 'Test 116');
+test(numberOfAlternatingGroups([0,1,1,0,1,0,1,1,0,1,0,1,0,1,0]), 9, 'Test 117');
+test(numberOfAlternatingGroups([0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0]), 0, 'Test 118');
+test(numberOfAlternatingGroups([0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1]), 0, 'Test 119');
+test(numberOfAlternatingGroups([0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]), 32, 'Test 120');
+test(numberOfAlternatingGroups([0,0,0,1,1,1,1,0,0,1,1,1,0,0,0,0]), 0, 'Test 121');
+test(numberOfAlternatingGroups([0,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,1]), 6, 'Test 122');
+test(numberOfAlternatingGroups([0,0,1,1,0,0,1,1,0,0,1,1,0,0]), 0, 'Test 123');
+test(numberOfAlternatingGroups([1,0,1,0,0,1,1,0,1,1,0,0,1,1,0,1,0]), 7, 'Test 124');
+test(numberOfAlternatingGroups([0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1]), 2, 'Test 125');
+test(numberOfAlternatingGroups([1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0]), 1, 'Test 126');
+test(numberOfAlternatingGroups([1,1,0,0,1,1,0,0,1,1,0,0,1,1,0]), 1, 'Test 127');
+test(numberOfAlternatingGroups([0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1]), 1, 'Test 128');
+test(numberOfAlternatingGroups([1,1,1,0,1,0,1,0,1,0,1,1,1,1,0,0,0,1]), 7, 'Test 129');
+test(numberOfAlternatingGroups([0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0]), 0, 'Test 130');
+test(numberOfAlternatingGroups([0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0,1,1,0]), 9, 'Test 131');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

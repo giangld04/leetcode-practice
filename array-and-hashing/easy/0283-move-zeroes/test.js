@@ -1,0 +1,152 @@
+// Test: 283. Move Zeroes
+// 126 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { moveZeroes } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n283. Move Zeroes\n");
+
+test(moveZeroes([1]), null, 'Test 1');
+test(moveZeroes([0,0,1]), null, 'Test 2');
+test(moveZeroes([4,2,4,0,0,3,0,5,1,0]), null, 'Test 3');
+test(moveZeroes([-1,0,0,3,5,-2]), null, 'Test 4');
+test(moveZeroes([0]), null, 'Test 5');
+test(moveZeroes([0,0,1,0,0,2,0,3]), null, 'Test 6');
+test(moveZeroes([0,0,0,0,1]), null, 'Test 7');
+test(moveZeroes([0,0,1,0,3,12]), null, 'Test 8');
+test(moveZeroes([1,0,2,0,3,0,4,5]), null, 'Test 9');
+test(moveZeroes([0,0,0,0]), null, 'Test 10');
+test(moveZeroes([0,1,0,2,0,3,0,4,0,5]), null, 'Test 11');
+test(moveZeroes([0,0,0,0,0]), null, 'Test 12');
+test(moveZeroes([1,2,3,4,5]), null, 'Test 13');
+test(moveZeroes([0,0,1,0,0,2,0,0,3,0,0,4,5]), null, 'Test 14');
+test(moveZeroes([1,0,0,0,0]), null, 'Test 15');
+test(moveZeroes([0,1,0,3,12]), null, 'Test 16');
+test(moveZeroes([1, 0, 0, 0, 0, 0, 2, 3, 4, 5, 6, 7, 8, 9]), null, 'Test 17');
+test(moveZeroes([1, 2, 3, 4, 5, 0, 0, 0, 0, 0]), null, 'Test 18');
+test(moveZeroes([0,1,0,3,0,5,0,7,0,9]), null, 'Test 19');
+test(moveZeroes([0,0,0,0,1,2,3,4,5,6]), null, 'Test 20');
+test(moveZeroes([7,8,9,0,0,0,0,0,10]), null, 'Test 21');
+test(moveZeroes([1, 0, 1, 0, 1, 0, 1, 0, 1, 0]), null, 'Test 22');
+test(moveZeroes([0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9]), null, 'Test 23');
+test(moveZeroes([1,2,3,4,5,0,0,0,0,6,7,8,9,0,0]), null, 'Test 24');
+test(moveZeroes([-1, 0, -2, 0, -3, 0, -4, 0, -5, 0]), null, 'Test 25');
+test(moveZeroes([0,1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0]), null, 'Test 26');
+test(moveZeroes([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9]), null, 'Test 27');
+test(moveZeroes([5,0,1,0,2,0,3,0,4,0]), null, 'Test 28');
+test(moveZeroes([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]), null, 'Test 29');
+test(moveZeroes([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 0]), null, 'Test 30');
+test(moveZeroes([0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), null, 'Test 31');
+test(moveZeroes([1,0,2,0,3,0,4,0,5]), null, 'Test 32');
+test(moveZeroes([0,0,0,0,0,1,2,3,4]), null, 'Test 33');
+test(moveZeroes([0, 0, 1, 0, 2, 0, 3, 0, 4, 5]), null, 'Test 34');
+test(moveZeroes([1, 2, 3, 4, 5, 0, 0, 6, 7, 8, 9, 0]), null, 'Test 35');
+test(moveZeroes([3, 0, 5, 0, 6, 0, 7]), null, 'Test 36');
+test(moveZeroes([1,0,2,0,3,0,4,5,6,0,7,8,9,0]), null, 'Test 37');
+test(moveZeroes([0,0,0,0,0,0,0,0,0,1,2,3,4,5,6]), null, 'Test 38');
+test(moveZeroes([-3, 0, -5, 0, -6, 0, -7]), null, 'Test 39');
+test(moveZeroes([1,2,3,4,5,6,7,8,9,0,0,0,0,0,0]), null, 'Test 40');
+test(moveZeroes([1, 0, 0, 0, 0, 0, 0, 2, 3, 4, 5]), null, 'Test 41');
+test(moveZeroes([-1,0,-2,0,-3,0,-4,0,-5]), null, 'Test 42');
+test(moveZeroes([1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9]), null, 'Test 43');
+test(moveZeroes([1, 2, 3, 4, 5, 6, 0, 7, 8, 0, 9, 0]), null, 'Test 44');
+test(moveZeroes([5,0,1,0,2,0,3,0,4]), null, 'Test 45');
+test(moveZeroes([1,0,2,0,3,0,4,5,0,6,0,7]), null, 'Test 46');
+test(moveZeroes([1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0]), null, 'Test 47');
+test(moveZeroes([1,2,3,0,0,0,4,5,6]), null, 'Test 48');
+test(moveZeroes([1, 0, 2, 0, 0, 3, 4, 0, 5]), null, 'Test 49');
+test(moveZeroes([0, 0, 0, 0, 1, 2, 3, 4, 5, 0, 0, 6, 7, 8, 9]), null, 'Test 50');
+test(moveZeroes([0,1,0,2,0,3,0,4,0]), null, 'Test 51');
+test(moveZeroes([0, 1, 0, 2, 0, 3, 4, 5, 6, 7, 8, 9]), null, 'Test 52');
+test(moveZeroes([-1,-2,-3,0,0,0,0,4,5,6]), null, 'Test 53');
+test(moveZeroes([0, 0, 0, 0, 0, 0, 0, 0, 0, 1]), null, 'Test 54');
+test(moveZeroes([0, 1, 0, 0, 0, 0, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0]), null, 'Test 55');
+test(moveZeroes([0,0,0,0,0,0,1,2,3,4]), null, 'Test 56');
+test(moveZeroes([1,2,3,4,0,0,0,0,0,0]), null, 'Test 57');
+test(moveZeroes([1,2,3,4,5,6,7,8,9,-1,-2,-3,-4,-5,-6,0,0,0,0,0]), null, 'Test 58');
+test(moveZeroes([23456789,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9]), null, 'Test 59');
+test(moveZeroes([7,0,1,0,2,0,3,0,4,5,0]), null, 'Test 60');
+test(moveZeroes([1,2,3,4,0,0,0,5,6]), null, 'Test 61');
+test(moveZeroes([9, 0, 0, 8, 0, 7, 0, 6, 0, 5]), null, 'Test 62');
+test(moveZeroes([9,0,0,8,0,7,6,0,5,0]), null, 'Test 63');
+test(moveZeroes([1, 2, 3, 4, 5, 0, 0, 0, 6, 7, 8, 9]), null, 'Test 64');
+test(moveZeroes([1000000000, 0, 1000000000, 0, 1000000000]), null, 'Test 65');
+test(moveZeroes([1, 2, 3, 0, 4, 5, 0, 0, 6, 0, 7, 8, 9, 0, 0, 0]), null, 'Test 66');
+test(moveZeroes([1,0,2,3,4,5,6,7,8,9,0]), null, 'Test 67');
+test(moveZeroes([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), null, 'Test 68');
+test(moveZeroes([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]), null, 'Test 69');
+test(moveZeroes([0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), null, 'Test 70');
+test(moveZeroes([0, 1, 0, 2, 0, 3, 0, 4]), null, 'Test 71');
+test(moveZeroes([0, 0, 1, 0, 2, 0, 3, 0, 4, 0]), null, 'Test 72');
+test(moveZeroes([1,2,3,4,5,6,7,8,9,0,0,0,0,0,0,0,0,0,0,0]), null, 'Test 73');
+test(moveZeroes([1,0,0,0,2,0,0,0,3,0,0,0,4,0,0,0,5,0,0,0]), null, 'Test 74');
+test(moveZeroes([5, 4, 3, 2, 1, 0, 0, 0, 0]), null, 'Test 75');
+test(moveZeroes([1,2,0,3,4,0,5,6,0,7]), null, 'Test 76');
+test(moveZeroes([1000000000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]), null, 'Test 77');
+test(moveZeroes([0,1,0,2,0,3,0,4,5]), null, 'Test 78');
+test(moveZeroes([1, 2, 3, 0, 0, 0, 4, 5, 6, 0]), null, 'Test 79');
+test(moveZeroes([1,2,3,4,5,0,0,0,0]), null, 'Test 80');
+test(moveZeroes([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0, 0, 0, 0]), null, 'Test 81');
+test(moveZeroes([1,2,3,4,5,0,0,0,0,0]), null, 'Test 82');
+test(moveZeroes([1,0,2,0,3,0,4,0,5,0]), null, 'Test 83');
+test(moveZeroes([10, 20, 30, 0, 0, 0, 0, 40, 50, 60]), null, 'Test 84');
+test(moveZeroes([1, 0, 0, 0, 0, 2, 3, 4, 5, 6, 7, 8, 9]), null, 'Test 85');
+test(moveZeroes([0, 1, 0, 2, 0, 3, 0, 4, 0, 5]), null, 'Test 86');
+test(moveZeroes([0, 0, 1, 2, 3, 4, 5, 6, 7, 8]), null, 'Test 87');
+test(moveZeroes([0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9]), null, 'Test 88');
+test(moveZeroes([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0]), null, 'Test 89');
+test(moveZeroes([1,2,3,4,5,6,7,8,9,10,0,0,0,0,0]), null, 'Test 90');
+test(moveZeroes([5, 0, 4, 0, 3, 0, 2, 0, 1, 0]), null, 'Test 91');
+test(moveZeroes([10, 20, 0, 0, 30, 40, 0, 50, 0, 0, 60]), null, 'Test 92');
+test(moveZeroes([0,0,0,1,0,0,2,0,0,3,0,0,4]), null, 'Test 93');
+test(moveZeroes([1, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5]), null, 'Test 94');
+test(moveZeroes([1,0,2,0,0,3,0,0,4,0,0,5,0,0,6]), null, 'Test 95');
+test(moveZeroes([10,20,30,40,0,0,0,0,50,60]), null, 'Test 96');
+test(moveZeroes([1, 0, 2, 0, 3, 0, 4, 0, 5]), null, 'Test 97');
+test(moveZeroes([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0]), null, 'Test 98');
+test(moveZeroes([0,1,0,0,0,0,0,0,0,0]), null, 'Test 99');
+test(moveZeroes([0,0,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9]), null, 'Test 100');
+test(moveZeroes([0, 1, 2, 3, 4, 5, 0, 0, 0, 0]), null, 'Test 101');
+test(moveZeroes([5,3,0,1,0,2,0,0,4]), null, 'Test 102');
+test(moveZeroes([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), null, 'Test 103');
+test(moveZeroes([-1,-2,-3,-4,-5,0,0,0,0]), null, 'Test 104');
+test(moveZeroes([0,0,1,2,3,4,5,0,0]), null, 'Test 105');
+test(moveZeroes([0,2,0,3,0,4,0,5,0,6,0,7,0]), null, 'Test 106');
+test(moveZeroes([-1,0,-2,0,-3,0,-4,0,-5,0]), null, 'Test 107');
+test(moveZeroes([0, 0, 0, 1, -1, 2, -2, 3, -3]), null, 'Test 108');
+test(moveZeroes([0,1,0,0,3,12,0,0,0,4,5]), null, 'Test 109');
+test(moveZeroes([7,6,0,5,0,4,3,0,2,1]), null, 'Test 110');
+test(moveZeroes([0, 2, 0, 4, 0, 6, 0, 8]), null, 'Test 111');
+test(moveZeroes([1, 2, 3, 4, 0, 0, 0, 5, 6, 7, 0, 0]), null, 'Test 112');
+test(moveZeroes([0,1,0,2,3,4,5,0,0,0]), null, 'Test 113');
+test(moveZeroes([5, 1, 0, 3, 0, 12, 0, 1, 2, 3]), null, 'Test 114');
+test(moveZeroes([1, -1, 2, -2, 3, -3, 4, -4, 5, -5]), null, 'Test 115');
+test(moveZeroes([0,1,2,3,0,4,5,0,6,7]), null, 'Test 116');
+test(moveZeroes([1,2,0,0,0,3,4,5,0]), null, 'Test 117');
+test(moveZeroes([1,0,0,0,0,2,0,0,0,0,3,0,0,0,0,4]), null, 'Test 118');
+test(moveZeroes([0,-1,0,-2,0,-3,0,-4,0,-5]), null, 'Test 119');
+test(moveZeroes([0,0,0,0,1,2,3,4,5,0,0,0,0,6,7,8,9]), null, 'Test 120');
+test(moveZeroes([1, 2, 3, 0, 0, 0, 0, 0, 0, 4, 5, 6, 7, 8, 9]), null, 'Test 121');
+test(moveZeroes([0, 1, 0, 0, 2, 0, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9]), null, 'Test 122');
+test(moveZeroes([0, 1, 0, -1, 0, 2, 0]), null, 'Test 123');
+test(moveZeroes([9, 0, 0, 8, 0, 7, 0, 6, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1]), null, 'Test 124');
+test(moveZeroes([1, -1, 2, -2, 3, -3, 0, 0, 0, 0]), null, 'Test 125');
+test(moveZeroes([0,0,0,0,0,-1,-2,-3,-4,-5,-6]), null, 'Test 126');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

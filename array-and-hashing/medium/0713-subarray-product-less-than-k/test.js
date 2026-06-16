@@ -1,0 +1,154 @@
+// Test: 713. Subarray Product Less Than K
+// 128 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { numSubarrayProductLessThanK } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n713. Subarray Product Less Than K\n");
+
+test(numSubarrayProductLessThanK([10,2,5,6,1], 100), 12, 'Test 1');
+test(numSubarrayProductLessThanK([1,2,3,4,5,6,7,8,9,10], 50), 19, 'Test 2');
+test(numSubarrayProductLessThanK([1,2,3,4,5,6,7,8,9], 100), 21, 'Test 3');
+test(numSubarrayProductLessThanK([6,5,1,2,3], 100), 14, 'Test 4');
+test(numSubarrayProductLessThanK([5,5,5,5,5], 20), 5, 'Test 5');
+test(numSubarrayProductLessThanK([5,5,5,5], 30), 7, 'Test 6');
+test(numSubarrayProductLessThanK([7,3,4,9,1,3,6], 100), 17, 'Test 7');
+test(numSubarrayProductLessThanK([2,3,4,5], 1), 0, 'Test 8');
+test(numSubarrayProductLessThanK([7,3,2,2,1], 12), 9, 'Test 9');
+test(numSubarrayProductLessThanK([1,2,3], 0), 0, 'Test 10');
+test(numSubarrayProductLessThanK([1,3,7,5,8,9], 100), 12, 'Test 11');
+test(numSubarrayProductLessThanK([1,1,1,1], 1), 0, 'Test 12');
+test(numSubarrayProductLessThanK([10,2,5,1], 16), 7, 'Test 13');
+test(numSubarrayProductLessThanK([2,3,4,5], 10), 5, 'Test 14');
+test(numSubarrayProductLessThanK([10,2,5,3], 100), 8, 'Test 15');
+test(numSubarrayProductLessThanK([1,1,1,1], 2), 10, 'Test 16');
+test(numSubarrayProductLessThanK([1,2,3,4], 10), 7, 'Test 17');
+test(numSubarrayProductLessThanK([9,7,3,5], 25), 6, 'Test 18');
+test(numSubarrayProductLessThanK([1,1,1], 1), 0, 'Test 19');
+test(numSubarrayProductLessThanK([10,20,30,40,50], 10000), 10, 'Test 20');
+test(numSubarrayProductLessThanK([6,6,6,6], 100), 7, 'Test 21');
+test(numSubarrayProductLessThanK([1000,1000,1000], 1000000), 3, 'Test 22');
+test(numSubarrayProductLessThanK([10,5,2,6], 100), 8, 'Test 23');
+test(numSubarrayProductLessThanK([1,1,1,1,1], 1), 0, 'Test 24');
+test(numSubarrayProductLessThanK([5,5,5,5,5], 30), 9, 'Test 25');
+test(numSubarrayProductLessThanK([1000,1000,1000,1000], 1000000000), 7, 'Test 26');
+test(numSubarrayProductLessThanK([1,2,3,4,5], 10), 8, 'Test 27');
+test(numSubarrayProductLessThanK([10,2,5,6], 100), 8, 'Test 28');
+test(numSubarrayProductLessThanK([10,2,5,3,8], 160), 12, 'Test 29');
+test(numSubarrayProductLessThanK([2,5,6,10], 100), 8, 'Test 30');
+test(numSubarrayProductLessThanK([5,5,5,5], 25), 4, 'Test 31');
+test(numSubarrayProductLessThanK([10,9,10,4,3,8,3,3,6,2,10,10,9,3], 19), 18, 'Test 32');
+test(numSubarrayProductLessThanK([1,2,3,4,5], 1), 0, 'Test 33');
+test(numSubarrayProductLessThanK([999, 998, 997, 996, 995, 994, 993, 992, 991, 990], 1000000000), 27, 'Test 34');
+test(numSubarrayProductLessThanK([1, 10, 100, 1000, 1, 10, 100, 1000], 500000), 19, 'Test 35');
+test(numSubarrayProductLessThanK([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 10000), 72, 'Test 36');
+test(numSubarrayProductLessThanK([5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 15625), 40, 'Test 37');
+test(numSubarrayProductLessThanK([1000,999,998,997,996,995], 1000000), 11, 'Test 38');
+test(numSubarrayProductLessThanK([2,2,2,2,2,2,2,2,2,2,2,2,2,2,2], 1000), 99, 'Test 39');
+test(numSubarrayProductLessThanK([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 1), 0, 'Test 40');
+test(numSubarrayProductLessThanK([10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 3000), 36, 'Test 41');
+test(numSubarrayProductLessThanK([2,3,6,7,9], 50), 9, 'Test 42');
+test(numSubarrayProductLessThanK([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 2), 210, 'Test 43');
+test(numSubarrayProductLessThanK([2,4,8,16,32,64,128], 256), 11, 'Test 44');
+test(numSubarrayProductLessThanK([1000, 999, 998, 997, 996], 1000000), 9, 'Test 45');
+test(numSubarrayProductLessThanK([10,5,3,2,1], 20), 9, 'Test 46');
+test(numSubarrayProductLessThanK([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 1), 0, 'Test 47');
+test(numSubarrayProductLessThanK([5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 1000), 26, 'Test 48');
+test(numSubarrayProductLessThanK([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], 1000000), 174, 'Test 49');
+test(numSubarrayProductLessThanK([10, 2, 3, 5, 7, 11, 13, 17, 19, 23], 1000), 25, 'Test 50');
+test(numSubarrayProductLessThanK([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 1), 0, 'Test 51');
+test(numSubarrayProductLessThanK([3, 4, 5, 6, 7, 8, 9, 10], 500), 20, 'Test 52');
+test(numSubarrayProductLessThanK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 10000), 72, 'Test 53');
+test(numSubarrayProductLessThanK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 500), 29, 'Test 54');
+test(numSubarrayProductLessThanK([999, 999, 999, 999, 999, 999, 999, 999, 999, 999], 998001), 10, 'Test 55');
+test(numSubarrayProductLessThanK([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 100), 105, 'Test 56');
+test(numSubarrayProductLessThanK([9,73,5,26,32,8,34,61,100], 10000), 22, 'Test 57');
+test(numSubarrayProductLessThanK([1,2,3,4,5,6,7,8,9,10], 1), 0, 'Test 58');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 100), 192, 'Test 59');
+test(numSubarrayProductLessThanK([31, 37, 41, 43, 47, 53, 59, 61, 67, 71], 1000000), 27, 'Test 60');
+test(numSubarrayProductLessThanK([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 1), 0, 'Test 61');
+test(numSubarrayProductLessThanK([1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000], 1000000), 10, 'Test 62');
+test(numSubarrayProductLessThanK([500, 500, 500, 500, 500, 500, 500, 500, 500, 500], 1000000000), 27, 'Test 63');
+test(numSubarrayProductLessThanK([10,5,2,6,1,1,1,1,1], 100), 38, 'Test 64');
+test(numSubarrayProductLessThanK([999, 999, 999, 999, 999, 999, 999, 999, 999, 999], 1000000), 19, 'Test 65');
+test(numSubarrayProductLessThanK([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 10000), 20, 'Test 66');
+test(numSubarrayProductLessThanK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 1000), 45, 'Test 67');
+test(numSubarrayProductLessThanK([100, 50, 20, 60, 10, 30], 1000), 8, 'Test 68');
+test(numSubarrayProductLessThanK([2, 3, 5, 7, 11, 13, 17, 19], 200), 15, 'Test 69');
+test(numSubarrayProductLessThanK([3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 27), 19, 'Test 70');
+test(numSubarrayProductLessThanK([1,2,3,4,5,6,7,8,9,10], 15), 14, 'Test 71');
+test(numSubarrayProductLessThanK([1000, 1000, 1000, 1000, 1000], 1000000), 5, 'Test 72');
+test(numSubarrayProductLessThanK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 100000), 88, 'Test 73');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 1, 3, 7, 5, 8, 9], 200), 30, 'Test 74');
+test(numSubarrayProductLessThanK([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 1000), 75, 'Test 75');
+test(numSubarrayProductLessThanK([2, 3, 5, 7, 11, 13, 17, 19, 23, 29], 10000), 30, 'Test 76');
+test(numSubarrayProductLessThanK([100, 90, 80, 70, 60, 50, 40, 30, 20, 10], 100000), 22, 'Test 77');
+test(numSubarrayProductLessThanK([1, 2, 4, 8, 16, 32, 64, 128], 500), 15, 'Test 78');
+test(numSubarrayProductLessThanK([10,20,30,40,50], 1000), 7, 'Test 79');
+test(numSubarrayProductLessThanK([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 10000), 182, 'Test 80');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 1, 3, 7, 5, 8, 9], 100), 25, 'Test 81');
+test(numSubarrayProductLessThanK([50,40,30,20,10,5,2,1,1,2,5,10,20,30,40,50], 1000), 45, 'Test 82');
+test(numSubarrayProductLessThanK([1, 2, 4, 8, 16, 32, 64, 128, 256, 512], 1000000), 32, 'Test 83');
+test(numSubarrayProductLessThanK([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71], 1000000000), 106, 'Test 84');
+test(numSubarrayProductLessThanK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10000), 41, 'Test 85');
+test(numSubarrayProductLessThanK([2, 4, 8, 16, 32, 64, 128, 256, 512, 1024], 1000000), 28, 'Test 86');
+test(numSubarrayProductLessThanK([100, 100, 100, 100, 100, 100, 100, 100, 100, 100], 1000000000), 34, 'Test 87');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 1, 3, 7, 5, 8, 9], 10), 11, 'Test 88');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 3, 4, 1, 7], 150), 25, 'Test 89');
+test(numSubarrayProductLessThanK([5,5,5,5,5,5,5,5,5,5], 1000), 34, 'Test 90');
+test(numSubarrayProductLessThanK([5,5,5,5,5,5,5,5,5,5], 100), 19, 'Test 91');
+test(numSubarrayProductLessThanK([8,2,6,5,1,2,3,4,5,6,7], 100), 32, 'Test 92');
+test(numSubarrayProductLessThanK([10, 20, 30, 40, 50], 1000), 7, 'Test 93');
+test(numSubarrayProductLessThanK([10, 10, 10, 10, 10, 10, 10, 10, 10, 10], 1000), 19, 'Test 94');
+test(numSubarrayProductLessThanK([10,9,10,4,3,8,3,10,26,100,8], 200), 21, 'Test 95');
+test(numSubarrayProductLessThanK([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], 100000), 155, 'Test 96');
+test(numSubarrayProductLessThanK([1000,500,250,125,62,31,15], 1000000), 15, 'Test 97');
+test(numSubarrayProductLessThanK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 2000), 58, 'Test 98');
+test(numSubarrayProductLessThanK([100, 10, 1, 0.1, 0.01], 1000), 11, 'Test 99');
+test(numSubarrayProductLessThanK([999, 998, 997, 996, 995], 900000), 5, 'Test 100');
+test(numSubarrayProductLessThanK([999,999,999,999,999], 1000000), 9, 'Test 101');
+test(numSubarrayProductLessThanK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 500), 61, 'Test 102');
+test(numSubarrayProductLessThanK([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 1024), 234, 'Test 103');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 1, 3], 100), 16, 'Test 104');
+test(numSubarrayProductLessThanK([999, 998, 997, 996, 995, 994, 993, 992, 991, 990], 1000000), 19, 'Test 105');
+test(numSubarrayProductLessThanK([1000,1000,1000,1000,1000,1000,1000,1000,1000,1000], 1000000), 10, 'Test 106');
+test(numSubarrayProductLessThanK([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 2), 210, 'Test 107');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 1, 1], 100), 17, 'Test 108');
+test(numSubarrayProductLessThanK([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 50), 19, 'Test 109');
+test(numSubarrayProductLessThanK([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 1000000), 174, 'Test 110');
+test(numSubarrayProductLessThanK([1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000], 1000000000), 19, 'Test 111');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 1, 3, 7, 5, 8, 9], 1), 0, 'Test 112');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 3, 8, 1, 9, 4, 7], 100), 24, 'Test 113');
+test(numSubarrayProductLessThanK([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 243), 74, 'Test 114');
+test(numSubarrayProductLessThanK([5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 25), 10, 'Test 115');
+test(numSubarrayProductLessThanK([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10], 100), 52, 'Test 116');
+test(numSubarrayProductLessThanK([999, 999, 999, 999], 1000000), 7, 'Test 117');
+test(numSubarrayProductLessThanK([10, 5, 2, 6, 1, 8, 9, 3, 7], 100), 23, 'Test 118');
+test(numSubarrayProductLessThanK([1,2,2,3,3,4,4,5,5], 20), 19, 'Test 119');
+test(numSubarrayProductLessThanK([2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 16), 27, 'Test 120');
+test(numSubarrayProductLessThanK([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], 10000), 212, 'Test 121');
+test(numSubarrayProductLessThanK([2, 3, 5, 7, 11, 13, 17, 19, 23, 29], 500), 22, 'Test 122');
+test(numSubarrayProductLessThanK([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 27), 29, 'Test 123');
+test(numSubarrayProductLessThanK([10, 20, 30, 40, 50], 500), 6, 'Test 124');
+test(numSubarrayProductLessThanK([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 1000), 45, 'Test 125');
+test(numSubarrayProductLessThanK([1000, 500, 250, 125, 62, 31, 15, 7, 3, 1], 1000000), 30, 'Test 126');
+test(numSubarrayProductLessThanK([9,8,7,6,5], 1000), 12, 'Test 127');
+test(numSubarrayProductLessThanK([10,10,10,10], 10000), 9, 'Test 128');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

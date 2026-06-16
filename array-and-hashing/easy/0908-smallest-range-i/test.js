@@ -1,0 +1,152 @@
+// Test: 908. Smallest Range I
+// 126 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { smallestRangeI } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n908. Smallest Range I\n");
+
+test(smallestRangeI([100,200,300,400], 100), 100, 'Test 1');
+test(smallestRangeI([100, 4, 200, 1, 3, 2], 3), 193, 'Test 2');
+test(smallestRangeI([1,10000], 10000), 0, 'Test 3');
+test(smallestRangeI([5,5,5,5], 1), 0, 'Test 4');
+test(smallestRangeI([5,5,5,5], 5), 0, 'Test 5');
+test(smallestRangeI([1,3,6], 3), 0, 'Test 6');
+test(smallestRangeI([5,5,5,5,5], 10), 0, 'Test 7');
+test(smallestRangeI([0,0,0,0,0], 0), 0, 'Test 8');
+test(smallestRangeI([5,5,5], 5), 0, 'Test 9');
+test(smallestRangeI([1,2,3,4,5], 5), 0, 'Test 10');
+test(smallestRangeI([4,8,15,16,23,42], 10), 18, 'Test 11');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10], 3), 3, 'Test 12');
+test(smallestRangeI([10,10,10,10], 5), 0, 'Test 13');
+test(smallestRangeI([0,1,2,3,4,5,6,7,8,9], 1), 7, 'Test 14');
+test(smallestRangeI([1], 0), 0, 'Test 15');
+test(smallestRangeI([4,7,8,9], 2), 1, 'Test 16');
+test(smallestRangeI([10,10,10], 5), 0, 'Test 17');
+test(smallestRangeI([100,200,300,400,500], 150), 100, 'Test 18');
+test(smallestRangeI([5,5,5,5,5], 10000), 0, 'Test 19');
+test(smallestRangeI([100,1000,10000], 500), 8900, 'Test 20');
+test(smallestRangeI([1,10000], 5000), 0, 'Test 21');
+test(smallestRangeI([10,15,20,25,30], 5), 10, 'Test 22');
+test(smallestRangeI([10,15,20], 5), 0, 'Test 23');
+test(smallestRangeI([0,10], 2), 6, 'Test 24');
+test(smallestRangeI([100,200,300,400,500], 100), 200, 'Test 25');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10], 0), 9, 'Test 26');
+test(smallestRangeI([1,2,3,4,5], 1), 2, 'Test 27');
+test(smallestRangeI([0,0,0,0,0,0,0,0,0,0], 100), 0, 'Test 28');
+test(smallestRangeI([1, 1, 1, 1, 1, 1], 5), 0, 'Test 29');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 7), 5, 'Test 30');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10], 10), 0, 'Test 31');
+test(smallestRangeI([10, 20, 30, 40, 50], 25), 0, 'Test 32');
+test(smallestRangeI([1, 5, 9, 13, 17], 3), 10, 'Test 33');
+test(smallestRangeI([1,100,200,300,400,500], 150), 199, 'Test 34');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10], 5), 0, 'Test 35');
+test(smallestRangeI([0,0,0,0,0,0,0,0,0,0], 1000), 0, 'Test 36');
+test(smallestRangeI([1, 100, 200, 300, 400, 500, 600, 700, 800, 900], 200), 499, 'Test 37');
+test(smallestRangeI([1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4], 1), 1, 'Test 38');
+test(smallestRangeI([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29], 10), 8, 'Test 39');
+test(smallestRangeI([1,10000,20000,30000,40000], 5000), 29999, 'Test 40');
+test(smallestRangeI([1, 3, 5, 7, 9], 4), 0, 'Test 41');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 3), 8, 'Test 42');
+test(smallestRangeI([10,20,30,40,50,60,70,80,90,100], 15), 60, 'Test 43');
+test(smallestRangeI([100, 200, 300, 400, 500, 600, 700, 800], 100), 500, 'Test 44');
+test(smallestRangeI([10, 20, 30, 40, 50], 0), 40, 'Test 45');
+test(smallestRangeI([100,200,300,400,500,600,700,800,900,1000], 350), 200, 'Test 46');
+test(smallestRangeI([5,5,5,5,5,5,5,5], 3), 0, 'Test 47');
+test(smallestRangeI([10000, 10000, 10000, 10000, 10000], 1), 0, 'Test 48');
+test(smallestRangeI([9,9,9,9,9,9,9,9,9,9], 1), 0, 'Test 49');
+test(smallestRangeI([5, 10, 15, 20, 25, 30, 35, 40, 45, 50], 20), 5, 'Test 50');
+test(smallestRangeI([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10), 0, 'Test 51');
+test(smallestRangeI([1, 1, 1, 1, 2], 1), 0, 'Test 52');
+test(smallestRangeI([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], 300), 300, 'Test 53');
+test(smallestRangeI([1,3,5,7,9,11,13,15,17,19,21,23,25,27,29], 10), 8, 'Test 54');
+test(smallestRangeI([5000,5000,5000,5000,5000], 2500), 0, 'Test 55');
+test(smallestRangeI([999, 998, 997, 996, 995, 994, 993, 992, 991, 990], 5), 0, 'Test 56');
+test(smallestRangeI([1,2,2,3,3,4,4,5,5], 2), 0, 'Test 57');
+test(smallestRangeI([5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 0), 0, 'Test 58');
+test(smallestRangeI([5,5,5,5,5,5,5,5,5,5], 3), 0, 'Test 59');
+test(smallestRangeI([1,1000,2000,3000,4000], 500), 2999, 'Test 60');
+test(smallestRangeI([1, 100, 200, 300, 400, 500, 600, 700, 800, 900], 250), 399, 'Test 61');
+test(smallestRangeI([5,5,5,5,5], 100), 0, 'Test 62');
+test(smallestRangeI([2,4,6,8,10], 2), 4, 'Test 63');
+test(smallestRangeI([10000, 9999, 9998, 9997, 9996, 9995], 5), 0, 'Test 64');
+test(smallestRangeI([1000,2000,3000,4000,5000,6000,7000,8000,9000,10000], 2500), 4000, 'Test 65');
+test(smallestRangeI([5, 5, 5, 5, 5, 5, 5, 5, 5, 5], 5), 0, 'Test 66');
+test(smallestRangeI([10, 20, 30, 40, 50, 60, 70], 20), 20, 'Test 67');
+test(smallestRangeI([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5], 2), 4, 'Test 68');
+test(smallestRangeI([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], 12), 5, 'Test 69');
+test(smallestRangeI([1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2], 1), 0, 'Test 70');
+test(smallestRangeI([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], 150), 600, 'Test 71');
+test(smallestRangeI([9999,9998,9997,9996,9995,9994,9993,9992,9991,9990], 500), 0, 'Test 72');
+test(smallestRangeI([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], 450), 0, 'Test 73');
+test(smallestRangeI([5, 10, 15, 20, 25, 30], 5), 15, 'Test 74');
+test(smallestRangeI([10,20,30,40,50,60,70,80,90,100,110,120,130,140,150], 20), 100, 'Test 75');
+test(smallestRangeI([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 1), 17, 'Test 76');
+test(smallestRangeI([1, 10000, 1, 10000, 1, 10000, 1, 10000, 1, 10000], 5000), 0, 'Test 77');
+test(smallestRangeI([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 5), 80, 'Test 78');
+test(smallestRangeI([1,3,5,7,9,11,13,15,17,19], 5), 8, 'Test 79');
+test(smallestRangeI([7, 2, 5, 10, 8, 12, 4, 6], 3), 4, 'Test 80');
+test(smallestRangeI([5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000], 0), 0, 'Test 81');
+test(smallestRangeI([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 20), 50, 'Test 82');
+test(smallestRangeI([10, 20, 30, 40, 50, 60, 70], 15), 30, 'Test 83');
+test(smallestRangeI([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4), 1, 'Test 84');
+test(smallestRangeI([1,1000,10000,100000,1000000], 50000), 899999, 'Test 85');
+test(smallestRangeI([100,200,300,400,500,600,700,800,900,1000], 50), 800, 'Test 86');
+test(smallestRangeI([5,5,5,5,5], 2), 0, 'Test 87');
+test(smallestRangeI([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 2), 14, 'Test 88');
+test(smallestRangeI([5,10,15,20,25], 12), 0, 'Test 89');
+test(smallestRangeI([10,10,10,10,10,10,10,10,10,10,10,10], 1), 0, 'Test 90');
+test(smallestRangeI([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 1000), 0, 'Test 91');
+test(smallestRangeI([1000,2000,3000,4000,5000], 2500), 0, 'Test 92');
+test(smallestRangeI([100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000,2100,2200,2300,2400,2500], 250), 1900, 'Test 93');
+test(smallestRangeI([1, 1, 1, 1, 1], 10), 0, 'Test 94');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 5), 9, 'Test 95');
+test(smallestRangeI([10000, 10000, 10000, 10000, 10000], 10000), 0, 'Test 96');
+test(smallestRangeI([1, 2, 2, 3, 4, 5, 5, 5, 6, 7, 8, 8, 9, 10], 2), 5, 'Test 97');
+test(smallestRangeI([5, 10, 15, 20, 25, 30], 3), 19, 'Test 98');
+test(smallestRangeI([1000,2000,3000,4000,5000,6000,7000,8000,9000,10000], 1000), 7000, 'Test 99');
+test(smallestRangeI([10,20,30,40,50,60,70,80,90,100], 20), 50, 'Test 100');
+test(smallestRangeI([9999,9998,9997,9996,9995,9994,9993,9992,9991,9990], 5), 0, 'Test 101');
+test(smallestRangeI([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 2), 10, 'Test 102');
+test(smallestRangeI([9,9,9,9,9,9,9,9,9,9], 5), 0, 'Test 103');
+test(smallestRangeI([5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007, 5008, 5009], 500), 0, 'Test 104');
+test(smallestRangeI([1, 10000, 20000, 30000, 40000], 9999), 20001, 'Test 105');
+test(smallestRangeI([5, 5, 5, 5, 5], 1000), 0, 'Test 106');
+test(smallestRangeI([1, 2, 2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10], 1), 7, 'Test 107');
+test(smallestRangeI([10000,10000,10000,10000,10000], 5000), 0, 'Test 108');
+test(smallestRangeI([1, 10000], 5000), 0, 'Test 109');
+test(smallestRangeI([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500], 300), 800, 'Test 110');
+test(smallestRangeI([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 10), 0, 'Test 111');
+test(smallestRangeI([1,1000,2000,3000,4000,5000], 2500), 0, 'Test 112');
+test(smallestRangeI([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200], 25), 140, 'Test 113');
+test(smallestRangeI([1,3,5,7,9], 4), 0, 'Test 114');
+test(smallestRangeI([999,9999,99999,999999,9999999], 500000), 8999000, 'Test 115');
+test(smallestRangeI([-10, -5, 0, 5, 10], 3), 14, 'Test 116');
+test(smallestRangeI([1,1,2,2,3,3,4,4,5,5], 1), 2, 'Test 117');
+test(smallestRangeI([1,10,100,1000,10000], 1000), 7999, 'Test 118');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10], 2), 5, 'Test 119');
+test(smallestRangeI([10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200], 20), 150, 'Test 120');
+test(smallestRangeI([1000, 2000, 3000, 4000, 5000], 500), 3000, 'Test 121');
+test(smallestRangeI([1,2,3,4,5], 10), 0, 'Test 122');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25], 10), 4, 'Test 123');
+test(smallestRangeI([1000, 2000, 3000, 4000, 5000], 2000), 0, 'Test 124');
+test(smallestRangeI([1,2,3,4,5,6,7,8,9,10], 4), 1, 'Test 125');
+test(smallestRangeI([1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000], 500), 8000, 'Test 126');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

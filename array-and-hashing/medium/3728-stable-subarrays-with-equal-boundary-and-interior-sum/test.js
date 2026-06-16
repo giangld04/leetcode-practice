@@ -1,0 +1,32 @@
+// Test: 3728. Stable Subarrays With Equal Boundary and Interior Sum
+// Run: node test.js
+
+const { countStableSubarrays } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    console.log(`  ✓ ${label}`);
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n3728. Stable Subarrays With Equal Boundary and Interior Sum\n");
+
+test(countStableSubarrays([9,3,3,3,9]), 2, 'Example 1: countStableSubarrays([9,3,3,3,9]) → 2');
+test(countStableSubarrays([1,2,3,4,5]), 0, 'Example 2: countStableSubarrays([1,2,3,4,5]) → 0');
+test(countStableSubarrays([-4,4,0,0,-8,-4]), 1, 'Example 3: countStableSubarrays([-4,4,0,0,-8,-4]) → 1');
+
+// --- Add your own test cases below ---
+
+
+console.log(`\nResult: ${passed} passed, ${failed} failed\n`);
+if (failed) process.exitCode = 1;
+

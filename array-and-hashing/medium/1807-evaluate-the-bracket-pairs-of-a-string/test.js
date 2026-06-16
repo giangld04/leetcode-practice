@@ -1,0 +1,157 @@
+// Test: 1807. Evaluate The Bracket Pairs Of A String
+// 131 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { evaluate } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1807. Evaluate The Bracket Pairs Of A String\n");
+
+test(evaluate("[a][a][a]aaa", [["a","yes"]]), yesyesyesaaa, 'Test 1');
+test(evaluate("[a][b][c][d]", [["a","1"],["b","2"],["c","3"]]), 123?, 'Test 2');
+test(evaluate("hi[name]", [["a","b"]]), hi?, 'Test 3');
+test(evaluate("[a][a][a]aaa", [["a","yes"]]), yesyesyesaaa, 'Test 4');
+test(evaluate("", []), , 'Test 5');
+test(evaluate("noknowledgehere", []), noknowledgehere, 'Test 6');
+test(evaluate("no[brackets]here", []), no?here, 'Test 7');
+test(evaluate("hi[name]", [["a","b"]]), hi?, 'Test 8');
+test(evaluate("[nested]but[not]really", [["nested","nested"],["not","not"]]), nestedbutnotreally, 'Test 9');
+test(evaluate("[key1][key2][key3]", [["key1","value1"],["key2","value2"]]), value1value2?, 'Test 10');
+test(evaluate("this[is]a[test]", [["is","was"],["test","trial"]]), thiswasatrial, 'Test 11');
+test(evaluate("[name]is[age]yearsold", [["name","bob"],["age","two"]]), bobistwoyearsold, 'Test 12');
+test(evaluate("[key1][key2]", [["key1","value1"],["key2","value2"]]), value1value2, 'Test 13');
+test(evaluate("[single]", [["single","one"]]), one, 'Test 14');
+test(evaluate("[last]one", [["last","final"]]), finalone, 'Test 15');
+test(evaluate("single", [["single","word"]]), single, 'Test 16');
+test(evaluate("hello", []), hello, 'Test 17');
+test(evaluate("[unknown]key", [["known","value"]]), ?key, 'Test 18');
+test(evaluate("[name]is[age]yearsold", [["name","bob"],["age","two"]]), bobistwoyearsold, 'Test 19');
+test(evaluate("[key1][key2][key3]", [["key1","val1"],["key2","val2"],["key3","val3"]]), val1val2val3, 'Test 20');
+test(evaluate("[book]written[by][author]", [["book","1984"],["author","George"]]), 1984written?George, 'Test 21');
+test(evaluate("[x][y][z][w]", [["x","one"],["y","two"],["z","three"],["a","four"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 22');
+test(evaluate("[city][in][country]", [["city","Tokyo"],["country","Japan"]]), Tokyo?Japan, 'Test 23');
+test(evaluate("[country][capital]", [["country","France"],["capital","Paris"]), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 24');
+test(evaluate("[nested][key][nested]", [["key","value"],["nested","deep"]]), deepvaluedeep, 'Test 25');
+test(evaluate("[ingredient]requiresto[cooktime]mins", [["ingredient","Cookies"],["cooktime","15"]]), Cookiesrequiresto15mins, 'Test 26');
+test(evaluate("[one][two][three][four][five]", [["one","1"],["two","2"],["three","3"],["four","4"]]), 1234?, 'Test 27');
+test(evaluate("[customer][order]at[store]", [["customer","Alice"],["order","Order123"]]), AliceOrder123at?, 'Test 28');
+test(evaluate("[keyA]and[keyB]and[keyC]and[keyD]", [["keyA","valA"],["keyB","valB"]]), valAandvalBand?and?, 'Test 29');
+test(evaluate("[a]bc[d]efg[h]ij[k]lmn[o]", [["a","x"],["d","y"],["h","z"],["k","w"],["o","v"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 30');
+test(evaluate("[key]with[missing]knowledge", [["key","value1"],["missing","value2"],["knowledge","value3"]]), value1withvalue2knowledge, 'Test 31');
+test(evaluate("[greeting][world][planet]", [["greeting","hello"],["world","earth"],["planet","mars"]]), helloearthmars, 'Test 32');
+test(evaluate("[this][is][a][test][string][with][multiple][keys]", [["this","it"],["is","be"],["a","an"],["test","example"],["string","sequence"],["with","having"],["multiple","several"],["keys","identifiers"]]), itbeanexamplesequencehavingseveralidentifiers, 'Test 33');
+test(evaluate("[language]programmingis[fun]", [["language","python"],["fun","awesome"]]), pythonprogrammingisawesome, 'Test 34');
+test(evaluate("[fruit][vegetable]", [["fruit","apple"],["vegetable","carrot"]]), applecarrot, 'Test 35');
+test(evaluate("[animal]lives[in][habitat]", [["animal","tiger"],["habitat","jungle"]]), tigerlives?jungle, 'Test 36');
+test(evaluate("nested[brackets]are[not]allowed[but]we[have]multiple[keys]here", [["brackets","bracketValue"],["allowed","allowedValue"],["but","butValue"],["we","weValue"],["have","haveValue"],["multiple","multipleValue"],["keys","keysValue"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 37');
+test(evaluate("[name]has[age]yearsand[occupation]", [["name","Alice"],["age","30"]]), Alicehas30yearsand?, 'Test 38');
+test(evaluate("[longkey][anotherkey][yetanotherkey]", [["longkey","averylongvalue"],["anotherkey","shortval"],["yetanotherkey","value"]]), averylongvalueshortvalvalue, 'Test 39');
+test(evaluate("[language]is[cool]", [["language","Python"],["cool","awesome"]]), Pythonisawesome, 'Test 40');
+test(evaluate("[first]and[last]name", [["first","john"],["last","doe"]]), johnanddoename, 'Test 41');
+test(evaluate("[name]is[living][in][city]", [["name","bob"],["in","at"],["city","london"]]), bobis?atlondon, 'Test 42');
+test(evaluate("[animal][eats][food]", [["animal","lion"],["food","meat"]]), lion?meat, 'Test 43');
+test(evaluate("[user]likes[to][eat][food]", [["user","alice"],["eat","enjoy"],["food","pizza"]]), alicelikes?enjoypizza, 'Test 44');
+test(evaluate("[prefix]middle[suffix]", [["prefix","start"],["suffix","end"]]), startmiddleend, 'Test 45');
+test(evaluate("[flower]grows[in][soil]", [["flower","rose"],["soil","dirt"]]), rosegrows?dirt, 'Test 46');
+test(evaluate("[first]nameis[last]name", [["first","john"],["last","doe"]]), johnnameisdoename, 'Test 47');
+test(evaluate("[longkey1]and[longkey2]and[longkey3]and[longkey4]", [["longkey1","value1"],["longkey2","value2"],["longkey3","value3"],["longkey4","value4"]]), value1andvalue2andvalue3andvalue4, 'Test 48');
+test(evaluate("[first][second][third][fourth][fifth]", [["first","one"],["second","two"],["third","three"]), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 49');
+test(evaluate("[department]islocatedat[address]", [["department","Sales"],["address","123BusinessSt"]]), Salesislocatedat123BusinessSt, 'Test 50');
+test(evaluate("[key1][key2][key3][key4][key5]", [["key1","val1"],["key3","val3"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 51');
+test(evaluate("[name]has[a][pet]", [["name","Mary"],["pet","dog"]]), Maryhas?dog, 'Test 52');
+test(evaluate("[drink]is[served]in[glass]", [["drink","water"],["glass","big"]]), wateris?inbig, 'Test 53');
+test(evaluate("prefix[key1]middle[key2]suffix", [["key1","value1"],["key2","value2"]]), prefixvalue1middlevalue2suffix, 'Test 54');
+test(evaluate("[key1][key2][key1]", [["key1","value1"],["key2","value2"]]), value1value2value1, 'Test 55');
+test(evaluate("[item1][item2][item3][item4]", [["item1","itemA"],["item2","itemB"],["item4","itemD"]]), itemAitemB?itemD, 'Test 56');
+test(evaluate("[greeting]world", [["greeting","hello"],["farewell","bye"]]), helloworld, 'Test 57');
+test(evaluate("[user][name]livesin[city]with[zip]", [["user","John"],["city","San Francisco"],["zip","94111"]]), John?livesinSan Franciscowith94111, 'Test 58');
+test(evaluate("[person][from][place]isvisiting[placeofinterest]", [["person","Bob"],["from","LosAngeles"],["place","SanFrancisco"],["placeofinterest","Alcatraz"]]), BobLosAngelesSanFranciscoisvisitingAlcatraz, 'Test 59');
+test(evaluate("[longkeyname]is[longervaluename]", [["longkeyname","longervaluename"]]), longervaluenameis?, 'Test 60');
+test(evaluate("[name]has[a][pet][dog]", [["name","john"],["pet","dog"],["dog","buddy"]]), johnhas?dogbuddy, 'Test 61');
+test(evaluate("[key1]and[key2]and[key3]and[key4]and[key5]", [["key1","value1"],["key2","value2"],["key3","value3"],["key4","value4"]]), value1andvalue2andvalue3andvalue4and?, 'Test 62');
+test(evaluate("[prefix]and[suffix]and[middle]", [["prefix","pre"],["suffix","suf"],["middle","mid"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 63');
+test(evaluate("[prefix]_[suffix]", [["prefix","start"],["suffix","end"]]), start_end, 'Test 64');
+test(evaluate("[number]plus[number]equals[twice_number]", [["number","10"],["twice_number","20"]]), 10plus10equals20, 'Test 65');
+test(evaluate("[name]livesat[address]andworksat[company]", [["name","Alice"],["address","Wonderland"],["company","TechCorp"]]), AlicelivesatWonderlandandworksatTechCorp, 'Test 66');
+test(evaluate("[repeated][key][repeated][key]", [["key","value"]]), ?value?value, 'Test 67');
+test(evaluate("[planet][orbits]around[star]", [["planet","Earth"],["star","Sun"]]), Earth?aroundSun, 'Test 68');
+test(evaluate("[user]likes[to]play[games]", [["user","Alice"],["to","really"],["games","chess"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 69');
+test(evaluate("[item]isavaliablefrom[date]", [["item","Smartphone"],["date","2023-12-15"]]), Smartphoneisavaliablefrom2023-12-15, 'Test 70');
+test(evaluate("[animal][color][size]", [["animal","dog"],["color","black"],["size","big"],["weight","10kg"]), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 71');
+test(evaluate("[conference]heldon[date]", [["conference","GDC"],["date","2024-03-19"]]), GDCheldon2024-03-19, 'Test 72');
+test(evaluate("[first][second][third][fourth]", [["first","one"],["second","two"],["third","three"]]), onetwothree?, 'Test 73');
+test(evaluate("[color][animal]", [["color","blue"],["animal","dog"],["bird","sparrow"]]), bluedog, 'Test 74');
+test(evaluate("[name]isfrom[city]andworksas[job]", [["name","alice"],["city","newyork"],["job","engineer"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 75');
+test(evaluate("[firstName][lastName]isfrom[city]in[country]", [["firstName","Alice"],["lastName","Wonderland"],["city","Wonderland"],["country","Fantasia"]]), AliceWonderlandisfromWonderlandinFantasia, 'Test 76');
+test(evaluate("[product]costs[dollars]and[euros]", [["product","Laptop"],["dollars","1200"],["euros","1020"]]), Laptopcosts1200and1020, 'Test 77');
+test(evaluate("[nested]but[notreally]nested", [["nested","deep"],["notreally","shallow"]]), deepbutshallownested, 'Test 78');
+test(evaluate("[first][last][age]", [["first","john"],["last","doe"],["age","thirty"]]), johndoethirty, 'Test 79');
+test(evaluate("[city][has][many][buildings]", [["city","newyork"],["many","lots"]]), newyork?lots?, 'Test 80');
+test(evaluate("[language][framework]", [["language","Python"],["framework","Django"],["version","3.9"]]), PythonDjango, 'Test 81');
+test(evaluate("[model]releasedon[year]", [["model","iPhone15"],["year","2023"]]), iPhone15releasedon2023, 'Test 82');
+test(evaluate("[multiple][keys][here]", [["multiple","many"],["keys","some"],["here","there"]]), manysomethere, 'Test 83');
+test(evaluate("[key1]and[key2]and[key3]and[key4]", [["key1","value1"],["key2","value2"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 84');
+test(evaluate("[planet][moon]", [["planet","Earth"],["moon","Moon"]), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 85');
+test(evaluate("[username]lastloggedin[on]", [["username","Alice"],["on","2023-10-01"]]), Alicelastloggedin2023-10-01, 'Test 86');
+test(evaluate("[planet]is[almost]full", [["planet","Earth"],["almost","not"],["full","occupied"]]), Earthisnotfull, 'Test 87');
+test(evaluate("[person]loves[to][eat]", [["person","John"],["eat","pizza"]]), Johnloves?pizza, 'Test 88');
+test(evaluate("[name]isfrom[city]andlivesin[state]", [["name","John"],["city","NewYork"],["state","NY"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 89');
+test(evaluate("[car]is[fast]and[economical]", [["car","Ferrari"],["fast","very"],["economical","not"]]), Ferrariisveryandnot, 'Test 90');
+test(evaluate("[key1]and[key2]and[key3]and[key4]", [["key1","value1"],["key2","value2"],["key4","value4"]]), value1andvalue2and?andvalue4, 'Test 91');
+test(evaluate("[part1][part2][part3]", [["part1","first"],["part2","second"],["part3","third"]]), firstsecondthird, 'Test 92');
+test(evaluate("[color][is][used]in[art]", [["color","red"],["used","frequently"]]), red?frequentlyin?, 'Test 93');
+test(evaluate("[key1]is[key2]and[key3]is[key4]", [["key1","value1"],["key2","value2"],["key3","value3"]]), value1isvalue2andvalue3is?, 'Test 94');
+test(evaluate("[a][b][c][d][e][f][g][h][i][j]", [["a","A"],["b","B"],["c","C"],["d","D"],["e","E"],["f","F"],["g","G"],["h","H"],["i","I"],["j","J"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 95');
+test(evaluate("[name]from[country]is[visitor]", [["name","Bob"],["country","USA"]]), BobfromUSAis?, 'Test 96');
+test(evaluate("[prefix]example[suffix]", [["prefix","pre"],["suffix","post"]]), preexamplepost, 'Test 97');
+test(evaluate("[unknown][key][not][present]", [["present","available"]]), ???available, 'Test 98');
+test(evaluate("[unknown][key1][unknown][key2][unknown]", [["key1","value1"],["key2","value2"]]), ?value1?value2?, 'Test 99');
+test(evaluate("[book]writtenby[author]publishedby[publisher]", [["book","GreatExpectations"],["author","CharlesDickens"],["publisher","ChapmanandHall"]]), GreatExpectationswrittenbyCharlesDickenspublishedbyChapmanandHall, 'Test 100');
+test(evaluate("[user]likes[to][eat][food]", [["user","Alice"],["food","pizza"]), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 101');
+test(evaluate("[instrument]plays[music]", [["instrument","guitar"],["music","beautiful"]]), guitarplaysbeautiful, 'Test 102');
+test(evaluate("[prefix][middle][suffix]", [["prefix","pre"],["middle","mid"],["suffix","suf"]]), premidsuf, 'Test 103');
+test(evaluate("[fruit]are[sweet]and[healthy]", [["fruit","apples"],["sweet","very"],["healthy","indeed"]]), applesareveryandindeed, 'Test 104');
+test(evaluate("[repeated]repeated[repeated]", [["repeated","again"]]), againrepeatedagain, 'Test 105');
+test(evaluate("[planet][moon]orbiting[planet]", [["planet","Earth"],["moon","Moon"]]), EarthMoonorbitingEarth, 'Test 106');
+test(evaluate("[key1][key1][key1][key1][key1]", [["key1","repeat"]]), repeatrepeatrepeatrepeatrepeat, 'Test 107');
+test(evaluate("[product][model][year]", [["product","laptop"],["model","XPS13"]), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 108');
+test(evaluate("[repeated][repeated][repeated]", [["repeated","yes"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 109');
+test(evaluate("[key1]is[key2]yearsold[key3]", [["key1","bob"],["key2","two"]]), bobistwoyearsold?, 'Test 110');
+test(evaluate("[greeting]everyone[my]name[is][unknown]", [["greeting","hi"],["my","my"]]), hieveryonemyname??, 'Test 111');
+test(evaluate("[bird]can[fly]high", [["bird","eagle"],["fly","soar"]]), eaglecansoarhigh, 'Test 112');
+test(evaluate("[country]has[a][capital]", [["country","India"],["capital","Delhi"]]), Indiahas?Delhi, 'Test 113');
+test(evaluate("[a][b][c][d][e][f]", [["a","one"],["b","two"],["c","three"],["d","four"],["e","five"],["f","six"]]), onetwothreefourfivesix, 'Test 114');
+test(evaluate("[a][b][c][d][e][f][g][h][i][j][k][l][m][n][o][p][q][r][s][t][u][v][w][x][y][z]", [["a","A"],["b","B"],["c","C"],["d","D"],["e","E"],["f","F"],["g","G"],["h","H"],["i","I"],["j","J"],["k","K"],["l","L"],["m","M"],["n","N"],["o","O"],["p","P"],["q","Q"],["r","R"],["s","S"],["t","T"],["u","U"],["v","V"],["w","W"],["x","X"],["y","Y"],["z","Z"]]), ABCDEFGHIJKLMNOPQRSTUVWXYZ, 'Test 115');
+test(evaluate("[color][of]the[sky]", [["color","blue"],["sky","beautiful"]]), blue?thebeautiful, 'Test 116');
+test(evaluate("[name]is[unknown]but[age]yearsold", [["name","alice"],["age","30"]]), aliceis?but30yearsold, 'Test 117');
+test(evaluate("[product]priceis[price]and[quantity]itemsareavailable", [["product","laptop"],["price","1000"],["quantity","5"]]), laptoppriceis1000and5itemsareavailable, 'Test 118');
+test(evaluate("[item]costs[amount]currency", [["item","book"],["amount","10"],["currency","dollars"]]), bookcosts10currency, 'Test 119');
+test(evaluate("[a][b][c][d][e]", [["a","alpha"],["b","beta"],["c","gamma"],["d","delta"],["e","epsilon"]]), alphabetagammadeltaepsilon, 'Test 120');
+test(evaluate("[a][b][c][d][e][f][g][h][i][j][k][l][m][n][o][p][q][r][s][t][u][v][w][x][y][z]", [["a","a"],["b","b"],["c","c"],["d","d"],["e","e"],["f","f"],["g","g"],["h","h"],["i","i"],["j","j"],["k","k"],["l","l"],["m","m"],["n","n"],["o","o"],["p","p"],["q","q"],["r","r"],["s","s"],["t","t"],["u","u"],["v","v"],["w","w"],["x","x"],["y","y"],["z","z"]]), abcdefghijklmnopqrstuvwxyz, 'Test 121');
+test(evaluate("[repeated][repeated][repeated]", [["repeated","rep"]]), repreprep, 'Test 122');
+test(evaluate("[key1]and[key2]and[key3]and[key4]and[key5]and[key6]and[key7]", [["key1","value1"],["key2","value2"],["key3","value3"],["key4","value4"],["key5","value5"],["key6","value6"],["key7","value7"]]), value1andvalue2andvalue3andvalue4andvalue5andvalue6andvalue7, 'Test 123');
+test(evaluate("[a][b][c][d][e][f][g][h][i][j]", [["a","one"],["b","two"],["c","three"],["d","four"],["e","five"],["f","six"],["g","seven"],["h","eight"],["i","nine"],["j","ten"]]), onetwothreefourfivesixseveneightnineten, 'Test 124');
+test(evaluate("[a][b][c][d][e][f][g][h][i][j]", [["a","yes"],["b","no"],["c","maybe"],["d","sure"],["e","never"],["f","always"],["g","often"],["h","rarely"],["i","sometimes"],["j","usually"]]), yesnomaybesureneveralwaysoftenrarelysometimesusually, 'Test 125');
+test(evaluate("[user]hasposted[numberofposts]times", [["user","Charlie"],["numberofposts","250"]]), Charliehasposted250times, 'Test 126');
+test(evaluate("[complex][string][with][multiple][keys]", [["complex","com"],["string","str"],["with","wi"],["multiple","mul"],["keys","ke"]]), comstrwimulke, 'Test 127');
+test(evaluate("[key1]is[key2]yearsold[key3]and[key4]livesin[key5]", [["key1","bob"],["key2","two"],["key5","NYC"]]), bobistwoyearsold?and?livesinNYC, 'Test 128');
+test(evaluate("[a][b][c][d][e][f]", [["a","alpha"],["b","beta"],["c","gamma"],["d","delta"],["e","epsilon"]]), alphabetagammadeltaepsilon?, 'Test 129');
+test(evaluate("[nested]brackets[are]not[allowed]", [["nested","nested"],["brackets","brackets"],["not","not"]]), nestedbrackets?not?, 'Test 130');
+test(evaluate("[first][second][third][fourth]", [["third","thirdValue"],["fourth","fourthValue"]]"), Error: Solution.evaluate[] missing 1 required positional argument: 'knowledge', 'Test 131');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

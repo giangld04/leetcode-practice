@@ -1,0 +1,153 @@
+// Test: 572. Subtree Of Another Tree
+// 127 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { isSubtree } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n572. Subtree Of Another Tree\n");
+
+test(isSubtree([3,4,5,1,2], [4,1,2]), true, 'Test 1');
+test(isSubtree([1,2,3], [1,2]), false, 'Test 2');
+test(isSubtree([3,4,5,1,2,null,null,null,null,0], [4,1,2]), false, 'Test 3');
+test(isSubtree([1,null,2,null,3], [2,null,3]), true, 'Test 4');
+test(isSubtree([1], [1]), true, 'Test 5');
+test(isSubtree([1], [2]), false, 'Test 6');
+test(isSubtree([1,2,1], [2]), true, 'Test 7');
+test(isSubtree([1,2,3], [2]), true, 'Test 8');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]), true, 'Test 9');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [2,4,5,8,9,10,11]), true, 'Test 10');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [10,16,17]), false, 'Test 11');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [5,10,11]), true, 'Test 12');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [9,14,15]), false, 'Test 13');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [13]), true, 'Test 14');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [3,7,10]), false, 'Test 15');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,null,2,null,3,null,4,null,5]), false, 'Test 16');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [3,6,7]), false, 'Test 17');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32], [3,6,9,12,15,18,21,24,27,30]), false, 'Test 18');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,null,null,null,null,11,12,null,null,13,null,14,null,15,16,17,null,null,18,null,null,19,null,null,20], [10,11,12,13,14,null,15,16,17,null,null,18,null,null,19,null,null,20]), false, 'Test 19');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [15]), true, 'Test 20');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [5,9,12]), false, 'Test 21');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,null,null,null,null,null,16,17], [12,16,17]), false, 'Test 22');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,null,null,31,32], [31,32]), false, 'Test 23');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [7,11,14]), false, 'Test 24');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [2,5]), false, 'Test 25');
+test(isSubtree([1,2,3,null,4,null,5,null,6,null,7,null,8], [3,null,5,null,7,null,8]), false, 'Test 26');
+test(isSubtree([1,2,3,4,null,5,6,null,null,7,8,9,10], [5,7,8]), true, 'Test 27');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2]), false, 'Test 28');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [8,16,17]), true, 'Test 29');
+test(isSubtree([1,2,3,4,5,null,null,6,7], [4,6,7]), true, 'Test 30');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [7,14,15]), true, 'Test 31');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32], [13,25,26,29,30]), false, 'Test 32');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,null,12,null,null,13], [6,7,null,12]), false, 'Test 33');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [6,12,13]), true, 'Test 34');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32], [1,null,2,null,3,null,4]), false, 'Test 35');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [4,8,9]), true, 'Test 36');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25], [3,4,5]), false, 'Test 37');
+test(isSubtree([1,null,2,null,3,null,4,null,5,null,6,null,7,null,8], [2,null,3,null,4,null,5]), false, 'Test 38');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [10,14,15]), false, 'Test 39');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [6,10,13]), false, 'Test 40');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32], [32]), true, 'Test 41');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [10,11,12]), false, 'Test 42');
+test(isSubtree([10,5,15,3,7,null,18], [5,3,7]), true, 'Test 43');
+test(isSubtree([1,2,3,4,null,5,6,7,null,null,null,null,null,8], [4,7,8]), false, 'Test 44');
+test(isSubtree([3,4,5,1,2,null,null,null,null,0,0], [4,1,2,null,0]), false, 'Test 45');
+test(isSubtree([10,5,15,3,7,null,18], [15,null,18]), true, 'Test 46');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2,3,4,5,6,7]), false, 'Test 47');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,null,null,null,null,11,12,null,null,13,null,14,null,15], [3,6,7,11,12,null,15]), false, 'Test 48');
+test(isSubtree([1,2,3,4,5,null,null,6,7,null,null,8,9], [3,6,7,null,null,8,9]), false, 'Test 49');
+test(isSubtree([1,2,3,4,5,6,7,null,null,null,null,8,9,10,11], [4,null,null,8,9]), true, 'Test 50');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [3,6,7,12,13,14,15]), true, 'Test 51');
+test(isSubtree([1,null,2,null,3,null,4,null,5], [3,null,4]), false, 'Test 52');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [4,8,9,10,11]), false, 'Test 53');
+test(isSubtree([1,2,3,4,null,6,7,8,9,10,null,null,null,null,11,12,13,14,null,null,null,null,15], [6,10,11,15]), false, 'Test 54');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,null,null,null,null,11,12,null,null,13,null,14,null,15,16,17,null,null,18,null,null,19,null,null,20], [4,8,9,10,11,null,null,12,13,null,14]), false, 'Test 55');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [21]), false, 'Test 56');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,null,null,null,null,11,12,null,null,13,null,14,null,15,16,17,null,null,18,null,null,19,null,null,20], [16,18,19]), false, 'Test 57');
+test(isSubtree([1,2,1,3,null,null,1,4,null,null,5], [1,4,null,null,5]), false, 'Test 58');
+test(isSubtree([3,4,5,1,2,6,7,8,9,10,11,null,null,12,13,null,null,14,null,15], [1,8,9,14]), false, 'Test 59');
+test(isSubtree([1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9], [3,null,4,null,5]), false, 'Test 60');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32], [2,5,8,11,14,17,20,23,26,29]), false, 'Test 61');
+test(isSubtree([3,4,5,1,2,null,null,null,null,0,-1], [4,1,2,null,null,0]), false, 'Test 62');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [11]), true, 'Test 63');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [16,17,18]), false, 'Test 64');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [10]), true, 'Test 65');
+test(isSubtree([5,1,4,null,null,3,6], [4,3,6]), true, 'Test 66');
+test(isSubtree([1,2,3,4,5,null,null,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25], [6,12,13]), false, 'Test 67');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [8]), true, 'Test 68');
+test(isSubtree([10,1,10,1,null,10,null,1,null,1,1,null,1,null,null,1], [10,1,1]), false, 'Test 69');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [7]), false, 'Test 70');
+test(isSubtree([1,2,3,4,5,null,null,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,null,null,null,null,null,28,29], [14,28,29]), false, 'Test 71');
+test(isSubtree([10,11,12,13,14,15,16,null,null,null,null,17,18,19,20], [15,17,18]), true, 'Test 72');
+test(isSubtree([1,null,2,null,3,null,4,null,5,null,6,null,7,null,8], [3,null,4,null,5]), false, 'Test 73');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25], [5,10,11,20,21]), false, 'Test 74');
+test(isSubtree([1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9,null,10], [5,null,6,null,7,null,8,null,9]), false, 'Test 75');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [3]), false, 'Test 76');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [2,4,5,8,9]), false, 'Test 77');
+test(isSubtree([1,2,3,4,5,null,6,7,8,9,10,null,null,11,12], [7,11,12]), true, 'Test 78');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], [15,26,27,28,29,30]), false, 'Test 79');
+test(isSubtree([10,5,15,3,7,13,18,1,null,6], [10,15,18]), false, 'Test 80');
+test(isSubtree([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], [1,1,1,1,1]), false, 'Test 81');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [3,6,7,12,13]), false, 'Test 82');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [12]), true, 'Test 83');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [2,4,5]), false, 'Test 84');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [5]), false, 'Test 85');
+test(isSubtree([1,2,1,2,null,2,null,2], [2,2]), true, 'Test 86');
+test(isSubtree([10,5,15,3,7,null,18], [3,7]), false, 'Test 87');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32], [5,8,11,14,17,20,23,26,29,32]), false, 'Test 88');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [3,6,7]), false, 'Test 89');
+test(isSubtree([1,2,3,4,null,5,6,null,null,7,8], [4,null,5]), false, 'Test 90');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [10,20,30]), false, 'Test 91');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,null,null,null,null,26,27], [10,20,null,26,27]), false, 'Test 92');
+test(isSubtree([1,2,1,null,2,null,2,2,null,2], [2,2,2]), false, 'Test 93');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [15,16,17,18,19,20]), false, 'Test 94');
+test(isSubtree([10,11,12,13,14,15,16,17,18,19,20,21,22,23,24], [15,21,22]), true, 'Test 95');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [1]), false, 'Test 96');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1]), false, 'Test 97');
+test(isSubtree([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]), true, 'Test 98');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [3,6,8]), false, 'Test 99');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32], [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]), true, 'Test 100');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [9]), true, 'Test 101');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,null,null,16,17,18,19,20], [2,null,3]), false, 'Test 102');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [2,4]), false, 'Test 103');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [2,3]), false, 'Test 104');
+test(isSubtree([1,null,2,null,3,null,4,null,5,null,6], [3,null,4]), false, 'Test 105');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [1,2,3]), false, 'Test 106');
+test(isSubtree([5,4,5,4,5,4,5,null,null,null,null,null,null,4,5], [4,5]), false, 'Test 107');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [15,16,17,18,19]), false, 'Test 108');
+test(isSubtree([1,null,2,null,3,null,4,null,5,null,6,null,7], [3,null,4]), false, 'Test 109');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [8,12,15]), false, 'Test 110');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,null,null,null,null,null,21,22], [21,22]), false, 'Test 111');
+test(isSubtree([3,4,5,1,2,null,null,0,1,null,null,null,2], [4,0,1,null,null,2]), false, 'Test 112');
+test(isSubtree([5,1,4,null,null,3,6,2], [3,2]), true, 'Test 113');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32], [4,7,10,13,16,19,22,25,28,31]), false, 'Test 114');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [3,6,9]), false, 'Test 115');
+test(isSubtree([10,20,30,40,50,60,70,null,80,90,null,100,null,110,120], [20,40,50,null,80,90]), true, 'Test 116');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [6,12,13,14]), false, 'Test 117');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [14]), true, 'Test 118');
+test(isSubtree([1,2,3,4,null,5,6,7,null,null,8,9], [4,7]), true, 'Test 119');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [4,8,11]), false, 'Test 120');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,null,12,null,null,13,14,15], [4,8,9,10,11]), false, 'Test 121');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], [4,8,9,16,17]), false, 'Test 122');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], [5,10,11]), false, 'Test 123');
+test(isSubtree([1,2,3,null,4,null,5], [3,null,5]), true, 'Test 124');
+test(isSubtree([1,2,3,4,null,6,7,8,9], [4,8,9]), true, 'Test 125');
+test(isSubtree([5,1,5,null,null,5,5,null,null,5,5,null,null,5], [5,5]), true, 'Test 126');
+test(isSubtree([1,2,3,4,5,6,7,8,9,10,null,null,null,null,11,12,null,null,13,null,14,null,15,16,17,null,null,18,null,null,19,null,null,20], [6,12,15,18,20]), false, 'Test 127');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

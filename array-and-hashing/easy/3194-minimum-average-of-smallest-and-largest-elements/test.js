@@ -1,0 +1,158 @@
+// Test: 3194. Minimum Average Of Smallest And Largest Elements
+// 132 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minimumAverage } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n3194. Minimum Average Of Smallest And Largest Elements\n");
+
+test(minimumAverage([2,1,5,4,9,8]), 4.5, 'Test 1');
+test(minimumAverage([1,9,8,3,10,5]), 5.5, 'Test 2');
+test(minimumAverage([10,20,30,40,50,60]), 35.0, 'Test 3');
+test(minimumAverage([25,25,25,25,25,25]), 25.0, 'Test 4');
+test(minimumAverage([2,3,10,1,11,5,4,8]), 4.5, 'Test 5');
+test(minimumAverage([50,49,48,47,46,45]), 47.5, 'Test 6');
+test(minimumAverage([2,4,6,8,10,12]), 7.0, 'Test 7');
+test(minimumAverage([1,5,9,13,17,21]), 11.0, 'Test 8');
+test(minimumAverage([2,3,1,4,6,5]), 3.5, 'Test 9');
+test(minimumAverage([1,3,5,7,9,11]), 6.0, 'Test 10');
+test(minimumAverage([2,2,2,2,2,2]), 2.0, 'Test 11');
+test(minimumAverage([1,2,3,4,5,6]), 3.5, 'Test 12');
+test(minimumAverage([50,1,25,2,50,24]), 24.5, 'Test 13');
+test(minimumAverage([42,3,51,6,32,28]), 24.0, 'Test 14');
+test(minimumAverage([30,20,10,40,60,50]), 35.0, 'Test 15');
+test(minimumAverage([25,10,30,5,40,15]), 20.0, 'Test 16');
+test(minimumAverage([7,8,3,4,15,13,4,1]), 5.5, 'Test 17');
+test(minimumAverage([5,5,5,5,5,5]), 5.0, 'Test 18');
+test(minimumAverage([45,30,35,20,50,40]), 35.0, 'Test 19');
+test(minimumAverage([50,1,50,2,50,3]), 25.5, 'Test 20');
+test(minimumAverage([15,15,15,15,15,15]), 15.0, 'Test 21');
+test(minimumAverage([1,2,3,7,8,9]), 5.0, 'Test 22');
+test(minimumAverage([10,20,30,40]), 25.0, 'Test 23');
+test(minimumAverage([25, 20, 15, 10, 5, 0, -5, -10, -15, -20, -25, -30, -35, -40, -45, -50]), -12.5, 'Test 24');
+test(minimumAverage([3,6,9,12,15,18,21,24,27,30,33,36]), 19.5, 'Test 25');
+test(minimumAverage([7, 3, 9, 1, 5, 11, 13, 2, 8, 6, 10, 4]), 6.5, 'Test 26');
+test(minimumAverage([1,2,3,4,5,6,7,8,9,10]), 5.5, 'Test 27');
+test(minimumAverage([48,46,44,42,40,38,36,34]), 41.0, 'Test 28');
+test(minimumAverage([1,5,9,13,17,21,25,29]), 15.0, 'Test 29');
+test(minimumAverage([27, 37, 23, 33, 29, 39, 21, 31]), 30.0, 'Test 30');
+test(minimumAverage([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]), 2.0, 'Test 31');
+test(minimumAverage([7, 14, 21, 28, 35, 42, 49, 1, 8, 15]), 18.0, 'Test 32');
+test(minimumAverage([1,2,3,4,5,6,7,8,9,10,11,12]), 6.5, 'Test 33');
+test(minimumAverage([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]), 8.5, 'Test 34');
+test(minimumAverage([7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7]), 7.0, 'Test 35');
+test(minimumAverage([45, 30, 15, 5, 50, 35, 20, 10, 40, 25]), 27.5, 'Test 36');
+test(minimumAverage([10, 20, 30, 40, 50, 1]), 25.0, 'Test 37');
+test(minimumAverage([10, 20, 30, 40, 50, 1, 2, 3, 4, 5]), 7.5, 'Test 38');
+test(minimumAverage([10,20,30,40,50,60,70,80]), 45.0, 'Test 39');
+test(minimumAverage([24, 12, 36, 6, 48, 24]), 24.0, 'Test 40');
+test(minimumAverage([10,11,12,13,14,15,16,17,18,19,20,21]), 15.5, 'Test 41');
+test(minimumAverage([1,99,2,98,3,97,4,96,5,95,6,94]), 50.0, 'Test 42');
+test(minimumAverage([23, 17, 11, 5, 31, 29, 25, 19, 35, 33, 37, 13]), 21.0, 'Test 43');
+test(minimumAverage([30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30]), 30.0, 'Test 44');
+test(minimumAverage([49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30]), 39.5, 'Test 45');
+test(minimumAverage([20,10,20,10,20,10,20,10,20,10,20,10]), 15.0, 'Test 46');
+test(minimumAverage([3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]), 3.0, 'Test 47');
+test(minimumAverage([29, 10, 34, 15, 40, 5, 30, 20]), 22.0, 'Test 48');
+test(minimumAverage([8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128]), 68.0, 'Test 49');
+test(minimumAverage([49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38]), 43.5, 'Test 50');
+test(minimumAverage([23,29,27,25,21,28,26,22,24,20,19,30,18,31,17,32,16,33,15,34,14,35,13,36,12,37,11,38,10,39,9,40,8,41,7,42,6,43,5,44,4,45,3,46,2,47,1,48,50]), 25.0, 'Test 51');
+test(minimumAverage([42,42,42,42,42,42,42,42,42,42]), 42.0, 'Test 52');
+test(minimumAverage([4,8,12,16,20,24,28,32]), 18.0, 'Test 53');
+test(minimumAverage([17, 18, 19, 20, 21, 22, 23, 24, 25, 26]), 21.5, 'Test 54');
+test(minimumAverage([48, 49, 50, 1, 2, 3, 47, 46, 45, 44]), 25.5, 'Test 55');
+test(minimumAverage([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10]), 5.5, 'Test 56');
+test(minimumAverage([8, 16, 24, 32, 40, 48, 56, 64]), 36.0, 'Test 57');
+test(minimumAverage([1,3,5,7,9,11,13,15,17,19]), 10.0, 'Test 58');
+test(minimumAverage([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]), 20.0, 'Test 59');
+test(minimumAverage([50, 25, 1, 30, 45, 20, 15, 40]), 25.5, 'Test 60');
+test(minimumAverage([45,45,45,45,45,45,45,45,45,45,45,45]), 45.0, 'Test 61');
+test(minimumAverage([1, 50, 2, 49, 3, 48, 4, 47, 5, 46]), 25.5, 'Test 62');
+test(minimumAverage([21, 22, 23, 24, 25, 26, 27, 28, 29, 30]), 25.5, 'Test 63');
+test(minimumAverage([28,28,28,28,28,28,28,28,28,28,28,28,28,28]), 28.0, 'Test 64');
+test(minimumAverage([49,48,47,46,45,44,43,42,41,40,39,38]), 43.5, 'Test 65');
+test(minimumAverage([23,46,69,92,115,138,161,184,207,230,253,276,299,322,345,368]), 195.5, 'Test 66');
+test(minimumAverage([29,29,29,29,1,1,1,1,14,14,14,14]), 14.0, 'Test 67');
+test(minimumAverage([29,19,28,18,27,17,26,16,25,15,24,14]), 21.5, 'Test 68');
+test(minimumAverage([7,14,21,28,35,42,49,56,63,70]), 38.5, 'Test 69');
+test(minimumAverage([50,49,48,47,46,45,44,43,42,41]), 45.5, 'Test 70');
+test(minimumAverage([34,34,12,12,56,56,28,28,42,42]), 34.0, 'Test 71');
+test(minimumAverage([3, 11, 7, 15, 9, 17, 5, 13]), 10.0, 'Test 72');
+test(minimumAverage([1, 50, 2, 49, 3, 48, 4, 47, 5, 46, 6, 45, 7, 44, 8, 43, 9, 42, 10, 41]), 25.5, 'Test 73');
+test(minimumAverage([4,8,12,16,20,24,28,32,36,40]), 22.0, 'Test 74');
+test(minimumAverage([47,47,47,47,47,47,47,47,47,47,47,47]), 47.0, 'Test 75');
+test(minimumAverage([3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]), 3.0, 'Test 76');
+test(minimumAverage([8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]), 8.0, 'Test 77');
+test(minimumAverage([20, 10, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]), 65.0, 'Test 78');
+test(minimumAverage([8, 16, 24, 32, 40, 48, 12, 20]), 22.0, 'Test 79');
+test(minimumAverage([15,25,35,45,55,65,75,85]), 50.0, 'Test 80');
+test(minimumAverage([5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]), 5.0, 'Test 81');
+test(minimumAverage([50, 49, 48, 47, 46, 45, 44, 43, 42, 41]), 45.5, 'Test 82');
+test(minimumAverage([10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 12, 11, 14, 13, 16, 15, 18, 17, 20, 19]), 10.5, 'Test 83');
+test(minimumAverage([15, 20, 5, 10, 25, 30, 35, 40, 50, 55]), 27.5, 'Test 84');
+test(minimumAverage([30,30,29,29,28,28,27,27,26,26,25,25]), 27.5, 'Test 85');
+test(minimumAverage([10,20,30,40,50,60,70,80,90,100]), 55.0, 'Test 86');
+test(minimumAverage([45, 42, 43, 41, 44, 46, 47, 48]), 44.5, 'Test 87');
+test(minimumAverage([29,29,29,29,29,29,29,29,29,29,29,29]), 29.0, 'Test 88');
+test(minimumAverage([3, 9, 15, 21, 27, 33, 39, 45, 51, 57]), 30.0, 'Test 89');
+test(minimumAverage([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 5.5, 'Test 90');
+test(minimumAverage([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]), 12.0, 'Test 91');
+test(minimumAverage([1, 3, 5, 7, 9, 11, 13, 15]), 8.0, 'Test 92');
+test(minimumAverage([2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40]), 21.0, 'Test 93');
+test(minimumAverage([28, 22, 16, 10, 4, 32, 26, 20, 14, 8, 30, 12]), 18.0, 'Test 94');
+test(minimumAverage([2, 4, 6, 8, 10, 12, 14, 16, 18, 20]), 11.0, 'Test 95');
+test(minimumAverage([22, 38, 26, 40, 24, 36, 28, 34]), 31.0, 'Test 96');
+test(minimumAverage([1,1,1,1,1,1,1,1,1,1,1,1,1,1]), 1.0, 'Test 97');
+test(minimumAverage([45,46,47,48,49,50,1,2,3,4,5,6,7,8,9,10]), 8.5, 'Test 98');
+test(minimumAverage([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]), 65.0, 'Test 99');
+test(minimumAverage([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), 10.5, 'Test 100');
+test(minimumAverage([15,25,35,5,30,20,40,10]), 22.5, 'Test 101');
+test(minimumAverage([13, 26, 39, 52, 65, 78, 91, 4, 8, 12]), 32.5, 'Test 102');
+test(minimumAverage([3,6,9,12,15,18,21,24,27,30]), 16.5, 'Test 103');
+test(minimumAverage([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50]), 25.5, 'Test 104');
+test(minimumAverage([2, 6, 10, 14, 18, 22, 26, 30, 34, 38]), 20.0, 'Test 105');
+test(minimumAverage([7, 14, 21, 28, 35, 42, 49, 1, 8, 15, 22, 29]), 21.5, 'Test 106');
+test(minimumAverage([10,20,30,40,50,1]), 25.0, 'Test 107');
+test(minimumAverage([1, 50, 2, 49, 3, 48, 4, 47]), 25.5, 'Test 108');
+test(minimumAverage([4, 8, 15, 16, 23, 42, 1, 2, 3, 5, 7, 11, 13, 17, 19, 29]), 11.0, 'Test 109');
+test(minimumAverage([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 9]), 4.0, 'Test 110');
+test(minimumAverage([2,4,6,8,10,12,14,16,18,20,22,24]), 13.0, 'Test 111');
+test(minimumAverage([1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,30]), 15.5, 'Test 112');
+test(minimumAverage([42, 43, 44, 45, 46, 47, 48, 49, 50, 1]), 25.5, 'Test 113');
+test(minimumAverage([10,20,30,40,50,1,2,3,4,5]), 7.5, 'Test 114');
+test(minimumAverage([10, 20, 30, 40, 50, 5, 15, 25]), 22.5, 'Test 115');
+test(minimumAverage([17,18,19,20,21,22,23,24,25,26]), 21.5, 'Test 116');
+test(minimumAverage([5, 15, 25, 35, 45, 50, 40, 30, 20, 10]), 27.5, 'Test 117');
+test(minimumAverage([1, 5, 10, 15, 20, 25, 30, 35, 40, 45]), 22.5, 'Test 118');
+test(minimumAverage([12, 24, 36, 48, 18, 30, 42, 54]), 33.0, 'Test 119');
+test(minimumAverage([8,24,3,12,18,6,21,9,15,1,19,7,22,10,16,4,23,2,11,13,17,14,25,20,5]), 13.0, 'Test 120');
+test(minimumAverage([50,1,49,2,48,3,47,4,46,5,45,6]), 25.5, 'Test 121');
+test(minimumAverage([10,20,30,40,50,5,15,25,35,45]), 27.5, 'Test 122');
+test(minimumAverage([25, 26, 27, 28, 29, 30, 31, 32, 33, 34]), 29.5, 'Test 123');
+test(minimumAverage([25,24,23,22,21,20,19,18]), 21.5, 'Test 124');
+test(minimumAverage([7, 14, 21, 28, 35, 42, 49, 50]), 28.5, 'Test 125');
+test(minimumAverage([21,18,15,12,9,6,3,0]), 10.5, 'Test 126');
+test(minimumAverage([49, 2, 48, 3, 47, 4, 46, 5, 45, 6]), 25.5, 'Test 127');
+test(minimumAverage([45, 44, 43, 42, 41, 40, 39, 38, 37, 36]), 40.5, 'Test 128');
+test(minimumAverage([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]), 12.0, 'Test 129');
+test(minimumAverage([10, 20, 30, 40, 50, 60, 70, 80]), 45.0, 'Test 130');
+test(minimumAverage([2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]), 2.0, 'Test 131');
+test(minimumAverage([33, 17, 47, 31, 27, 13, 41, 23, 39, 29, 35, 19]), 29.0, 'Test 132');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

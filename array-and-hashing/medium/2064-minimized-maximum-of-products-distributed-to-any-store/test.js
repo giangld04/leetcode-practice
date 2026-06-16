@@ -1,0 +1,157 @@
+// Test: 2064. Minimized Maximum Of Products Distributed To Any Store
+// 131 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minimizedMaximum } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n2064. Minimized Maximum Of Products Distributed To Any Store\n");
+
+test(minimizedMaximum(5, [10,20,30,40,50]), 50, 'Test 1');
+test(minimizedMaximum(3, [100,100,100]), 100, 'Test 2');
+test(minimizedMaximum(10, [1,1,1,1,1,1,1,1,1,100000]), 100000, 'Test 3');
+test(minimizedMaximum(3, [1,100000]), 50000, 'Test 4');
+test(minimizedMaximum(2, [50000,50000]), 50000, 'Test 5');
+test(minimizedMaximum(50000, [1,2,3,4,5]), 1, 'Test 6');
+test(minimizedMaximum(10, [100000,1,100000,1,100000,1,100000,1,100000,1]), 100000, 'Test 7');
+test(minimizedMaximum(2, [100000,100000]), 100000, 'Test 8');
+test(minimizedMaximum(7, [15,10,10]), 5, 'Test 9');
+test(minimizedMaximum(10, [10,10,10,10,10,10,10,10,10,10]), 10, 'Test 10');
+test(minimizedMaximum(5, [10,10,10,10,10]), 10, 'Test 11');
+test(minimizedMaximum(5, [1,1,1,1,1]), 1, 'Test 12');
+test(minimizedMaximum(6, [11,6]), 3, 'Test 13');
+test(minimizedMaximum(5, [1,2,3,4,5]), 5, 'Test 14');
+test(minimizedMaximum(100000, [1]), 1, 'Test 15');
+test(minimizedMaximum(10, [1,2,3,4,5,6,7,8,9,10]), 10, 'Test 16');
+test(minimizedMaximum(50000, [10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000,10000]), 4, 'Test 17');
+test(minimizedMaximum(50000, [100000,100000]), 4, 'Test 18');
+test(minimizedMaximum(100, [100000]), 1000, 'Test 19');
+test(minimizedMaximum(10, [1,1,1,1,1,1,1,1,1,1]), 1, 'Test 20');
+test(minimizedMaximum(3, [50,50,50]), 50, 'Test 21');
+test(minimizedMaximum(2, [100,1]), 100, 'Test 22');
+test(minimizedMaximum(3, [100,200,300]), 300, 'Test 23');
+test(minimizedMaximum(1, [100000]), 100000, 'Test 24');
+test(minimizedMaximum(100000, [100000]), 1, 'Test 25');
+test(minimizedMaximum(s), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 26');
+test(minimizedMaximum(0), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 27');
+test(minimizedMaximum(8, [12, 24, 36, 48, 60, 72, 84, 96]), 96, 'Test 28');
+test(minimizedMaximum(95000, [10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000, 150000, 160000, 170000, 180000, 190000, 200000]), 23, 'Test 29');
+test(minimizedMaximum(100000, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), 1, 'Test 30');
+test(minimizedMaximum(e), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 31');
+test(minimizedMaximum(80000, [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000]), 2, 'Test 32');
+test(minimizedMaximum(50000, [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]), 1, 'Test 33');
+test(minimizedMaximum(100000, [100000, 50000, 25000, 12500, 6250, 3125, 1562, 781, 390, 195]), 2, 'Test 34');
+test(minimizedMaximum(9, [10, 100, 1000, 10000, 100000, 100, 10, 1, 1000000]), 1000000, 'Test 35');
+test(minimizedMaximum(75000, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]), 1, 'Test 36');
+test(minimizedMaximum(a), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 37');
+test(minimizedMaximum(100000, [10000, 20000, 30000, 40000, 50000]), 2, 'Test 38');
+test(minimizedMaximum(4), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 39');
+test(minimizedMaximum(45000, [50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000, 50000]), 35, 'Test 40');
+test(minimizedMaximum(7), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 41');
+test(minimizedMaximum(15000, [50000, 40000, 30000, 20000, 10000]), 10, 'Test 42');
+test(minimizedMaximum(80000, [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]), 1, 'Test 43');
+test(minimizedMaximum(20000, [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500]), 1, 'Test 44');
+test(minimizedMaximum(90000, [100000, 50000, 25000, 12500, 6250, 3125, 1562, 781, 390, 195, 97, 48, 24, 12, 6, 3, 1]), 3, 'Test 45');
+test(minimizedMaximum(10, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 10, 'Test 46');
+test(minimizedMaximum(40000, [500, 499, 498, 497, 496, 495, 494, 493, 492, 491, 490, 489, 488, 487, 486, 485, 484, 483, 482, 481, 480, 479, 478, 477, 476, 475, 474, 473, 472, 471, 470]), 1, 'Test 47');
+test(minimizedMaximum(100000, [100000, 50000, 30000, 20000, 10000]), 3, 'Test 48');
+test(minimizedMaximum(40000, [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39]), 1, 'Test 49');
+test(minimizedMaximum(n), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 50');
+test(minimizedMaximum(30000, [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500]), 2, 'Test 51');
+test(minimizedMaximum(50000, [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]), 20, 'Test 52');
+test(minimizedMaximum(8), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 53');
+test(minimizedMaximum(30000, [5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000]), 6, 'Test 54');
+test(minimizedMaximum(60000, [99999, 99998, 99997, 99996, 99995, 99994, 99993, 99992, 99991, 99990, 99989, 99988, 99987, 99986, 99985, 99984, 99983, 99982, 99981, 99980]), 34, 'Test 55');
+test(minimizedMaximum(10, [500, 500, 500, 500, 500, 500, 500, 500, 500, 500]), 500, 'Test 56');
+test(minimizedMaximum(60000, [15000, 15000, 15000, 15000, 15000, 15000]), 2, 'Test 57');
+test(minimizedMaximum(99999, [100000, 99999, 99998, 99997, 99996, 99995]), 7, 'Test 58');
+test(minimizedMaximum(1, [1000000]), 1000000, 'Test 59');
+test(minimizedMaximum(9), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 60');
+test(minimizedMaximum(t), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 61');
+test(minimizedMaximum(80000, [1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019]), 1, 'Test 62');
+test(minimizedMaximum(6, [10, 20, 30, 40, 50, 60]), 60, 'Test 63');
+test(minimizedMaximum(15, [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]), 150, 'Test 64');
+test(minimizedMaximum(90000, [90000, 100, 200, 300, 400, 500, 600, 700, 800]), 2, 'Test 65');
+test(minimizedMaximum(u), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 66');
+test(minimizedMaximum(7, [5, 15, 25, 35, 45, 55, 65]), 65, 'Test 67');
+test(minimizedMaximum(1), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 68');
+test(minimizedMaximum(10, [1000, 2000, 3000, 4000, 5000]), 2000, 'Test 69');
+test(minimizedMaximum(50000, [1, 10, 100, 1000, 10000, 100000]), 3, 'Test 70');
+test(minimizedMaximum(100000, [10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000]), 4, 'Test 71');
+test(minimizedMaximum(30000, [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000]), 8, 'Test 72');
+test(minimizedMaximum(20000, [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500]), 1, 'Test 73');
+test(minimizedMaximum(40000, [100000, 90000, 80000, 70000, 60000, 50000, 40000, 30000, 20000, 10000]), 14, 'Test 74');
+test(minimizedMaximum(75000, [99999, 1, 2, 3, 4, 5]), 2, 'Test 75');
+test(minimizedMaximum(50000, [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]), 1, 'Test 76');
+test(minimizedMaximum(45000, [45000, 22500, 15000, 11250, 9000]), 3, 'Test 77');
+test(minimizedMaximum(25000, [10000, 20000, 30000, 40000, 50000]), 7, 'Test 78');
+test(minimizedMaximum(3), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 79');
+test(minimizedMaximum(]), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 80');
+test(minimizedMaximum(50000, [10000, 15000, 20000, 25000, 30000]), 2, 'Test 81');
+test(minimizedMaximum(100000, [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]), 1, 'Test 82');
+test(minimizedMaximum(90000, [9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000, 9000]), 2, 'Test 83');
+test(minimizedMaximum(10000, [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000]), 22, 'Test 84');
+test(minimizedMaximum(75000, [20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000]), 3, 'Test 85');
+test(minimizedMaximum(100000, [50000, 50000, 50000, 50000]), 2, 'Test 86');
+test(minimizedMaximum(90000, [1, 10, 100, 1000, 10000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]), 17, 'Test 87');
+test(minimizedMaximum(99999, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), 1, 'Test 88');
+test(minimizedMaximum(50000, [25000, 25000, 25000, 25000, 25000, 25000, 25000, 25000, 25000, 25000]), 5, 'Test 89');
+test(minimizedMaximum(), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 90');
+test(minimizedMaximum(50000, [100000]), 2, 'Test 91');
+test(minimizedMaximum(5), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 92');
+test(minimizedMaximum(75000, [75000, 75000, 75000, 75000, 75000, 75000, 75000, 75000, 75000, 75000]), 10, 'Test 93');
+test(minimizedMaximum(6), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 94');
+test(minimizedMaximum(60000, [100000, 90000, 80000, 70000, 60000, 50000, 40000, 30000, 20000, 10000]), 10, 'Test 95');
+test(minimizedMaximum(50000, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]), 1, 'Test 96');
+test(minimizedMaximum(100000, [100000, 1, 2, 3, 4, 5, 6, 7, 8, 9]), 2, 'Test 97');
+test(minimizedMaximum(,), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 98');
+test(minimizedMaximum(50000, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 1, 'Test 99');
+test(minimizedMaximum(20, [15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110]), 110, 'Test 100');
+test(minimizedMaximum(10000, [10000, 9999, 9998, 9997, 9996, 9995, 9994, 9993, 9992, 9991]), 10, 'Test 101');
+test(minimizedMaximum(30000, [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]), 1, 'Test 102');
+test(minimizedMaximum(80000, [5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000]), 1, 'Test 103');
+test(minimizedMaximum(55000, [10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000, 150000]), 22, 'Test 104');
+test(minimizedMaximum(45000, [99999, 99998, 99997, 99996, 99995, 99994, 99993, 99992, 99991, 99990, 99989, 99988, 99987, 99986, 99985, 99984, 99983, 99982, 99981, 99980]), 45, 'Test 105');
+test(minimizedMaximum(q), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 106');
+test(minimizedMaximum(1, [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 1000000, 'Test 107');
+test(minimizedMaximum(90000, [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]), 1, 'Test 108');
+test(minimizedMaximum(3, [99999, 99999, 99999]), 99999, 'Test 109');
+test(minimizedMaximum(60000, [1, 10, 100, 1000, 10000, 100000]), 2, 'Test 110');
+test(minimizedMaximum(55000, [77777, 88888, 99999, 111111, 222222, 333333, 444444]), 26, 'Test 111');
+test(minimizedMaximum(=), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 112');
+test(minimizedMaximum(55000, [150000, 125000, 100000, 75000, 50000, 25000, 12500, 6250, 3125, 1562, 781, 390, 195, 97, 48, 24, 12, 6, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 11, 'Test 113');
+test(minimizedMaximum(i), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 114');
+test(minimizedMaximum(60000, [99999, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 2, 'Test 115');
+test(minimizedMaximum(60000, [99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999]), 34, 'Test 116');
+test(minimizedMaximum(80000, [8000, 8001, 8002, 8003, 8004, 8005, 8006, 8007, 8008, 8009]), 2, 'Test 117');
+test(minimizedMaximum(50000, [100000, 200000, 300000, 400000]), 20, 'Test 118');
+test(minimizedMaximum(20000, [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]), 100, 'Test 119');
+test(minimizedMaximum(30000, [30000, 30001, 30002, 30003, 30004, 30005, 30006, 30007, 30008, 30009, 30010, 30011, 30012, 30013, 30014, 30015, 30016, 30017, 30018, 30019]), 21, 'Test 120');
+test(minimizedMaximum(100000, [50000, 50000, 50000, 50000, 50000]), 3, 'Test 121');
+test(minimizedMaximum(100000, [10000, 15000, 20000, 25000, 30000]), 1, 'Test 122');
+test(minimizedMaximum(75000, [12345, 67890, 11111, 22222, 33333, 44444, 55555]), 4, 'Test 123');
+test(minimizedMaximum(50000, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), 1, 'Test 124');
+test(minimizedMaximum(30000, [9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999, 9999]), 11, 'Test 125');
+test(minimizedMaximum(25000, [50000, 100000, 150000, 200000, 250000, 300000]), 43, 'Test 126');
+test(minimizedMaximum(2), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 127');
+test(minimizedMaximum(100, [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]), 20, 'Test 128');
+test(minimizedMaximum(80000, [20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000, 20000]), 17, 'Test 129');
+test(minimizedMaximum([), Error: Solution.minimizedMaximum[] missing 2 required positional arguments: 'n' and 'quantities', 'Test 130');
+test(minimizedMaximum(25000, [200000, 150000, 100000, 50000, 25000, 12500, 6250, 3125, 1562, 781, 390, 195, 97, 48, 24, 12, 6, 3, 1]), 23, 'Test 131');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

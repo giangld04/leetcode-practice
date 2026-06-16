@@ -1,0 +1,158 @@
+// Test: 205. Isomorphic Strings
+// 132 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { isIsomorphic } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n205. Isomorphic Strings\n");
+
+test(isIsomorphic("hello", "world"), false, 'Test 1');
+test(isIsomorphic("abcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcba"), true, 'Test 2');
+test(isIsomorphic("paper", "title"), true, 'Test 3');
+test(isIsomorphic("#a@C", "%b$D"), true, 'Test 4');
+test(isIsomorphic("1234567890", "0987654321"), true, 'Test 5');
+test(isIsomorphic("aaaa", "bbbb"), true, 'Test 6');
+test(isIsomorphic("123", "456"), true, 'Test 7');
+test(isIsomorphic("13", "42"), true, 'Test 8');
+test(isIsomorphic("egg", "add"), true, 'Test 9');
+test(isIsomorphic("test", "tets"), false, 'Test 10');
+test(isIsomorphic("foo", "bar"), false, 'Test 11');
+test(isIsomorphic("badc", "baba"), false, 'Test 12');
+test(isIsomorphic("abba", "abba"), true, 'Test 13');
+test(isIsomorphic("a", "a"), true, 'Test 14');
+test(isIsomorphic("abcd", "dcba"), true, 'Test 15');
+test(isIsomorphic("ab", "aa"), false, 'Test 16');
+test(isIsomorphic("abcdefghijabcdefghij", "zyxwvutsrqzyxwvutsrq"), true, 'Test 17');
+test(isIsomorphic("testcase", "tattldce"), false, 'Test 18');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzz"), false, 'Test 19');
+test(isIsomorphic("thisisatest", "qdpdqpdafqd"), false, 'Test 20');
+test(isIsomorphic("123456", "654321"), true, 'Test 21');
+test(isIsomorphic("hello world", "uifsf ftuqi"), false, 'Test 22');
+test(isIsomorphic("aba", "cdc"), true, 'Test 23');
+test(isIsomorphic("xyzzzzzzzzzyxzzzzzzzxy", "yxqqqqqqqqqyxqqqqqqqyx"), false, 'Test 24');
+test(isIsomorphic("aabbccddeeff", "zzyyxxwwvvuuzz"), true, 'Test 25');
+test(isIsomorphic("aabb", "cccc"), false, 'Test 26');
+test(isIsomorphic("abracadabra", "xyxzyzyxzyx"), false, 'Test 27');
+test(isIsomorphic("aaaaa", "bbbbb"), true, 'Test 28');
+test(isIsomorphic("abcdeabcde", "fghijfghij"), true, 'Test 29');
+test(isIsomorphic("abcdefg", "gfedcba"), true, 'Test 30');
+test(isIsomorphic("a", "z"), true, 'Test 31');
+test(isIsomorphic("abacaba", "xyzxzyx"), false, 'Test 32');
+test(isIsomorphic("abccbaabc", "xyzyxzyxzyx"), false, 'Test 33');
+test(isIsomorphic("abcdabcdabcd", "wxyzwxyzwxyz"), true, 'Test 34');
+test(isIsomorphic("mississippi", "bbccddeffgg"), false, 'Test 35');
+test(isIsomorphic("aabbccddeeff", "zzzzyyxxwwvvuuzz"), false, 'Test 36');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzyyxxwwvvuuttrrssqqppoonnmmllkkjjiihhggeeffddeebbaa"), false, 'Test 37');
+test(isIsomorphic("abcde", "edcba"), true, 'Test 38');
+test(isIsomorphic("ababab", "xyzxyz"), false, 'Test 39');
+test(isIsomorphic("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba"), false, 'Test 40');
+test(isIsomorphic("ababababab", "cdcdcdcdcd"), true, 'Test 41');
+test(isIsomorphic("randomstring", "stringrandom"), false, 'Test 42');
+test(isIsomorphic("mississippi", "hhlllppppss"), false, 'Test 43');
+test(isIsomorphic("aabbccddeeffgg", "zzxxccvvnngghh"), true, 'Test 44');
+test(isIsomorphic("repeatedcharacters", "substitutedletters"), false, 'Test 45');
+test(isIsomorphic("aabbcc", "ddeeff"), true, 'Test 46');
+test(isIsomorphic("abcdefghijkabcdefghijkabcdefghijkabcdefghijk", "abcdefghijkabcdefghijkabcdefghijkabcdefghijk"), true, 'Test 47');
+test(isIsomorphic("abcdefghijklmnopqrstuvwxyz", "bcdefghijklmnopqrstuvwxyza"), true, 'Test 48');
+test(isIsomorphic("longlongstringwithvariouscharacters", "shortshort"), false, 'Test 49');
+test(isIsomorphic("sos", "non"), true, 'Test 50');
+test(isIsomorphic("rat", "car"), true, 'Test 51');
+test(isIsomorphic("elephant", "mouse"), false, 'Test 52');
+test(isIsomorphic("abc", "zyx"), true, 'Test 53');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzxxwwvvuuttssrrqqppoonnmmllkkjjiihhggeeffddccbbaa"), true, 'Test 54');
+test(isIsomorphic("isomorphic", "esomoprphc"), false, 'Test 55');
+test(isIsomorphic("aaabbbccc", "xxxyyyzzz"), true, 'Test 56');
+test(isIsomorphic("abcdefghij", "jihgfedcba"), true, 'Test 57');
+test(isIsomorphic("aaaaaa", "bbbbbb"), true, 'Test 58');
+test(isIsomorphic("mississippi", "bbcccb"), false, 'Test 59');
+test(isIsomorphic("xyxxyxyxyx", "xyxyyxyxyx"), false, 'Test 60');
+test(isIsomorphic("aaaabbbbccccdddd", "ddddccccbbbbaaaa"), true, 'Test 61');
+test(isIsomorphic("a!b@c#d$e%f^g&h*i[j]k_l+m-, o[p]q{r}s|t\u'v"w"x"y"z", "z"y"x"w"v'u\t|s{r}q[p], n-m_l]k*i&h^f$e#d@c!b"), Error: Solution.isIsomorphic[] missing 2 required positional arguments: 's' and 't', 'Test 62');
+test(isIsomorphic("sameexample", "gnatgnatgnat"), false, 'Test 63');
+test(isIsomorphic("twosky", "threesky"), false, 'Test 64');
+test(isIsomorphic("abcabcabc", "xyzxyzxyz"), true, 'Test 65');
+test(isIsomorphic("hellohello", "worldworld"), false, 'Test 66');
+test(isIsomorphic("12345", "54321"), true, 'Test 67');
+test(isIsomorphic("aabbccddeeffgghhii", "zzxxyywwvvuuttrrqqpp"), true, 'Test 68');
+test(isIsomorphic("123123123", "abcabcabc"), true, 'Test 69');
+test(isIsomorphic("racecar", "level"), false, 'Test 70');
+test(isIsomorphic("racecar", "madam"), false, 'Test 71');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzyyxxwwvvuuttssrrqqppoonnmmllkkjjiihhggffeeddccbbaa"), true, 'Test 72');
+test(isIsomorphic("abacabadabacaba", "xyxyxyxyxyxyxyxy"), false, 'Test 73');
+test(isIsomorphic("abcdeffedcba", "gfedcbaabcdefg"), false, 'Test 74');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzyyxxwwvvuuttrrssqqppoonnmmllkkjjiihhggeeffdccbbbaa"), false, 'Test 75');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzzzyyyxxwwvvuuttrrsqqppoonnmmllkkjjiihhggffeeddccbbaa"), false, 'Test 76');
+test(isIsomorphic("1234567890", "!@#$%^&*[]"), true, 'Test 77');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzxxwvuttssrrqqponmlkjihgfedcbbaa"), false, 'Test 78');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzyyxxwwvvuuttrrssqqppoonnmmllkkjjiihhhgggffeeeeddccbbbaa"), false, 'Test 79');
+test(isIsomorphic("xyzzxyzz", "abccabcc"), true, 'Test 80');
+test(isIsomorphic("abcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz"), true, 'Test 81');
+test(isIsomorphic("thisisatest", "abccbaabcab"), false, 'Test 82');
+test(isIsomorphic("abcdabcdabcdabcd", "dcbaabcdabcdabcd"), false, 'Test 83');
+test(isIsomorphic("anagram", "nagaram"), false, 'Test 84');
+test(isIsomorphic("aaaaabbbbbccccc", "bbbbbcccccaaaaa"), true, 'Test 85');
+test(isIsomorphic("abcdabcd", "wxyzwxyz"), true, 'Test 86');
+test(isIsomorphic("twowords", "twooorld"), false, 'Test 87');
+test(isIsomorphic("abbabbbbabaabababbaaabbbabbbaaa", "xyzxxzzxzyzyzyzyzyzyzyzyzyzyzyzyzyz"), false, 'Test 88');
+test(isIsomorphic("aaabbbcccdddeeefffggghhhh", "mmmnnnoooqqrssstttuuuvvvvv"), false, 'Test 89');
+test(isIsomorphic("mississippi", "bbjjjjbbbrrr"), false, 'Test 90');
+test(isIsomorphic("abab", "baba"), true, 'Test 91');
+test(isIsomorphic("thisisatest", "thisisatest"), true, 'Test 92');
+test(isIsomorphic("unique", "unique"), true, 'Test 93');
+test(isIsomorphic("abcabcabcabc", "defgdefgdefgdefg"), false, 'Test 94');
+test(isIsomorphic("isomorphic", "homomorphi"), false, 'Test 95');
+test(isIsomorphic("aaaaabbbbbaaaa", "cccceeeedddd"), false, 'Test 96');
+test(isIsomorphic("xxxxx", "yyyyy"), true, 'Test 97');
+test(isIsomorphic("abcabcabcabc", "xyzxyzxyzxyz"), true, 'Test 98');
+test(isIsomorphic("abcabcabc", "xyzxyzyxzy"), false, 'Test 99');
+test(isIsomorphic("isomorphic", "homomorphic"), false, 'Test 100');
+test(isIsomorphic("sabcsabc", "tabctabc"), true, 'Test 101');
+test(isIsomorphic("qwertyuiopasdfghjklzxcvbnm", "mlkjihgfdsapoiuytrewqzxcvbnm"), false, 'Test 102');
+test(isIsomorphic("thisisatest", "thatistest"), false, 'Test 103');
+test(isIsomorphic("!@#$%^&*[]", "[]&*^%$#@!"), true, 'Test 104');
+test(isIsomorphic("racecar", "kayyak"), false, 'Test 105');
+test(isIsomorphic("!@#$%^&*[]", "][*&^%$#@!"), true, 'Test 106');
+test(isIsomorphic("sphinxofblackquartzjumps", "zpmxkbvhnckgyusldqpj"), false, 'Test 107');
+test(isIsomorphic("1122334455", "1122334455"), true, 'Test 108');
+test(isIsomorphic("ab", "zy"), true, 'Test 109');
+test(isIsomorphic("aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz", "zzxxwwvvuuttssrrqqppoonnmmllkkjjiihhggffeeddccbbaa"), true, 'Test 110');
+test(isIsomorphic("aaaaaa", "zzzzzz"), true, 'Test 111');
+test(isIsomorphic("noon", "moon"), false, 'Test 112');
+test(isIsomorphic("aaaaabbbbccccddddd", "bbbbbccccdddddfffff"), false, 'Test 113');
+test(isIsomorphic("special$chars!@#", "normal%^&*[]"), false, 'Test 114');
+test(isIsomorphic("abcabcabcabc", "defdefdefdef"), true, 'Test 115');
+test(isIsomorphic("mississippi", "bbnnnnoooppp"), false, 'Test 116');
+test(isIsomorphic("teest", "beest"), false, 'Test 117');
+test(isIsomorphic("abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba"), true, 'Test 118');
+test(isIsomorphic("!@#$%^", "^%$#@!"), true, 'Test 119');
+test(isIsomorphic("unique", "mapped"), false, 'Test 120');
+test(isIsomorphic("mississippi", "eeffgghhiiii"), false, 'Test 121');
+test(isIsomorphic("xyxxyxyxyx", "zvzvzvzvzv"), false, 'Test 122');
+test(isIsomorphic("abacabadabacaba", "xyxzyxzyzxzyxzy"), false, 'Test 123');
+test(isIsomorphic("aabbccddeeffgghhiijj", "zzxxccvvnnooppmmqqllkk"), true, 'Test 124');
+test(isIsomorphic("abababab", "cdcdcdcd"), true, 'Test 125');
+test(isIsomorphic("xyxzyzyx", "qpqpqpqp"), false, 'Test 126');
+test(isIsomorphic("abcdefghijabcdefghij", "klmnopqrstklmnopqrst"), true, 'Test 127');
+test(isIsomorphic("aabbccddeeff", "zzxxyywwvvuutt"), true, 'Test 128');
+test(isIsomorphic("elephant", "zuluqaak"), false, 'Test 129');
+test(isIsomorphic("mississippi", "lllssssiiip"), false, 'Test 130');
+test(isIsomorphic("thisproblemisfun", "thatquestionistame"), false, 'Test 131');
+test(isIsomorphic("abcdefghij", "abcdefghij"), true, 'Test 132');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

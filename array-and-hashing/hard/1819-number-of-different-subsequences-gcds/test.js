@@ -1,0 +1,129 @@
+// Test: 1819. Number Of Different Subsequences Gcds
+// 103 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { countDifferentSubsequenceGCDs } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n1819. Number Of Different Subsequences Gcds\n");
+
+test(countDifferentSubsequenceGCDs([6,10,3]), 5, 'Test 1');
+test(countDifferentSubsequenceGCDs([2,4,6,8,10]), 5, 'Test 2');
+test(countDifferentSubsequenceGCDs([1]), 1, 'Test 3');
+test(countDifferentSubsequenceGCDs([5,15,40,5,6]), 7, 'Test 4');
+test(countDifferentSubsequenceGCDs([2,4,8,16,32,64,128,256,512,1024]), 10, 'Test 5');
+test(countDifferentSubsequenceGCDs([10,20,30,40,50,60,70,80,90,100]), 10, 'Test 6');
+test(countDifferentSubsequenceGCDs([1,3,5,7,9,11,13,15,17,19]), 10, 'Test 7');
+test(countDifferentSubsequenceGCDs([1,2,3,4,5]), 5, 'Test 8');
+test(countDifferentSubsequenceGCDs([100000, 200000, 300000, 400000, 500000]), 5, 'Test 9');
+test(countDifferentSubsequenceGCDs([1,1,1,1,1,1,1,1,1,1]), 1, 'Test 10');
+test(countDifferentSubsequenceGCDs([7,7,7,7,7]), 1, 'Test 11');
+test(countDifferentSubsequenceGCDs([2,4,6,8,10,12,14,16,18,20]), 10, 'Test 12');
+test(countDifferentSubsequenceGCDs([100000, 100000, 100000, 100000, 100000]), 1, 'Test 13');
+test(countDifferentSubsequenceGCDs([100,200,300,400,500]), 5, 'Test 14');
+test(countDifferentSubsequenceGCDs([7,14,21,28,35]), 5, 'Test 15');
+test(countDifferentSubsequenceGCDs([100000]), 1, 'Test 16');
+test(countDifferentSubsequenceGCDs([2,3,5,7,11,13,17,19,23,29]), 11, 'Test 17');
+test(countDifferentSubsequenceGCDs([100000,200000,150000]), 4, 'Test 18');
+test(countDifferentSubsequenceGCDs([7,7,7,7]), 1, 'Test 19');
+test(countDifferentSubsequenceGCDs([30,15,60,90,180]), 5, 'Test 20');
+test(countDifferentSubsequenceGCDs([42, 84, 126, 168, 210, 252, 294, 336, 378, 420, 462, 504, 546, 588, 630, 672, 714, 756, 798, 840, 882, 924, 966, 1008, 1050]), 25, 'Test 21');
+test(countDifferentSubsequenceGCDs([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]), 50, 'Test 22');
+test(countDifferentSubsequenceGCDs([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]), 20, 'Test 23');
+test(countDifferentSubsequenceGCDs([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500]), 15, 'Test 24');
+test(countDifferentSubsequenceGCDs([7, 14, 21, 28, 35, 42, 49, 56, 63, 70]), 10, 'Test 25');
+test(countDifferentSubsequenceGCDs([100000, 200000, 300000, 400000, 500000, 600000, 700000, 800000, 900000, 1000000]), 10, 'Test 26');
+test(countDifferentSubsequenceGCDs([37, 74, 111, 148, 185, 222, 259, 296, 333, 370, 407, 444, 481, 518, 555, 592, 629, 666, 703, 740, 777, 814, 851, 888, 925, 962, 999]), 27, 'Test 27');
+test(countDifferentSubsequenceGCDs([42, 84, 126, 168, 210, 252, 294, 336, 378, 420, 462, 504, 546, 588, 630]), 15, 'Test 28');
+test(countDifferentSubsequenceGCDs([101, 202, 303, 404, 505, 606, 707, 808, 909, 1010, 1111, 1212, 1313, 1414, 1515, 1616, 1717, 1818, 1919, 2020]), 20, 'Test 29');
+test(countDifferentSubsequenceGCDs([15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165, 175]), 18, 'Test 30');
+test(countDifferentSubsequenceGCDs([12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 63, 66, 69, 72, 75, 78, 81, 84, 87, 90]), 30, 'Test 31');
+test(countDifferentSubsequenceGCDs([10, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165, 175, 185, 195, 205]), 22, 'Test 32');
+test(countDifferentSubsequenceGCDs([8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072]), 15, 'Test 33');
+test(countDifferentSubsequenceGCDs([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]), 15, 'Test 34');
+test(countDifferentSubsequenceGCDs([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29]), 15, 'Test 35');
+test(countDifferentSubsequenceGCDs([6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96, 102, 108, 114, 120]), 20, 'Test 36');
+test(countDifferentSubsequenceGCDs([5, 25, 45, 65, 85, 105, 125, 145, 165, 185, 205, 225, 245, 265, 285, 305, 325, 345, 365, 385]), 23, 'Test 37');
+test(countDifferentSubsequenceGCDs([9, 18, 27, 36, 45, 54, 63, 72, 81, 90, 99, 108, 117, 126, 135, 144, 153, 162, 171, 180, 189, 198, 207, 216, 225, 234, 243, 252, 261, 270]), 30, 'Test 38');
+test(countDifferentSubsequenceGCDs([101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197]), 21, 'Test 39');
+test(countDifferentSubsequenceGCDs([49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30]), 34, 'Test 40');
+test(countDifferentSubsequenceGCDs([97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]), 25, 'Test 41');
+test(countDifferentSubsequenceGCDs([15, 30, 45, 60, 75, 90, 105, 120, 135, 150]), 10, 'Test 42');
+test(countDifferentSubsequenceGCDs([3, 6, 9, 12, 15, 18, 21, 24, 27, 30]), 10, 'Test 43');
+test(countDifferentSubsequenceGCDs([1, 100000, 2, 99999, 3, 99998, 4, 99997, 5, 99996, 6, 99995, 7, 99994, 8, 99993]), 16, 'Test 44');
+test(countDifferentSubsequenceGCDs([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]), 20, 'Test 45');
+test(countDifferentSubsequenceGCDs([12, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]), 26, 'Test 46');
+test(countDifferentSubsequenceGCDs([13, 26, 39, 52, 65, 78, 91, 104, 117, 130, 143, 156, 169, 182, 195, 208, 221, 234, 247, 260, 273, 286, 299, 312, 325, 338, 351, 364, 377, 390]), 30, 'Test 47');
+test(countDifferentSubsequenceGCDs([9, 18, 27, 36, 45, 54, 63, 72, 81, 90, 99, 108, 117, 126, 135, 144, 153, 162, 171, 180, 189, 198, 207, 216, 225]), 25, 'Test 48');
+test(countDifferentSubsequenceGCDs([3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]), 16, 'Test 49');
+test(countDifferentSubsequenceGCDs([10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000, 150000]), 15, 'Test 50');
+test(countDifferentSubsequenceGCDs([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]), 1, 'Test 51');
+test(countDifferentSubsequenceGCDs([11, 22, 33, 44, 55, 66, 77, 88, 99, 110, 121, 132, 143, 154, 165, 176, 187, 198, 209, 220]), 20, 'Test 52');
+test(countDifferentSubsequenceGCDs([4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 84, 88, 92, 96]), 24, 'Test 53');
+test(countDifferentSubsequenceGCDs([101, 202, 303, 404, 505, 606, 707, 808, 909, 1010, 1111, 1212, 1313, 1414, 1515]), 15, 'Test 54');
+test(countDifferentSubsequenceGCDs([37, 74, 111, 148, 185, 222, 259, 296, 333, 370, 407, 444, 481, 518, 555, 592, 629, 666, 703, 740]), 20, 'Test 55');
+test(countDifferentSubsequenceGCDs([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71]), 21, 'Test 56');
+test(countDifferentSubsequenceGCDs([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]), 25, 'Test 57');
+test(countDifferentSubsequenceGCDs([1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49]), 25, 'Test 58');
+test(countDifferentSubsequenceGCDs([11, 22, 33, 44, 55, 66, 77, 88, 99, 110, 121, 132, 143, 154, 165, 176, 187, 198, 209, 220, 231, 242, 253, 264, 275, 286, 297, 308, 319, 330]), 30, 'Test 59');
+test(countDifferentSubsequenceGCDs([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40]), 20, 'Test 60');
+test(countDifferentSubsequenceGCDs([104729, 104728, 104727, 104726, 104725, 104724, 104723, 104722, 104721, 104720, 104719, 104718, 104717, 104716, 104715]), 25, 'Test 61');
+test(countDifferentSubsequenceGCDs([3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60]), 20, 'Test 62');
+test(countDifferentSubsequenceGCDs([97, 194, 291, 388, 485, 582, 679, 776, 873, 970, 1067, 1164, 1261, 1358, 1455, 1552, 1649, 1746, 1843, 1940]), 20, 'Test 63');
+test(countDifferentSubsequenceGCDs([1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384]), 15, 'Test 64');
+test(countDifferentSubsequenceGCDs([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16]), 16, 'Test 65');
+test(countDifferentSubsequenceGCDs([15, 21, 25, 33, 35, 39, 45, 51, 55, 57, 63, 65, 69, 75, 77, 81, 85, 87, 91, 93, 95, 99]), 31, 'Test 66');
+test(countDifferentSubsequenceGCDs([37, 74, 111, 148, 185, 222, 259, 296, 333, 370, 407, 444, 481, 518, 555]), 15, 'Test 67');
+test(countDifferentSubsequenceGCDs([12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54]), 18, 'Test 68');
+test(countDifferentSubsequenceGCDs([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105]), 21, 'Test 69');
+test(countDifferentSubsequenceGCDs([60, 120, 180, 240, 300, 360, 420, 480, 540, 600]), 10, 'Test 70');
+test(countDifferentSubsequenceGCDs([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), 15, 'Test 71');
+test(countDifferentSubsequenceGCDs([5, 25, 125, 625, 3125, 15625, 78125, 390625, 1953125, 9765625, 48828125, 244140625, 1220703125]), Execution timed out, 'Test 72');
+test(countDifferentSubsequenceGCDs([12, 24, 36, 48, 60, 72, 84, 96, 108, 120, 132, 144, 156, 168, 180, 192, 204, 216, 228, 240, 252, 264, 276, 288, 300]), 25, 'Test 73');
+test(countDifferentSubsequenceGCDs([3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45]), 15, 'Test 74');
+test(countDifferentSubsequenceGCDs([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]), 26, 'Test 75');
+test(countDifferentSubsequenceGCDs([5, 15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165, 175, 185, 195, 205, 215, 225, 235, 245, 255, 265, 275, 285, 295]), 30, 'Test 76');
+test(countDifferentSubsequenceGCDs([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]), 15, 'Test 77');
+test(countDifferentSubsequenceGCDs([100000, 50000, 25000, 12500, 6250, 3125, 1562, 781, 390, 195]), 14, 'Test 78');
+test(countDifferentSubsequenceGCDs([2 * 100000, 2 * 100000, 2 * 100000, 2 * 100000, 2 * 100000]), Error: Solution.countDifferentSubsequenceGCDs[] missing 1 required positional argument: 'nums', 'Test 79');
+test(countDifferentSubsequenceGCDs([99995, 99996, 99997, 99998, 99999, 100000, 100001, 100002, 100003, 100004, 100005, 100006, 100007, 100008, 100009]), 26, 'Test 80');
+test(countDifferentSubsequenceGCDs([10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200]), 20, 'Test 81');
+test(countDifferentSubsequenceGCDs([71, 142, 213, 284, 355, 426, 497, 568, 639, 710, 781, 852, 923, 994, 1065, 1136, 1207, 1278, 1349]), 19, 'Test 82');
+test(countDifferentSubsequenceGCDs([2, 4, 6, 8, 10, 12, 14, 16, 18, 20]), 10, 'Test 83');
+test(countDifferentSubsequenceGCDs([30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330, 360, 390, 420, 450, 480, 510, 540, 570, 600]), 20, 'Test 84');
+test(countDifferentSubsequenceGCDs([9, 18, 27, 36, 45, 54, 63, 72, 81, 90, 99, 108, 117, 126, 135, 144, 153, 162, 171, 180]), 20, 'Test 85');
+test(countDifferentSubsequenceGCDs([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]), 20, 'Test 86');
+test(countDifferentSubsequenceGCDs([7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105]), 15, 'Test 87');
+test(countDifferentSubsequenceGCDs([60, 120, 180, 240, 300, 360, 420, 480, 540, 600, 660, 720, 780, 840, 900, 960, 1020, 1080, 1140, 1200]), 20, 'Test 88');
+test(countDifferentSubsequenceGCDs([3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 63, 66, 69, 72, 75, 78, 81, 84, 87, 90]), 30, 'Test 89');
+test(countDifferentSubsequenceGCDs([7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140]), 20, 'Test 90');
+test(countDifferentSubsequenceGCDs([100000, 90000, 80000, 70000, 60000, 50000, 40000, 30000, 20000, 10000]), 10, 'Test 91');
+test(countDifferentSubsequenceGCDs([15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330, 345, 360, 375, 390, 405, 420, 435, 450]), 30, 'Test 92');
+test(countDifferentSubsequenceGCDs([100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000]), 1, 'Test 93');
+test(countDifferentSubsequenceGCDs([120, 240, 360, 480, 600, 720, 840, 960, 1080, 1200, 1320, 1440, 1560, 1680, 1800, 1920, 2040]), 17, 'Test 94');
+test(countDifferentSubsequenceGCDs([8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576]), 18, 'Test 95');
+test(countDifferentSubsequenceGCDs([21, 35, 49, 63, 77, 91, 105, 119, 133, 147]), 11, 'Test 96');
+test(countDifferentSubsequenceGCDs([12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 63, 66, 69, 72, 75, 78, 81, 84, 87, 90, 93, 96, 99]), 33, 'Test 97');
+test(countDifferentSubsequenceGCDs([200000, 199999, 199998, 199997, 199996, 199995, 199994, 199993, 199992, 199991]), 17, 'Test 98');
+test(countDifferentSubsequenceGCDs([15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300]), 20, 'Test 99');
+test(countDifferentSubsequenceGCDs([10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]), 1, 'Test 100');
+test(countDifferentSubsequenceGCDs([17, 34, 51, 68, 85, 102, 119, 136, 153, 170, 187, 204, 221, 238, 255, 272, 289, 306, 323, 340]), 20, 'Test 101');
+test(countDifferentSubsequenceGCDs([30, 42, 54, 60, 72, 84, 90, 102, 105, 108, 120, 126, 132, 144, 150, 156, 162, 168, 180, 192]), 29, 'Test 102');
+test(countDifferentSubsequenceGCDs([1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015]), 27, 'Test 103');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+

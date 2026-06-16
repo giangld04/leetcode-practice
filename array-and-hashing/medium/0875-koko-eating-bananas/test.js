@@ -1,0 +1,150 @@
+// Test: 875. Koko Eating Bananas
+// 124 test cases from LeetCodeDataset
+// Run: node test.js
+
+const { minEatingSpeed } = require("./solution");
+
+let passed = 0, failed = 0;
+function test(actual, expected, label) {
+  const a = JSON.stringify(actual);
+  const e = JSON.stringify(expected);
+  if (a === e) {
+    passed++;
+  } else {
+    console.log(`  ✗ ${label}`);
+    console.log(`    Expected: ${e}`);
+    console.log(`    Actual:   ${a}`);
+    failed++;
+  }
+}
+
+console.log("\n875. Koko Eating Bananas\n");
+
+test(minEatingSpeed([1,2,3], 5), 2, 'Test 1');
+test(minEatingSpeed([805306400,805306400,805306400], 3000000000), 1, 'Test 2');
+test(minEatingSpeed([1000000000], 1000000000), 1, 'Test 3');
+test(minEatingSpeed([805306457,805306457,805306457], 1000000000), 3, 'Test 4');
+test(minEatingSpeed([1,1,1,1,1,1,1,1,1,1], 5), 2, 'Test 5');
+test(minEatingSpeed([30,11,23,4,20], 5), 30, 'Test 6');
+test(minEatingSpeed([805306457,933693859,908256970,820324087,610103336], 5), 933693859, 'Test 7');
+test(minEatingSpeed([1,1,1,1], 4), 1, 'Test 8');
+test(minEatingSpeed([10,10,10,10], 10), 5, 'Test 9');
+test(minEatingSpeed([3,3,3,3,3], 5), 3, 'Test 10');
+test(minEatingSpeed([3,3,3,3,3], 10), 2, 'Test 11');
+test(minEatingSpeed([1,1,1,1,1,1,1,1,1,1], 10), 1, 'Test 12');
+test(minEatingSpeed([3,6,7,11], 10), 3, 'Test 13');
+test(minEatingSpeed([1], 1), 1, 'Test 14');
+test(minEatingSpeed([3,6,7,11], 8), 4, 'Test 15');
+test(minEatingSpeed([8,9,7,4,2], 3), 10, 'Test 16');
+test(minEatingSpeed([1,999999999], 2), 999999999, 'Test 17');
+test(minEatingSpeed([1,2,3], 3), 3, 'Test 18');
+test(minEatingSpeed([805306368,805306368,805306368], 1000000000), 3, 'Test 19');
+test(minEatingSpeed([1000000000,1000000000,1000000000], 3), 1000000000, 'Test 20');
+test(minEatingSpeed([30,11,23,4,20], 6), 23, 'Test 21');
+test(minEatingSpeed([3,3,3,3,3,3,3,3,3,3], 10), 3, 'Test 22');
+test(minEatingSpeed([1,1,1,1,1], 5), 1, 'Test 23');
+test(minEatingSpeed([30,11,23,4,20,35], 7), 30, 'Test 24');
+test(minEatingSpeed([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10), 10, 'Test 25');
+test(minEatingSpeed([10,20,30,40,50,60,70,80,90,100], 20), 35, 'Test 26');
+test(minEatingSpeed([1000000000,1000000000,1000000000,1000000000,1000000000], 5), 1000000000, 'Test 27');
+test(minEatingSpeed([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 10), 19, 'Test 28');
+test(minEatingSpeed([1,2,3,4,5,6,7,8,9,10], 10), 10, 'Test 29');
+test(minEatingSpeed([5, 8, 6, 29, 33, 12], 9), 15, 'Test 30');
+test(minEatingSpeed([5, 8, 6, 12, 20], 5), 20, 'Test 31');
+test(minEatingSpeed([5,8,10,12,15,17,20,23,25,28,30,33,35,38,40], 15), 40, 'Test 32');
+test(minEatingSpeed([332484035, 524908576, 855865114, 632739624, 265801521], 8), 427932557, 'Test 33');
+test(minEatingSpeed([312884470], 312884469), 2, 'Test 34');
+test(minEatingSpeed([3,6,7,11,30,20], 15), 6, 'Test 35');
+test(minEatingSpeed([5, 8, 6, 3], 15), 2, 'Test 36');
+test(minEatingSpeed([10, 10, 10, 10, 10, 10, 10, 10, 10, 10], 5), 11, 'Test 37');
+test(minEatingSpeed([1000000000, 999999999, 888888888, 777777777], 10), 444444444, 'Test 38');
+test(minEatingSpeed([1,10,100,1000,10000,100000,1000000,10000000,100000000], 9), 100000000, 'Test 39');
+test(minEatingSpeed([1, 10, 100, 1000, 10000, 100000], 6), 100000, 'Test 40');
+test(minEatingSpeed([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 100), 1, 'Test 41');
+test(minEatingSpeed([10,9,8,7,6,5,4,3,2,1], 10), 10, 'Test 42');
+test(minEatingSpeed([3, 6, 7, 11, 20, 25, 30], 15), 9, 'Test 43');
+test(minEatingSpeed([50, 25, 75, 25, 100, 50, 25, 75, 25, 100, 50, 25, 75, 25, 100, 50, 25, 75, 25, 100], 50), 25, 'Test 44');
+test(minEatingSpeed([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], 15), 15, 'Test 45');
+test(minEatingSpeed([9, 8, 7, 6, 5, 4, 3, 2, 1], 9), 9, 'Test 46');
+test(minEatingSpeed([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 20), 20, 'Test 47');
+test(minEatingSpeed([1,10,100,1000,10000,100000,1000000], 14), 125000, 'Test 48');
+test(minEatingSpeed([1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000], 25), 66666667, 'Test 49');
+test(minEatingSpeed([10,20,30,40,50], 100), 2, 'Test 50');
+test(minEatingSpeed([5,8,10,12,14,16,18,20,22,24,26,28,30], 15), 26, 'Test 51');
+test(minEatingSpeed([1000000000, 1, 1000000000, 1, 1000000000], 1000000000), 4, 'Test 52');
+test(minEatingSpeed([3, 6, 7, 11, 11, 11, 11, 11, 11, 11], 10), 11, 'Test 53');
+test(minEatingSpeed([3, 6, 7, 11, 20, 30, 40, 50, 60, 70, 80, 90, 100], 15), 80, 'Test 54');
+test(minEatingSpeed([5,8,6,7,1,2,3,4,5], 9), 8, 'Test 55');
+test(minEatingSpeed([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], 100), 3, 'Test 56');
+test(minEatingSpeed([9,8,7,6,5,4,3,2,1], 5), 10, 'Test 57');
+test(minEatingSpeed([10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], 20), 10, 'Test 58');
+test(minEatingSpeed([100,200,300,400,500], 50), 32, 'Test 59');
+test(minEatingSpeed([1000000000, 1000000000, 1000000000], 3), 1000000000, 'Test 60');
+test(minEatingSpeed([10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 10), 10, 'Test 61');
+test(minEatingSpeed([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 10), 2, 'Test 62');
+test(minEatingSpeed([100,200,300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000], 100), 234, 'Test 63');
+test(minEatingSpeed([5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5], 10), 6, 'Test 64');
+test(minEatingSpeed([300000000,100000000,200000000,400000000,500000000], 1000000000), 2, 'Test 65');
+test(minEatingSpeed([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 100), 1, 'Test 66');
+test(minEatingSpeed([10,9,8,7,6,5,4,3,2,1], 5), 11, 'Test 67');
+test(minEatingSpeed([5,4,3,2,1], 15), 1, 'Test 68');
+test(minEatingSpeed([10,20,30,40,50,60,70,80,90,100], 10), 100, 'Test 69');
+test(minEatingSpeed([1,3,5,7,9,11,13,15,17,19], 9), 20, 'Test 70');
+test(minEatingSpeed([1,10,100,1000,10000], 10), 1667, 'Test 71');
+test(minEatingSpeed([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 1), 2, 'Test 72');
+test(minEatingSpeed([100, 150, 200, 250, 300, 350, 400], 15), 150, 'Test 73');
+test(minEatingSpeed([100000000,200000000,300000000,400000000,500000000], 5), 500000000, 'Test 74');
+test(minEatingSpeed([3,6,7,11,100,101,200], 20), 26, 'Test 75');
+test(minEatingSpeed([8, 5, 6, 10, 12], 7), 8, 'Test 76');
+test(minEatingSpeed([100, 100, 100, 100, 100, 100, 100, 100, 100, 100], 10), 100, 'Test 77');
+test(minEatingSpeed([100, 200, 300, 400, 500, 600, 700, 800, 900, 1000], 50), 120, 'Test 78');
+test(minEatingSpeed([100, 100, 100, 100, 100], 10), 50, 'Test 79');
+test(minEatingSpeed([1000000000, 1000000000, 1000000000], 1000000000), 4, 'Test 80');
+test(minEatingSpeed([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 19), 2, 'Test 81');
+test(minEatingSpeed([50, 50, 50, 50, 50, 50, 50, 50, 50, 50], 100), 5, 'Test 82');
+test(minEatingSpeed([332484035, 524900671, 855865114, 632088198, 232463062], 8), 427932557, 'Test 83');
+test(minEatingSpeed([5,5,5,5,5,5,5,5,5,5], 10), 5, 'Test 84');
+test(minEatingSpeed([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 15), 10, 'Test 85');
+test(minEatingSpeed([10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 9), 11, 'Test 86');
+test(minEatingSpeed([10, 15, 20, 25, 30, 35, 40], 20), 10, 'Test 87');
+test(minEatingSpeed([1000,1000,1000,1000,1000,1000,1000,1000,1000,1000], 10000), 1, 'Test 88');
+test(minEatingSpeed([10, 20, 30, 40, 50, 60, 70, 80, 90, 100], 5), 101, 'Test 89');
+test(minEatingSpeed([10,20,30,40,50,60,70,80,90,100], 15), 50, 'Test 90');
+test(minEatingSpeed([805306368, 805306368, 805306368], 1000000000), 3, 'Test 91');
+test(minEatingSpeed([900000000,800000000,700000000,600000000,500000000], 5), 900000000, 'Test 92');
+test(minEatingSpeed([8,5,4,10,7,9,6], 15), 4, 'Test 93');
+test(minEatingSpeed([5, 10, 15, 20, 25, 30, 35, 40, 45, 50], 15), 25, 'Test 94');
+test(minEatingSpeed([10, 15, 7, 30], 6), 15, 'Test 95');
+test(minEatingSpeed([3,6,7,11,33,45,55], 25), 7, 'Test 96');
+test(minEatingSpeed([8,12,15,18,22], 12), 8, 'Test 97');
+test(minEatingSpeed([3, 6, 7, 11, 11, 11, 11, 11, 11, 11], 20), 6, 'Test 98');
+test(minEatingSpeed([10, 20, 30, 40, 50], 20), 9, 'Test 99');
+test(minEatingSpeed([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 9), 11, 'Test 100');
+test(minEatingSpeed([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], 5), 2, 'Test 101');
+test(minEatingSpeed([1000000000,1000000000,1000000000], 3000000000), 1, 'Test 102');
+test(minEatingSpeed([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 20), 1, 'Test 103');
+test(minEatingSpeed([3, 6, 7, 11, 20, 25, 30], 25), 5, 'Test 104');
+test(minEatingSpeed([1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000, 1000000000], 32), 250000000, 'Test 105');
+test(minEatingSpeed([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 5), 20, 'Test 106');
+test(minEatingSpeed([999999999,999999998,999999997,999999996,999999995], 10), 500000000, 'Test 107');
+test(minEatingSpeed([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], 15), 21, 'Test 108');
+test(minEatingSpeed([1,2,3,4,5,6,7,8,9,10], 5), 11, 'Test 109');
+test(minEatingSpeed([33, 41, 17, 29, 38, 36, 40, 9, 66, 27], 13), 38, 'Test 110');
+test(minEatingSpeed([1000000000, 1, 1, 1, 1, 1, 1, 1, 1, 1], 10), 1000000000, 'Test 111');
+test(minEatingSpeed([1, 3, 5, 7, 9, 11, 13, 15, 17, 19], 9), 20, 'Test 112');
+test(minEatingSpeed([30,11,23,4,20], 7), 20, 'Test 113');
+test(minEatingSpeed([8,8,8,8,8,8,8,8,8,8], 5), 9, 'Test 114');
+test(minEatingSpeed([2,4,6,8,10,12,14,16,18,20,22,24,26,28,30], 20), 20, 'Test 115');
+test(minEatingSpeed([10, 9, 8, 7, 6, 5, 4, 3, 2, 1], 5), 11, 'Test 116');
+test(minEatingSpeed([987654321, 123456789, 987654321, 123456789, 987654321], 5), 987654321, 'Test 117');
+test(minEatingSpeed([10,10,10,10,10,10,10,10,10,10], 1), 11, 'Test 118');
+test(minEatingSpeed([2, 4, 9, 16, 25, 36, 49, 64, 81, 100], 15), 41, 'Test 119');
+test(minEatingSpeed([10,20,30,40,50,60,70,80,90,100], 25), 27, 'Test 120');
+test(minEatingSpeed([1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 10), 1, 'Test 121');
+test(minEatingSpeed([1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100], 20), 100, 'Test 122');
+test(minEatingSpeed([10,9,8,7,6,5,4,3,2,1], 1), 11, 'Test 123');
+test(minEatingSpeed([1,2,3,4,5,6,7,8,9,10], 20), 4, 'Test 124');
+
+console.log(`\nResult: ${passed}/${passed + failed} passed` + (failed ? ` (${failed} failed)` : " ✓") + "\n");
+if (failed) process.exitCode = 1;
+
